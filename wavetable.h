@@ -20,38 +20,29 @@ wavetable-class: an example that implements a wavetable oscillator as a C++ clas
 
 class Wavetable {
 public:
-	typedef enum
-	{
-		sine,
-		square,
-		saw,
-		triangle,
-		noise
-	} Waveshape;
+	
 	
 	
 	Wavetable() {}													// Default constructor
-	Wavetable(Waveshape, float, unsigned int, bool);
+	Wavetable(float, unsigned int, bool);
 	
-	void setup(Waveshape, float, unsigned int, bool); 		
+	void setup(float, unsigned int, bool); 		
 	
-	void setFrequency(float f);	// Set the oscillator frequency
+	void setFrequency(float);	// Set the oscillator frequency
 	float getFrequency();		// Get the oscillator frequency
 	
-	void setWaveshape(Waveshape);
-	Waveshape getWaveshape();
-	void incrementWaveshape();
-	
-	
+	void setAmplitude(float);
+
 	float process();				// Get the next sample and update the phase
 	
 	~Wavetable() {}				// Destructor
 
 private:
+	void _drawTable();
 	std::vector<float> table_;	// Buffer holding the wavetable
-	Waveshape _table_type;
 	float inverseSampleRate_;	// 1 divided by the audio sample rate	
 	float frequency_;			// Frequency of the oscillator
 	float readPointer_;			// Location of the read pointer (phase of oscillator)
+	float amplitude_;
 	bool useInterpolation_;		// Whether to use linear interpolation
 };

@@ -1,59 +1,134 @@
-/*
- ____  _____ _        _    
-| __ )| ____| |      / \   
-|  _ \|  _| | |     / _ \  
-| |_) | |___| |___ / ___ \ 
-|____/|_____|_____/_/   \_\
-
-http://bela.io
-
-C++ Real-Time Audio Programming with Bela - Lecture 5: Classes and Objects
-wavetable-class: an example that implements a wavetable oscillator as a C++ class
-*/
-
-// wavetable.cpp: file for implementing the wavetable oscillator class
-
-#include <cmath>
-#include "wavetable.h"
+#include "oscillator.h"
 
 // Constructor taking arguments for sample rate and table data
-Wavetable::Wavetable(float sampleRate, unsigned int wavetableSize, bool useInterpolation) {
-	setup(sampleRate, wavetableSize, useInterpolation);
+Oscillator::Oscillator(Waveshape waveshape, unsigned int sampleRate, unsigned int wavetableSize, unsigned int nHarmonics, bool useInterpolation) {
+	setup(waveshape, sampleRate, wavetableSize, useInterpolation);
 } 
 
-void Wavetable::setup(float sampleRate, unsigned int wavetableSize, bool useInterpolation)
+void Oscillator::setup(Waveshape waveshape, unsigned int sampleRate, unsigned int wavetableSize, unsigned int nHarmonics, bool useInterpolation)
 {
 	// It's faster to multiply than to divide on most platforms, so we save the inverse
 	// of the sample rate for use in the phase calculation later
 	inverseSampleRate_ = 1.0 / sampleRate;
-	
-	table_.resize(wavetableSize);
 
-	amplitude_ = 1;
+	// resize the buffer to have the necessary number of wavetables
+  wavetables_.resize(nHarmonics);
 
-	_drawTable();
-	// Copy other parameters
+  //set it up
+  for (unsigned int i = 0; i < wavetables_.size(); i++)
+  {
+    wavetables_[i].setup(sampleRate, wavetableSize, true);
+  }
+
+  // use an arbitrary fundamental frequency
+  f_fundamental_ = 10;
+
+  // Copy other parameters
+	setWaveshape(waveshape);
 	useInterpolation_ = useInterpolation;
 	
 	// Initialise the starting state
 	readPointer_ = 0;
 }
 
-void Wavetable::_drawTable()
+Oscillator::Waveshape Oscillator::getWaveshape()
 {
-	std::vector<float> tmp_table;
-	tmp_table.resize(table_.size());
+	return table_type_;
+}
 
-	for (unsigned int i = 0; i < table_.size(); i++)
+void Oscillator::incrementWaveshape()
+{
+	switch(table_type_)
 	{
-		tmp_table[i] = sinf(2.0 * M_PI * (float)(i / table_.size()));
+		case(sine):
+		{
+			setWaveshape(saw);
+			break;
+		}
+		
+		case(saw):
+		{
+			setWaveshape(square);
+			break;
+		}
+		
+		case(square):
+		{
+			setWaveshape(triangle);
+			break;
+		}
+		
+		case(triangle):
+		{
+			setWaveshape(sine);
+			break;
+		}
+		case(noise):
+		{
+			setWaveshape(sine);
+			break;
+		}
 	}
-	table_ = tmp_table;
+}
+
+void Oscillator::setWaveshape(Waveshape waveshape)
+{
+	table_type_ = waveshape;
+	
+	
+	// create the wavetable object
+	// TODO: can make a vector of wavetables that we interpolate between
+
+	
+	//TODO SWITCH CASE
+	switch (table_type_)
+	{
+		case (square):
+		{
+			// generate square wavetable
+			for (unsigned int i = 0; i < wavetables_.size(); i++)
+      {
+        wavetables_[i].setAmplitude((float)1.0/i);
+        wavetables_[i].setFrequency((float)f_fundamental_ * i);
+      }
+			
+			break;
+		}
+		
+		case (saw):
+		{
+			
+			break;
+		
+		}
+		
+		case(sine):
+		{
+			
+			break;
+		}
+		
+		
+		
+		case(triangle):
+		{
+			//generate triangle wave
+			// needs to rise and fall in half a period
+		
+			
+			break;
+		}
+		
+		case(noise):
+			;
+		
+	}
+	
 }
 
 // Set the oscillator frequency
 void Wavetable::setFrequency(float f) {
-	frequency_ = f; 
+	frequency_ = f;
 }
 
 // Get the oscillator frequency
@@ -61,10 +136,6 @@ float Wavetable::getFrequency() {
 	return frequency_;
 }		
 
-void Wavetable::setAmplitude(float amplitude)
-{
-	amplitude_ = amplitude;
-}
 	
 // Get the next sample and update the phase
 float Wavetable::process() {
@@ -107,8 +178,5 @@ float Wavetable::process() {
 		out = table_[(int)readPointer_];
 	}
 	
-	// apply amplitude
-	out *= amplitude_;
-
 	return out;
 }			
