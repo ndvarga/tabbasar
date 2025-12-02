@@ -46,7 +46,7 @@ void Wavetable::_drawTable()
 
 	for (unsigned int i = 0; i < table_.size(); i++)
 	{
-		tmp_table[i] = sinf(2.0 * M_PI * (float)(i / table_.size()));
+		tmp_table[i] = sinf(2.0 * M_PI * ((float)i / table_.size()));
 	}
 	table_ = tmp_table;
 }
@@ -69,7 +69,6 @@ void Wavetable::setAmplitude(float amplitude)
 // Get the next sample and update the phase
 float Wavetable::process() {
 	
-	// TODO: ADD ANTIALIASING
 	
 	float out = 0;
 	
@@ -82,7 +81,8 @@ float Wavetable::process() {
 	while(readPointer_ >= table_.size())
 		readPointer_ -= table_.size();
 	
-	if(useInterpolation_) {
+	if(useInterpolation_) 
+	{
 		// The pointer will take a fractional index. Look for the sample on
 		// either side which are indices we can actually read into the buffer.
 		// If we get to the end of the buffer, wrap around to 0.

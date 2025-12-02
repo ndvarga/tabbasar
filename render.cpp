@@ -26,7 +26,7 @@ The Bela software is distributed under the GNU Lesser General Public License
 #include <vector>
 #include <libraries/Biquad/Biquad.h>
 #include "Filter.h"
-#include "wavetable.h"	// This is needed for the Wavetable class
+#include "oscillator.h"	// This is needed for the oscillator class
 
 // Constants that define the program behaviour
 const unsigned int kWavetableSize = 512;
@@ -37,7 +37,8 @@ Biquad lowpass;
 Scope gScope;
 
 // Wavetable oscillator
-Wavetable gOscillators[2];
+Oscillator gOscillators[2];
+Oscillator gTestOsc;
 
 //add vector for all of our Waveshapes to use in our oscillator
 // std::vector<Wavetable::Waveshape> discreet_waveshapes = { Wavetable::Waveshape::sine, Wavetable::Waveshape::square, Wavetable::Waveshape::saw, Wavetable::Waveshape::triangle };
@@ -48,7 +49,23 @@ Wavetable gOscillators[2];
 float gAmplitude;
 float gFrequencies[2];
 
-int lastOscillatorSwitchButtonPress = LOW;
+// button parameters
+// State machine states
+enum {
+	kStateOpen = 0,
+	kStateJustClosed,
+	kStateClosed,
+	kStateJustOpen 
+};
+
+int glastOscButtonState = LOW;
+float gDebounceTimeMs = 50;
+int gDebounceState = kStateOpen;  // initial state of debounce machine
+int gDebounceCounter = 0;	// counter to exit lock state
+int gDebounceInterval;	// duration of lock state
+
+
+unsigned int gSampleTimer = 0;
 
 bool setup(BelaContext *context, void *userData)
 {
@@ -64,34 +81,32 @@ bool setup(BelaContext *context, void *userData)
 		return false;
 	}
 		
-	// Populate a buffer with the first 32 harmonics of a sawtooth wave
-	wavetable.resize(kWavetableSize);
-	for(unsigned int n = 0; n < wavetable.size(); n++) 
-	{
-		wavetable[n] = 0;
-		for(unsigned int harmonic = 1; harmonic <= 32; harmonic++) 
-		{
-			wavetable[n] += sinf(2.0 * M_PI * (float)harmonic * (float)n / (float)wavetable.size()) / (float)harmonic;
-		}
-	}
+	
 	
 	// Initialise the wavetable, passing the sample rate and the buffer
-	Wavetable::Waveshape oscillatorType = Wavetable::sine;
-	for(unsigned int i = 0; i < 2; i++)
-		gOscillators[i].setup(oscillatorType, context->audioSampleRate, 512, false);
-
+	Oscillator::Waveshape oscillatorType = Oscillator::Waveshape::square;
+	// arguments are oscillatorType, sample rate, wavetable size, 
+	// for(unsigned int i = 0; i < 2; i++)
+	
+	//setup(waveshape, sampleRate, wavetableSize, nHarmonics, useInterpolation)
+	gTestOsc.setup(oscillatorType, context->audioSampleRate, kWavetableSize, 32, false);
 	// Set up the oscilloscope
 	gScope.setup(1, context->audioSampleRate);
+    
+    // set the debounce interval in samples
+    gDebounceInterval = context->audioSampleRate * gDebounceTimeMs / 1000.0;
+	gTestOsc.setFundamentalFrequency(520.0);
+
 
 	return true;
 }
 
 void render(BelaContext *context, void *userData)
 {
-	// we moved all controls within the render loop!
 
     for(unsigned int n = 0; n < context->audioFrames; n++) 
     {
+
     	// read analog ins and update control parameters only every other frame
     	// because the analog sample rate is half of the audio one
     	if( !(n % 2) )
@@ -117,33 +132,74 @@ void render(BelaContext *context, void *userData)
     	}
 	
 		unsigned int input0 = digitalRead(context,n, 0);
-			
-		if (input0 == HIGH && lastOscillatorSwitchButtonPress == LOW)
-		{
-			for (int i = 0; i < 2; i++)
-			{
-				gOscillators[i].incrementWaveshape();
-			}
-			rt_printf("oscillator type: %d\n", gOscillators[0].getWaveshape());
-		}
-		lastOscillatorSwitchButtonPress = input0;
-	
+		
+		if(gDebounceState == kStateOpen) {
+   			// Button is not pressed, could be pressed anytime
+   			// Input: look for switch closure
+   			if (input0 == LOW)
+   			{
+   				gDebounceState = kStateJustClosed;
+				
+				// switch osc
+				gTestOsc.incrementWaveshape();
+
+   			}
+   		}
+   		else if(gDebounceState == kStateJustClosed) {
+   			// Button was just pressed, wait for debounce
+   			// Input: run counter, wait for timeout
+   			gDebounceCounter++;
+   			if (gDebounceCounter >= gDebounceInterval)
+   			{
+   				gDebounceState = kStateClosed;
+   				gDebounceCounter = 0;
+   			}
+   		}
+   		else if(gDebounceState == kStateClosed) {
+   			// Button is pressed, could be released anytime
+   			// Input: look for switch opening
+   			if (input0 == HIGH)
+   			{
+   				gDebounceState = kStateJustOpen;
+   			}
+   		}
+   		else if(gDebounceState == kStateJustOpen) {
+   			// Button was just released, wait for debounce
+   			// Input: run counter, wait for timeout
+   			gDebounceCounter++;
+   			if (gDebounceCounter >= gDebounceInterval)
+   			{
+   				gDebounceState = kStateOpen;
+   				gDebounceCounter = 0;
+   			}
+   		}
+		
+
 		float oscillator_out = 0;
 		float out = 0;
     	
-    	for(unsigned int i = 0; i < 2; i++) 
-    	{
-    		gOscillators[i].setFrequency(gFrequencies[i]);
-			oscillator_out += gAmplitude * gOscillators[i].process();
+   // 	for(unsigned int i = 0; i < 2; i++) 
+   // 	{
+   // 		gOscillators[i].setFundamentalFrequency(gFrequencies[i]);
+			// oscillator_out += gAmplitude * gOscillators[i].process();
 			
+   // 	}
+		
+    	oscillator_out += gTestOsc.process();
+    	out = oscillator_out;
+    	// out = lowpass.process(oscillator_out);
+    	
+    	gSampleTimer++;
+    	if (gSampleTimer > context->audioSampleRate / 10)
+    	{
+    		gSampleTimer = 0;
+    		
+    		// rt_printf("out = %f\n", out);
     	}
-    	
-    	
-    	out = lowpass.process(oscillator_out);
     	
     	for(unsigned int channel = 0; channel < context->audioOutChannels; channel++) 
     	{
-			// Write the sample to every audio output channel
+				// Write the sample to every audio output channel
     		audioWrite(context, n, channel, out);
     	}
     	

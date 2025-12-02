@@ -1,34 +1,34 @@
 #include "oscillator.h"
 
 // Constructor taking arguments for sample rate and table data
-Oscillator::Oscillator(Waveshape waveshape, unsigned int sampleRate, unsigned int wavetableSize, unsigned int nHarmonics, bool useInterpolation) {
-	setup(waveshape, sampleRate, wavetableSize, useInterpolation);
+Oscillator::Oscillator(Waveshape waveshape, float sampleRate, unsigned int wavetableSize, unsigned int nHarmonics, bool useInterpolation) {
+	setup(waveshape, sampleRate, wavetableSize, nHarmonics, useInterpolation);
 } 
 
-void Oscillator::setup(Waveshape waveshape, unsigned int sampleRate, unsigned int wavetableSize, unsigned int nHarmonics, bool useInterpolation)
+void Oscillator::setup(Waveshape waveshape, float sampleRate, unsigned int wavetableSize, unsigned int nHarmonics, bool useInterpolation)
 {
-	// It's faster to multiply than to divide on most platforms, so we save the inverse
-	// of the sample rate for use in the phase calculation later
-	inverseSampleRate_ = 1.0 / sampleRate;
-
+	sampleRate_ = sampleRate;
 	// resize the buffer to have the necessary number of wavetables
-  wavetables_.resize(nHarmonics);
-
-  //set it up
-  for (unsigned int i = 0; i < wavetables_.size(); i++)
-  {
-    wavetables_[i].setup(sampleRate, wavetableSize, true);
-  }
-
-  // use an arbitrary fundamental frequency
-  f_fundamental_ = 10;
-
-  // Copy other parameters
+	wavetables_.resize(nHarmonics);
+	n_harmonics_ = nHarmonics;
+	
+	
+	//set it up
+	for (unsigned int i = 0; i < wavetables_.size(); i++)
+	{
+		Wavetable harmonic;
+		harmonic.setup(sampleRate, wavetableSize, useInterpolation);
+		wavetables_[i].setup(sampleRate, wavetableSize, useInterpolation);
+		
+	}
+	
+	// use an arbitrary fundamental frequency
+	f_fundamental_ = 10;
+	
+	// Copy other parameters
 	setWaveshape(waveshape);
-	useInterpolation_ = useInterpolation;
 	
 	// Initialise the starting state
-	readPointer_ = 0;
 }
 
 Oscillator::Waveshape Oscillator::getWaveshape()
@@ -60,7 +60,7 @@ void Oscillator::incrementWaveshape()
 		
 		case(triangle):
 		{
-			setWaveshape(sine);
+			setWaveshape(noise);
 			break;
 		}
 		case(noise):
@@ -77,45 +77,85 @@ void Oscillator::setWaveshape(Waveshape waveshape)
 	
 	
 	// create the wavetable object
-	// TODO: can make a vector of wavetables that we interpolate between
 
-	
 	//TODO SWITCH CASE
 	switch (table_type_)
 	{
 		case (square):
 		{
 			// generate square wavetable
+
 			for (unsigned int i = 0; i < wavetables_.size(); i++)
-      {
-        wavetables_[i].setAmplitude((float)1.0/i);
-        wavetables_[i].setFrequency((float)f_fundamental_ * i);
-      }
+	    	{
+	    		wavetables_[i].setFrequency((float)f_fundamental_ * (i+1));
+
+		        // If i is even, mute the wavetable
+		        if ((i%2))
+		        {
+		          wavetables_[i].setAmplitude(0);
+		        }
+		        else
+		        // Otherwise, set the frequency and amplitude
+		        {
+		    		wavetables_[i].setAmplitude(1.0f/(float)(i+1));
+
+	        	}
+    	}
 			
 			break;
 		}
 		
 		case (saw):
 		{
-			
+	      // x(saw) = -2/pi sum((-1)^k*sin(2*pi*f*t/k))
+			for (unsigned int i = 0; i < wavetables_.size(); i++)
+	    	{
+	    		// multiply by (-1)^k
+	        	float amplitude = -2 / M_PI * 1.0/(float)(i+1) * (i % 2 ? -1.0f : 1.0f);
+	        	wavetables_[i].setAmplitude(amplitude);
+	    		wavetables_[i].setFrequency(f_fundamental_ * (i+1));
+	    	}
+	
 			break;
 		
 		}
 		
 		case(sine):
 		{
-			
+			wavetables_[0].setAmplitude(1);
+    		wavetables_[0].setFrequency(f_fundamental_);
+	
+	    	for (unsigned int i = 1; i < wavetables_.size(); i++)
+	    	{
+	        	wavetables_[i].setAmplitude(0);
+	        	wavetables_[i].setFrequency(1.0f);
+	    	}
 			break;
 		}
-		
 		
 		
 		case(triangle):
 		{
 			//generate triangle wave
 			// needs to rise and fall in half a period
-		
-			
+			for (unsigned int i = 0; i < wavetables_.size(); i++)
+			{
+	        // get odd harmonics
+		        if (i % 2)
+		        {
+		          float amplitude = 8 / (M_PI * M_PI) * powf(-1.0f, (i - 1) / 2.0f) / powf((float)i, 2.0f);
+		          wavetables_[i].setAmplitude(amplitude);
+		          wavetables_[i].setFrequency(i * f_fundamental_);
+		        }
+		        else
+		        {
+		          // mute even harmonics
+		          wavetables_[i].setAmplitude(0);
+		          //set arbitrary frequency so there's no bugs
+		          wavetables_[i].setFrequency(1.0f);
+		        }
+
+    		}
 			break;
 		}
 		
@@ -123,59 +163,54 @@ void Oscillator::setWaveshape(Waveshape waveshape)
 			;
 		
 	}
+	rt_printf("set table_type_ to %d\n", table_type_);
 	
 }
 
 // Set the oscillator frequency
-void Wavetable::setFrequency(float f) {
-	frequency_ = f;
+void Oscillator::setFundamentalFrequency(float f) {
+	f_fundamental_ = f;
+
+	//change the fundamental frequency, then set the frequencies to the harmonic. 
+	for (unsigned int i = 0; i < wavetables_.size(); i++)
+	{
+		float f_harmonic = f_fundamental_ * (i+1);
+		wavetables_[i].setFrequency(f_harmonic);
+		// anti-aliasing
+		if (f_harmonic > sampleRate_ / 2.5f)
+		{
+			wavetables_[i].setAmplitude(0);
+			rt_printf("muted harmonic %d", i+1);
+		}
+	}
 }
 
 // Get the oscillator frequency
-float Wavetable::getFrequency() {
-	return frequency_;
+float Oscillator::getFundamentalFrequency() {
+	return f_fundamental_;
 }		
 
 	
 // Get the next sample and update the phase
-float Wavetable::process() {
+float Oscillator::process() {
 	
-	// TODO: ADD ANTIALIASING
 	
 	float out = 0;
 	
-	// Make sure we have a valid table
-	if(table_.size() == 0)
-		return out;
-	
-	// Increment and wrap the phase
-	readPointer_ += table_.size() * frequency_ * inverseSampleRate_;
-	while(readPointer_ >= table_.size())
-		readPointer_ -= table_.size();
-	
-	if(useInterpolation_) {
-		// The pointer will take a fractional index. Look for the sample on
-		// either side which are indices we can actually read into the buffer.
-		// If we get to the end of the buffer, wrap around to 0.
-		int indexBelow = floorf(readPointer_);
-		int indexAbove = indexBelow + 1;
-		if(indexAbove >= table_.size())
-			indexAbove = 0;
-	
-		// For linear interpolation, we need to decide how much to weigh each
-		// sample. The closer the fractional part of the index is to 0, the
-		// more weight we give to the "below" sample. The closer the fractional
-		// part is to 1, the more weight we give to the "above" sample.
-		float fractionAbove = readPointer_ - indexBelow;
-		float fractionBelow = 1.0 - fractionAbove;
-	
-		// Calculate the weighted average of the "below" and "above" samples
-	    out = fractionBelow * table_[indexBelow] +
-	    	  fractionAbove * table_[indexAbove];
+	if (table_type_ == Waveshape::noise)
+	{
+		// rand() returns 0..RAND_MAX; scale to [-1.0, 1.0]
+		out = (float)std::rand() / (float)RAND_MAX * 2.0f - 1.0f;
+    	return out;
 	}
-	else {
-		// Read the table without interpolation
-		out = table_[(int)readPointer_];
+	else
+	{
+		// go through all wavetables
+		for (unsigned int i = 0; i < wavetables_.size(); i++)
+		{
+	    	float table_sample = wavetables_[i].process();
+	    	out += table_sample;
+	    }
 	}
 	
 	return out;
