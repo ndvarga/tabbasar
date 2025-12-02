@@ -27,6 +27,8 @@ The Bela software is distributed under the GNU Lesser General Public License
 #include <libraries/Biquad/Biquad.h>
 #include "Filter.h"
 #include "oscillator.h"	// This is needed for the oscillator class
+#include "debouncer.h"
+#include "parameters.h"
 
 // Constants that define the program behaviour
 const unsigned int kWavetableSize = 512;
@@ -43,7 +45,11 @@ Oscillator gTestOsc;
 //add vector for all of our Waveshapes to use in our oscillator
 // std::vector<Wavetable::Waveshape> discreet_waveshapes = { Wavetable::Waveshape::sine, Wavetable::Waveshape::square, Wavetable::Waveshape::saw, Wavetable::Waveshape::triangle };
 
+Debouncer gButtonDebouncer;
 
+// Step sequencer contents
+std::vector<float> gSequencerBuffer = {36, 40, 43};
+unsigned int gSequencerLocation = 0;
 
 // Oscillators parameters
 float gAmplitude;
@@ -51,18 +57,14 @@ float gFrequencies[2];
 
 // button parameters
 // State machine states
-enum {
-	kStateOpen = 0,
-	kStateJustClosed,
-	kStateClosed,
-	kStateJustOpen 
-};
+
 
 int glastOscButtonState = LOW;
 float gDebounceTimeMs = 50;
 int gDebounceState = kStateOpen;  // initial state of debounce machine
 int gDebounceCounter = 0;	// counter to exit lock state
 int gDebounceInterval;	// duration of lock state
+
 
 
 unsigned int gSampleTimer = 0;
@@ -97,6 +99,8 @@ bool setup(BelaContext *context, void *userData)
     gDebounceInterval = context->audioSampleRate * gDebounceTimeMs / 1000.0;
 	gTestOsc.setFundamentalFrequency(520.0);
 
+	//button debouncer setup
+	gButtonDebouncer.setup(gDebounceTimeMs, context->audioSampleRate);
 
 	return true;
 }
@@ -131,48 +135,12 @@ void render(BelaContext *context, void *userData)
 				gFrequencies[1] = frequency * (1.0 - detune);
     	}
 	
-		unsigned int input0 = digitalRead(context,n, 0);
+		unsigned int input0 = digitalRead(context,n,0);
 		
-		if(gDebounceState == kStateOpen) {
-   			// Button is not pressed, could be pressed anytime
-   			// Input: look for switch closure
-   			if (input0 == LOW)
-   			{
-   				gDebounceState = kStateJustClosed;
-				
-				// switch osc
-				gTestOsc.incrementWaveshape();
 
-   			}
-   		}
-   		else if(gDebounceState == kStateJustClosed) {
-   			// Button was just pressed, wait for debounce
-   			// Input: run counter, wait for timeout
-   			gDebounceCounter++;
-   			if (gDebounceCounter >= gDebounceInterval)
-   			{
-   				gDebounceState = kStateClosed;
-   				gDebounceCounter = 0;
-   			}
-   		}
-   		else if(gDebounceState == kStateClosed) {
-   			// Button is pressed, could be released anytime
-   			// Input: look for switch opening
-   			if (input0 == HIGH)
-   			{
-   				gDebounceState = kStateJustOpen;
-   			}
-   		}
-   		else if(gDebounceState == kStateJustOpen) {
-   			// Button was just released, wait for debounce
-   			// Input: run counter, wait for timeout
-   			gDebounceCounter++;
-   			if (gDebounceCounter >= gDebounceInterval)
-   			{
-   				gDebounceState = kStateOpen;
-   				gDebounceCounter = 0;
-   			}
-   		}
+		gTestOsc.incrementWaveshape();
+
+		
 		
 
 		float oscillator_out = 0;
