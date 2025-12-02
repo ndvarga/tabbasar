@@ -61,7 +61,6 @@ float gFrequencies[2];
 
 int glastOscButtonState = LOW;
 float gDebounceTimeMs = 50;
-int gDebounceState = kStateOpen;  // initial state of debounce machine
 int gDebounceCounter = 0;	// counter to exit lock state
 int gDebounceInterval;	// duration of lock state
 
@@ -137,21 +136,21 @@ void render(BelaContext *context, void *userData)
 	
 		unsigned int input0 = digitalRead(context,n,0);
 		
+		if (gButtonDebouncer.step(input0)) {
+			gTestOsc.incrementWaveshape();
 
-		gTestOsc.incrementWaveshape();
-
-		
+		}
 		
 
 		float oscillator_out = 0;
 		float out = 0;
     	
-   // 	for(unsigned int i = 0; i < 2; i++) 
-   // 	{
-   // 		gOscillators[i].setFundamentalFrequency(gFrequencies[i]);
-			// oscillator_out += gAmplitude * gOscillators[i].process();
-			
-   // 	}
+		// 	for(unsigned int i = 0; i < 2; i++) 
+		// 	{
+		// 		gOscillators[i].setFundamentalFrequency(gFrequencies[i]);
+					// oscillator_out += gAmplitude * gOscillators[i].process();
+					
+		// 	}
 		
     	oscillator_out += gTestOsc.process();
     	out = oscillator_out;
