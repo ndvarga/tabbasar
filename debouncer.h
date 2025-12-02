@@ -14,7 +14,8 @@ class Debouncer {
 		Debouncer() {}
 
 		void setup(float timeToDebounceMs, float sampleRate);
-		// return true if it is time to take action
+
+		// return true if it is time to take action (button pressed down)
 		bool step(unsigned int input);
 
 
