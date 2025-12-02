@@ -1,6 +1,7 @@
 #include "debouncer.h"
 
 void Debouncer::setup(float timeToDebounceMs, float sampleRate) {
+	// in samples
 	unsigned int debounceInterval_ = (unsigned int)(timeToDebounceMs * sampleRate / 1000.0f);
 }
 
@@ -23,7 +24,7 @@ bool Debouncer::step(unsigned int input) {
 		// Button was just pressed, wait for debounce
 		// Input: run counter, wait for timeout
 		debounceCounter_++;
-		if (debounceCounter_ >= gDebounceInterval)
+		if (debounceCounter_ >= debounceInterval_)
 		{
 			curState_ = kStateClosed;
 			debounceCounter_ = 0;
@@ -42,7 +43,7 @@ bool Debouncer::step(unsigned int input) {
 		// Button was just released, wait for debounce
 		// Input: run counter, wait for timeout
 		debounceCounter_++;
-		if (debounceCounter_ >= gDebounceInterval)
+		if (debounceCounter_ >= debounceInterval_)
 		{
 			curState_ = kStateOpen;
 			debounceCounter_ = 0;
