@@ -4,11 +4,11 @@ void Debouncer::setup(float timeToDebounceMs, float sampleRate) {
 	unsigned int debounceInterval_ = (unsigned int)(timeToDebounceMs * sampleRate / 1000.0f);
 }
 
-bool Debouncer::step() {
+bool Debouncer::step(unsigned int input) {
 	if(curState_ == kStateOpen) {
 		// Button is not pressed, could be pressed anytime
 		// Input: look for switch closure
-		if (input0 == LOW)
+		if (input == LOW)
 		{
 			curState_ = kStateJustClosed;
 
@@ -22,17 +22,18 @@ bool Debouncer::step() {
 	else if(curState_ == kStateJustClosed) {
 		// Button was just pressed, wait for debounce
 		// Input: run counter, wait for timeout
-		gDebounceCounter++;
-		if (gDebounceCounter >= gDebounceInterval)
+		debounceCounter_++;
+		if (debounceCounter_ >= gDebounceInterval)
 		{
 			curState_ = kStateClosed;
-			gDebounceCounter = 0;
+			debounceCounter_ = 0;
 		}
+
 	}
 	else if(curState_ == kStateClosed) {
 		// Button is pressed, could be released anytime
 		// Input: look for switch opening
-		if (input0 == HIGH)
+		if (input == HIGH)
 		{
 			curState_ = kStateJustOpen;
 		}
@@ -40,11 +41,11 @@ bool Debouncer::step() {
 	else if(curState_ == kStateJustOpen) {
 		// Button was just released, wait for debounce
 		// Input: run counter, wait for timeout
-		gDebounceCounter++;
-		if (gDebounceCounter >= gDebounceInterval)
+		debounceCounter_++;
+		if (debounceCounter_ >= gDebounceInterval)
 		{
 			curState_ = kStateOpen;
-			gDebounceCounter = 0;
+			debounceCounter_ = 0;
 		}
 	}
 }

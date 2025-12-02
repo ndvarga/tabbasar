@@ -15,7 +15,7 @@ class Debouncer {
 
 		void setup(float timeToDebounceMs, float sampleRate);
 		// return true if it is time to take action
-		bool step();
+		bool step(unsigned int input);
 
 
 		~Debouncer() {}
@@ -23,7 +23,7 @@ class Debouncer {
 	private:
 		DebounceState curState_;
 		
-		float debounceCounter_;
+		unsigned int debounceCounter_;
 		unsigned int debounceInterval_;
 
 };
