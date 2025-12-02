@@ -2,3 +2,4 @@
 *.sh
 ./tabbasar
 settings.json
+build/*
