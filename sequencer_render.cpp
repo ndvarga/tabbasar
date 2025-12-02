@@ -95,9 +95,9 @@ void render(BelaContext *context, void *userData)
     	float frequency = 440.0 * powf(2.0, (midiNote - 69.0) / 12.0);
     	
     	// Calculate frequences of each of two oscillators
-		float frequencies[2];
-		frequencies[0] = frequency * (1.0 + kDetune);
-		frequencies[1] = frequency * (1.0 - kDetune);
+			float frequencies[2];
+			frequencies[0] = frequency * (1.0 + kDetune);
+			frequencies[1] = frequency * (1.0 - kDetune);
 
     	for(unsigned int i = 0; i < 2; i++) {
     		gOscillators[i].setFrequency(frequencies[i]);

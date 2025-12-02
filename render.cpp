@@ -65,7 +65,6 @@ int gDebounceCounter = 0;	// counter to exit lock state
 int gDebounceInterval;	// duration of lock state
 
 
-
 unsigned int gSampleTimer = 0;
 
 bool setup(BelaContext *context, void *userData)
