@@ -69,7 +69,6 @@ void Wavetable::setAmplitude(float amplitude)
 // Get the next sample and update the phase
 float Wavetable::process() {
 	
-	// TODO: ADD ANTIALIASING
 	
 	float out = 0;
 	
@@ -82,7 +81,8 @@ float Wavetable::process() {
 	while(readPointer_ >= table_.size())
 		readPointer_ -= table_.size();
 	
-	if(useInterpolation_) {
+	if(useInterpolation_) 
+	{
 		// The pointer will take a fractional index. Look for the sample on
 		// either side which are indices we can actually read into the buffer.
 		// If we get to the end of the buffer, wrap around to 0.

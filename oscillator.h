@@ -4,6 +4,7 @@
 #include <vector>
 #include <cmath>
 
+
 class Oscillator 
 {
   public:
@@ -18,15 +19,12 @@ class Oscillator
     
 
     Oscillator() {}
-    Oscillator(Waveshape, unsigned int, unsigned int, unsigned int, bool);
-  
-    
-    
+    Oscillator(Waveshape, unsigned int, unsigned int, unsigned int, bool); 
     
     void setup(Waveshape, unsigned int, unsigned int, unsigned int, bool); 		
     
-    void setFrequency(float f);	// Set the oscillator frequency
-    float getFrequency();		// Get the oscillator frequency
+    void setFundamentalFrequency(float f);	// Set the oscillator frequency
+    float getFundamentalFrequency();		// Get the oscillator frequency
     
     void setWaveshape(Waveshape);
     Waveshape getWaveshape();
@@ -37,12 +35,12 @@ class Oscillator
     
     ~Oscillator() {}				// Destructor
 
+    float masterAmplitude;
+
 private:
 	std::vector<Wavetable> wavetables_;	// Buffer holding the wavetable
-	Waveshape table_type_;
-  unsigned int n_harmonics_;
-	float inverseSampleRate_;	// 1 divided by the audio sample rate	
-	float f_fundamental_;			// Fundamental frequency of the oscillator
-	float readPointer_;			// Location of the read pointer (phase of oscillator)
-	bool useInterpolation_;		// Whether to use linear interpolation
+	Waveshape table_type_;              // the type of wavetable
+  unsigned int n_harmonics_;          // number of harmonics the oscillator has
+  unsigned int sampleRate_;           // Sample rate 
+	float f_fundamental_;			          // Fundamental frequency of the oscillator
 };
