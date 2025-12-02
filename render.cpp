@@ -31,7 +31,8 @@ The Bela software is distributed under the GNU Lesser General Public License
 #include "parameters.h"
 
 // Constants that define the program behaviour
-const unsigned int kWavetableSize = 512;
+const unsigned int kWavetableSize = 256;
+const unsigned int kNumHarmonics = 32;
 
 Biquad lowpass;
 
@@ -59,7 +60,6 @@ float gFrequencies[2];
 // State machine states
 
 
-int glastOscButtonState = LOW;
 float gDebounceTimeMs = 50;
 int gDebounceCounter = 0;	// counter to exit lock state
 int gDebounceInterval;	// duration of lock state
@@ -89,15 +89,19 @@ bool setup(BelaContext *context, void *userData)
 	// for(unsigned int i = 0; i < 2; i++)
 	
 	//setup(waveshape, sampleRate, wavetableSize, nHarmonics, useInterpolation)
-	gTestOsc.setup(oscillatorType, context->audioSampleRate, kWavetableSize, 32, false);
+	gTestOsc.setup(oscillatorType, context->audioSampleRate, kWavetableSize, kNumHarmonics, true);
+
+	gOscillators[1].setup(oscillatorType, context->audioSampleRate, kWavetableSize, kNumHarmonics, true);
+	gOscillators[0].setup(oscillatorType, context->audioSampleRate, kWavetableSize, kNumHarmonics, true);
+
 	// Set up the oscilloscope
 	gScope.setup(1, context->audioSampleRate);
     
     // set the debounce interval in samples
     gDebounceInterval = context->audioSampleRate * gDebounceTimeMs / 1000.0;
-	gTestOsc.setFundamentalFrequency(520.0);
+	gTestOsc.setFundamentalFrequency(320.0);
 
-	//button debouncer setup
+	//button debouncer setup, with debounce time and audio sample rate
 	gButtonDebouncer.setup(gDebounceTimeMs, context->audioSampleRate);
 
 	return true;
@@ -118,7 +122,7 @@ void render(BelaContext *context, void *userData)
 				float input2 = analogRead(context, n/2, 2);	// read analog in 2
 				float input3 = analogRead(context, n/2, 3); // read analog in 3
 				
-				float frequency = map(input0, 0, 3.3 / 4.096, 55, 440);		// Frequency is first knob (analog in 0)
+				float frequency = map(input0, 0, 3.3 / 4.096, 55, 880);		// Frequency is first knob (analog in 0)
 				float level = map(input1, 0, 3.3 / 4.096, -60, -20);		// Level is second knob (analog in 1)	
 				// this third parameter is ready to be used
 				float detune  = map(input2, 0, 3.3 / 4.096, 0, 0.05);	    // Detune is third knob (analog in 2)	
@@ -128,38 +132,42 @@ void render(BelaContext *context, void *userData)
 				
 				gAmplitude = powf(10.0, level / 20);	// Convert level to linear amplitude
 		
-				// Compute frequencies from central freq and detune		
 				gFrequencies[0] = frequency * (1.0 + detune);
 				gFrequencies[1] = frequency * (1.0 - detune);
+				// Compute frequencies from central freq and detune	
+				for (unsigned int i = 0; i < 2; i++)
+				{
+	
+					gOscillators[i].setFundamentalFrequency(gFrequencies[i]);
+				}
     	}
 	
 		unsigned int input0 = digitalRead(context,n,0);
 		
-		if (gButtonDebouncer.step(input0)) {
-			gTestOsc.incrementWaveshape();
-
+		bool result = gButtonDebouncer.step(input0);
+		if (result ==  true) {
+			rt_printf("Button pressed\n");
+			gOscillators[0].incrementWaveshape();
+			gOscillators[1].incrementWaveshape();
 		}
 		
 
 		float oscillator_out = 0;
 		float out = 0;
     	
-		// 	for(unsigned int i = 0; i < 2; i++) 
-		// 	{
-		// 		gOscillators[i].setFundamentalFrequency(gFrequencies[i]);
-					// oscillator_out += gAmplitude * gOscillators[i].process();
-					
-		// 	}
+		for(unsigned int i = 0; i < 2; i++) 
+		{
+			oscillator_out += gAmplitude * gOscillators[i].process();
+				
+		}
 		
-    	oscillator_out += gTestOsc.process();
     	out = oscillator_out;
     	// out = lowpass.process(oscillator_out);
     	
     	gSampleTimer++;
-    	if (gSampleTimer > context->audioSampleRate / 10)
+    	if (gSampleTimer > context->audioSampleRate / 5)
     	{
     		gSampleTimer = 0;
-    		
     		// rt_printf("out = %f\n", out);
     	}
     	

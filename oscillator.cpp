@@ -16,8 +16,8 @@ void Oscillator::setup(Waveshape waveshape, float sampleRate, unsigned int wavet
 	//set it up
 	for (unsigned int i = 0; i < wavetables_.size(); i++)
 	{
-		Wavetable harmonic;
-		harmonic.setup(sampleRate, wavetableSize, useInterpolation);
+		// Wavetable harmonic;
+		// harmonic.setup(sampleRate, wavetableSize, useInterpolation);
 		wavetables_[i].setup(sampleRate, wavetableSize, useInterpolation);
 		
 	}
@@ -38,6 +38,9 @@ Oscillator::Waveshape Oscillator::getWaveshape()
 
 void Oscillator::incrementWaveshape()
 {
+	
+	//waveshape state machine
+	
 	switch(table_type_)
 	{
 		case(sine):
@@ -89,7 +92,7 @@ void Oscillator::setWaveshape(Waveshape waveshape)
 	    	{
 	    		wavetables_[i].setFrequency((float)f_fundamental_ * (i+1));
 
-		        // If i is even, mute the wavetable
+		        // If i is even, mute the harmonic
 		        if ((i%2))
 		        {
 		          wavetables_[i].setAmplitude(0);
@@ -177,10 +180,10 @@ void Oscillator::setFundamentalFrequency(float f) {
 		float f_harmonic = f_fundamental_ * (i+1);
 		wavetables_[i].setFrequency(f_harmonic);
 		// anti-aliasing
-		if (f_harmonic > sampleRate_ / 2.5f)
+		if (f_harmonic > (sampleRate_ / 2.0f))
 		{
 			wavetables_[i].setAmplitude(0);
-			rt_printf("muted harmonic %d", i+1);
+			// rt_printf("muted harmonic %d", i+1);
 		}
 	}
 }
@@ -191,7 +194,7 @@ float Oscillator::getFundamentalFrequency() {
 }		
 
 	
-// Get the next sample and update the phase
+// Get the next sample from all wavetables
 float Oscillator::process() {
 	
 	
@@ -203,27 +206,21 @@ float Oscillator::process() {
 		out = (float)std::rand() / (float)RAND_MAX * 2.0f - 1.0f;
     	return out;
 	}
+	
 	else
 	{
 		// go through all wavetables
 		for (unsigned int i = 0; i < wavetables_.size(); i++)
 		{
-	    	float table_sample = wavetables_[i].process();
-	    	out += table_sample;
-	    }
+			// anti aliasing
+			if (wavetables_[i].getFrequency() < (sampleRate_ / 2.0f))
+			{
+				  float table_sample = wavetables_[i].process();
+				  out += table_sample;
+			}
+		}
+		
 	}
-  // go through all wavetables
-	for (unsigned int i = 0; i < wavetables_.size(); i++)
-  {
-    // anti aliasing
-    if (wavetables_[i].getFrequency() < (float)(sampleRate_ / 2.0f))
-    {
-      float table_sample = wavetables_[i].process();
-      out += table_sample;
-    }
-  }
-	
-  out *= masterAmplitude;
-	
+
 	return out;
 }			

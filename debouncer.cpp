@@ -2,7 +2,11 @@
 
 void Debouncer::setup(float timeToDebounceMs, float sampleRate) {
 	// in samples
-	unsigned int debounceInterval_ = (unsigned int)(timeToDebounceMs * sampleRate / 1000.0f);
+	debounceInterval_ = (unsigned int)(timeToDebounceMs * sampleRate / 1000.0f);
+	rt_printf("set debounceInterval_ to %u", debounceInterval_);
+	debounceCounter_ = 0;
+	curState_ = kStateOpen;
+
 }
 
 bool Debouncer::step(unsigned int input) {
@@ -38,6 +42,7 @@ bool Debouncer::step(unsigned int input) {
 		{
 			curState_ = kStateJustOpen;
 		}
+		
 	}
 	else if(curState_ == kStateJustOpen) {
 		// Button was just released, wait for debounce
@@ -49,4 +54,5 @@ bool Debouncer::step(unsigned int input) {
 			debounceCounter_ = 0;
 		}
 	}
+	return false;
 }

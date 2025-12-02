@@ -40430,13 +40430,11 @@ private:
  float amplitude_;
  bool useInterpolation_;
 };
-# 3 "/root/Bela/projects/tabbasar/oscillator.h" 2
-
+# 4 "/root/Bela/projects/tabbasar/oscillator.h" 2
 
 # 1 "/usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/cmath" 1 3
 # 40 "/usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/cmath" 3
-# 5 "/root/Bela/projects/tabbasar/oscillator.h" 2
-
+# 6 "/root/Bela/projects/tabbasar/oscillator.h" 2
 
 
 class Oscillator
@@ -40481,9 +40479,78 @@ private:
  float f_fundamental_;
 };
 # 30 "/root/Bela/projects/tabbasar/render.cpp" 2
+# 1 "/root/Bela/projects/tabbasar/debouncer.h" 1
 
 
-const unsigned int kWavetableSize = 512;
+
+enum DebounceState {
+ kStateOpen = 0,
+ kStateJustClosed,
+ kStateClosed,
+ kStateJustOpen
+};
+
+class Debouncer {
+ public:
+
+  Debouncer() {}
+
+  void setup(float timeToDebounceMs, float sampleRate);
+
+
+  bool step(unsigned int input);
+
+
+  ~Debouncer() {}
+
+ private:
+  DebounceState curState_;
+
+  unsigned int debounceCounter_;
+  unsigned int debounceInterval_;
+
+};
+# 31 "/root/Bela/projects/tabbasar/render.cpp" 2
+# 1 "/root/Bela/projects/tabbasar/parameters.h" 1
+
+
+enum ControlParameters {
+
+  OSC_1_PARAMS = 0,
+
+  OSC_1_ADSR,
+
+  OSC_2_PARAMS,
+
+  OSC_2_ADSR,
+
+
+  ADDITIVE_NOISE,
+
+
+  FILTER_PARAMS,
+
+
+  LFO_PARAMS,
+
+
+  DELAY_PARAMS,
+
+
+  AM_PARAMS,
+
+
+  FM_PARAMS,
+
+  ARP,
+
+  GLOBAL_CONTROLS
+};
+# 32 "/root/Bela/projects/tabbasar/render.cpp" 2
+
+
+const unsigned int kWavetableSize = 256;
+const unsigned int kNumHarmonics = 32;
 
 Biquad lowpass;
 
@@ -40497,7 +40564,11 @@ Oscillator gTestOsc;
 
 
 
+Debouncer gButtonDebouncer;
 
+
+std::vector<float> gSequencerBuffer = {36, 40, 43};
+unsigned int gSequencerLocation = 0;
 
 
 float gAmplitude;
@@ -40505,16 +40576,9 @@ float gFrequencies[2];
 
 
 
-enum {
- kStateOpen = 0,
- kStateJustClosed,
- kStateClosed,
- kStateJustOpen
-};
 
-int glastOscButtonState = LOW;
+
 float gDebounceTimeMs = 50;
-int gDebounceState = kStateOpen;
 int gDebounceCounter = 0;
 int gDebounceInterval;
 
@@ -40543,14 +40607,20 @@ bool setup(BelaContext *context, void *userData)
 
 
 
- gTestOsc.setup(oscillatorType, context->audioSampleRate, kWavetableSize, 32, false);
+ gTestOsc.setup(oscillatorType, context->audioSampleRate, kWavetableSize, kNumHarmonics, true);
+
+ gOscillators[1].setup(oscillatorType, context->audioSampleRate, kWavetableSize, kNumHarmonics, true);
+ gOscillators[0].setup(oscillatorType, context->audioSampleRate, kWavetableSize, kNumHarmonics, true);
+
 
  gScope.setup(1, context->audioSampleRate);
 
 
     gDebounceInterval = context->audioSampleRate * gDebounceTimeMs / 1000.0;
- gTestOsc.setFundamentalFrequency(520.0);
+ gTestOsc.setFundamentalFrequency(320.0);
 
+
+ gButtonDebouncer.setup(gDebounceTimeMs, context->audioSampleRate);
 
  return true;
 }
@@ -40565,82 +40635,57 @@ void render(BelaContext *context, void *userData)
 
      if( !(n % 2) )
      {
-   float input0 = analogRead(context, n/2, 0);
-   float input1 = analogRead(context, n/2, 1);
-   float input2 = analogRead(context, n/2, 2);
-   float input3 = analogRead(context, n/2, 3);
+    float input0 = analogRead(context, n/2, 0);
+    float input1 = analogRead(context, n/2, 1);
+    float input2 = analogRead(context, n/2, 2);
+    float input3 = analogRead(context, n/2, 3);
 
-   float frequency = map(input0, 0, 3.3 / 4.096, 55, 440);
-   float level = map(input1, 0, 3.3 / 4.096, -60, -20);
+    float frequency = map(input0, 0, 3.3 / 4.096, 55, 880);
+    float level = map(input1, 0, 3.3 / 4.096, -60, -20);
 
-   float detune = map(input2, 0, 3.3 / 4.096, 0, 0.05);
-   float lowpass_frequency = map(input3, 0, 3.3/4.096, 1, 5000);
+    float detune = map(input2, 0, 3.3 / 4.096, 0, 0.05);
+    float lowpass_frequency = map(input3, 0, 3.3/4.096, 1, 5000);
 
-   lowpass.setFc(lowpass_frequency);
+    lowpass.setFc(lowpass_frequency);
 
-   gAmplitude = powf(10.0, level / 20);
+    gAmplitude = powf(10.0, level / 20);
 
+    gFrequencies[0] = frequency * (1.0 + detune);
+    gFrequencies[1] = frequency * (1.0 - detune);
 
-   gFrequencies[0] = frequency * (1.0 + detune);
-   gFrequencies[1] = frequency * (1.0 - detune);
+    for (unsigned int i = 0; i < 2; i++)
+    {
+
+     gOscillators[i].setFundamentalFrequency(gFrequencies[i]);
+    }
      }
 
-  unsigned int input0 = digitalRead(context,n, 0);
+  unsigned int input0 = digitalRead(context,n,0);
 
-  if(gDebounceState == kStateOpen) {
-
-
-      if (input0 == LOW)
-      {
-       gDebounceState = kStateJustClosed;
-
-
-    gTestOsc.incrementWaveshape();
-
-      }
-     }
-     else if(gDebounceState == kStateJustClosed) {
-
-
-      gDebounceCounter++;
-      if (gDebounceCounter >= gDebounceInterval)
-      {
-       gDebounceState = kStateClosed;
-       gDebounceCounter = 0;
-      }
-     }
-     else if(gDebounceState == kStateClosed) {
-
-
-      if (input0 == HIGH)
-      {
-       gDebounceState = kStateJustOpen;
-      }
-     }
-     else if(gDebounceState == kStateJustOpen) {
-
-
-      gDebounceCounter++;
-      if (gDebounceCounter >= gDebounceInterval)
-      {
-       gDebounceState = kStateOpen;
-       gDebounceCounter = 0;
-      }
-     }
+  bool result = gButtonDebouncer.step(input0);
+  if (result == true) {
+   rt_printf("Button pressed\n");
+   gOscillators[0].incrementWaveshape();
+   gOscillators[1].incrementWaveshape();
+  }
 
 
   float oscillator_out = 0;
   float out = 0;
-# 188 "/root/Bela/projects/tabbasar/render.cpp"
-     oscillator_out += gTestOsc.process();
+
+  for(unsigned int i = 0; i < 2; i++)
+  {
+   oscillator_out += gAmplitude * gOscillators[i].process();
+
+  }
+
      out = oscillator_out;
 
 
      gSampleTimer++;
-     if (gSampleTimer > context->audioSampleRate / 10)
+     if (gSampleTimer > context->audioSampleRate / 5)
      {
       gSampleTimer = 0;
-
 
      }
 

@@ -8,7 +8,9 @@
   /usr/xenomai/include/cobalt/mqueue.h libraries/Biquad/Biquad.h \
   /root/Bela/projects/tabbasar/Filter.h \
   /root/Bela/projects/tabbasar/oscillator.h \
-  /root/Bela/projects/tabbasar/wavetable.h
+  /root/Bela/projects/tabbasar/wavetable.h \
+  /root/Bela/projects/tabbasar/debouncer.h \
+  /root/Bela/projects/tabbasar/parameters.h
 
 include/Bela.h:
 
@@ -39,3 +41,7 @@ libraries/Biquad/Biquad.h:
 /root/Bela/projects/tabbasar/oscillator.h:
 
 /root/Bela/projects/tabbasar/wavetable.h:
+
+/root/Bela/projects/tabbasar/debouncer.h:
+
+/root/Bela/projects/tabbasar/parameters.h:

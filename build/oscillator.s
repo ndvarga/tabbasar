@@ -230,307 +230,266 @@ _ZN10Oscillator5setupENS_9WaveshapeEfjjb: @ @_ZN10Oscillator5setupENS_9Waveshape
 @ BB#0:
 	.save	{r4, r5, r6, r7, r8, r9, r10, r11, lr}
 	push	{r4, r5, r6, r7, r8, r9, r10, r11, lr}
-.Ltmp33:
+.Ltmp28:
 	.cfi_def_cfa_offset 36
-.Ltmp34:
+.Ltmp29:
 	.cfi_offset lr, -4
-.Ltmp35:
+.Ltmp30:
 	.cfi_offset r11, -8
-.Ltmp36:
+.Ltmp31:
 	.cfi_offset r10, -12
-.Ltmp37:
+.Ltmp32:
 	.cfi_offset r9, -16
-.Ltmp38:
+.Ltmp33:
 	.cfi_offset r8, -20
-.Ltmp39:
+.Ltmp34:
 	.cfi_offset r7, -24
-.Ltmp40:
+.Ltmp35:
 	.cfi_offset r6, -28
-.Ltmp41:
+.Ltmp36:
 	.cfi_offset r5, -32
-.Ltmp42:
+.Ltmp37:
 	.cfi_offset r4, -36
 	.setfp	r11, sp, #28
 	add	r11, sp, #28
-.Ltmp43:
+.Ltmp38:
 	.cfi_def_cfa r11, 8
 	.pad	#4
 	sub	sp, sp, #4
 	.vsave	{d8}
 	vpush	{d8}
-.Ltmp44:
+.Ltmp39:
 	.cfi_offset d8, -48
-	.pad	#40
-	sub	sp, sp, #40
+	.pad	#8
+	sub	sp, sp, #8
 	@DEBUG_VALUE: setup:this <- %R0
 	@DEBUG_VALUE: setup:waveshape <- %R1
 	@DEBUG_VALUE: setup:sampleRate <- %S0
 	@DEBUG_VALUE: setup:wavetableSize <- %R2
 	@DEBUG_VALUE: setup:nHarmonics <- %R3
 	vmov.f32	s16, s0
-.Ltmp45:
+.Ltmp40:
 	@DEBUG_VALUE: setup:sampleRate <- %S16
 	mov	r5, r0
-.Ltmp46:
+.Ltmp41:
 	@DEBUG_VALUE: setup:this <- %R5
-	str	r1, [sp, #4]            @ 4-byte Spill
-.Ltmp47:
-	@DEBUG_VALUE: setup:waveshape <- [%SP+4]
-	.loc	8 656 66 prologue_end   @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:66
-	mov	r10, r5
-	mov	r9, r3
-.Ltmp48:
-	@DEBUG_VALUE: setup:nHarmonics <- %R9
-	mov	r6, r2
-.Ltmp49:
-	@DEBUG_VALUE: setup:wavetableSize <- %R6
-	.loc	34 10 14                @ /root/Bela/projects/tabbasar/oscillator.cpp:10:14
+	mov	r10, r3
+.Ltmp42:
+	@DEBUG_VALUE: setup:nHarmonics <- %R10
+	mov	r8, r2
+.Ltmp43:
+	@DEBUG_VALUE: setup:wavetableSize <- %R8
+	.loc	34 10 14 prologue_end   @ /root/Bela/projects/tabbasar/oscillator.cpp:10:14
 	vstr	s16, [r5, #24]
-.Ltmp50:
+.Ltmp44:
 	.loc	8 656 66                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:66
-	ldr	r0, [r10, #4]!
+	ldr	r3, [r0, #4]!
+	ldr	r7, [r11, #8]
+	@DEBUG_VALUE: setup:useInterpolation [bit_piece offset=0 size=1] <- %R7
 	.loc	8 656 40 is_stmt 0      @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:40
-	ldr	r7, [r10, #4]
-	.loc	8 656 50                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:50
-	sub	r1, r7, r0
-	asr	r1, r1, #5
-.Ltmp51:
-	@DEBUG_VALUE: resize:__new_size <- %R9
+	ldr	r4, [r0, #4]
+.Ltmp45:
 	.loc	8 676 6 is_stmt 1       @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:676:6
-	cmp	r1, r9
-.Ltmp52:
-	@DEBUG_VALUE: size:this <- %R10
-	@DEBUG_VALUE: resize:this <- %R10
-	@DEBUG_VALUE: size:this <- %R10
-	@DEBUG_VALUE: _M_erase_at_end:this <- %R10
-	@DEBUG_VALUE: operator[]:this <- %R10
-	@DEBUG_VALUE: size:this <- %R10
+	str	r1, [sp, #4]            @ 4-byte Spill
+.Ltmp46:
+	.loc	8 656 50                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:50
+	sub	r2, r4, r3
+	asr	r2, r2, #5
+.Ltmp47:
+	@DEBUG_VALUE: resize:__new_size <- %R10
+	.loc	8 676 6                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:676:6
+	cmp	r2, r10
+.Ltmp48:
+	@DEBUG_VALUE: size:this <- %R0
+	@DEBUG_VALUE: resize:this <- %R0
+	@DEBUG_VALUE: size:this <- %R0
+	@DEBUG_VALUE: _M_erase_at_end:this <- %R0
+	@DEBUG_VALUE: operator[]:this <- %R0
+	@DEBUG_VALUE: size:this <- %R0
 	bhs	.LBB1_2
-.Ltmp53:
+.Ltmp49:
 @ BB#1:
-	@DEBUG_VALUE: size:this <- %R10
-	@DEBUG_VALUE: operator[]:this <- %R10
-	@DEBUG_VALUE: _M_erase_at_end:this <- %R10
-	@DEBUG_VALUE: size:this <- %R10
-	@DEBUG_VALUE: resize:this <- %R10
-	@DEBUG_VALUE: size:this <- %R10
-	@DEBUG_VALUE: resize:__new_size <- %R9
-	@DEBUG_VALUE: setup:wavetableSize <- %R6
-	@DEBUG_VALUE: setup:nHarmonics <- %R9
-	@DEBUG_VALUE: setup:waveshape <- [%SP+4]
+	@DEBUG_VALUE: size:this <- %R0
+	@DEBUG_VALUE: operator[]:this <- %R0
+	@DEBUG_VALUE: _M_erase_at_end:this <- %R0
+	@DEBUG_VALUE: size:this <- %R0
+	@DEBUG_VALUE: resize:this <- %R0
+	@DEBUG_VALUE: size:this <- %R0
+	@DEBUG_VALUE: resize:__new_size <- %R10
+	@DEBUG_VALUE: setup:useInterpolation [bit_piece offset=0 size=1] <- %R7
+	@DEBUG_VALUE: setup:wavetableSize <- %R8
+	@DEBUG_VALUE: setup:nHarmonics <- %R10
 	@DEBUG_VALUE: setup:this <- %R5
 	@DEBUG_VALUE: setup:sampleRate <- %S16
+	@DEBUG_VALUE: setup:waveshape <- %R1
 	.loc	8 677 33                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:677:33
-	sub	r1, r9, r1
+	sub	r1, r10, r2
+.Ltmp50:
 	.loc	8 677 4 is_stmt 0 discriminator 1 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:677:4
-	mov	r0, r10
 	bl	_ZNSt6vectorI9WavetableSaIS0_EE17_M_default_appendEj
-.Ltmp54:
+.Ltmp51:
 	.loc	8 656 40 is_stmt 1      @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:40
-	ldr	r8, [r5, #8]
+	ldr	r9, [r5, #8]
 	b	.LBB1_10
-.Ltmp55:
+.Ltmp52:
 .LBB1_2:
-	@DEBUG_VALUE: size:this <- %R10
-	@DEBUG_VALUE: operator[]:this <- %R10
-	@DEBUG_VALUE: _M_erase_at_end:this <- %R10
-	@DEBUG_VALUE: size:this <- %R10
-	@DEBUG_VALUE: resize:this <- %R10
-	@DEBUG_VALUE: size:this <- %R10
-	@DEBUG_VALUE: resize:__new_size <- %R9
-	@DEBUG_VALUE: setup:wavetableSize <- %R6
-	@DEBUG_VALUE: setup:nHarmonics <- %R9
-	@DEBUG_VALUE: setup:waveshape <- [%SP+4]
+	@DEBUG_VALUE: size:this <- %R0
+	@DEBUG_VALUE: operator[]:this <- %R0
+	@DEBUG_VALUE: _M_erase_at_end:this <- %R0
+	@DEBUG_VALUE: size:this <- %R0
+	@DEBUG_VALUE: resize:this <- %R0
+	@DEBUG_VALUE: size:this <- %R0
+	@DEBUG_VALUE: resize:__new_size <- %R10
+	@DEBUG_VALUE: setup:useInterpolation [bit_piece offset=0 size=1] <- %R7
+	@DEBUG_VALUE: setup:wavetableSize <- %R8
+	@DEBUG_VALUE: setup:nHarmonics <- %R10
 	@DEBUG_VALUE: setup:this <- %R5
 	@DEBUG_VALUE: setup:sampleRate <- %S16
+	@DEBUG_VALUE: setup:waveshape <- %R1
 	bls	.LBB1_9
-.Ltmp56:
+.Ltmp53:
 @ BB#3:
-	@DEBUG_VALUE: size:this <- %R10
-	@DEBUG_VALUE: operator[]:this <- %R10
-	@DEBUG_VALUE: _M_erase_at_end:this <- %R10
-	@DEBUG_VALUE: size:this <- %R10
-	@DEBUG_VALUE: resize:this <- %R10
-	@DEBUG_VALUE: size:this <- %R10
-	@DEBUG_VALUE: resize:__new_size <- %R9
-	@DEBUG_VALUE: setup:wavetableSize <- %R6
-	@DEBUG_VALUE: setup:nHarmonics <- %R9
-	@DEBUG_VALUE: setup:waveshape <- [%SP+4]
+	@DEBUG_VALUE: size:this <- %R0
+	@DEBUG_VALUE: operator[]:this <- %R0
+	@DEBUG_VALUE: _M_erase_at_end:this <- %R0
+	@DEBUG_VALUE: size:this <- %R0
+	@DEBUG_VALUE: resize:this <- %R0
+	@DEBUG_VALUE: size:this <- %R0
+	@DEBUG_VALUE: resize:__new_size <- %R10
+	@DEBUG_VALUE: setup:useInterpolation [bit_piece offset=0 size=1] <- %R7
+	@DEBUG_VALUE: setup:wavetableSize <- %R8
+	@DEBUG_VALUE: setup:nHarmonics <- %R10
 	@DEBUG_VALUE: setup:this <- %R5
 	@DEBUG_VALUE: setup:sampleRate <- %S16
+	@DEBUG_VALUE: setup:waveshape <- %R1
 	.loc	8 679 43                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:679:43
-	add	r8, r0, r9, lsl #5
-.Ltmp57:
-	@DEBUG_VALUE: __destroy<Wavetable *>:__first <- %R8
-	@DEBUG_VALUE: _Destroy<Wavetable *>:__first <- %R8
-	@DEBUG_VALUE: _Destroy<Wavetable *, Wavetable>:__first <- %R8
-	@DEBUG_VALUE: _M_erase_at_end:__pos <- %R8
+	add	r9, r3, r10, lsl #5
+.Ltmp54:
+	@DEBUG_VALUE: __destroy<Wavetable *>:__first <- %R9
+	@DEBUG_VALUE: _Destroy<Wavetable *>:__first <- %R9
+	@DEBUG_VALUE: _Destroy<Wavetable *, Wavetable>:__first <- %R9
+	@DEBUG_VALUE: _M_erase_at_end:__pos <- %R9
 	.loc	35 102 4 discriminator 1 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_construct.h:102:4
-	cmp	r7, r8
+	cmp	r4, r9
 	beq	.LBB1_8
-.Ltmp58:
+.Ltmp55:
 @ BB#4:                                 @ %.lr.ph.i.i.i.i.i.preheader
-	@DEBUG_VALUE: _M_erase_at_end:__pos <- %R8
-	@DEBUG_VALUE: _Destroy<Wavetable *, Wavetable>:__first <- %R8
-	@DEBUG_VALUE: _Destroy<Wavetable *>:__first <- %R8
-	@DEBUG_VALUE: __destroy<Wavetable *>:__first <- %R8
-	@DEBUG_VALUE: size:this <- %R10
-	@DEBUG_VALUE: operator[]:this <- %R10
-	@DEBUG_VALUE: _M_erase_at_end:this <- %R10
-	@DEBUG_VALUE: size:this <- %R10
-	@DEBUG_VALUE: resize:this <- %R10
-	@DEBUG_VALUE: size:this <- %R10
-	@DEBUG_VALUE: resize:__new_size <- %R9
-	@DEBUG_VALUE: setup:wavetableSize <- %R6
-	@DEBUG_VALUE: setup:nHarmonics <- %R9
-	@DEBUG_VALUE: setup:waveshape <- [%SP+4]
+	@DEBUG_VALUE: _M_erase_at_end:__pos <- %R9
+	@DEBUG_VALUE: _Destroy<Wavetable *, Wavetable>:__first <- %R9
+	@DEBUG_VALUE: _Destroy<Wavetable *>:__first <- %R9
+	@DEBUG_VALUE: __destroy<Wavetable *>:__first <- %R9
+	@DEBUG_VALUE: size:this <- %R0
+	@DEBUG_VALUE: operator[]:this <- %R0
+	@DEBUG_VALUE: _M_erase_at_end:this <- %R0
+	@DEBUG_VALUE: size:this <- %R0
+	@DEBUG_VALUE: resize:this <- %R0
+	@DEBUG_VALUE: size:this <- %R0
+	@DEBUG_VALUE: resize:__new_size <- %R10
+	@DEBUG_VALUE: setup:useInterpolation [bit_piece offset=0 size=1] <- %R7
+	@DEBUG_VALUE: setup:wavetableSize <- %R8
+	@DEBUG_VALUE: setup:nHarmonics <- %R10
 	@DEBUG_VALUE: setup:this <- %R5
 	@DEBUG_VALUE: setup:sampleRate <- %S16
+	@DEBUG_VALUE: setup:waveshape <- %R1
 	.loc	35 126 7                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_construct.h:126:7
-	mov	r4, r8
-.Ltmp59:
+	mov	r6, r9
+.Ltmp56:
 .LBB1_5:                                @ %.lr.ph.i.i.i.i.i
                                         @ =>This Inner Loop Header: Depth=1
-	@DEBUG_VALUE: __addressof<Wavetable>:__r <- %R4
+	@DEBUG_VALUE: __addressof<Wavetable>:__r <- %R6
 	.loc	8 160 37                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:160:37
-	ldr	r0, [r4]
-.Ltmp60:
+	ldr	r0, [r6]
+.Ltmp57:
 	@DEBUG_VALUE: _M_deallocate:__p <- %R0
 	@DEBUG_VALUE: deallocate:__p <- %R0
 	@DEBUG_VALUE: deallocate:__p <- %R0
 	.loc	8 177 6                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:177:6
 	cmp	r0, #0
 	beq	.LBB1_7
-.Ltmp61:
+.Ltmp58:
 @ BB#6:                                 @   in Loop: Header=BB1_5 Depth=1
 	@DEBUG_VALUE: deallocate:__p <- %R0
 	@DEBUG_VALUE: deallocate:__p <- %R0
 	@DEBUG_VALUE: _M_deallocate:__p <- %R0
-	@DEBUG_VALUE: __addressof<Wavetable>:__r <- %R4
+	@DEBUG_VALUE: __addressof<Wavetable>:__r <- %R6
 	.loc	4 110 9                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/ext/new_allocator.h:110:9
 	bl	_ZdlPv
-.Ltmp62:
+.Ltmp59:
 .LBB1_7:                                @ %_ZSt8_DestroyI9WavetableEvPT_.exit.i.i.i.i.i
                                         @   in Loop: Header=BB1_5 Depth=1
-	@DEBUG_VALUE: __addressof<Wavetable>:__r <- %R4
+	@DEBUG_VALUE: __addressof<Wavetable>:__r <- %R6
 	.loc	35 102 30 discriminator 2 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_construct.h:102:30
-	add	r4, r4, #32
-.Ltmp63:
-	@DEBUG_VALUE: __destroy<Wavetable *>:__first <- %R4
+	add	r6, r6, #32
+.Ltmp60:
+	@DEBUG_VALUE: __destroy<Wavetable *>:__first <- %R6
 	.loc	35 102 4 is_stmt 0 discriminator 1 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_construct.h:102:4
-	cmp	r7, r4
+	cmp	r4, r6
 	bne	.LBB1_5
-.Ltmp64:
+.Ltmp61:
 .LBB1_8:                                @ %_ZNSt6vectorI9WavetableSaIS0_EE15_M_erase_at_endEPS0_.exit.i
 	.loc	8 1437 26 is_stmt 1     @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:1437:26
-	str	r8, [r5, #8]
+	str	r9, [r5, #8]
 	b	.LBB1_10
-.Ltmp65:
+.Ltmp62:
 .LBB1_9:
-	@DEBUG_VALUE: size:this <- %R10
-	@DEBUG_VALUE: operator[]:this <- %R10
-	@DEBUG_VALUE: _M_erase_at_end:this <- %R10
-	@DEBUG_VALUE: size:this <- %R10
-	@DEBUG_VALUE: resize:this <- %R10
-	@DEBUG_VALUE: size:this <- %R10
-	@DEBUG_VALUE: resize:__new_size <- %R9
-	@DEBUG_VALUE: setup:wavetableSize <- %R6
-	@DEBUG_VALUE: setup:nHarmonics <- %R9
-	@DEBUG_VALUE: setup:waveshape <- [%SP+4]
+	@DEBUG_VALUE: size:this <- %R0
+	@DEBUG_VALUE: operator[]:this <- %R0
+	@DEBUG_VALUE: _M_erase_at_end:this <- %R0
+	@DEBUG_VALUE: size:this <- %R0
+	@DEBUG_VALUE: resize:this <- %R0
+	@DEBUG_VALUE: size:this <- %R0
+	@DEBUG_VALUE: resize:__new_size <- %R10
+	@DEBUG_VALUE: setup:useInterpolation [bit_piece offset=0 size=1] <- %R7
+	@DEBUG_VALUE: setup:wavetableSize <- %R8
+	@DEBUG_VALUE: setup:nHarmonics <- %R10
 	@DEBUG_VALUE: setup:this <- %R5
 	@DEBUG_VALUE: setup:sampleRate <- %S16
+	@DEBUG_VALUE: setup:waveshape <- %R1
 	.loc	8 656 40                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:40
-	mov	r8, r7
-.Ltmp66:
+	mov	r9, r4
+.Ltmp63:
 .LBB1_10:                               @ %_ZNSt6vectorI9WavetableSaIS0_EE6resizeEj.exit
 	@DEBUG_VALUE: i <- 0
 	.loc	34 13 15                @ /root/Bela/projects/tabbasar/oscillator.cpp:13:15
-	str	r9, [r5, #20]
-.Ltmp67:
+	str	r10, [r5, #20]
+.Ltmp64:
 	.loc	8 656 66                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:66
 	ldr	r0, [r5, #4]
-.Ltmp68:
+.Ltmp65:
 	.loc	34 17 2 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:17:2
-	cmp	r8, r0
-	beq	.LBB1_17
-@ BB#11:                                @ %.lr.ph
-	ldr	r4, [r11, #8]
-	@DEBUG_VALUE: setup:useInterpolation [bit_piece offset=0 size=1] <- %R4
-	mov	r7, #0
-	mov	r8, #0
-	mov	r9, #0
-.Ltmp69:
-.LBB1_12:                               @ =>This Inner Loop Header: Depth=1
-	.loc	8 87 22                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:87:22
-	str	r7, [sp, #8]
-	.loc	8 87 34 is_stmt 0       @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:87:34
-	str	r7, [sp, #12]
-	.loc	8 87 47                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:87:47
-	str	r7, [sp, #16]
-.Ltmp70:
-	.loc	34 20 12 is_stmt 1      @ /root/Bela/projects/tabbasar/oscillator.cpp:20:12
-.Ltmp28:
-.Ltmp71:
-	@DEBUG_VALUE: Wavetable:this <- undef
-	@DEBUG_VALUE: harmonic <- undef
+	cmp	r9, r0
+	beq	.LBB1_13
+@ BB#11:                                @ %.lr.ph.preheader
+	mov	r4, #0
+	mov	r6, #0
+.LBB1_12:                               @ %.lr.ph
+                                        @ =>This Inner Loop Header: Depth=1
+.Ltmp66:
+	@DEBUG_VALUE: operator[]:__n <- %R6
+	.loc	34 21 18 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:21:18
 	vmov.f32	s0, s16
-	add	r0, sp, #8
-	mov	r1, r6
-	mov	r2, r4
+	add	r0, r0, r4
+	mov	r1, r8
+	mov	r2, r7
 	bl	_ZN9Wavetable5setupEfjb
-.Ltmp29:
-@ BB#13:                                @   in Loop: Header=BB1_12 Depth=1
-.Ltmp72:
-	.loc	8 781 32                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:781:32
-	ldr	r0, [r10]
-.Ltmp73:
-	.loc	34 21 18                @ /root/Bela/projects/tabbasar/oscillator.cpp:21:18
-	add	r0, r0, r8
-.Ltmp30:
-	vmov.f32	s0, s16
-	mov	r1, r6
-	mov	r2, r4
-	bl	_ZN9Wavetable5setupEfjb
-.Ltmp31:
-.Ltmp74:
-@ BB#14:                                @   in Loop: Header=BB1_12 Depth=1
-	.loc	8 160 37                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:160:37
-	ldr	r0, [sp, #8]
-.Ltmp75:
-	@DEBUG_VALUE: _M_deallocate:__p <- %R0
-	@DEBUG_VALUE: deallocate:__p <- %R0
-	@DEBUG_VALUE: deallocate:__p <- %R0
-	.loc	8 177 6                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:177:6
-	cmp	r0, #0
-	beq	.LBB1_16
-.Ltmp76:
-@ BB#15:                                @   in Loop: Header=BB1_12 Depth=1
-	@DEBUG_VALUE: deallocate:__p <- %R0
-	@DEBUG_VALUE: deallocate:__p <- %R0
-	@DEBUG_VALUE: _M_deallocate:__p <- %R0
-	.loc	4 110 9                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/ext/new_allocator.h:110:9
-	bl	_ZdlPv
-.Ltmp77:
-.LBB1_16:                               @ %_ZN9WavetableD2Ev.exit17
-                                        @   in Loop: Header=BB1_12 Depth=1
+.Ltmp67:
 	.loc	8 656 66                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:66
 	ldmib	r5, {r0, r1}
-.Ltmp78:
+.Ltmp68:
 	.loc	34 17 29 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:17:29
-	add	r8, r8, #32
+	add	r4, r4, #32
 	.loc	34 17 52 is_stmt 0 discriminator 3 @ /root/Bela/projects/tabbasar/oscillator.cpp:17:52
-	add	r9, r9, #1
-.Ltmp79:
-	@DEBUG_VALUE: operator[]:__n <- %R9
-	@DEBUG_VALUE: i <- %R9
+	add	r6, r6, #1
+.Ltmp69:
+	@DEBUG_VALUE: i <- %R6
 	.loc	8 656 50 is_stmt 1      @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:50
-	sub	r0, r1, r0
-.Ltmp80:
+	sub	r1, r1, r0
+.Ltmp70:
 	.loc	34 17 2 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:17:2
-	cmp	r9, r0, asr #5
+	cmp	r6, r1, asr #5
 	blo	.LBB1_12
-.Ltmp81:
-.LBB1_17:                               @ %._crit_edge
+.Ltmp71:
+.LBB1_13:                               @ %._crit_edge
 	.loc	34 26 17                @ /root/Bela/projects/tabbasar/oscillator.cpp:26:17
 	movw	r0, #0
 	movt	r0, #16672
@@ -538,64 +497,15 @@ _ZN10Oscillator5setupENS_9WaveshapeEfjjb: @ @_ZN10Oscillator5setupENS_9Waveshape
 	.loc	34 29 2                 @ /root/Bela/projects/tabbasar/oscillator.cpp:29:2
 	mov	r0, r5
 	ldr	r1, [sp, #4]            @ 4-byte Reload
-	bl	_ZN10Oscillator12setWaveshapeENS_9WaveshapeE
-	.loc	34 32 1 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:32:1
 	sub	sp, r11, #40
 	vpop	{d8}
 	add	sp, sp, #4
-	pop	{r4, r5, r6, r7, r8, r9, r10, r11, pc}
-.LBB1_18:
-.Ltmp32:
-	mov	r4, r0
-.Ltmp82:
-	.loc	8 160 37                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:160:37
-	ldr	r0, [sp, #8]
-.Ltmp83:
-	@DEBUG_VALUE: _M_deallocate:__p <- %R0
-	@DEBUG_VALUE: deallocate:__p <- %R0
-	@DEBUG_VALUE: deallocate:__p <- %R0
-	.loc	8 177 6                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:177:6
-	cmp	r0, #0
-	beq	.LBB1_20
-.Ltmp84:
-@ BB#19:
-	@DEBUG_VALUE: deallocate:__p <- %R0
-	@DEBUG_VALUE: deallocate:__p <- %R0
-	@DEBUG_VALUE: _M_deallocate:__p <- %R0
-	.loc	4 110 9                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/ext/new_allocator.h:110:9
-	bl	_ZdlPv
-.Ltmp85:
-.LBB1_20:                               @ %_ZN9WavetableD2Ev.exit
-	mov	r0, r4
-	mov	lr, pc
-	b	_Unwind_Resume
+	pop	{r4, r5, r6, r7, r8, r9, r10, r11, lr}
+	b	_ZN10Oscillator12setWaveshapeENS_9WaveshapeE
+.Ltmp72:
 .Lfunc_end1:
 	.size	_ZN10Oscillator5setupENS_9WaveshapeEfjjb, .Lfunc_end1-_ZN10Oscillator5setupENS_9WaveshapeEfjjb
 	.cfi_endproc
-	.globl	__gxx_personality_v0
-	.personality __gxx_personality_v0
-	.handlerdata
-	.p2align	2
-GCC_except_table1:
-.Lexception1:
-	.byte	255                     @ @LPStart Encoding = omit
-	.byte	0                       @ @TType Encoding = absptr
-	.byte	41                      @ @TType base offset
-	.byte	3                       @ Call site Encoding = udata4
-	.byte	39                      @ Call site table length
-	.long	.Lfunc_begin1-.Lfunc_begin1 @ >> Call Site 1 <<
-	.long	.Ltmp28-.Lfunc_begin1   @   Call between .Lfunc_begin1 and .Ltmp28
-	.long	0                       @     has no landing pad
-	.byte	0                       @   On action: cleanup
-	.long	.Ltmp28-.Lfunc_begin1   @ >> Call Site 2 <<
-	.long	.Ltmp31-.Ltmp28         @   Call between .Ltmp28 and .Ltmp31
-	.long	.Ltmp32-.Lfunc_begin1   @     jumps to .Ltmp32
-	.byte	0                       @   On action: cleanup
-	.long	.Ltmp31-.Lfunc_begin1   @ >> Call Site 3 <<
-	.long	.Lfunc_end1-.Ltmp31     @   Call between .Ltmp31 and .Lfunc_end1
-	.long	0                       @     has no landing pad
-	.byte	0                       @   On action: cleanup
-	.p2align	2
 	.fnend
 
 	.globl	_ZN10Oscillator12setWaveshapeENS_9WaveshapeE
@@ -603,59 +513,59 @@ GCC_except_table1:
 	.type	_ZN10Oscillator12setWaveshapeENS_9WaveshapeE,%function
 _ZN10Oscillator12setWaveshapeENS_9WaveshapeE: @ @_ZN10Oscillator12setWaveshapeENS_9WaveshapeE
 .Lfunc_begin2:
-	.loc	34 75 0                 @ /root/Bela/projects/tabbasar/oscillator.cpp:75:0
+	.loc	34 78 0                 @ /root/Bela/projects/tabbasar/oscillator.cpp:78:0
 	.fnstart
 	.cfi_startproc
 @ BB#0:
 	.save	{r4, r5, r6, r7, r11, lr}
 	push	{r4, r5, r6, r7, r11, lr}
-.Ltmp86:
+.Ltmp73:
 	.cfi_def_cfa_offset 24
-.Ltmp87:
+.Ltmp74:
 	.cfi_offset lr, -4
-.Ltmp88:
+.Ltmp75:
 	.cfi_offset r11, -8
-.Ltmp89:
+.Ltmp76:
 	.cfi_offset r7, -12
-.Ltmp90:
+.Ltmp77:
 	.cfi_offset r6, -16
-.Ltmp91:
+.Ltmp78:
 	.cfi_offset r5, -20
-.Ltmp92:
+.Ltmp79:
 	.cfi_offset r4, -24
 	.setfp	r11, sp, #16
 	add	r11, sp, #16
-.Ltmp93:
+.Ltmp80:
 	.cfi_def_cfa r11, 8
 	.vsave	{d8, d9, d10, d11}
 	vpush	{d8, d9, d10, d11}
-.Ltmp94:
+.Ltmp81:
 	.cfi_offset d11, -32
-.Ltmp95:
+.Ltmp82:
 	.cfi_offset d10, -40
-.Ltmp96:
+.Ltmp83:
 	.cfi_offset d9, -48
-.Ltmp97:
+.Ltmp84:
 	.cfi_offset d8, -56
 	@DEBUG_VALUE: setWaveshape:this <- %R0
 	@DEBUG_VALUE: setWaveshape:waveshape <- %R1
 	mov	r4, r0
-.Ltmp98:
+.Ltmp85:
 	@DEBUG_VALUE: setWaveshape:this <- %R4
-	.loc	34 82 2 prologue_end    @ /root/Bela/projects/tabbasar/oscillator.cpp:82:2
+	.loc	34 85 2 prologue_end    @ /root/Bela/projects/tabbasar/oscillator.cpp:85:2
 	cmp	r1, #3
-	.loc	34 76 14                @ /root/Bela/projects/tabbasar/oscillator.cpp:76:14
+	.loc	34 79 14                @ /root/Bela/projects/tabbasar/oscillator.cpp:79:14
 	str	r1, [r4, #16]
 	bhi	.LBB2_21
-.Ltmp99:
+.Ltmp86:
 @ BB#1:
 	@DEBUG_VALUE: setWaveshape:this <- %R4
 	@DEBUG_VALUE: setWaveshape:waveshape <- %R1
 	lsl	r0, r1, #2
 	adr	r1, .LJTI2_0
-.Ltmp100:
+.Ltmp87:
 	ldr	pc, [r0, r1]
-.Ltmp101:
+.Ltmp88:
 @ BB#2:
 	.p2align	2
 .LJTI2_0:
@@ -664,351 +574,351 @@ _ZN10Oscillator12setWaveshapeENS_9WaveshapeE: @ @_ZN10Oscillator12setWaveshapeEN
 	.long	.LBB2_6
 	.long	.LBB2_9
 .LBB2_3:
-.Ltmp102:
+.Ltmp89:
 	@DEBUG_VALUE: setWaveshape:this <- %R4
 	@DEBUG_VALUE: operator[]:__n <- 0
 	.loc	8 781 32                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:781:32
 	ldr	r0, [r4, #4]
-.Ltmp103:
-	.loc	34 125 19 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:125:19
+.Ltmp90:
+	.loc	34 128 19 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:128:19
 	vmov.f32	d0, #1.000000e+00
 	bl	_ZN9Wavetable12setAmplitudeEf
-.Ltmp104:
+.Ltmp91:
 	.loc	8 781 32                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:781:32
 	ldr	r0, [r4, #4]
-.Ltmp105:
-	.loc	34 126 35               @ /root/Bela/projects/tabbasar/oscillator.cpp:126:35
+.Ltmp92:
+	.loc	34 129 35               @ /root/Bela/projects/tabbasar/oscillator.cpp:129:35
 	vldr	s0, [r4, #28]
-.Ltmp106:
+.Ltmp93:
 	@DEBUG_VALUE: operator[]:__n <- 0
-	.loc	34 126 22 is_stmt 0 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:126:22
+	.loc	34 129 22 is_stmt 0 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:129:22
 	bl	_ZN9Wavetable12setFrequencyEf
-.Ltmp107:
+.Ltmp94:
 	@DEBUG_VALUE: i <- 1
 	.loc	8 656 66 is_stmt 1      @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:66
 	ldmib	r4, {r0, r1}
 	.loc	8 656 50 is_stmt 0      @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:50
 	sub	r1, r1, r0
 	asr	r1, r1, #5
-.Ltmp108:
-	.loc	34 128 7 is_stmt 1 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:128:7
+.Ltmp95:
+	.loc	34 131 7 is_stmt 1 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:131:7
 	cmp	r1, #2
 	blo	.LBB2_21
-.Ltmp109:
+.Ltmp96:
 @ BB#4:                                 @ %.lr.ph54.preheader
 	@DEBUG_VALUE: setWaveshape:this <- %R4
 	mov	r5, #1
 	mov	r6, #32
-.Ltmp110:
+.Ltmp97:
 .LBB2_5:                                @ %.lr.ph54
                                         @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: operator[]:__n <- %R5
-	.loc	34 130 26 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:130:26
+	.loc	34 133 26 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:133:26
 	vmov.i32	d0, #0x0
 	add	r0, r0, r6
 	bl	_ZN9Wavetable12setAmplitudeEf
-.Ltmp111:
+.Ltmp98:
 	.loc	8 781 32                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:781:32
 	ldr	r0, [r4, #4]
-.Ltmp112:
-	.loc	34 131 26 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:131:26
+.Ltmp99:
+	.loc	34 134 26 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:134:26
 	vmov.f32	d0, #1.000000e+00
 	add	r0, r0, r6
 	bl	_ZN9Wavetable12setFrequencyEf
-.Ltmp113:
+.Ltmp100:
 	.loc	8 656 66                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:66
 	ldmib	r4, {r0, r1}
-.Ltmp114:
-	.loc	34 128 34 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:128:34
+.Ltmp101:
+	.loc	34 131 34 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:131:34
 	add	r6, r6, #32
-	.loc	34 128 57 is_stmt 0 discriminator 3 @ /root/Bela/projects/tabbasar/oscillator.cpp:128:57
+	.loc	34 131 57 is_stmt 0 discriminator 3 @ /root/Bela/projects/tabbasar/oscillator.cpp:131:57
 	add	r5, r5, #1
-.Ltmp115:
+.Ltmp102:
 	@DEBUG_VALUE: i <- %R5
 	.loc	8 656 50 is_stmt 1      @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:50
 	sub	r1, r1, r0
-.Ltmp116:
-	.loc	34 128 7 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:128:7
+.Ltmp103:
+	.loc	34 131 7 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:131:7
 	cmp	r5, r1, asr #5
 	blo	.LBB2_5
 	b	.LBB2_21
-.Ltmp117:
+.Ltmp104:
 .LBB2_6:                                @ %.preheader45
 	@DEBUG_VALUE: setWaveshape:this <- %R4
 	.loc	8 656 66                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:66
 	ldmib	r4, {r0, r1}
-.Ltmp118:
-	.loc	34 111 4 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:111:4
+.Ltmp105:
+	.loc	34 114 4 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:114:4
 	cmp	r1, r0
 	beq	.LBB2_21
-.Ltmp119:
+.Ltmp106:
 @ BB#7:                                 @ %.lr.ph52
 	@DEBUG_VALUE: setWaveshape:this <- %R4
-	.loc	34 114 78               @ /root/Bela/projects/tabbasar/oscillator.cpp:114:78
+	.loc	34 117 78               @ /root/Bela/projects/tabbasar/oscillator.cpp:117:78
 	vmov.f64	d9, #-1.000000e+00
 	mov	r5, #0
 	mov	r1, #0
 	vmov.f64	d10, #1.000000e+00
-	.loc	34 114 62 is_stmt 0     @ /root/Bela/projects/tabbasar/oscillator.cpp:114:62
+	.loc	34 117 62 is_stmt 0     @ /root/Bela/projects/tabbasar/oscillator.cpp:117:62
 	vldr	d8, .LCPI2_1
-.Ltmp120:
+.Ltmp107:
 .LBB2_8:                                @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: operator[]:__n <- %R1
-	.loc	34 114 72               @ /root/Bela/projects/tabbasar/oscillator.cpp:114:72
+	.loc	34 117 72               @ /root/Bela/projects/tabbasar/oscillator.cpp:117:72
 	add	r6, r1, #1
-.Ltmp121:
+.Ltmp108:
 	@DEBUG_VALUE: i <- %R6
-	.loc	34 114 78               @ /root/Bela/projects/tabbasar/oscillator.cpp:114:78
+	.loc	34 117 78               @ /root/Bela/projects/tabbasar/oscillator.cpp:117:78
 	tst	r1, #1
 	vmov.f64	d17, d10
-	.loc	34 115 26 is_stmt 1 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:115:26
+	.loc	34 118 26 is_stmt 1 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:118:26
 	add	r0, r0, r5
-	.loc	34 114 70               @ /root/Bela/projects/tabbasar/oscillator.cpp:114:70
+	.loc	34 117 70               @ /root/Bela/projects/tabbasar/oscillator.cpp:117:70
 	vmov	s0, r6
 	vcvt.f32.u32	d11, d0
-	.loc	34 114 78 is_stmt 0     @ /root/Bela/projects/tabbasar/oscillator.cpp:114:78
+	.loc	34 117 78 is_stmt 0     @ /root/Bela/projects/tabbasar/oscillator.cpp:117:78
 	vmovne.f64	d17, d9
-	.loc	34 114 63               @ /root/Bela/projects/tabbasar/oscillator.cpp:114:63
+	.loc	34 117 63               @ /root/Bela/projects/tabbasar/oscillator.cpp:117:63
 	vcvt.f64.f32	d16, s22
-	.loc	34 114 62               @ /root/Bela/projects/tabbasar/oscillator.cpp:114:62
+	.loc	34 117 62               @ /root/Bela/projects/tabbasar/oscillator.cpp:117:62
 	vdiv.f64	d16, d8, d16
-	.loc	34 114 76               @ /root/Bela/projects/tabbasar/oscillator.cpp:114:76
+	.loc	34 117 76               @ /root/Bela/projects/tabbasar/oscillator.cpp:117:76
 	vmul.f64	d16, d16, d17
-	.loc	34 114 29               @ /root/Bela/projects/tabbasar/oscillator.cpp:114:29
+	.loc	34 117 29               @ /root/Bela/projects/tabbasar/oscillator.cpp:117:29
 	vcvt.f32.f64	s0, d16
-.Ltmp122:
+.Ltmp109:
 	@DEBUG_VALUE: amplitude <- %S0
-	.loc	34 115 26 is_stmt 1 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:115:26
+	.loc	34 118 26 is_stmt 1 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:118:26
 	bl	_ZN9Wavetable12setAmplitudeEf
-.Ltmp123:
-	.loc	34 116 36               @ /root/Bela/projects/tabbasar/oscillator.cpp:116:36
+.Ltmp110:
+	.loc	34 119 36               @ /root/Bela/projects/tabbasar/oscillator.cpp:119:36
 	vldr	s0, [r4, #28]
-.Ltmp124:
+.Ltmp111:
 	.loc	8 781 32                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:781:32
 	ldr	r0, [r4, #4]
-.Ltmp125:
-	.loc	34 116 51               @ /root/Bela/projects/tabbasar/oscillator.cpp:116:51
+.Ltmp112:
+	.loc	34 119 51               @ /root/Bela/projects/tabbasar/oscillator.cpp:119:51
 	vmul.f32	d0, d0, d11
-	.loc	34 116 36 is_stmt 0     @ /root/Bela/projects/tabbasar/oscillator.cpp:116:36
+	.loc	34 119 36 is_stmt 0     @ /root/Bela/projects/tabbasar/oscillator.cpp:119:36
 	add	r0, r0, r5
-	.loc	34 116 23 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:116:23
+	.loc	34 119 23 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:119:23
                                         @ kill: %S0<def> %S0<kill> %D0<kill>
 	bl	_ZN9Wavetable12setFrequencyEf
-.Ltmp126:
+.Ltmp113:
 	.loc	8 656 66 is_stmt 1      @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:66
 	ldmib	r4, {r0, r1}
-.Ltmp127:
-	.loc	34 111 31 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:111:31
+.Ltmp114:
+	.loc	34 114 31 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:114:31
 	add	r5, r5, #32
-.Ltmp128:
+.Ltmp115:
 	.loc	8 656 50                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:50
 	sub	r1, r1, r0
-.Ltmp129:
-	.loc	34 111 4 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:111:4
+.Ltmp116:
+	.loc	34 114 4 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:114:4
 	cmp	r6, r1, asr #5
 	mov	r1, r6
-.Ltmp130:
+.Ltmp117:
 	@DEBUG_VALUE: i <- %R1
 	blo	.LBB2_8
 	b	.LBB2_21
-.Ltmp131:
+.Ltmp118:
 .LBB2_9:                                @ %.preheader48
 	@DEBUG_VALUE: setWaveshape:this <- %R4
 	.loc	8 656 66                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:66
 	ldr	r7, [r4, #4]
 	.loc	8 656 40 is_stmt 0      @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:40
 	ldr	r0, [r4, #8]
-.Ltmp132:
-	.loc	34 141 4 is_stmt 1 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:141:4
+.Ltmp119:
+	.loc	34 144 4 is_stmt 1 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:144:4
 	cmp	r0, r7
 	beq	.LBB2_21
-.Ltmp133:
+.Ltmp120:
 @ BB#10:                                @ %.lr.ph56
 	@DEBUG_VALUE: setWaveshape:this <- %R4
-	.loc	34 146 107              @ /root/Bela/projects/tabbasar/oscillator.cpp:146:107
+	.loc	34 149 107              @ /root/Bela/projects/tabbasar/oscillator.cpp:149:107
 	vmov.f32	d8, #5.000000e-01
-	.loc	34 146 85 is_stmt 0     @ /root/Bela/projects/tabbasar/oscillator.cpp:146:85
+	.loc	34 149 85 is_stmt 0     @ /root/Bela/projects/tabbasar/oscillator.cpp:149:85
 	vldr	d9, .LCPI2_0
 	mov	r5, #0
 	mov	r6, #0
-.Ltmp134:
+.Ltmp121:
 .LBB2_11:                               @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: operator[]:__n <- %R6
-	.loc	34 144 15 is_stmt 1     @ /root/Bela/projects/tabbasar/oscillator.cpp:144:15
+	.loc	34 147 15 is_stmt 1     @ /root/Bela/projects/tabbasar/oscillator.cpp:147:15
 	tst	r6, #1
 	bne	.LBB2_13
-.Ltmp135:
+.Ltmp122:
 @ BB#12:                                @   in Loop: Header=BB2_11 Depth=1
 	@DEBUG_VALUE: operator[]:__n <- %R6
-	.loc	34 153 28 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:153:28
+	.loc	34 156 28 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:156:28
 	vmov.i32	d0, #0x0
 	add	r0, r7, r5
 	bl	_ZN9Wavetable12setAmplitudeEf
-.Ltmp136:
+.Ltmp123:
 	.loc	8 781 32                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:781:32
 	ldr	r0, [r4, #4]
-.Ltmp137:
-	.loc	34 155 28 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:155:28
+.Ltmp124:
+	.loc	34 158 28 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:158:28
 	vmov.f32	d0, #1.000000e+00
 	add	r0, r0, r5
 	b	.LBB2_14
-.Ltmp138:
+.Ltmp125:
 .LBB2_13:                               @   in Loop: Header=BB2_11 Depth=1
 	@DEBUG_VALUE: operator[]:__n <- %R6
-	.loc	34 146 102              @ /root/Bela/projects/tabbasar/oscillator.cpp:146:102
+	.loc	34 149 102              @ /root/Bela/projects/tabbasar/oscillator.cpp:149:102
 	sub	r0, r6, #1
-	.loc	34 146 99 is_stmt 0     @ /root/Bela/projects/tabbasar/oscillator.cpp:146:99
+	.loc	34 149 99 is_stmt 0     @ /root/Bela/projects/tabbasar/oscillator.cpp:149:99
 	vmov	s0, r0
 	vcvt.f32.u32	d16, d0
-	.loc	34 146 87 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:146:87
+	.loc	34 149 87 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:149:87
 	vmov.f32	d0, #-1.000000e+00
-	.loc	34 146 107              @ /root/Bela/projects/tabbasar/oscillator.cpp:146:107
+	.loc	34 149 107              @ /root/Bela/projects/tabbasar/oscillator.cpp:149:107
 	vmul.f32	d1, d16, d8
-	.loc	34 146 87 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:146:87
+	.loc	34 149 87 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:149:87
 	vmov.f32	s1, s2
 	bl	powf
-	.loc	34 146 87               @ /root/Bela/projects/tabbasar/oscillator.cpp:146:87
+	.loc	34 149 87               @ /root/Bela/projects/tabbasar/oscillator.cpp:149:87
 	vcvt.f64.f32	d16, s0
-	.loc	34 147 28 is_stmt 1 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:147:28
+	.loc	34 150 28 is_stmt 1 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:150:28
 	add	r0, r7, r5
-	.loc	34 146 129              @ /root/Bela/projects/tabbasar/oscillator.cpp:146:129
+	.loc	34 149 129              @ /root/Bela/projects/tabbasar/oscillator.cpp:149:129
 	vmov	s0, r6
 	vcvt.f32.u32	d10, d0
-	.loc	34 146 85 is_stmt 0     @ /root/Bela/projects/tabbasar/oscillator.cpp:146:85
+	.loc	34 149 85 is_stmt 0     @ /root/Bela/projects/tabbasar/oscillator.cpp:149:85
 	vmul.f64	d16, d16, d9
-	.loc	34 146 117 discriminator 2 @ /root/Bela/projects/tabbasar/oscillator.cpp:146:117
+	.loc	34 149 117 discriminator 2 @ /root/Bela/projects/tabbasar/oscillator.cpp:149:117
 	vmul.f32	d0, d10, d10
-	.loc	34 146 117              @ /root/Bela/projects/tabbasar/oscillator.cpp:146:117
+	.loc	34 149 117              @ /root/Bela/projects/tabbasar/oscillator.cpp:149:117
 	vcvt.f64.f32	d17, s0
-	.loc	34 146 115              @ /root/Bela/projects/tabbasar/oscillator.cpp:146:115
+	.loc	34 149 115              @ /root/Bela/projects/tabbasar/oscillator.cpp:149:115
 	vdiv.f64	d16, d16, d17
-	.loc	34 146 31               @ /root/Bela/projects/tabbasar/oscillator.cpp:146:31
+	.loc	34 149 31               @ /root/Bela/projects/tabbasar/oscillator.cpp:149:31
 	vcvt.f32.f64	s0, d16
-.Ltmp139:
+.Ltmp126:
 	@DEBUG_VALUE: amplitude <- %S0
-	.loc	34 147 28 is_stmt 1 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:147:28
+	.loc	34 150 28 is_stmt 1 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:150:28
 	bl	_ZN9Wavetable12setAmplitudeEf
-.Ltmp140:
-	.loc	34 148 45               @ /root/Bela/projects/tabbasar/oscillator.cpp:148:45
+.Ltmp127:
+	.loc	34 151 45               @ /root/Bela/projects/tabbasar/oscillator.cpp:151:45
 	vldr	s0, [r4, #28]
-.Ltmp141:
+.Ltmp128:
 	.loc	8 781 32                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:781:32
 	ldr	r0, [r4, #4]
-.Ltmp142:
-	.loc	34 148 43               @ /root/Bela/projects/tabbasar/oscillator.cpp:148:43
+.Ltmp129:
+	.loc	34 151 43               @ /root/Bela/projects/tabbasar/oscillator.cpp:151:43
 	vmul.f32	d0, d0, d10
-	.loc	34 148 45 is_stmt 0     @ /root/Bela/projects/tabbasar/oscillator.cpp:148:45
+	.loc	34 151 45 is_stmt 0     @ /root/Bela/projects/tabbasar/oscillator.cpp:151:45
 	add	r0, r0, r5
-	.loc	34 148 28 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:148:28
+	.loc	34 151 28 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:151:28
                                         @ kill: %S0<def> %S0<kill> %D0<kill>
-.Ltmp143:
+.Ltmp130:
 .LBB2_14:                               @   in Loop: Header=BB2_11 Depth=1
 	@DEBUG_VALUE: operator[]:__n <- %R6
-	.loc	34 155 28 is_stmt 1 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:155:28
+	.loc	34 158 28 is_stmt 1 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:158:28
 	bl	_ZN9Wavetable12setFrequencyEf
-.Ltmp144:
+.Ltmp131:
 	.loc	8 656 66                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:66
 	ldr	r7, [r4, #4]
-.Ltmp145:
-	.loc	34 141 31 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:141:31
+.Ltmp132:
+	.loc	34 144 31 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:144:31
 	add	r5, r5, #32
-.Ltmp146:
+.Ltmp133:
 	.loc	8 656 40                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:40
 	ldr	r0, [r4, #8]
-.Ltmp147:
-	.loc	34 141 54 discriminator 3 @ /root/Bela/projects/tabbasar/oscillator.cpp:141:54
+.Ltmp134:
+	.loc	34 144 54 discriminator 3 @ /root/Bela/projects/tabbasar/oscillator.cpp:144:54
 	add	r6, r6, #1
-.Ltmp148:
+.Ltmp135:
 	@DEBUG_VALUE: i <- %R6
 	.loc	8 656 50                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:50
 	sub	r0, r0, r7
-.Ltmp149:
-	.loc	34 141 4 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:141:4
+.Ltmp136:
+	.loc	34 144 4 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:144:4
 	cmp	r6, r0, asr #5
 	blo	.LBB2_11
 	b	.LBB2_21
-.Ltmp150:
+.Ltmp137:
 .LBB2_15:                               @ %.preheader
 	@DEBUG_VALUE: setWaveshape:this <- %R4
 	.loc	8 656 66                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:66
 	ldmib	r4, {r0, r1}
-.Ltmp151:
-	.loc	34 88 4 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:88:4
+.Ltmp138:
+	.loc	34 91 4 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:91:4
 	cmp	r1, r0
 	beq	.LBB2_21
-.Ltmp152:
+.Ltmp139:
 @ BB#16:                                @ %.lr.ph
 	@DEBUG_VALUE: setWaveshape:this <- %R4
-	.loc	34 100 41               @ /root/Bela/projects/tabbasar/oscillator.cpp:100:41
+	.loc	34 103 41               @ /root/Bela/projects/tabbasar/oscillator.cpp:103:41
 	vmov.f32	d8, #1.000000e+00
 	mov	r5, #0
 	mov	r7, #0
-.Ltmp153:
+.Ltmp140:
 .LBB2_17:                               @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: operator[]:__n <- %R7
-	.loc	34 90 62                @ /root/Bela/projects/tabbasar/oscillator.cpp:90:62
+	.loc	34 93 62                @ /root/Bela/projects/tabbasar/oscillator.cpp:93:62
 	add	r6, r7, #1
-	.loc	34 90 43 is_stmt 0      @ /root/Bela/projects/tabbasar/oscillator.cpp:90:43
+	.loc	34 93 43 is_stmt 0      @ /root/Bela/projects/tabbasar/oscillator.cpp:93:43
 	vldr	s0, [r4, #28]
 	add	r0, r0, r5
-	.loc	34 90 60                @ /root/Bela/projects/tabbasar/oscillator.cpp:90:60
+	.loc	34 93 60                @ /root/Bela/projects/tabbasar/oscillator.cpp:93:60
 	vmov	s2, r6
 	vcvt.f32.u32	d9, d1
-	.loc	34 90 58                @ /root/Bela/projects/tabbasar/oscillator.cpp:90:58
+	.loc	34 93 58                @ /root/Bela/projects/tabbasar/oscillator.cpp:93:58
 	vmul.f32	d0, d0, d9
-	.loc	34 90 23 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:90:23
+	.loc	34 93 23 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:93:23
                                         @ kill: %S0<def> %S0<kill> %D0<kill>
 	bl	_ZN9Wavetable12setFrequencyEf
-.Ltmp154:
+.Ltmp141:
 	.loc	8 781 32 is_stmt 1      @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:781:32
 	ldr	r0, [r4, #4]
-.Ltmp155:
-	.loc	34 93 15                @ /root/Bela/projects/tabbasar/oscillator.cpp:93:15
+.Ltmp142:
+	.loc	34 96 15                @ /root/Bela/projects/tabbasar/oscillator.cpp:96:15
 	tst	r7, #1
 	add	r0, r0, r5
 	bne	.LBB2_19
-.Ltmp156:
+.Ltmp143:
 @ BB#18:                                @   in Loop: Header=BB2_17 Depth=1
 	@DEBUG_VALUE: operator[]:__n <- %R7
-	.loc	34 100 41               @ /root/Bela/projects/tabbasar/oscillator.cpp:100:41
+	.loc	34 103 41               @ /root/Bela/projects/tabbasar/oscillator.cpp:103:41
 	vdiv.f32	s0, s16, s18
 	b	.LBB2_20
-.Ltmp157:
+.Ltmp144:
 .LBB2_19:                               @   in Loop: Header=BB2_17 Depth=1
 	@DEBUG_VALUE: operator[]:__n <- %R7
-	.loc	34 95 28 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:95:28
+	.loc	34 98 28 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:98:28
 	vmov.i32	d0, #0x0
-.Ltmp158:
+.Ltmp145:
 .LBB2_20:                               @ %.backedge
                                         @   in Loop: Header=BB2_17 Depth=1
 	@DEBUG_VALUE: operator[]:__n <- %R7
 	bl	_ZN9Wavetable12setAmplitudeEf
-.Ltmp159:
+.Ltmp146:
 	.loc	8 656 66                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:66
 	ldmib	r4, {r0, r1}
-.Ltmp160:
-	.loc	34 88 31 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:88:31
+.Ltmp147:
+	.loc	34 91 31 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:91:31
 	add	r5, r5, #32
 	mov	r7, r6
-.Ltmp161:
+.Ltmp148:
 	.loc	8 656 50                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:50
 	sub	r1, r1, r0
-.Ltmp162:
-	.loc	34 88 4 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:88:4
+.Ltmp149:
+	.loc	34 91 4 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:91:4
 	cmp	r6, r1, asr #5
 	blo	.LBB2_17
-.Ltmp163:
+.Ltmp150:
 .LBB2_21:                               @ %.loopexit
-	.loc	34 166 39               @ /root/Bela/projects/tabbasar/oscillator.cpp:166:39
+	.loc	34 169 39               @ /root/Bela/projects/tabbasar/oscillator.cpp:169:39
 	ldr	r1, [r4, #16]
-	.loc	34 166 2 is_stmt 0      @ /root/Bela/projects/tabbasar/oscillator.cpp:166:2
+	.loc	34 169 2 is_stmt 0      @ /root/Bela/projects/tabbasar/oscillator.cpp:169:2
 	movw	r0, :lower16:.L.str
 	movt	r0, :upper16:.L.str
 	bl	rt_printf
-	.loc	34 168 1 is_stmt 1      @ /root/Bela/projects/tabbasar/oscillator.cpp:168:1
+	.loc	34 171 1 is_stmt 1      @ /root/Bela/projects/tabbasar/oscillator.cpp:171:1
 	vpop	{d8, d9, d10, d11}
 	pop	{r4, r5, r6, r7, r11, pc}
-.Ltmp164:
+.Ltmp151:
 	.p2align	3
 @ BB#22:
 .LCPI2_0:
@@ -1034,10 +944,10 @@ _ZN10Oscillator12getWaveshapeEv:        @ @_ZN10Oscillator12getWaveshapeEv
 	@DEBUG_VALUE: getWaveshape:this <- %R0
 	.loc	34 36 9 prologue_end    @ /root/Bela/projects/tabbasar/oscillator.cpp:36:9
 	ldr	r0, [r0, #16]
-.Ltmp165:
+.Ltmp152:
 	.loc	34 36 2 is_stmt 0       @ /root/Bela/projects/tabbasar/oscillator.cpp:36:2
 	bx	lr
-.Ltmp166:
+.Ltmp153:
 .Lfunc_end3:
 	.size	_ZN10Oscillator12getWaveshapeEv, .Lfunc_end3-_ZN10Oscillator12getWaveshapeEv
 	.cfi_endproc
@@ -1054,50 +964,50 @@ _ZN10Oscillator18incrementWaveshapeEv:  @ @_ZN10Oscillator18incrementWaveshapeEv
 @ BB#0:
 	.save	{r4, r5, r6, r7, r11, lr}
 	push	{r4, r5, r6, r7, r11, lr}
-.Ltmp167:
+.Ltmp154:
 	.cfi_def_cfa_offset 24
-.Ltmp168:
+.Ltmp155:
 	.cfi_offset lr, -4
-.Ltmp169:
+.Ltmp156:
 	.cfi_offset r11, -8
-.Ltmp170:
+.Ltmp157:
 	.cfi_offset r7, -12
-.Ltmp171:
+.Ltmp158:
 	.cfi_offset r6, -16
-.Ltmp172:
+.Ltmp159:
 	.cfi_offset r5, -20
-.Ltmp173:
+.Ltmp160:
 	.cfi_offset r4, -24
 	.setfp	r11, sp, #16
 	add	r11, sp, #16
-.Ltmp174:
+.Ltmp161:
 	.cfi_def_cfa r11, 8
 	.vsave	{d8, d9, d10, d11}
 	vpush	{d8, d9, d10, d11}
-.Ltmp175:
+.Ltmp162:
 	.cfi_offset d11, -32
-.Ltmp176:
+.Ltmp163:
 	.cfi_offset d10, -40
-.Ltmp177:
+.Ltmp164:
 	.cfi_offset d9, -48
-.Ltmp178:
+.Ltmp165:
 	.cfi_offset d8, -56
 	@DEBUG_VALUE: incrementWaveshape:this <- %R0
 	mov	r4, r0
-.Ltmp179:
+.Ltmp166:
 	@DEBUG_VALUE: incrementWaveshape:this <- %R4
-	.loc	34 41 9 prologue_end    @ /root/Bela/projects/tabbasar/oscillator.cpp:41:9
+	.loc	34 44 9 prologue_end    @ /root/Bela/projects/tabbasar/oscillator.cpp:44:9
 	ldr	r0, [r4, #16]
-	.loc	34 41 2 is_stmt 0       @ /root/Bela/projects/tabbasar/oscillator.cpp:41:2
+	.loc	34 44 2 is_stmt 0       @ /root/Bela/projects/tabbasar/oscillator.cpp:44:2
 	cmp	r0, #4
 	bhi	.LBB4_16
-.Ltmp180:
+.Ltmp167:
 @ BB#1:
 	@DEBUG_VALUE: incrementWaveshape:this <- %R4
 	adr	r1, .LJTI4_0
 	lsl	r0, r0, #2
 	ldr	pc, [r0, r1]
-.Ltmp181:
+.Ltmp168:
 @ BB#2:
 	.p2align	2
 .LJTI4_0:
@@ -1107,235 +1017,235 @@ _ZN10Oscillator18incrementWaveshapeEv:  @ @_ZN10Oscillator18incrementWaveshapeEv
 	.long	.LBB4_13
 	.long	.LBB4_15
 .LBB4_3:
-.Ltmp182:
+.Ltmp169:
 	@DEBUG_VALUE: incrementWaveshape:this <- %R4
 	@DEBUG_VALUE: setWaveshape:waveshape <- 2
 	@DEBUG_VALUE: setWaveshape:this <- %R4
 	mov	r1, #2
-.Ltmp183:
-	.loc	34 76 14 is_stmt 1      @ /root/Bela/projects/tabbasar/oscillator.cpp:76:14
+.Ltmp170:
+	.loc	34 79 14 is_stmt 1      @ /root/Bela/projects/tabbasar/oscillator.cpp:79:14
 	str	r1, [r4, #16]
-.Ltmp184:
+.Ltmp171:
 	.loc	8 656 66                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:66
 	ldmib	r4, {r0, r2}
-.Ltmp185:
-	.loc	34 111 4 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:111:4
+.Ltmp172:
+	.loc	34 114 4 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:114:4
 	cmp	r2, r0
 	beq	.LBB4_14
-.Ltmp186:
+.Ltmp173:
 @ BB#4:                                 @ %.lr.ph52.i
 	@DEBUG_VALUE: setWaveshape:this <- %R4
 	@DEBUG_VALUE: incrementWaveshape:this <- %R4
-	.loc	34 114 78               @ /root/Bela/projects/tabbasar/oscillator.cpp:114:78
+	.loc	34 117 78               @ /root/Bela/projects/tabbasar/oscillator.cpp:117:78
 	vmov.f64	d9, #-1.000000e+00
 	mov	r5, #0
-.Ltmp187:
-	.loc	34 45 4                 @ /root/Bela/projects/tabbasar/oscillator.cpp:45:4
+.Ltmp174:
+	.loc	34 48 4                 @ /root/Bela/projects/tabbasar/oscillator.cpp:48:4
 	mov	r1, #0
-.Ltmp188:
-	.loc	34 114 78               @ /root/Bela/projects/tabbasar/oscillator.cpp:114:78
+.Ltmp175:
+	.loc	34 117 78               @ /root/Bela/projects/tabbasar/oscillator.cpp:117:78
 	vmov.f64	d10, #1.000000e+00
-	.loc	34 114 62 is_stmt 0     @ /root/Bela/projects/tabbasar/oscillator.cpp:114:62
+	.loc	34 117 62 is_stmt 0     @ /root/Bela/projects/tabbasar/oscillator.cpp:117:62
 	vldr	d8, .LCPI4_0
-.Ltmp189:
+.Ltmp176:
 .LBB4_5:                                @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: operator[]:__n <- %R1
-	.loc	34 114 72               @ /root/Bela/projects/tabbasar/oscillator.cpp:114:72
+	.loc	34 117 72               @ /root/Bela/projects/tabbasar/oscillator.cpp:117:72
 	add	r6, r1, #1
-.Ltmp190:
+.Ltmp177:
 	@DEBUG_VALUE: i <- %R6
-	.loc	34 114 78               @ /root/Bela/projects/tabbasar/oscillator.cpp:114:78
+	.loc	34 117 78               @ /root/Bela/projects/tabbasar/oscillator.cpp:117:78
 	tst	r1, #1
 	vmov.f64	d17, d10
-	.loc	34 115 26 is_stmt 1 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:115:26
+	.loc	34 118 26 is_stmt 1 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:118:26
 	add	r0, r0, r5
-	.loc	34 114 70               @ /root/Bela/projects/tabbasar/oscillator.cpp:114:70
+	.loc	34 117 70               @ /root/Bela/projects/tabbasar/oscillator.cpp:117:70
 	vmov	s0, r6
 	vcvt.f32.u32	d11, d0
-	.loc	34 114 78 is_stmt 0     @ /root/Bela/projects/tabbasar/oscillator.cpp:114:78
+	.loc	34 117 78 is_stmt 0     @ /root/Bela/projects/tabbasar/oscillator.cpp:117:78
 	vmovne.f64	d17, d9
-	.loc	34 114 63               @ /root/Bela/projects/tabbasar/oscillator.cpp:114:63
+	.loc	34 117 63               @ /root/Bela/projects/tabbasar/oscillator.cpp:117:63
 	vcvt.f64.f32	d16, s22
-	.loc	34 114 62               @ /root/Bela/projects/tabbasar/oscillator.cpp:114:62
+	.loc	34 117 62               @ /root/Bela/projects/tabbasar/oscillator.cpp:117:62
 	vdiv.f64	d16, d8, d16
-	.loc	34 114 76               @ /root/Bela/projects/tabbasar/oscillator.cpp:114:76
+	.loc	34 117 76               @ /root/Bela/projects/tabbasar/oscillator.cpp:117:76
 	vmul.f64	d16, d16, d17
-	.loc	34 114 29               @ /root/Bela/projects/tabbasar/oscillator.cpp:114:29
+	.loc	34 117 29               @ /root/Bela/projects/tabbasar/oscillator.cpp:117:29
 	vcvt.f32.f64	s0, d16
-.Ltmp191:
+.Ltmp178:
 	@DEBUG_VALUE: amplitude <- %S0
-	.loc	34 115 26 is_stmt 1 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:115:26
+	.loc	34 118 26 is_stmt 1 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:118:26
 	bl	_ZN9Wavetable12setAmplitudeEf
-.Ltmp192:
-	.loc	34 116 36               @ /root/Bela/projects/tabbasar/oscillator.cpp:116:36
+.Ltmp179:
+	.loc	34 119 36               @ /root/Bela/projects/tabbasar/oscillator.cpp:119:36
 	vldr	s0, [r4, #28]
-.Ltmp193:
+.Ltmp180:
 	.loc	8 781 32                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:781:32
 	ldr	r0, [r4, #4]
-.Ltmp194:
-	.loc	34 116 51               @ /root/Bela/projects/tabbasar/oscillator.cpp:116:51
+.Ltmp181:
+	.loc	34 119 51               @ /root/Bela/projects/tabbasar/oscillator.cpp:119:51
 	vmul.f32	d0, d0, d11
-	.loc	34 116 36 is_stmt 0     @ /root/Bela/projects/tabbasar/oscillator.cpp:116:36
+	.loc	34 119 36 is_stmt 0     @ /root/Bela/projects/tabbasar/oscillator.cpp:119:36
 	add	r0, r0, r5
-	.loc	34 116 23 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:116:23
+	.loc	34 119 23 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:119:23
                                         @ kill: %S0<def> %S0<kill> %D0<kill>
 	bl	_ZN9Wavetable12setFrequencyEf
-.Ltmp195:
+.Ltmp182:
 	.loc	8 656 66 is_stmt 1      @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:66
 	ldmib	r4, {r0, r1}
-.Ltmp196:
-	.loc	34 111 31 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:111:31
+.Ltmp183:
+	.loc	34 114 31 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:114:31
 	add	r5, r5, #32
-.Ltmp197:
+.Ltmp184:
 	.loc	8 656 50                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:50
 	sub	r1, r1, r0
-.Ltmp198:
-	.loc	34 111 4 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:111:4
+.Ltmp185:
+	.loc	34 114 4 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:114:4
 	cmp	r6, r1, asr #5
-.Ltmp199:
-	.loc	34 45 4                 @ /root/Bela/projects/tabbasar/oscillator.cpp:45:4
+.Ltmp186:
+	.loc	34 48 4                 @ /root/Bela/projects/tabbasar/oscillator.cpp:48:4
 	mov	r1, r6
-.Ltmp200:
+.Ltmp187:
 	@DEBUG_VALUE: i <- %R1
 	blo	.LBB4_5
 	b	.LBB4_12
-.Ltmp201:
+.Ltmp188:
 .LBB4_6:
 	@DEBUG_VALUE: incrementWaveshape:this <- %R4
 	@DEBUG_VALUE: setWaveshape:waveshape <- 1
 	@DEBUG_VALUE: setWaveshape:this <- %R4
 	mov	r1, #1
-.Ltmp202:
-	.loc	34 76 14                @ /root/Bela/projects/tabbasar/oscillator.cpp:76:14
+.Ltmp189:
+	.loc	34 79 14                @ /root/Bela/projects/tabbasar/oscillator.cpp:79:14
 	str	r1, [r4, #16]
-.Ltmp203:
+.Ltmp190:
 	.loc	8 656 66                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:66
 	ldmib	r4, {r0, r2}
-.Ltmp204:
-	.loc	34 88 4 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:88:4
+.Ltmp191:
+	.loc	34 91 4 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:91:4
 	cmp	r2, r0
 	beq	.LBB4_14
-.Ltmp205:
+.Ltmp192:
 @ BB#7:                                 @ %.lr.ph.i
 	@DEBUG_VALUE: setWaveshape:this <- %R4
 	@DEBUG_VALUE: incrementWaveshape:this <- %R4
-	.loc	34 100 41               @ /root/Bela/projects/tabbasar/oscillator.cpp:100:41
+	.loc	34 103 41               @ /root/Bela/projects/tabbasar/oscillator.cpp:103:41
 	vmov.f32	d8, #1.000000e+00
 	mov	r5, #0
-.Ltmp206:
-	.loc	34 51 4                 @ /root/Bela/projects/tabbasar/oscillator.cpp:51:4
+.Ltmp193:
+	.loc	34 54 4                 @ /root/Bela/projects/tabbasar/oscillator.cpp:54:4
 	mov	r7, #0
-.Ltmp207:
+.Ltmp194:
 .LBB4_8:                                @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: operator[]:__n <- %R7
-	.loc	34 90 62                @ /root/Bela/projects/tabbasar/oscillator.cpp:90:62
+	.loc	34 93 62                @ /root/Bela/projects/tabbasar/oscillator.cpp:93:62
 	add	r6, r7, #1
-	.loc	34 90 43 is_stmt 0      @ /root/Bela/projects/tabbasar/oscillator.cpp:90:43
+	.loc	34 93 43 is_stmt 0      @ /root/Bela/projects/tabbasar/oscillator.cpp:93:43
 	vldr	s0, [r4, #28]
 	add	r0, r0, r5
-	.loc	34 90 60                @ /root/Bela/projects/tabbasar/oscillator.cpp:90:60
+	.loc	34 93 60                @ /root/Bela/projects/tabbasar/oscillator.cpp:93:60
 	vmov	s2, r6
 	vcvt.f32.u32	d9, d1
-	.loc	34 90 58                @ /root/Bela/projects/tabbasar/oscillator.cpp:90:58
+	.loc	34 93 58                @ /root/Bela/projects/tabbasar/oscillator.cpp:93:58
 	vmul.f32	d0, d9, d0
-	.loc	34 90 23 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:90:23
+	.loc	34 93 23 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:93:23
                                         @ kill: %S0<def> %S0<kill> %D0<kill>
 	bl	_ZN9Wavetable12setFrequencyEf
-.Ltmp208:
+.Ltmp195:
 	.loc	8 781 32 is_stmt 1      @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:781:32
 	ldr	r0, [r4, #4]
-.Ltmp209:
-	.loc	34 93 15                @ /root/Bela/projects/tabbasar/oscillator.cpp:93:15
+.Ltmp196:
+	.loc	34 96 15                @ /root/Bela/projects/tabbasar/oscillator.cpp:96:15
 	tst	r7, #1
 	add	r0, r0, r5
 	bne	.LBB4_10
-.Ltmp210:
+.Ltmp197:
 @ BB#9:                                 @   in Loop: Header=BB4_8 Depth=1
 	@DEBUG_VALUE: operator[]:__n <- %R7
-	.loc	34 100 41               @ /root/Bela/projects/tabbasar/oscillator.cpp:100:41
+	.loc	34 103 41               @ /root/Bela/projects/tabbasar/oscillator.cpp:103:41
 	vdiv.f32	s0, s16, s18
 	b	.LBB4_11
-.Ltmp211:
+.Ltmp198:
 .LBB4_10:                               @   in Loop: Header=BB4_8 Depth=1
 	@DEBUG_VALUE: operator[]:__n <- %R7
-	.loc	34 95 28 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:95:28
+	.loc	34 98 28 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:98:28
 	vmov.i32	d0, #0x0
-.Ltmp212:
+.Ltmp199:
 .LBB4_11:                               @ %.backedge.i
                                         @   in Loop: Header=BB4_8 Depth=1
 	@DEBUG_VALUE: operator[]:__n <- %R7
 	bl	_ZN9Wavetable12setAmplitudeEf
-.Ltmp213:
+.Ltmp200:
 	.loc	8 656 66                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:66
 	ldmib	r4, {r0, r1}
-.Ltmp214:
-	.loc	34 88 31 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:88:31
+.Ltmp201:
+	.loc	34 91 31 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:91:31
 	add	r5, r5, #32
-.Ltmp215:
-	.loc	34 51 4                 @ /root/Bela/projects/tabbasar/oscillator.cpp:51:4
+.Ltmp202:
+	.loc	34 54 4                 @ /root/Bela/projects/tabbasar/oscillator.cpp:54:4
 	mov	r7, r6
-.Ltmp216:
+.Ltmp203:
 	.loc	8 656 50                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:50
 	sub	r1, r1, r0
-.Ltmp217:
-	.loc	34 88 4 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:88:4
+.Ltmp204:
+	.loc	34 91 4 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:91:4
 	cmp	r6, r1, asr #5
 	blo	.LBB4_8
-.Ltmp218:
+.Ltmp205:
 .LBB4_12:                               @ %_ZN10Oscillator12setWaveshapeENS_9WaveshapeE.exit.loopexit
-	.loc	34 166 39               @ /root/Bela/projects/tabbasar/oscillator.cpp:166:39
+	.loc	34 169 39               @ /root/Bela/projects/tabbasar/oscillator.cpp:169:39
 	ldr	r1, [r4, #16]
 	b	.LBB4_14
-.Ltmp219:
+.Ltmp206:
 .LBB4_13:
 	@DEBUG_VALUE: incrementWaveshape:this <- %R4
 	@DEBUG_VALUE: setWaveshape:waveshape <- 4
 	@DEBUG_VALUE: setWaveshape:this <- %R4
-	.loc	34 76 14                @ /root/Bela/projects/tabbasar/oscillator.cpp:76:14
+	.loc	34 79 14                @ /root/Bela/projects/tabbasar/oscillator.cpp:79:14
 	mov	r0, #4
-	.loc	34 166 2                @ /root/Bela/projects/tabbasar/oscillator.cpp:166:2
+	.loc	34 169 2                @ /root/Bela/projects/tabbasar/oscillator.cpp:169:2
 	mov	r1, #4
-	.loc	34 76 14                @ /root/Bela/projects/tabbasar/oscillator.cpp:76:14
+	.loc	34 79 14                @ /root/Bela/projects/tabbasar/oscillator.cpp:79:14
 	str	r0, [r4, #16]
-.Ltmp220:
+.Ltmp207:
 .LBB4_14:                               @ %_ZN10Oscillator12setWaveshapeENS_9WaveshapeE.exit
-	.loc	34 166 2                @ /root/Bela/projects/tabbasar/oscillator.cpp:166:2
+	.loc	34 169 2                @ /root/Bela/projects/tabbasar/oscillator.cpp:169:2
 	movw	r0, :lower16:.L.str
 	movt	r0, :upper16:.L.str
-.Ltmp221:
-	.loc	34 166 2 is_stmt 0      @ /root/Bela/projects/tabbasar/oscillator.cpp:166:2
+.Ltmp208:
+	.loc	34 169 2 is_stmt 0      @ /root/Bela/projects/tabbasar/oscillator.cpp:169:2
 	bl	rt_printf
-.Ltmp222:
-	.loc	34 72 1 is_stmt 1       @ /root/Bela/projects/tabbasar/oscillator.cpp:72:1
+.Ltmp209:
+	.loc	34 75 1 is_stmt 1       @ /root/Bela/projects/tabbasar/oscillator.cpp:75:1
 	vpop	{d8, d9, d10, d11}
 	pop	{r4, r5, r6, r7, r11, pc}
 .LBB4_15:
-.Ltmp223:
+.Ltmp210:
 	@DEBUG_VALUE: incrementWaveshape:this <- %R4
-	.loc	34 68 4                 @ /root/Bela/projects/tabbasar/oscillator.cpp:68:4
+	.loc	34 71 4                 @ /root/Bela/projects/tabbasar/oscillator.cpp:71:4
 	mov	r0, r4
 	mov	r1, #0
 	b	.LBB4_18
-.Ltmp224:
+.Ltmp211:
 .LBB4_16:
 	@DEBUG_VALUE: incrementWaveshape:this <- %R4
-	.loc	34 72 1                 @ /root/Bela/projects/tabbasar/oscillator.cpp:72:1
+	.loc	34 75 1                 @ /root/Bela/projects/tabbasar/oscillator.cpp:75:1
 	vpop	{d8, d9, d10, d11}
 	pop	{r4, r5, r6, r7, r11, pc}
-.Ltmp225:
+.Ltmp212:
 .LBB4_17:
 	@DEBUG_VALUE: incrementWaveshape:this <- %R4
-	.loc	34 57 4                 @ /root/Bela/projects/tabbasar/oscillator.cpp:57:4
+	.loc	34 60 4                 @ /root/Bela/projects/tabbasar/oscillator.cpp:60:4
 	mov	r0, r4
 	mov	r1, #3
-.Ltmp226:
+.Ltmp213:
 .LBB4_18:
 	@DEBUG_VALUE: incrementWaveshape:this <- %R4
 	vpop	{d8, d9, d10, d11}
 	pop	{r4, r5, r6, r7, r11, lr}
-.Ltmp227:
+.Ltmp214:
 	b	_ZN10Oscillator12setWaveshapeENS_9WaveshapeE
-.Ltmp228:
+.Ltmp215:
 	.p2align	3
 @ BB#19:
 .LCPI4_0:
@@ -1351,119 +1261,109 @@ _ZN10Oscillator18incrementWaveshapeEv:  @ @_ZN10Oscillator18incrementWaveshapeEv
 	.type	_ZN10Oscillator23setFundamentalFrequencyEf,%function
 _ZN10Oscillator23setFundamentalFrequencyEf: @ @_ZN10Oscillator23setFundamentalFrequencyEf
 .Lfunc_begin5:
-	.loc	34 171 0                @ /root/Bela/projects/tabbasar/oscillator.cpp:171:0
+	.loc	34 174 0                @ /root/Bela/projects/tabbasar/oscillator.cpp:174:0
 	.fnstart
 	.cfi_startproc
 @ BB#0:
-	.save	{r4, r5, r6, r7, r11, lr}
-	push	{r4, r5, r6, r7, r11, lr}
-.Ltmp229:
+	.save	{r4, r5, r6, r10, r11, lr}
+	push	{r4, r5, r6, r10, r11, lr}
+.Ltmp216:
 	.cfi_def_cfa_offset 24
-.Ltmp230:
+.Ltmp217:
 	.cfi_offset lr, -4
-.Ltmp231:
+.Ltmp218:
 	.cfi_offset r11, -8
-.Ltmp232:
-	.cfi_offset r7, -12
-.Ltmp233:
+.Ltmp219:
+	.cfi_offset r10, -12
+.Ltmp220:
 	.cfi_offset r6, -16
-.Ltmp234:
+.Ltmp221:
 	.cfi_offset r5, -20
-.Ltmp235:
+.Ltmp222:
 	.cfi_offset r4, -24
 	.setfp	r11, sp, #16
 	add	r11, sp, #16
-.Ltmp236:
+.Ltmp223:
 	.cfi_def_cfa r11, 8
 	.vsave	{d8, d9}
 	vpush	{d8, d9}
-.Ltmp237:
+.Ltmp224:
 	.cfi_offset d9, -32
-.Ltmp238:
+.Ltmp225:
 	.cfi_offset d8, -40
 	@DEBUG_VALUE: setFundamentalFrequency:this <- %R0
 	@DEBUG_VALUE: setFundamentalFrequency:f <- %S0
                                         @ kill: %S0<def> %S0<kill> %D0<def>
-.Ltmp239:
+.Ltmp226:
 	mov	r4, r0
-.Ltmp240:
+.Ltmp227:
 	@DEBUG_VALUE: setFundamentalFrequency:this <- %R4
-	.loc	34 172 17 prologue_end  @ /root/Bela/projects/tabbasar/oscillator.cpp:172:17
+	.loc	34 175 17 prologue_end  @ /root/Bela/projects/tabbasar/oscillator.cpp:175:17
 	vstr	s0, [r4, #28]
-.Ltmp241:
+.Ltmp228:
 	@DEBUG_VALUE: i <- 0
 	.loc	8 656 66                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:66
 	ldmib	r4, {r0, r1}
-.Ltmp242:
-	.loc	34 175 2 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:175:2
+.Ltmp229:
+	.loc	34 178 2 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:178:2
 	cmp	r1, r0
 	beq	.LBB5_6
-.Ltmp243:
+.Ltmp230:
 @ BB#1:                                 @ %.lr.ph
 	@DEBUG_VALUE: setFundamentalFrequency:this <- %R4
-	.loc	34 183 4                @ /root/Bela/projects/tabbasar/oscillator.cpp:183:4
-	movw	r6, :lower16:.L.str.1
-.Ltmp244:
-	.loc	34 180 32               @ /root/Bela/projects/tabbasar/oscillator.cpp:180:32
-	vldr	s18, .LCPI5_0
+	.loc	34 183 33               @ /root/Bela/projects/tabbasar/oscillator.cpp:183:33
+	vmov.f32	d9, #5.000000e-01
 	mov	r5, #1
-	mov	r7, #0
-.Ltmp245:
-	.loc	34 183 4                @ /root/Bela/projects/tabbasar/oscillator.cpp:183:4
-	movt	r6, :upper16:.L.str.1
+	mov	r6, #0
 	b	.LBB5_3
-.Ltmp246:
+.Ltmp231:
 .LBB5_2:                                @ %.backedge._crit_edge
                                         @   in Loop: Header=BB5_3 Depth=1
 	@DEBUG_VALUE: f_harmonic <- %S16
-	.loc	34 175 2 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:175:2
-	add	r7, r7, #32
-.Ltmp247:
-	.loc	34 177 22               @ /root/Bela/projects/tabbasar/oscillator.cpp:177:22
+	.loc	34 178 2 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:178:2
+	add	r6, r6, #32
+.Ltmp232:
+	.loc	34 180 22               @ /root/Bela/projects/tabbasar/oscillator.cpp:180:22
 	vldr	s0, [r4, #28]
-.Ltmp248:
-	.loc	34 175 2 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:175:2
+.Ltmp233:
+	.loc	34 178 2 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:178:2
 	add	r5, r5, #1
-.Ltmp249:
+.Ltmp234:
 .LBB5_3:                                @ =>This Inner Loop Header: Depth=1
-	.loc	34 177 39               @ /root/Bela/projects/tabbasar/oscillator.cpp:177:39
+	.loc	34 180 39               @ /root/Bela/projects/tabbasar/oscillator.cpp:180:39
 	vmov	s2, r5
-	.loc	34 178 18 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:178:18
-	add	r0, r0, r7
-	.loc	34 177 39               @ /root/Bela/projects/tabbasar/oscillator.cpp:177:39
+	.loc	34 181 18 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:181:18
+	add	r0, r0, r6
+	.loc	34 180 39               @ /root/Bela/projects/tabbasar/oscillator.cpp:180:39
 	vcvt.f32.u32	d16, d1
-	.loc	34 177 37 is_stmt 0     @ /root/Bela/projects/tabbasar/oscillator.cpp:177:37
+	.loc	34 180 37 is_stmt 0     @ /root/Bela/projects/tabbasar/oscillator.cpp:180:37
 	vmul.f32	d8, d0, d16
-.Ltmp250:
+.Ltmp235:
 	@DEBUG_VALUE: f_harmonic <- %S16
-	.loc	34 178 18 is_stmt 1 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:178:18
+	.loc	34 181 18 is_stmt 1 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:181:18
 	vmov.f32	s0, s16
 	bl	_ZN9Wavetable12setFrequencyEf
-.Ltmp251:
-	.loc	34 180 20               @ /root/Bela/projects/tabbasar/oscillator.cpp:180:20
+.Ltmp236:
+	.loc	34 183 21               @ /root/Bela/projects/tabbasar/oscillator.cpp:183:21
 	vldr	s0, [r4, #24]
-	.loc	34 180 32 is_stmt 0     @ /root/Bela/projects/tabbasar/oscillator.cpp:180:32
+	.loc	34 183 33 is_stmt 0     @ /root/Bela/projects/tabbasar/oscillator.cpp:183:33
 	vmul.f32	d0, d0, d9
-.Ltmp252:
-	.loc	34 180 7                @ /root/Bela/projects/tabbasar/oscillator.cpp:180:7
+.Ltmp237:
+	.loc	34 183 7                @ /root/Bela/projects/tabbasar/oscillator.cpp:183:7
 	vcmpe.f32	s16, s0
 	vmrs	APSR_nzcv, fpscr
 	ble	.LBB5_5
-.Ltmp253:
+.Ltmp238:
 @ BB#4:                                 @   in Loop: Header=BB5_3 Depth=1
 	@DEBUG_VALUE: f_harmonic <- %S16
 	.loc	8 781 32 is_stmt 1      @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:781:32
 	ldr	r0, [r4, #4]
-.Ltmp254:
-	.loc	34 182 19 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:182:19
+.Ltmp239:
+	.loc	34 185 19 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:185:19
 	vmov.i32	d0, #0x0
-	add	r0, r0, r7
+	add	r0, r0, r6
 	bl	_ZN9Wavetable12setAmplitudeEf
-	.loc	34 183 4                @ /root/Bela/projects/tabbasar/oscillator.cpp:183:4
-	mov	r0, r6
-	mov	r1, r5
-	bl	rt_printf
-.Ltmp255:
+.Ltmp240:
 .LBB5_5:                                @ %.backedge
                                         @   in Loop: Header=BB5_3 Depth=1
 	@DEBUG_VALUE: f_harmonic <- %S16
@@ -1471,20 +1371,16 @@ _ZN10Oscillator23setFundamentalFrequencyEf: @ @_ZN10Oscillator23setFundamentalFr
 	ldmib	r4, {r0, r1}
 	.loc	8 656 50 is_stmt 0      @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:50
 	sub	r1, r1, r0
-.Ltmp256:
-	.loc	34 175 2 is_stmt 1 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:175:2
+.Ltmp241:
+	.loc	34 178 2 is_stmt 1 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:178:2
 	cmp	r5, r1, asr #5
 	blo	.LBB5_2
-.Ltmp257:
+.Ltmp242:
 .LBB5_6:                                @ %._crit_edge
-	.loc	34 186 1                @ /root/Bela/projects/tabbasar/oscillator.cpp:186:1
+	.loc	34 189 1                @ /root/Bela/projects/tabbasar/oscillator.cpp:189:1
 	vpop	{d8, d9}
-	pop	{r4, r5, r6, r7, r11, pc}
-.Ltmp258:
-	.p2align	2
-@ BB#7:
-.LCPI5_0:
-	.long	1053609165              @ float 0.400000006
+	pop	{r4, r5, r6, r10, r11, pc}
+.Ltmp243:
 .Lfunc_end5:
 	.size	_ZN10Oscillator23setFundamentalFrequencyEf, .Lfunc_end5-_ZN10Oscillator23setFundamentalFrequencyEf
 	.cfi_endproc
@@ -1495,16 +1391,16 @@ _ZN10Oscillator23setFundamentalFrequencyEf: @ @_ZN10Oscillator23setFundamentalFr
 	.type	_ZN10Oscillator23getFundamentalFrequencyEv,%function
 _ZN10Oscillator23getFundamentalFrequencyEv: @ @_ZN10Oscillator23getFundamentalFrequencyEv
 .Lfunc_begin6:
-	.loc	34 189 0                @ /root/Bela/projects/tabbasar/oscillator.cpp:189:0
+	.loc	34 192 0                @ /root/Bela/projects/tabbasar/oscillator.cpp:192:0
 	.fnstart
 	.cfi_startproc
 @ BB#0:
 	@DEBUG_VALUE: getFundamentalFrequency:this <- %R0
-	.loc	34 190 9 prologue_end   @ /root/Bela/projects/tabbasar/oscillator.cpp:190:9
+	.loc	34 193 9 prologue_end   @ /root/Bela/projects/tabbasar/oscillator.cpp:193:9
 	vldr	s0, [r0, #28]
-	.loc	34 190 2 is_stmt 0      @ /root/Bela/projects/tabbasar/oscillator.cpp:190:2
+	.loc	34 193 2 is_stmt 0      @ /root/Bela/projects/tabbasar/oscillator.cpp:193:2
 	bx	lr
-.Ltmp259:
+.Ltmp244:
 .Lfunc_end6:
 	.size	_ZN10Oscillator23getFundamentalFrequencyEv, .Lfunc_end6-_ZN10Oscillator23getFundamentalFrequencyEv
 	.cfi_endproc
@@ -1515,119 +1411,139 @@ _ZN10Oscillator23getFundamentalFrequencyEv: @ @_ZN10Oscillator23getFundamentalFr
 	.type	_ZN10Oscillator7processEv,%function
 _ZN10Oscillator7processEv:              @ @_ZN10Oscillator7processEv
 .Lfunc_begin7:
-	.loc	34 195 0 is_stmt 1      @ /root/Bela/projects/tabbasar/oscillator.cpp:195:0
+	.loc	34 198 0 is_stmt 1      @ /root/Bela/projects/tabbasar/oscillator.cpp:198:0
 	.fnstart
 	.cfi_startproc
 @ BB#0:
 	.save	{r4, r5, r6, r10, r11, lr}
 	push	{r4, r5, r6, r10, r11, lr}
-.Ltmp260:
+.Ltmp245:
 	.cfi_def_cfa_offset 24
-.Ltmp261:
+.Ltmp246:
 	.cfi_offset lr, -4
-.Ltmp262:
+.Ltmp247:
 	.cfi_offset r11, -8
-.Ltmp263:
+.Ltmp248:
 	.cfi_offset r10, -12
-.Ltmp264:
+.Ltmp249:
 	.cfi_offset r6, -16
-.Ltmp265:
+.Ltmp250:
 	.cfi_offset r5, -20
-.Ltmp266:
+.Ltmp251:
 	.cfi_offset r4, -24
 	.setfp	r11, sp, #16
 	add	r11, sp, #16
-.Ltmp267:
+.Ltmp252:
 	.cfi_def_cfa r11, 8
-	.vsave	{d8}
-	vpush	{d8}
-.Ltmp268:
-	.cfi_offset d8, -32
+	.vsave	{d8, d9}
+	vpush	{d8, d9}
+.Ltmp253:
+	.cfi_offset d9, -32
+.Ltmp254:
+	.cfi_offset d8, -40
 	@DEBUG_VALUE: process:this <- %R0
 	mov	r4, r0
-.Ltmp269:
+.Ltmp255:
 	@DEBUG_VALUE: process:out <- 0.000000e+00
 	@DEBUG_VALUE: process:this <- %R4
-	.loc	34 200 6 prologue_end   @ /root/Bela/projects/tabbasar/oscillator.cpp:200:6
+	.loc	34 203 6 prologue_end   @ /root/Bela/projects/tabbasar/oscillator.cpp:203:6
 	ldr	r0, [r4, #16]
-.Ltmp270:
-	.loc	34 200 6 is_stmt 0      @ /root/Bela/projects/tabbasar/oscillator.cpp:200:6
+.Ltmp256:
+	.loc	34 203 6 is_stmt 0      @ /root/Bela/projects/tabbasar/oscillator.cpp:203:6
 	cmp	r0, #4
 	bne	.LBB7_2
-.Ltmp271:
+.Ltmp257:
 @ BB#1:
 	@DEBUG_VALUE: process:this <- %R4
-	.loc	34 203 16 is_stmt 1     @ /root/Bela/projects/tabbasar/oscillator.cpp:203:16
+	.loc	34 206 16 is_stmt 1     @ /root/Bela/projects/tabbasar/oscillator.cpp:206:16
 	bl	rand
 	vmov	s0, r0
 	vcvt.f32.s32	d16, d0
-	.loc	34 203 48 is_stmt 0     @ /root/Bela/projects/tabbasar/oscillator.cpp:203:48
+	.loc	34 206 48 is_stmt 0     @ /root/Bela/projects/tabbasar/oscillator.cpp:206:48
 	vldr	s0, .LCPI7_0
-	.loc	34 203 55               @ /root/Bela/projects/tabbasar/oscillator.cpp:203:55
+	.loc	34 206 55               @ /root/Bela/projects/tabbasar/oscillator.cpp:206:55
 	vmov.f32	d17, #-1.000000e+00
-	.loc	34 203 48               @ /root/Bela/projects/tabbasar/oscillator.cpp:203:48
+	.loc	34 206 48               @ /root/Bela/projects/tabbasar/oscillator.cpp:206:48
 	vmul.f32	d16, d16, d0
-	.loc	34 203 55               @ /root/Bela/projects/tabbasar/oscillator.cpp:203:55
+	.loc	34 206 55               @ /root/Bela/projects/tabbasar/oscillator.cpp:206:55
 	vadd.f32	d8, d16, d17
-.Ltmp272:
+.Ltmp258:
 	@DEBUG_VALUE: process:out <- %S16
-	b	.LBB7_5
-.Ltmp273:
+	b	.LBB7_7
+.Ltmp259:
 .LBB7_2:                                @ %.preheader
 	@DEBUG_VALUE: process:this <- %R4
 	vmov.i32	d8, #0x0
-.Ltmp274:
+.Ltmp260:
 	.loc	8 656 66 is_stmt 1      @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:66
 	ldmib	r4, {r0, r1}
-.Ltmp275:
-	.loc	34 209 3 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:209:3
+.Ltmp261:
+	.loc	34 213 3 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:213:3
 	cmp	r1, r0
-	beq	.LBB7_5
-.Ltmp276:
-@ BB#3:                                 @ %.lr.ph.preheader
+	beq	.LBB7_7
+.Ltmp262:
+@ BB#3:                                 @ %.lr.ph
 	@DEBUG_VALUE: process:this <- %R4
+	.loc	34 216 53               @ /root/Bela/projects/tabbasar/oscillator.cpp:216:53
+	vmov.f32	d9, #5.000000e-01
 	mov	r5, #0
 	mov	r6, #0
-.Ltmp277:
-.LBB7_4:                                @ %.lr.ph
-                                        @ =>This Inner Loop Header: Depth=1
-	.loc	34 211 43 discriminator 2 @ /root/Bela/projects/tabbasar/oscillator.cpp:211:43
+.Ltmp263:
+.LBB7_4:                                @ =>This Inner Loop Header: Depth=1
+	.loc	34 216 23 is_stmt 0 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:216:23
+	add	r0, r0, r5
+	bl	_ZN9Wavetable12getFrequencyEv
+	.loc	34 216 41               @ /root/Bela/projects/tabbasar/oscillator.cpp:216:41
+	vldr	s2, [r4, #24]
+	.loc	34 216 53               @ /root/Bela/projects/tabbasar/oscillator.cpp:216:53
+	vmul.f32	d1, d1, d9
+.Ltmp264:
+	.loc	34 216 8                @ /root/Bela/projects/tabbasar/oscillator.cpp:216:8
+	vcmpe.f32	s0, s2
+	vmrs	APSR_nzcv, fpscr
+	bge	.LBB7_6
+@ BB#5:                                 @   in Loop: Header=BB7_4 Depth=1
+.Ltmp265:
+	.loc	8 781 32 is_stmt 1      @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:781:32
+	ldr	r0, [r4, #4]
+.Ltmp266:
+	.loc	34 218 43 discriminator 2 @ /root/Bela/projects/tabbasar/oscillator.cpp:218:43
 	add	r0, r0, r5
 	bl	_ZN9Wavetable7processEv
                                         @ kill: %S0<def> %S0<kill> %D0<def>
-.Ltmp278:
+.Ltmp267:
 	@DEBUG_VALUE: table_sample <- %S0
+	.loc	34 219 11               @ /root/Bela/projects/tabbasar/oscillator.cpp:219:11
+	vadd.f32	d8, d0, d8
+.Ltmp268:
+	@DEBUG_VALUE: process:out <- %S16
+.LBB7_6:                                @   in Loop: Header=BB7_4 Depth=1
 	.loc	8 656 66                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:66
 	ldmib	r4, {r0, r1}
-.Ltmp279:
-	.loc	34 209 30 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:209:30
+.Ltmp269:
+	.loc	34 213 30 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:213:30
 	add	r5, r5, #32
-.Ltmp280:
-	.loc	34 212 11               @ /root/Bela/projects/tabbasar/oscillator.cpp:212:11
-	vadd.f32	d8, d0, d8
-.Ltmp281:
-	.loc	34 209 53 discriminator 3 @ /root/Bela/projects/tabbasar/oscillator.cpp:209:53
-	add	r6, r6, #1
-.Ltmp282:
-	@DEBUG_VALUE: i <- %R6
-	.loc	8 656 50                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:50
-	sub	r1, r1, r0
-.Ltmp283:
-	@DEBUG_VALUE: process:out <- %S16
-	.loc	34 209 3 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:209:3
-	cmp	r6, r1, asr #5
-.Ltmp284:
+.Ltmp270:
 	@DEBUG_VALUE: operator[]:__n <- %R6
+	.loc	34 213 53 is_stmt 0 discriminator 3 @ /root/Bela/projects/tabbasar/oscillator.cpp:213:53
+	add	r6, r6, #1
+.Ltmp271:
+	@DEBUG_VALUE: i <- %R6
+	.loc	8 656 50 is_stmt 1      @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:50
+	sub	r1, r1, r0
+.Ltmp272:
+	.loc	34 213 3 discriminator 1 @ /root/Bela/projects/tabbasar/oscillator.cpp:213:3
+	cmp	r6, r1, asr #5
 	blo	.LBB7_4
-.Ltmp285:
-.LBB7_5:                                @ %.loopexit
-	.loc	34 217 1                @ /root/Bela/projects/tabbasar/oscillator.cpp:217:1
+.Ltmp273:
+.LBB7_7:                                @ %.loopexit
+	.loc	34 226 1                @ /root/Bela/projects/tabbasar/oscillator.cpp:226:1
 	vmov.f32	s0, s16
-	vpop	{d8}
+	vpop	{d8, d9}
 	pop	{r4, r5, r6, r10, r11, pc}
-.Ltmp286:
+.Ltmp274:
 	.p2align	2
-@ BB#6:
+@ BB#8:
 .LCPI7_0:
 	.long	813694976               @ float 9.31322574E-10
 .Lfunc_end7:
@@ -1647,11 +1563,11 @@ __clang_call_terminate:                 @ @__clang_call_terminate
 @ BB#0:
 	.save	{r11, lr}
 	push	{r11, lr}
-.Ltmp287:
+.Ltmp275:
 	.cfi_def_cfa_offset 8
-.Ltmp288:
+.Ltmp276:
 	.cfi_offset lr, -4
-.Ltmp289:
+.Ltmp277:
 	.cfi_offset r11, -8
 	bl	__cxa_begin_catch
 	mov	lr, pc
@@ -1675,44 +1591,44 @@ _ZNSt6vectorI9WavetableSaIS0_EE17_M_default_appendEj: @ @_ZNSt6vectorI9Wavetable
 @ BB#0:
 	.save	{r4, r5, r6, r7, r8, r9, r10, r11, lr}
 	push	{r4, r5, r6, r7, r8, r9, r10, r11, lr}
-.Ltmp299:
+.Ltmp287:
 	.cfi_def_cfa_offset 36
-.Ltmp300:
+.Ltmp288:
 	.cfi_offset lr, -4
-.Ltmp301:
+.Ltmp289:
 	.cfi_offset r11, -8
-.Ltmp302:
+.Ltmp290:
 	.cfi_offset r10, -12
-.Ltmp303:
+.Ltmp291:
 	.cfi_offset r9, -16
-.Ltmp304:
+.Ltmp292:
 	.cfi_offset r8, -20
-.Ltmp305:
+.Ltmp293:
 	.cfi_offset r7, -24
-.Ltmp306:
+.Ltmp294:
 	.cfi_offset r6, -28
-.Ltmp307:
+.Ltmp295:
 	.cfi_offset r5, -32
-.Ltmp308:
+.Ltmp296:
 	.cfi_offset r4, -36
 	.setfp	r11, sp, #28
 	add	r11, sp, #28
-.Ltmp309:
+.Ltmp297:
 	.cfi_def_cfa r11, 8
 	.pad	#4
 	sub	sp, sp, #4
 	@DEBUG_VALUE: _M_default_append:this <- %R0
 	@DEBUG_VALUE: _M_default_append:__n <- %R1
 	mov	r5, r1
-.Ltmp310:
+.Ltmp298:
 	@DEBUG_VALUE: _M_default_append:__n <- %R5
 	mov	r4, r0
-.Ltmp311:
+.Ltmp299:
 	@DEBUG_VALUE: _M_default_append:this <- %R4
 	.loc	36 543 11 prologue_end  @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/vector.tcc:543:11
 	cmp	r5, #0
 	beq	.LBB9_20
-.Ltmp312:
+.Ltmp300:
 @ BB#1:
 	@DEBUG_VALUE: _M_default_append:this <- %R4
 	@DEBUG_VALUE: _M_default_append:__n <- %R5
@@ -1723,32 +1639,32 @@ _ZNSt6vectorI9WavetableSaIS0_EE17_M_default_appendEj: @ @_ZNSt6vectorI9Wavetable
 	.loc	36 546 4                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/vector.tcc:546:4
 	sub	r0, r0, r1
 	asr	r0, r0, #5
-.Ltmp313:
+.Ltmp301:
 	.loc	36 545 8                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/vector.tcc:545:8
 	cmp	r0, r5
 	bhs	.LBB9_17
-.Ltmp314:
+.Ltmp302:
 @ BB#2:
 	@DEBUG_VALUE: _M_default_append:this <- %R4
 	@DEBUG_VALUE: _M_default_append:__n <- %R5
 	@DEBUG_VALUE: size:this <- %R4
 	.loc	8 656 66                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:66
 	ldr	r0, [r4]
-.Ltmp315:
+.Ltmp303:
 	.loc	8 1422 17               @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:1422:17
 	mvn	r10, #-134217728
-.Ltmp316:
+.Ltmp304:
 	.loc	8 656 50                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:50
 	sub	r2, r1, r0
-.Ltmp317:
+.Ltmp305:
 	.loc	8 1422 17               @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:1422:17
 	sub	r3, r10, r2, asr #5
-.Ltmp318:
+.Ltmp306:
 	@DEBUG_VALUE: _M_check_len:__n <- %R5
 	.loc	8 1422 6 is_stmt 0      @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:1422:6
 	cmp	r3, r5
 	blo	.LBB9_21
-.Ltmp319:
+.Ltmp307:
 @ BB#3:                                 @ %_ZNKSt6vectorI9WavetableSaIS0_EE12_M_check_lenEjPKc.exit
 	@DEBUG_VALUE: _M_check_len:__n <- %R5
 	@DEBUG_VALUE: size:this <- %R4
@@ -1756,7 +1672,7 @@ _ZNSt6vectorI9WavetableSaIS0_EE17_M_default_appendEj: @ @_ZNSt6vectorI9Wavetable
 	@DEBUG_VALUE: _M_default_append:__n <- %R5
 	.loc	8 656 50 is_stmt 1      @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:50
 	asr	r2, r2, #5
-.Ltmp320:
+.Ltmp308:
 	.loc	8 1425 35               @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:1425:35
 	cmp	r2, r5
 	mov	r3, r2
@@ -1769,7 +1685,7 @@ _ZNSt6vectorI9WavetableSaIS0_EE17_M_default_appendEj: @ @_ZNSt6vectorI9Wavetable
 	mvnne	r2, #-134217728
 	cmp	r7, r3
 	movhs	r10, r2
-.Ltmp321:
+.Ltmp309:
 	@DEBUG_VALUE: _M_allocate:__n <- %R10
 	@DEBUG_VALUE: __len <- %R10
 	@DEBUG_VALUE: allocate:__n <- %R10
@@ -1779,10 +1695,10 @@ _ZNSt6vectorI9WavetableSaIS0_EE17_M_default_appendEj: @ @_ZNSt6vectorI9Wavetable
 	@DEBUG_VALUE: deallocate: <- %R10
 	.loc	8 170 9                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:170:9
 	cmp	r10, #0
-.Ltmp322:
+.Ltmp310:
 	@DEBUG_VALUE: _M_check_len:__len <- %R7
 	beq	.LBB9_6
-.Ltmp323:
+.Ltmp311:
 @ BB#4:
 	@DEBUG_VALUE: _M_check_len:__len <- %R7
 	@DEBUG_VALUE: deallocate: <- %R10
@@ -1799,7 +1715,7 @@ _ZNSt6vectorI9WavetableSaIS0_EE17_M_default_appendEj: @ @_ZNSt6vectorI9Wavetable
 	.loc	4 101 6                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/ext/new_allocator.h:101:6
 	cmp	r10, #134217728
 	bhs	.LBB9_22
-.Ltmp324:
+.Ltmp312:
 @ BB#5:                                 @ %_ZNSt16allocator_traitsISaI9WavetableEE8allocateERS1_j.exit.i
 	@DEBUG_VALUE: _M_check_len:__len <- %R7
 	@DEBUG_VALUE: deallocate: <- %R10
@@ -1818,10 +1734,10 @@ _ZNSt6vectorI9WavetableSaIS0_EE17_M_default_appendEj: @ @_ZNSt6vectorI9Wavetable
 	.loc	4 104 27 is_stmt 0      @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/ext/new_allocator.h:104:27
 	bl	_Znwj
 	mov	r9, r0
-.Ltmp325:
+.Ltmp313:
 	.loc	36 563 22 is_stmt 1     @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/vector.tcc:563:22
 	ldm	r4, {r0, r1}
-.Ltmp326:
+.Ltmp314:
 	@DEBUG_VALUE: size:this <- %R4
 .LBB9_6:                                @ %_ZNSt12_Vector_baseI9WavetableSaIS0_EE11_M_allocateEj.exit
 	@DEBUG_VALUE: _M_check_len:__len <- %R7
@@ -1838,18 +1754,18 @@ _ZNSt6vectorI9WavetableSaIS0_EE17_M_default_appendEj: @ @_ZNSt6vectorI9Wavetable
 	@DEBUG_VALUE: _M_default_append:__n <- %R5
 	.file	37 "/usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits" "stl_uninitialized.h"
 	.loc	37 123 14               @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_uninitialized.h:123:14
-.Ltmp290:
-.Ltmp327:
+.Ltmp278:
+.Ltmp315:
 	@DEBUG_VALUE: uninitialized_copy<const Wavetable *, Wavetable *>:__assignable <- 1
 	@DEBUG_VALUE: uninitialized_copy<const Wavetable *, Wavetable *>:__result <- %R9
 	@DEBUG_VALUE: __uninitialized_move_if_noexcept_a<Wavetable *, Wavetable *, std::allocator<Wavetable> >:__last <- %R1
 	@DEBUG_VALUE: __uninitialized_move_if_noexcept_a<Wavetable *, Wavetable *, std::allocator<Wavetable> >:__first <- %R0
 	mov	r2, r9
 	bl	_ZNSt20__uninitialized_copyILb0EE13__uninit_copyIPK9WavetablePS2_EET0_T_S7_S6_
-.Ltmp328:
+.Ltmp316:
 	mov	r8, r0
-.Ltmp291:
-.Ltmp329:
+.Ltmp279:
+.Ltmp317:
 @ BB#7:                                 @ %.lr.ph.i.i.i35.preheader
 	@DEBUG_VALUE: uninitialized_copy<const Wavetable *, Wavetable *>:__result <- %R9
 	@DEBUG_VALUE: _M_check_len:__len <- %R7
@@ -1865,31 +1781,31 @@ _ZNSt6vectorI9WavetableSaIS0_EE17_M_default_appendEj: @ @_ZNSt6vectorI9Wavetable
 	@DEBUG_VALUE: _M_default_append:this <- %R4
 	@DEBUG_VALUE: _M_default_append:__n <- %R5
 	mov	r0, #0
-.Ltmp330:
+.Ltmp318:
 	.loc	37 573 14               @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_uninitialized.h:573:14
 	mov	r1, r8
 	mov	r2, r5
-.Ltmp331:
+.Ltmp319:
 .LBB9_8:                                @ %.lr.ph.i.i.i35
                                         @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: __addressof<Wavetable>:__r <- %R1
 	.loc	8 87 22                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:87:22
 	str	r0, [r1]
-.Ltmp332:
+.Ltmp320:
 	.loc	37 518 24 discriminator 2 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_uninitialized.h:518:24
 	subs	r2, r2, #1
-.Ltmp333:
+.Ltmp321:
 	@DEBUG_VALUE: __uninit_default_n<Wavetable *, unsigned int>:__n <- %R2
 	.loc	8 87 34                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:87:34
 	str	r0, [r1, #4]
 	.loc	8 87 47 is_stmt 0       @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:87:47
 	str	r0, [r1, #8]
-.Ltmp334:
+.Ltmp322:
 	.loc	37 518 8 is_stmt 1 discriminator 1 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_uninitialized.h:518:8
 	add	r1, r1, #32
-.Ltmp335:
+.Ltmp323:
 	bne	.LBB9_8
-.Ltmp336:
+.Ltmp324:
 @ BB#9:
 	@DEBUG_VALUE: __uninit_default_n<Wavetable *, unsigned int>:__n <- %R2
 	@DEBUG_VALUE: __destroy<Wavetable *>:__first <- %R7
@@ -1900,27 +1816,27 @@ _ZNSt6vectorI9WavetableSaIS0_EE17_M_default_appendEj: @ @_ZNSt6vectorI9Wavetable
 	@DEBUG_VALUE: __destroy<Wavetable *>:__last <- %R6
 	.loc	36 576 36               @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/vector.tcc:576:36
 	ldr	r7, [r4]
-.Ltmp337:
+.Ltmp325:
 	.loc	36 576 60 is_stmt 0     @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/vector.tcc:576:60
 	ldr	r6, [r4, #4]
-.Ltmp338:
+.Ltmp326:
 	.loc	35 102 4 is_stmt 1 discriminator 1 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_construct.h:102:4
 	cmp	r7, r6
 	beq	.LBB9_14
-.Ltmp339:
+.Ltmp327:
 .LBB9_10:                               @ %.lr.ph.i.i.i41
                                         @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: __addressof<Wavetable>:__r <- %R7
 	.loc	8 160 37                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:160:37
 	ldr	r0, [r7]
-.Ltmp340:
+.Ltmp328:
 	@DEBUG_VALUE: _M_deallocate:__p <- %R0
 	@DEBUG_VALUE: deallocate:__p <- %R0
 	@DEBUG_VALUE: deallocate:__p <- %R0
 	.loc	8 177 6                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:177:6
 	cmp	r0, #0
 	beq	.LBB9_12
-.Ltmp341:
+.Ltmp329:
 @ BB#11:                                @   in Loop: Header=BB9_10 Depth=1
 	@DEBUG_VALUE: deallocate:__p <- %R0
 	@DEBUG_VALUE: deallocate:__p <- %R0
@@ -1928,41 +1844,41 @@ _ZNSt6vectorI9WavetableSaIS0_EE17_M_default_appendEj: @ @_ZNSt6vectorI9Wavetable
 	@DEBUG_VALUE: __addressof<Wavetable>:__r <- %R7
 	.loc	4 110 9                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/ext/new_allocator.h:110:9
 	bl	_ZdlPv
-.Ltmp342:
+.Ltmp330:
 .LBB9_12:                               @ %_ZSt8_DestroyI9WavetableEvPT_.exit.i.i.i42
                                         @   in Loop: Header=BB9_10 Depth=1
 	@DEBUG_VALUE: __addressof<Wavetable>:__r <- %R7
 	.loc	35 102 30 discriminator 2 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_construct.h:102:30
 	add	r7, r7, #32
-.Ltmp343:
+.Ltmp331:
 	@DEBUG_VALUE: __destroy<Wavetable *>:__first <- %R7
 	.loc	35 102 4 is_stmt 0 discriminator 1 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_construct.h:102:4
 	cmp	r6, r7
 	bne	.LBB9_10
-.Ltmp344:
+.Ltmp332:
 @ BB#13:                                @ %_ZSt8_DestroyIP9WavetableS0_EvT_S2_RSaIT0_E.exit43thread-pre-split
 	@DEBUG_VALUE: __destroy<Wavetable *>:__first <- %R7
 	.loc	36 578 36 is_stmt 1     @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/vector.tcc:578:36
 	ldr	r7, [r4]
-.Ltmp345:
+.Ltmp333:
 .LBB9_14:                               @ %_ZSt8_DestroyIP9WavetableS0_EvT_S2_RSaIT0_E.exit43
 	.file	38 "/usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits" "move.h"
 	.loc	38 47 22                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/move.h:47:22
 	add	r5, r8, r5, lsl #5
-.Ltmp346:
+.Ltmp334:
 	@DEBUG_VALUE: _M_deallocate:__p <- %R7
 	@DEBUG_VALUE: __new_finish <- %R5
 	.loc	8 177 6                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:177:6
 	cmp	r7, #0
 	beq	.LBB9_16
-.Ltmp347:
+.Ltmp335:
 @ BB#15:
 	@DEBUG_VALUE: __new_finish <- %R5
 	@DEBUG_VALUE: _M_deallocate:__p <- %R7
 	.loc	4 110 9                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/ext/new_allocator.h:110:9
 	mov	r0, r7
 	bl	_ZdlPv
-.Ltmp348:
+.Ltmp336:
 .LBB9_16:                               @ %_ZNSt12_Vector_baseI9WavetableSaIS0_EE13_M_deallocateEPS0_j.exit32
 	@DEBUG_VALUE: __new_finish <- %R5
 	@DEBUG_VALUE: _M_deallocate:__p <- %R7
@@ -1974,66 +1890,66 @@ _ZNSt6vectorI9WavetableSaIS0_EE17_M_default_appendEj: @ @_ZNSt6vectorI9Wavetable
 	str	r5, [r4, #4]
 	.loc	36 583 40               @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/vector.tcc:583:40
 	str	r0, [r4, #8]
-.Ltmp349:
+.Ltmp337:
 	.loc	36 586 5 discriminator 2 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/vector.tcc:586:5
 	sub	sp, r11, #28
 	pop	{r4, r5, r6, r7, r8, r9, r10, r11, pc}
-.Ltmp350:
+.Ltmp338:
 .LBB9_17:                               @ %.lr.ph.i.i.i.preheader
 	@DEBUG_VALUE: _M_default_append:this <- %R4
 	@DEBUG_VALUE: _M_default_append:__n <- %R5
 	mov	r0, #0
-.Ltmp351:
+.Ltmp339:
 	.loc	37 573 14               @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_uninitialized.h:573:14
 	mov	r2, r1
 	mov	r3, r5
-.Ltmp352:
+.Ltmp340:
 .LBB9_18:                               @ %.lr.ph.i.i.i
                                         @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: __addressof<Wavetable>:__r <- %R2
 	.loc	8 87 22                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:87:22
 	str	r0, [r2]
-.Ltmp353:
+.Ltmp341:
 	.loc	37 518 24 discriminator 2 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_uninitialized.h:518:24
 	subs	r3, r3, #1
-.Ltmp354:
+.Ltmp342:
 	@DEBUG_VALUE: __uninit_default_n<Wavetable *, unsigned int>:__n <- %R3
 	.loc	8 87 34                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:87:34
 	str	r0, [r2, #4]
 	.loc	8 87 47 is_stmt 0       @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:87:47
 	str	r0, [r2, #8]
-.Ltmp355:
+.Ltmp343:
 	.loc	37 518 8 is_stmt 1 discriminator 1 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_uninitialized.h:518:8
 	add	r2, r2, #32
-.Ltmp356:
+.Ltmp344:
 	bne	.LBB9_18
-.Ltmp357:
+.Ltmp345:
 @ BB#19:                                @ %_ZSt27__uninitialized_default_n_aIP9WavetablejS0_ET_S2_T0_RSaIT1_E.exit
 	@DEBUG_VALUE: __uninit_default_n<Wavetable *, unsigned int>:__n <- %R3
 	.loc	38 47 22                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/move.h:47:22
 	add	r0, r1, r5, lsl #5
-.Ltmp358:
+.Ltmp346:
 	.loc	36 548 32               @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/vector.tcc:548:32
 	str	r0, [r4, #4]
-.Ltmp359:
+.Ltmp347:
 .LBB9_20:
 	.loc	36 586 5 discriminator 2 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/vector.tcc:586:5
 	sub	sp, r11, #28
 	pop	{r4, r5, r6, r7, r8, r9, r10, r11, pc}
 .LBB9_21:
-.Ltmp360:
+.Ltmp348:
 	@DEBUG_VALUE: _M_check_len:__n <- %R5
 	@DEBUG_VALUE: size:this <- %R4
 	@DEBUG_VALUE: _M_default_append:this <- %R4
 	@DEBUG_VALUE: _M_default_append:__n <- %R5
 	.loc	8 1423 4                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:1423:4
-	movw	r0, :lower16:.L.str.2
-	movt	r0, :upper16:.L.str.2
-.Ltmp361:
+	movw	r0, :lower16:.L.str.1
+	movt	r0, :upper16:.L.str.1
+.Ltmp349:
 	@DEBUG_VALUE: _M_check_len:__s <- %R0
 	mov	lr, pc
 	b	_ZSt20__throw_length_errorPKc
-.Ltmp362:
+.Ltmp350:
 .LBB9_22:
 	@DEBUG_VALUE: _M_check_len:__len <- %R7
 	@DEBUG_VALUE: deallocate: <- %R10
@@ -2050,7 +1966,7 @@ _ZNSt6vectorI9WavetableSaIS0_EE17_M_default_appendEj: @ @_ZNSt6vectorI9Wavetable
 	.loc	4 102 4                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/ext/new_allocator.h:102:4
 	mov	lr, pc
 	b	_ZSt17__throw_bad_allocv
-.Ltmp363:
+.Ltmp351:
 .LBB9_23:
 	@DEBUG_VALUE: uninitialized_copy<const Wavetable *, Wavetable *>:__result <- %R9
 	@DEBUG_VALUE: _M_check_len:__len <- %R7
@@ -2065,15 +1981,15 @@ _ZNSt6vectorI9WavetableSaIS0_EE17_M_default_appendEj: @ @_ZNSt6vectorI9Wavetable
 	@DEBUG_VALUE: size:this <- %R4
 	@DEBUG_VALUE: _M_default_append:this <- %R4
 	@DEBUG_VALUE: _M_default_append:__n <- %R5
-.Ltmp292:
-.Ltmp364:
+.Ltmp280:
+.Ltmp352:
 	.loc	36 568 3 discriminator 1 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/vector.tcc:568:3
 	bl	__cxa_begin_catch
-.Ltmp365:
+.Ltmp353:
 	.loc	8 177 6                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:177:6
 	cmp	r9, #0
 	beq	.LBB9_25
-.Ltmp366:
+.Ltmp354:
 @ BB#24:
 	@DEBUG_VALUE: uninitialized_copy<const Wavetable *, Wavetable *>:__result <- %R9
 	@DEBUG_VALUE: _M_check_len:__len <- %R7
@@ -2091,7 +2007,7 @@ _ZNSt6vectorI9WavetableSaIS0_EE17_M_default_appendEj: @ @_ZNSt6vectorI9Wavetable
 	.loc	4 110 9                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/ext/new_allocator.h:110:9
 	mov	r0, r9
 	bl	_ZdlPv
-.Ltmp367:
+.Ltmp355:
 .LBB9_25:                               @ %_ZNSt12_Vector_baseI9WavetableSaIS0_EE13_M_deallocateEPS0_j.exit
 	@DEBUG_VALUE: uninitialized_copy<const Wavetable *, Wavetable *>:__result <- %R9
 	@DEBUG_VALUE: _M_check_len:__len <- %R7
@@ -2107,11 +2023,11 @@ _ZNSt6vectorI9WavetableSaIS0_EE17_M_default_appendEj: @ @_ZNSt6vectorI9Wavetable
 	@DEBUG_VALUE: _M_default_append:this <- %R4
 	@DEBUG_VALUE: _M_default_append:__n <- %R5
 	.loc	36 574 5                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/vector.tcc:574:5
-.Ltmp293:
+.Ltmp281:
 	mov	lr, pc
 	b	__cxa_rethrow
-.Ltmp294:
-.Ltmp368:
+.Ltmp282:
+.Ltmp356:
 @ BB#26:
 	@DEBUG_VALUE: uninitialized_copy<const Wavetable *, Wavetable *>:__result <- %R9
 	@DEBUG_VALUE: _M_check_len:__len <- %R7
@@ -2140,14 +2056,14 @@ _ZNSt6vectorI9WavetableSaIS0_EE17_M_default_appendEj: @ @_ZNSt6vectorI9Wavetable
 	@DEBUG_VALUE: size:this <- %R4
 	@DEBUG_VALUE: _M_default_append:this <- %R4
 	@DEBUG_VALUE: _M_default_append:__n <- %R5
-.Ltmp295:
+.Ltmp283:
 	mov	r4, r0
-.Ltmp369:
+.Ltmp357:
 	.loc	36 575 3                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/vector.tcc:575:3
-.Ltmp296:
+.Ltmp284:
 	bl	__cxa_end_catch
-.Ltmp297:
-.Ltmp370:
+.Ltmp285:
+.Ltmp358:
 @ BB#28:
 	@DEBUG_VALUE: uninitialized_copy<const Wavetable *, Wavetable *>:__result <- %R9
 	@DEBUG_VALUE: _M_check_len:__len <- %R7
@@ -2163,7 +2079,7 @@ _ZNSt6vectorI9WavetableSaIS0_EE17_M_default_appendEj: @ @_ZNSt6vectorI9Wavetable
 	mov	r0, r4
 	mov	lr, pc
 	b	_Unwind_Resume
-.Ltmp371:
+.Ltmp359:
 .LBB9_29:
 	@DEBUG_VALUE: uninitialized_copy<const Wavetable *, Wavetable *>:__result <- %R9
 	@DEBUG_VALUE: _M_check_len:__len <- %R7
@@ -2176,11 +2092,11 @@ _ZNSt6vectorI9WavetableSaIS0_EE17_M_default_appendEj: @ @_ZNSt6vectorI9Wavetable
 	@DEBUG_VALUE: _M_allocate:__n <- %R10
 	@DEBUG_VALUE: _M_check_len:__n <- %R5
 	@DEBUG_VALUE: _M_default_append:__n <- %R5
-.Ltmp298:
+.Ltmp286:
 	.loc	36 575 3 is_stmt 0 discriminator 1 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/vector.tcc:575:3
 	mov	lr, pc
 	b	__clang_call_terminate
-.Ltmp372:
+.Ltmp360:
 .Lfunc_end9:
 	.size	_ZNSt6vectorI9WavetableSaIS0_EE17_M_default_appendEj, .Lfunc_end9-_ZNSt6vectorI9WavetableSaIS0_EE17_M_default_appendEj
 	.cfi_endproc
@@ -2189,34 +2105,34 @@ _ZNSt6vectorI9WavetableSaIS0_EE17_M_default_appendEj: @ @_ZNSt6vectorI9Wavetable
 	.handlerdata
 	.p2align	2
 GCC_except_table9:
-.Lexception2:
+.Lexception1:
 	.byte	255                     @ @LPStart Encoding = omit
 	.byte	0                       @ @TType Encoding = absptr
 	.asciz	"\326\200\200"          @ @TType base offset
 	.byte	3                       @ Call site Encoding = udata4
 	.byte	78                      @ Call site table length
 	.long	.Lfunc_begin9-.Lfunc_begin9 @ >> Call Site 1 <<
-	.long	.Ltmp290-.Lfunc_begin9  @   Call between .Lfunc_begin9 and .Ltmp290
+	.long	.Ltmp278-.Lfunc_begin9  @   Call between .Lfunc_begin9 and .Ltmp278
 	.long	0                       @     has no landing pad
 	.byte	0                       @   On action: cleanup
-	.long	.Ltmp290-.Lfunc_begin9  @ >> Call Site 2 <<
-	.long	.Ltmp291-.Ltmp290       @   Call between .Ltmp290 and .Ltmp291
-	.long	.Ltmp292-.Lfunc_begin9  @     jumps to .Ltmp292
+	.long	.Ltmp278-.Lfunc_begin9  @ >> Call Site 2 <<
+	.long	.Ltmp279-.Ltmp278       @   Call between .Ltmp278 and .Ltmp279
+	.long	.Ltmp280-.Lfunc_begin9  @     jumps to .Ltmp280
 	.byte	1                       @   On action: 1
-	.long	.Ltmp291-.Lfunc_begin9  @ >> Call Site 3 <<
-	.long	.Ltmp293-.Ltmp291       @   Call between .Ltmp291 and .Ltmp293
+	.long	.Ltmp279-.Lfunc_begin9  @ >> Call Site 3 <<
+	.long	.Ltmp281-.Ltmp279       @   Call between .Ltmp279 and .Ltmp281
 	.long	0                       @     has no landing pad
 	.byte	0                       @   On action: cleanup
-	.long	.Ltmp293-.Lfunc_begin9  @ >> Call Site 4 <<
-	.long	.Ltmp294-.Ltmp293       @   Call between .Ltmp293 and .Ltmp294
-	.long	.Ltmp295-.Lfunc_begin9  @     jumps to .Ltmp295
+	.long	.Ltmp281-.Lfunc_begin9  @ >> Call Site 4 <<
+	.long	.Ltmp282-.Ltmp281       @   Call between .Ltmp281 and .Ltmp282
+	.long	.Ltmp283-.Lfunc_begin9  @     jumps to .Ltmp283
 	.byte	0                       @   On action: cleanup
-	.long	.Ltmp296-.Lfunc_begin9  @ >> Call Site 5 <<
-	.long	.Ltmp297-.Ltmp296       @   Call between .Ltmp296 and .Ltmp297
-	.long	.Ltmp298-.Lfunc_begin9  @     jumps to .Ltmp298
+	.long	.Ltmp284-.Lfunc_begin9  @ >> Call Site 5 <<
+	.long	.Ltmp285-.Ltmp284       @   Call between .Ltmp284 and .Ltmp285
+	.long	.Ltmp286-.Lfunc_begin9  @     jumps to .Ltmp286
 	.byte	1                       @   On action: 1
-	.long	.Ltmp297-.Lfunc_begin9  @ >> Call Site 6 <<
-	.long	.Lfunc_end9-.Ltmp297    @   Call between .Ltmp297 and .Lfunc_end9
+	.long	.Ltmp285-.Lfunc_begin9  @ >> Call Site 6 <<
+	.long	.Lfunc_end9-.Ltmp285    @   Call between .Ltmp285 and .Lfunc_end9
 	.long	0                       @     has no landing pad
 	.byte	0                       @   On action: cleanup
 	.byte	1                       @ >> Action Record 1 <<
@@ -2239,45 +2155,45 @@ _ZNSt20__uninitialized_copyILb0EE13__uninit_copyIPK9WavetablePS2_EET0_T_S7_S6_: 
 @ BB#0:
 	.save	{r4, r5, r6, r7, r8, r9, r10, r11, lr}
 	push	{r4, r5, r6, r7, r8, r9, r10, r11, lr}
-.Ltmp385:
+.Ltmp373:
 	.cfi_def_cfa_offset 36
-.Ltmp386:
+.Ltmp374:
 	.cfi_offset lr, -4
-.Ltmp387:
+.Ltmp375:
 	.cfi_offset r11, -8
-.Ltmp388:
+.Ltmp376:
 	.cfi_offset r10, -12
-.Ltmp389:
+.Ltmp377:
 	.cfi_offset r9, -16
-.Ltmp390:
+.Ltmp378:
 	.cfi_offset r8, -20
-.Ltmp391:
+.Ltmp379:
 	.cfi_offset r7, -24
-.Ltmp392:
+.Ltmp380:
 	.cfi_offset r6, -28
-.Ltmp393:
+.Ltmp381:
 	.cfi_offset r5, -32
-.Ltmp394:
+.Ltmp382:
 	.cfi_offset r4, -36
 	.setfp	r11, sp, #28
 	add	r11, sp, #28
-.Ltmp395:
+.Ltmp383:
 	.cfi_def_cfa r11, 8
 	.pad	#12
 	sub	sp, sp, #12
 	@DEBUG_VALUE: __uninit_copy<const Wavetable *, Wavetable *>:__first <- %R0
 	@DEBUG_VALUE: __uninit_copy<const Wavetable *, Wavetable *>:__last <- %R1
 	@DEBUG_VALUE: __uninit_copy<const Wavetable *, Wavetable *>:__result <- %R2
-.Ltmp396:
+.Ltmp384:
 	@DEBUG_VALUE: __uninit_copy<const Wavetable *, Wavetable *>:__cur <- %R2
 	mov	r4, r2
-.Ltmp397:
+.Ltmp385:
 	@DEBUG_VALUE: __uninit_copy<const Wavetable *, Wavetable *>:__cur <- %R4
 	@DEBUG_VALUE: __uninit_copy<const Wavetable *, Wavetable *>:__result <- %R4
 	.loc	37 74 8 prologue_end discriminator 1 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_uninitialized.h:74:8
 	cmp	r0, r1
 	beq	.LBB10_9
-.Ltmp398:
+.Ltmp386:
 @ BB#1:                                 @ %.lr.ph.preheader
 	@DEBUG_VALUE: __uninit_copy<const Wavetable *, Wavetable *>:__result <- %R4
 	@DEBUG_VALUE: __uninit_copy<const Wavetable *, Wavetable *>:__cur <- %R4
@@ -2285,41 +2201,41 @@ _ZNSt20__uninitialized_copyILb0EE13__uninit_copyIPK9WavetablePS2_EET0_T_S7_S6_: 
 	@DEBUG_VALUE: __uninit_copy<const Wavetable *, Wavetable *>:__first <- %R0
 	mov	r7, #12
 	mov	r10, #0
-.Ltmp399:
+.Ltmp387:
 	.loc	38 47 22                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/move.h:47:22
 	sub	r1, r0, r1
-.Ltmp400:
+.Ltmp388:
 	str	r1, [sp, #4]            @ 4-byte Spill
 	str	r0, [sp, #8]            @ 4-byte Spill
-.Ltmp401:
+.Ltmp389:
 .LBB10_2:                               @ %.lr.ph
                                         @ =>This Inner Loop Header: Depth=1
 	.loc	8 656 40                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:40
 	add	r8, r0, r7
-.Ltmp402:
+.Ltmp390:
 	.loc	8 91 25                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:91:25
 	add	r5, r4, r7
-.Ltmp403:
+.Ltmp391:
 	.loc	8 170 9 discriminator 3 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:170:9
 	mov	r6, #0
-.Ltmp404:
+.Ltmp392:
 	.loc	8 656 66                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:66
 	ldr	r0, [r8, #-12]
 	.loc	8 656 40 is_stmt 0      @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:40
 	ldr	r1, [r8, #-8]
-.Ltmp405:
+.Ltmp393:
 	.loc	8 91 25 is_stmt 1       @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:91:25
 	str	r10, [r5, #-12]!
-.Ltmp406:
+.Ltmp394:
 	.loc	8 656 50                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:50
 	sub	r0, r1, r0
-.Ltmp407:
+.Ltmp395:
 	.loc	8 91 37                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:91:37
 	str	r10, [r5, #4]
-.Ltmp408:
+.Ltmp396:
 	.loc	8 656 50                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:656:50
 	asr	r9, r0, #2
-.Ltmp409:
+.Ltmp397:
 	@DEBUG_VALUE: _Vector_base:__n <- %R9
 	@DEBUG_VALUE: _M_create_storage:__n <- %R9
 	@DEBUG_VALUE: _M_allocate:__n <- %R9
@@ -2327,11 +2243,11 @@ _ZNSt20__uninitialized_copyILb0EE13__uninit_copyIPK9WavetablePS2_EET0_T_S7_S6_: 
 	@DEBUG_VALUE: allocate:__n <- %R9
 	.loc	8 91 50                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:91:50
 	str	r10, [r5, #8]
-.Ltmp410:
+.Ltmp398:
 	.loc	8 170 9                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:170:9
 	cmp	r10, r0, asr #2
 	beq	.LBB10_5
-.Ltmp411:
+.Ltmp399:
 @ BB#3:                                 @   in Loop: Header=BB10_2 Depth=1
 	@DEBUG_VALUE: allocate:__n <- %R9
 	@DEBUG_VALUE: allocate:__n <- %R9
@@ -2341,7 +2257,7 @@ _ZNSt20__uninitialized_copyILb0EE13__uninit_copyIPK9WavetablePS2_EET0_T_S7_S6_: 
 	.loc	4 101 6                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/ext/new_allocator.h:101:6
 	cmp	r9, #1073741824
 	bhs	.LBB10_10
-.Ltmp412:
+.Ltmp400:
 @ BB#4:                                 @ %_ZNSt16allocator_traitsISaIfEE8allocateERS0_j.exit.i.i.i.i.i.i
                                         @   in Loop: Header=BB10_2 Depth=1
 	@DEBUG_VALUE: allocate:__n <- %R9
@@ -2350,11 +2266,11 @@ _ZNSt20__uninitialized_copyILb0EE13__uninit_copyIPK9WavetablePS2_EET0_T_S7_S6_: 
 	@DEBUG_VALUE: _M_create_storage:__n <- %R9
 	@DEBUG_VALUE: _Vector_base:__n <- %R9
 	.loc	4 104 27                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/ext/new_allocator.h:104:27
-.Ltmp373:
+.Ltmp361:
 	bl	_Znwj
 	mov	r6, r0
-.Ltmp374:
-.Ltmp413:
+.Ltmp362:
+.Ltmp401:
 .LBB10_5:                               @   in Loop: Header=BB10_2 Depth=1
 	@DEBUG_VALUE: allocate:__n <- %R9
 	@DEBUG_VALUE: allocate:__n <- %R9
@@ -2366,58 +2282,58 @@ _ZNSt20__uninitialized_copyILb0EE13__uninit_copyIPK9WavetablePS2_EET0_T_S7_S6_: 
 	str	r6, [r5]
 	.loc	8 187 59                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:187:59
 	add	r0, r6, r9, lsl #2
-.Ltmp414:
+.Ltmp402:
 	@DEBUG_VALUE: __copy_move_a<false, const float *, float *>:__simple <- 1
 	@DEBUG_VALUE: uninitialized_copy<__gnu_cxx::__normal_iterator<const float *, std::vector<float, std::allocator<float> > >, float *>:__assignable <- 1
 	.loc	8 186 26                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:186:26
 	str	r6, [r5, #4]
 	.loc	8 187 34                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:187:34
 	str	r0, [r5, #8]
-.Ltmp415:
+.Ltmp403:
 	.loc	8 558 45                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:558:45
 	ldr	r1, [r8, #-12]
-.Ltmp416:
+.Ltmp404:
 	.loc	8 576 45                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:576:45
 	ldr	r0, [r8, #-8]
-.Ltmp417:
+.Ltmp405:
 	.file	39 "/usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits" "stl_algobase.h"
 	.loc	39 366 34               @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_algobase.h:366:34
 	sub	r2, r0, r1
 	asr	r9, r2, #2
-.Ltmp418:
+.Ltmp406:
 	@DEBUG_VALUE: __copy_m<float>:_Num <- %R9
 	.loc	39 367 8                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_algobase.h:367:8
 	cmp	r10, r2, asr #2
 	beq	.LBB10_7
-.Ltmp419:
+.Ltmp407:
 @ BB#6:                                 @   in Loop: Header=BB10_2 Depth=1
 	@DEBUG_VALUE: __copy_m<float>:_Num <- %R9
 	@DEBUG_VALUE: __uninitialized_copy_a<__gnu_cxx::__normal_iterator<const float *, std::vector<float, std::allocator<float> > >, float *, float>:__result <- %R6
 	.loc	39 368 6                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_algobase.h:368:6
 	mov	r0, r6
 	bl	memmove
-.Ltmp420:
+.Ltmp408:
 .LBB10_7:                               @   in Loop: Header=BB10_2 Depth=1
 	@DEBUG_VALUE: __copy_m<float>:_Num <- %R9
 	@DEBUG_VALUE: __uninitialized_copy_a<__gnu_cxx::__normal_iterator<const float *, std::vector<float, std::allocator<float> > >, float *, float>:__result <- %R6
 	.loc	39 369 20               @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_algobase.h:369:20
 	add	r0, r6, r9, lsl #2
-.Ltmp421:
+.Ltmp409:
 	.loc	8 323 33 discriminator 1 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:323:33
 	str	r0, [r5, #4]
-.Ltmp422:
+.Ltmp410:
 	.loc	12 21 7 discriminator 1 @ /root/Bela/projects/tabbasar/wavetable.h:21:7
 	vld1.32	{d16, d17}, [r8]!
 	add	r0, r5, #12
-.Ltmp423:
+.Ltmp411:
 	.loc	37 74 23 discriminator 1 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_uninitialized.h:74:23
 	add	r7, r7, #32
-.Ltmp424:
+.Ltmp412:
 	.loc	12 21 7 discriminator 1 @ /root/Bela/projects/tabbasar/wavetable.h:21:7
 	vst1.32	{d16, d17}, [r0]
 	ldrb	r0, [r8]
 	strb	r0, [r5, #28]
-.Ltmp425:
+.Ltmp413:
 	.loc	37 74 23 discriminator 1 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_uninitialized.h:74:23
 	ldr	r0, [sp, #4]            @ 4-byte Reload
 	add	r0, r0, r7
@@ -2425,32 +2341,32 @@ _ZNSt20__uninitialized_copyILb0EE13__uninit_copyIPK9WavetablePS2_EET0_T_S7_S6_: 
 	cmp	r0, #12
 	ldr	r0, [sp, #8]            @ 4-byte Reload
 	bne	.LBB10_2
-.Ltmp426:
+.Ltmp414:
 @ BB#8:                                 @ %._crit_edge.loopexit
 	@DEBUG_VALUE: __copy_m<float>:_Num <- %R9
 	@DEBUG_VALUE: __uninitialized_copy_a<__gnu_cxx::__normal_iterator<const float *, std::vector<float, std::allocator<float> > >, float *, float>:__result <- %R6
 	.loc	37 76 8 is_stmt 1       @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_uninitialized.h:76:8
 	add	r0, r4, r7
 	sub	r4, r0, #12
-.Ltmp427:
+.Ltmp415:
 	@DEBUG_VALUE: __destroy<Wavetable *>:__first <- %R4
 .LBB10_9:                               @ %._crit_edge
 	mov	r0, r4
 	sub	sp, r11, #28
 	pop	{r4, r5, r6, r7, r8, r9, r10, r11, pc}
 .LBB10_10:                              @ %.noexc.i.i.i.i
-.Ltmp428:
+.Ltmp416:
 	@DEBUG_VALUE: allocate:__n <- %R9
 	@DEBUG_VALUE: allocate:__n <- %R9
 	@DEBUG_VALUE: _M_allocate:__n <- %R9
 	@DEBUG_VALUE: _M_create_storage:__n <- %R9
 	@DEBUG_VALUE: _Vector_base:__n <- %R9
 	.loc	4 102 4                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/ext/new_allocator.h:102:4
-.Ltmp376:
+.Ltmp364:
 	mov	lr, pc
 	b	_ZSt17__throw_bad_allocv
-.Ltmp377:
-.Ltmp429:
+.Ltmp365:
+.Ltmp417:
 @ BB#11:                                @ %.noexc
 	@DEBUG_VALUE: allocate:__n <- %R9
 	@DEBUG_VALUE: allocate:__n <- %R9
@@ -2463,17 +2379,17 @@ _ZNSt20__uninitialized_copyILb0EE13__uninit_copyIPK9WavetablePS2_EET0_T_S7_S6_: 
 	@DEBUG_VALUE: _M_allocate:__n <- %R9
 	@DEBUG_VALUE: _M_create_storage:__n <- %R9
 	@DEBUG_VALUE: _Vector_base:__n <- %R9
-.Ltmp378:
+.Ltmp366:
 	b	.LBB10_14
-.Ltmp430:
+.Ltmp418:
 .LBB10_13:                              @ %.loopexit
 	@DEBUG_VALUE: allocate:__n <- %R9
 	@DEBUG_VALUE: allocate:__n <- %R9
 	@DEBUG_VALUE: _M_allocate:__n <- %R9
 	@DEBUG_VALUE: _M_create_storage:__n <- %R9
 	@DEBUG_VALUE: _Vector_base:__n <- %R9
-.Ltmp375:
-.Ltmp431:
+.Ltmp363:
+.Ltmp419:
 .LBB10_14:
 	@DEBUG_VALUE: allocate:__n <- %R9
 	@DEBUG_VALUE: allocate:__n <- %R9
@@ -2482,11 +2398,11 @@ _ZNSt20__uninitialized_copyILb0EE13__uninit_copyIPK9WavetablePS2_EET0_T_S7_S6_: 
 	@DEBUG_VALUE: _Vector_base:__n <- %R9
 	.loc	37 77 6                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_uninitialized.h:77:6
 	bl	__cxa_begin_catch
-.Ltmp432:
+.Ltmp420:
 	.loc	35 102 4 discriminator 1 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_construct.h:102:4
 	cmp	r7, #12
 	beq	.LBB10_19
-.Ltmp433:
+.Ltmp421:
 @ BB#15:                                @ %.lr.ph.i.i.preheader
 	@DEBUG_VALUE: allocate:__n <- %R9
 	@DEBUG_VALUE: allocate:__n <- %R9
@@ -2494,20 +2410,20 @@ _ZNSt20__uninitialized_copyILb0EE13__uninit_copyIPK9WavetablePS2_EET0_T_S7_S6_: 
 	@DEBUG_VALUE: _M_create_storage:__n <- %R9
 	@DEBUG_VALUE: _Vector_base:__n <- %R9
 	sub	r5, r7, #12
-.Ltmp434:
+.Ltmp422:
 .LBB10_16:                              @ %.lr.ph.i.i
                                         @ =>This Inner Loop Header: Depth=1
 	@DEBUG_VALUE: __addressof<Wavetable>:__r <- %R4
 	.loc	8 160 37                @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:160:37
 	ldr	r0, [r4]
-.Ltmp435:
+.Ltmp423:
 	@DEBUG_VALUE: _M_deallocate:__p <- %R0
 	@DEBUG_VALUE: deallocate:__p <- %R0
 	@DEBUG_VALUE: deallocate:__p <- %R0
 	.loc	8 177 6                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_vector.h:177:6
 	cmp	r0, #0
 	beq	.LBB10_18
-.Ltmp436:
+.Ltmp424:
 @ BB#17:                                @   in Loop: Header=BB10_16 Depth=1
 	@DEBUG_VALUE: deallocate:__p <- %R0
 	@DEBUG_VALUE: deallocate:__p <- %R0
@@ -2515,7 +2431,7 @@ _ZNSt20__uninitialized_copyILb0EE13__uninit_copyIPK9WavetablePS2_EET0_T_S7_S6_: 
 	@DEBUG_VALUE: __addressof<Wavetable>:__r <- %R4
 	.loc	4 110 9                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/ext/new_allocator.h:110:9
 	bl	_ZdlPv
-.Ltmp437:
+.Ltmp425:
 .LBB10_18:                              @ %_ZSt8_DestroyI9WavetableEvPT_.exit.i.i
                                         @   in Loop: Header=BB10_16 Depth=1
 	@DEBUG_VALUE: __addressof<Wavetable>:__r <- %R4
@@ -2523,34 +2439,34 @@ _ZNSt20__uninitialized_copyILb0EE13__uninit_copyIPK9WavetablePS2_EET0_T_S7_S6_: 
 	subs	r5, r5, #32
 	.loc	35 102 30 is_stmt 0 discriminator 2 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_construct.h:102:30
 	add	r4, r4, #32
-.Ltmp438:
+.Ltmp426:
 	@DEBUG_VALUE: __destroy<Wavetable *>:__first <- %R4
 	bne	.LBB10_16
-.Ltmp439:
+.Ltmp427:
 .LBB10_19:                              @ %_ZSt8_DestroyIP9WavetableEvT_S2_.exit
 	.loc	37 81 8 is_stmt 1       @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_uninitialized.h:81:8
-.Ltmp379:
+.Ltmp367:
 	mov	lr, pc
 	b	__cxa_rethrow
-.Ltmp380:
+.Ltmp368:
 @ BB#20:
 .LBB10_21:
-.Ltmp381:
+.Ltmp369:
 	mov	r4, r0
 	.loc	37 82 6                 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_uninitialized.h:82:6
-.Ltmp382:
+.Ltmp370:
 	bl	__cxa_end_catch
-.Ltmp383:
+.Ltmp371:
 @ BB#22:
 	mov	r0, r4
 	mov	lr, pc
 	b	_Unwind_Resume
 .LBB10_23:
-.Ltmp384:
+.Ltmp372:
 	.loc	37 82 6 is_stmt 0 discriminator 2 @ /usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/bits/stl_uninitialized.h:82:6
 	mov	lr, pc
 	b	__clang_call_terminate
-.Ltmp440:
+.Ltmp428:
 .Lfunc_end10:
 	.size	_ZNSt20__uninitialized_copyILb0EE13__uninit_copyIPK9WavetablePS2_EET0_T_S7_S6_, .Lfunc_end10-_ZNSt20__uninitialized_copyILb0EE13__uninit_copyIPK9WavetablePS2_EET0_T_S7_S6_
 	.cfi_endproc
@@ -2560,38 +2476,38 @@ _ZNSt20__uninitialized_copyILb0EE13__uninit_copyIPK9WavetablePS2_EET0_T_S7_S6_: 
 	.handlerdata
 	.p2align	2
 GCC_except_table10:
-.Lexception3:
+.Lexception2:
 	.byte	255                     @ @LPStart Encoding = omit
 	.byte	0                       @ @TType Encoding = absptr
 	.asciz	"\343\200"              @ @TType base offset
 	.byte	3                       @ Call site Encoding = udata4
 	.byte	91                      @ Call site table length
-	.long	.Ltmp373-.Lfunc_begin10 @ >> Call Site 1 <<
-	.long	.Ltmp374-.Ltmp373       @   Call between .Ltmp373 and .Ltmp374
-	.long	.Ltmp375-.Lfunc_begin10 @     jumps to .Ltmp375
+	.long	.Ltmp361-.Lfunc_begin10 @ >> Call Site 1 <<
+	.long	.Ltmp362-.Ltmp361       @   Call between .Ltmp361 and .Ltmp362
+	.long	.Ltmp363-.Lfunc_begin10 @     jumps to .Ltmp363
 	.byte	1                       @   On action: 1
-	.long	.Ltmp374-.Lfunc_begin10 @ >> Call Site 2 <<
-	.long	.Ltmp376-.Ltmp374       @   Call between .Ltmp374 and .Ltmp376
+	.long	.Ltmp362-.Lfunc_begin10 @ >> Call Site 2 <<
+	.long	.Ltmp364-.Ltmp362       @   Call between .Ltmp362 and .Ltmp364
 	.long	0                       @     has no landing pad
 	.byte	0                       @   On action: cleanup
-	.long	.Ltmp376-.Lfunc_begin10 @ >> Call Site 3 <<
-	.long	.Ltmp377-.Ltmp376       @   Call between .Ltmp376 and .Ltmp377
-	.long	.Ltmp378-.Lfunc_begin10 @     jumps to .Ltmp378
+	.long	.Ltmp364-.Lfunc_begin10 @ >> Call Site 3 <<
+	.long	.Ltmp365-.Ltmp364       @   Call between .Ltmp364 and .Ltmp365
+	.long	.Ltmp366-.Lfunc_begin10 @     jumps to .Ltmp366
 	.byte	1                       @   On action: 1
-	.long	.Ltmp377-.Lfunc_begin10 @ >> Call Site 4 <<
-	.long	.Ltmp379-.Ltmp377       @   Call between .Ltmp377 and .Ltmp379
+	.long	.Ltmp365-.Lfunc_begin10 @ >> Call Site 4 <<
+	.long	.Ltmp367-.Ltmp365       @   Call between .Ltmp365 and .Ltmp367
 	.long	0                       @     has no landing pad
 	.byte	0                       @   On action: cleanup
-	.long	.Ltmp379-.Lfunc_begin10 @ >> Call Site 5 <<
-	.long	.Ltmp380-.Ltmp379       @   Call between .Ltmp379 and .Ltmp380
-	.long	.Ltmp381-.Lfunc_begin10 @     jumps to .Ltmp381
+	.long	.Ltmp367-.Lfunc_begin10 @ >> Call Site 5 <<
+	.long	.Ltmp368-.Ltmp367       @   Call between .Ltmp367 and .Ltmp368
+	.long	.Ltmp369-.Lfunc_begin10 @     jumps to .Ltmp369
 	.byte	0                       @   On action: cleanup
-	.long	.Ltmp382-.Lfunc_begin10 @ >> Call Site 6 <<
-	.long	.Ltmp383-.Ltmp382       @   Call between .Ltmp382 and .Ltmp383
-	.long	.Ltmp384-.Lfunc_begin10 @     jumps to .Ltmp384
+	.long	.Ltmp370-.Lfunc_begin10 @ >> Call Site 6 <<
+	.long	.Ltmp371-.Ltmp370       @   Call between .Ltmp370 and .Ltmp371
+	.long	.Ltmp372-.Lfunc_begin10 @     jumps to .Ltmp372
 	.byte	1                       @   On action: 1
-	.long	.Ltmp383-.Lfunc_begin10 @ >> Call Site 7 <<
-	.long	.Lfunc_end10-.Ltmp383   @   Call between .Ltmp383 and .Lfunc_end10
+	.long	.Ltmp371-.Lfunc_begin10 @ >> Call Site 7 <<
+	.long	.Lfunc_end10-.Ltmp371   @   Call between .Ltmp371 and .Lfunc_end10
 	.long	0                       @     has no landing pad
 	.byte	0                       @   On action: cleanup
 	.byte	1                       @ >> Action Record 1 <<
@@ -2610,13 +2526,8 @@ GCC_except_table10:
 
 	.type	.L.str.1,%object        @ @.str.1
 .L.str.1:
-	.asciz	"muted harmonic %d"
-	.size	.L.str.1, 18
-
-	.type	.L.str.2,%object        @ @.str.2
-.L.str.2:
 	.asciz	"vector::_M_default_append"
-	.size	.L.str.2, 26
+	.size	.L.str.1, 26
 
 	.section	.debug_str,"MS",%progbits,1
 .Linfo_string0:
@@ -4288,55 +4199,55 @@ GCC_except_table10:
 .Linfo_string833:
 	.asciz	"__pos"                 @ string offset=17470
 .Linfo_string834:
-	.asciz	"_ZNSt12_Vector_baseIfSaIfEE12_Vector_implC2Ev" @ string offset=17476
+	.asciz	"waveshape"             @ string offset=17476
 .Linfo_string835:
-	.asciz	"_ZNSt12_Vector_baseIfSaIfEEC2Ev" @ string offset=17522
+	.asciz	"i"                     @ string offset=17486
 .Linfo_string836:
-	.asciz	"_ZNSt6vectorIfSaIfEEC2Ev" @ string offset=17554
+	.asciz	"amplitude"             @ string offset=17488
 .Linfo_string837:
-	.asciz	"_ZN9WavetableC2Ev"     @ string offset=17579
+	.asciz	"__s"                   @ string offset=17498
 .Linfo_string838:
-	.asciz	"waveshape"             @ string offset=17597
+	.asciz	"__len"                 @ string offset=17502
 .Linfo_string839:
-	.asciz	"i"                     @ string offset=17607
+	.asciz	"_InputIterator"        @ string offset=17508
 .Linfo_string840:
-	.asciz	"amplitude"             @ string offset=17609
+	.asciz	"_ZSt18uninitialized_copyIPK9WavetablePS0_ET0_T_S5_S4_" @ string offset=17523
 .Linfo_string841:
-	.asciz	"__s"                   @ string offset=17619
+	.asciz	"uninitialized_copy<const Wavetable *, Wavetable *>" @ string offset=17577
 .Linfo_string842:
-	.asciz	"__len"                 @ string offset=17623
+	.asciz	"__result"              @ string offset=17628
 .Linfo_string843:
-	.asciz	"_InputIterator"        @ string offset=17629
+	.asciz	"__assignable"          @ string offset=17637
 .Linfo_string844:
-	.asciz	"_ZSt18uninitialized_copyIPK9WavetablePS0_ET0_T_S5_S4_" @ string offset=17644
+	.asciz	"_ZSt22__uninitialized_copy_aIPK9WavetablePS0_S0_ET0_T_S5_S4_RSaIT1_E" @ string offset=17650
 .Linfo_string845:
-	.asciz	"uninitialized_copy<const Wavetable *, Wavetable *>" @ string offset=17698
+	.asciz	"__uninitialized_copy_a<const Wavetable *, Wavetable *, Wavetable>" @ string offset=17719
 .Linfo_string846:
-	.asciz	"__result"              @ string offset=17749
+	.asciz	"_Allocator"            @ string offset=17785
 .Linfo_string847:
-	.asciz	"__assignable"          @ string offset=17758
+	.asciz	"_ZSt34__uninitialized_move_if_noexcept_aIP9WavetableS1_SaIS0_EET0_T_S4_S3_RT1_" @ string offset=17796
 .Linfo_string848:
-	.asciz	"_ZSt22__uninitialized_copy_aIPK9WavetablePS0_S0_ET0_T_S5_S4_RSaIT1_E" @ string offset=17771
+	.asciz	"__uninitialized_move_if_noexcept_a<Wavetable *, Wavetable *, std::allocator<Wavetable> >" @ string offset=17875
 .Linfo_string849:
-	.asciz	"__uninitialized_copy_a<const Wavetable *, Wavetable *, Wavetable>" @ string offset=17840
+	.asciz	"__alloc"               @ string offset=17964
 .Linfo_string850:
-	.asciz	"_Allocator"            @ string offset=17906
+	.asciz	"_Size"                 @ string offset=17972
 .Linfo_string851:
-	.asciz	"_ZSt34__uninitialized_move_if_noexcept_aIP9WavetableS1_SaIS0_EET0_T_S4_S3_RT1_" @ string offset=17917
+	.asciz	"_ZSt25__uninitialized_default_nIP9WavetablejET_S2_T0_" @ string offset=17978
 .Linfo_string852:
-	.asciz	"__uninitialized_move_if_noexcept_a<Wavetable *, Wavetable *, std::allocator<Wavetable> >" @ string offset=17996
+	.asciz	"__uninitialized_default_n<Wavetable *, unsigned int>" @ string offset=18032
 .Linfo_string853:
-	.asciz	"__alloc"               @ string offset=18085
+	.asciz	"_ZSt27__uninitialized_default_n_aIP9WavetablejS0_ET_S2_T0_RSaIT1_E" @ string offset=18085
 .Linfo_string854:
-	.asciz	"_Size"                 @ string offset=18093
+	.asciz	"__uninitialized_default_n_a<Wavetable *, unsigned int, Wavetable>" @ string offset=18152
 .Linfo_string855:
-	.asciz	"_ZSt25__uninitialized_default_nIP9WavetablejET_S2_T0_" @ string offset=18099
+	.asciz	"_ZNSt12_Vector_baseIfSaIfEE12_Vector_implC2Ev" @ string offset=18218
 .Linfo_string856:
-	.asciz	"__uninitialized_default_n<Wavetable *, unsigned int>" @ string offset=18153
+	.asciz	"_ZNSt12_Vector_baseIfSaIfEEC2Ev" @ string offset=18264
 .Linfo_string857:
-	.asciz	"_ZSt27__uninitialized_default_n_aIP9WavetablejS0_ET_S2_T0_RSaIT1_E" @ string offset=18206
+	.asciz	"_ZNSt6vectorIfSaIfEEC2Ev" @ string offset=18296
 .Linfo_string858:
-	.asciz	"__uninitialized_default_n_a<Wavetable *, unsigned int, Wavetable>" @ string offset=18273
+	.asciz	"_ZN9WavetableC2Ev"     @ string offset=18321
 .Linfo_string859:
 	.asciz	"_T1"                   @ string offset=18339
 .Linfo_string860:
@@ -4446,21 +4357,19 @@ GCC_except_table10:
 .Linfo_string912:
 	.asciz	"useInterpolation"      @ string offset=20618
 .Linfo_string913:
-	.asciz	"harmonic"              @ string offset=20635
+	.asciz	"f"                     @ string offset=20635
 .Linfo_string914:
-	.asciz	"f"                     @ string offset=20644
+	.asciz	"f_harmonic"            @ string offset=20637
 .Linfo_string915:
-	.asciz	"f_harmonic"            @ string offset=20646
+	.asciz	"out"                   @ string offset=20648
 .Linfo_string916:
-	.asciz	"out"                   @ string offset=20657
+	.asciz	"table_sample"          @ string offset=20652
 .Linfo_string917:
-	.asciz	"table_sample"          @ string offset=20661
+	.asciz	"__new_finish"          @ string offset=20665
 .Linfo_string918:
-	.asciz	"__new_finish"          @ string offset=20674
+	.asciz	"__old_size"            @ string offset=20678
 .Linfo_string919:
-	.asciz	"__old_size"            @ string offset=20687
-.Linfo_string920:
-	.asciz	"__new_start"           @ string offset=20698
+	.asciz	"__new_start"           @ string offset=20689
 	.section	.debug_loc,"",%progbits
 .Ldebug_loc0:
 	.long	.Lfunc_begin0
@@ -4577,60 +4486,53 @@ GCC_except_table10:
 	.long	0
 .Ldebug_loc15:
 	.long	.Lfunc_begin1
-	.long	.Ltmp46
+	.long	.Ltmp41
 	.short	1                       @ Loc expr size
 	.byte	80                      @ DW_OP_reg0
-	.long	.Ltmp46
-	.long	.Ltmp59
+	.long	.Ltmp41
+	.long	.Ltmp56
 	.short	1                       @ Loc expr size
 	.byte	85                      @ DW_OP_reg5
-	.long	.Ltmp65
-	.long	.Ltmp66
+	.long	.Ltmp62
+	.long	.Ltmp63
 	.short	1                       @ Loc expr size
 	.byte	85                      @ DW_OP_reg5
 	.long	0
 	.long	0
 .Ldebug_loc16:
 	.long	.Lfunc_begin1
-	.long	.Ltmp47
+	.long	.Ltmp50
 	.short	1                       @ Loc expr size
 	.byte	81                      @ DW_OP_reg1
-	.long	.Ltmp47
-	.long	.Ltmp54
-	.short	2                       @ Loc expr size
-	.byte	125                     @ DW_OP_breg13
-	.byte	4                       @ 4
-	.long	.Ltmp55
-	.long	.Ltmp59
-	.short	2                       @ Loc expr size
-	.byte	125                     @ DW_OP_breg13
-	.byte	4                       @ 4
-	.long	.Ltmp65
-	.long	.Ltmp66
-	.short	2                       @ Loc expr size
-	.byte	125                     @ DW_OP_breg13
-	.byte	4                       @ 4
+	.long	.Ltmp52
+	.long	.Ltmp56
+	.short	1                       @ Loc expr size
+	.byte	81                      @ DW_OP_reg1
+	.long	.Ltmp62
+	.long	.Ltmp63
+	.short	1                       @ Loc expr size
+	.byte	81                      @ DW_OP_reg1
 	.long	0
 	.long	0
 .Ldebug_loc17:
 	.long	.Lfunc_begin1
-	.long	.Ltmp45
+	.long	.Ltmp40
 	.short	5                       @ Loc expr size
 	.byte	144                     @ super-register DW_OP_regx
 	.byte	128                     @ 256
 	.byte	2                       @ DW_OP_piece
 	.byte	147                     @ 4
 	.byte	4                       @ 
-	.long	.Ltmp45
-	.long	.Ltmp59
+	.long	.Ltmp40
+	.long	.Ltmp56
 	.short	5                       @ Loc expr size
 	.byte	144                     @ super-register DW_OP_regx
 	.byte	136                     @ 264
 	.byte	2                       @ DW_OP_piece
 	.byte	147                     @ 4
 	.byte	4                       @ 
-	.long	.Ltmp65
-	.long	.Ltmp66
+	.long	.Ltmp62
+	.long	.Ltmp63
 	.short	5                       @ Loc expr size
 	.byte	144                     @ super-register DW_OP_regx
 	.byte	136                     @ 264
@@ -4641,297 +4543,366 @@ GCC_except_table10:
 	.long	0
 .Ldebug_loc18:
 	.long	.Lfunc_begin1
-	.long	.Ltmp49
+	.long	.Ltmp43
 	.short	1                       @ Loc expr size
 	.byte	82                      @ DW_OP_reg2
-	.long	.Ltmp49
-	.long	.Ltmp59
+	.long	.Ltmp43
+	.long	.Ltmp56
 	.short	1                       @ Loc expr size
-	.byte	86                      @ DW_OP_reg6
-	.long	.Ltmp65
-	.long	.Ltmp66
+	.byte	88                      @ DW_OP_reg8
+	.long	.Ltmp62
+	.long	.Ltmp63
 	.short	1                       @ Loc expr size
-	.byte	86                      @ DW_OP_reg6
+	.byte	88                      @ DW_OP_reg8
 	.long	0
 	.long	0
 .Ldebug_loc19:
 	.long	.Lfunc_begin1
-	.long	.Ltmp48
+	.long	.Ltmp42
 	.short	1                       @ Loc expr size
 	.byte	83                      @ DW_OP_reg3
-	.long	.Ltmp48
-	.long	.Ltmp59
+	.long	.Ltmp42
+	.long	.Ltmp56
 	.short	1                       @ Loc expr size
-	.byte	89                      @ DW_OP_reg9
-	.long	.Ltmp65
-	.long	.Ltmp66
+	.byte	90                      @ DW_OP_reg10
+	.long	.Ltmp62
+	.long	.Ltmp63
 	.short	1                       @ Loc expr size
-	.byte	89                      @ DW_OP_reg9
+	.byte	90                      @ DW_OP_reg10
 	.long	0
 	.long	0
 .Ldebug_loc20:
-	.long	.Ltmp51
-	.long	.Ltmp59
-	.short	1                       @ Loc expr size
-	.byte	89                      @ DW_OP_reg9
-	.long	.Ltmp65
-	.long	.Ltmp66
-	.short	1                       @ Loc expr size
-	.byte	89                      @ DW_OP_reg9
-	.long	0
-	.long	0
-.Ldebug_loc21:
-	.long	.Ltmp52
-	.long	.Ltmp59
-	.short	1                       @ Loc expr size
-	.byte	90                      @ DW_OP_reg10
-	.long	.Ltmp65
-	.long	.Ltmp66
-	.short	1                       @ Loc expr size
-	.byte	90                      @ DW_OP_reg10
-	.long	0
-	.long	0
-.Ldebug_loc22:
-	.long	.Ltmp52
-	.long	.Ltmp59
-	.short	1                       @ Loc expr size
-	.byte	90                      @ DW_OP_reg10
-	.long	.Ltmp65
-	.long	.Ltmp66
-	.short	1                       @ Loc expr size
-	.byte	90                      @ DW_OP_reg10
-	.long	0
-	.long	0
-.Ldebug_loc23:
-	.long	.Ltmp52
-	.long	.Ltmp59
-	.short	1                       @ Loc expr size
-	.byte	90                      @ DW_OP_reg10
-	.long	.Ltmp65
-	.long	.Ltmp66
-	.short	1                       @ Loc expr size
-	.byte	90                      @ DW_OP_reg10
-	.long	0
-	.long	0
-.Ldebug_loc24:
-	.long	.Ltmp52
-	.long	.Ltmp59
-	.short	1                       @ Loc expr size
-	.byte	90                      @ DW_OP_reg10
-	.long	.Ltmp65
-	.long	.Ltmp66
-	.short	1                       @ Loc expr size
-	.byte	90                      @ DW_OP_reg10
-	.long	0
-	.long	0
-.Ldebug_loc25:
-	.long	.Ltmp52
-	.long	.Ltmp59
-	.short	1                       @ Loc expr size
-	.byte	90                      @ DW_OP_reg10
-	.long	.Ltmp65
-	.long	.Ltmp66
-	.short	1                       @ Loc expr size
-	.byte	90                      @ DW_OP_reg10
-	.long	0
-	.long	0
-.Ldebug_loc26:
-	.long	.Ltmp57
-	.long	.Ltmp59
-	.short	1                       @ Loc expr size
-	.byte	88                      @ DW_OP_reg8
-	.long	.Ltmp63
-	.long	.Ltmp64
-	.short	1                       @ Loc expr size
-	.byte	84                      @ DW_OP_reg4
-	.long	0
-	.long	0
-.Ldebug_loc27:
-	.long	.Ltmp57
-	.long	.Ltmp59
-	.short	1                       @ Loc expr size
-	.byte	88                      @ DW_OP_reg8
-	.long	0
-	.long	0
-.Ldebug_loc28:
-	.long	.Ltmp57
-	.long	.Ltmp59
-	.short	1                       @ Loc expr size
-	.byte	88                      @ DW_OP_reg8
-	.long	0
-	.long	0
-.Ldebug_loc29:
-	.long	.Ltmp57
-	.long	.Ltmp59
-	.short	1                       @ Loc expr size
-	.byte	88                      @ DW_OP_reg8
-	.long	0
-	.long	0
-.Ldebug_loc30:
-	.long	.Ltmp60
-	.long	.Ltmp62
-	.short	1                       @ Loc expr size
-	.byte	80                      @ DW_OP_reg0
-	.long	0
-	.long	0
-.Ldebug_loc31:
-	.long	.Ltmp60
-	.long	.Ltmp62
-	.short	1                       @ Loc expr size
-	.byte	80                      @ DW_OP_reg0
-	.long	0
-	.long	0
-.Ldebug_loc32:
-	.long	.Ltmp60
-	.long	.Ltmp62
-	.short	1                       @ Loc expr size
-	.byte	80                      @ DW_OP_reg0
-	.long	0
-	.long	0
-.Ldebug_loc33:
-	.long	.Ltmp66
-	.long	.Ltmp79
-	.short	3                       @ Loc expr size
-	.byte	16                      @ DW_OP_constu
-	.byte	0                       @ 0
-	.byte	159                     @ DW_OP_stack_value
-	.long	.Ltmp79
-	.long	.Ltmp81
-	.short	1                       @ Loc expr size
-	.byte	89                      @ DW_OP_reg9
-	.long	0
-	.long	0
-.Ldebug_loc34:
 	.long	.Lfunc_begin1
-	.long	.Ltmp69
+	.long	.Ltmp56
 	.short	4                       @ Loc expr size
-	.byte	84                      @ DW_OP_reg4
+	.byte	87                      @ DW_OP_reg7
+	.byte	157                     @ DW_OP_bit_piece
+	.byte	1                       @ 1
+	.byte	0                       @ 0
+	.long	.Ltmp62
+	.long	.Ltmp63
+	.short	4                       @ Loc expr size
+	.byte	87                      @ DW_OP_reg7
 	.byte	157                     @ DW_OP_bit_piece
 	.byte	1                       @ 1
 	.byte	0                       @ 0
 	.long	0
 	.long	0
-.Ldebug_loc35:
-	.long	.Ltmp75
-	.long	.Ltmp77
+.Ldebug_loc21:
+	.long	.Ltmp47
+	.long	.Ltmp56
+	.short	1                       @ Loc expr size
+	.byte	90                      @ DW_OP_reg10
+	.long	.Ltmp62
+	.long	.Ltmp63
+	.short	1                       @ Loc expr size
+	.byte	90                      @ DW_OP_reg10
+	.long	0
+	.long	0
+.Ldebug_loc22:
+	.long	.Ltmp48
+	.long	.Ltmp51
+	.short	1                       @ Loc expr size
+	.byte	80                      @ DW_OP_reg0
+	.long	.Ltmp52
+	.long	.Ltmp56
+	.short	1                       @ Loc expr size
+	.byte	80                      @ DW_OP_reg0
+	.long	.Ltmp62
+	.long	.Ltmp63
 	.short	1                       @ Loc expr size
 	.byte	80                      @ DW_OP_reg0
 	.long	0
 	.long	0
-.Ldebug_loc36:
-	.long	.Ltmp75
-	.long	.Ltmp77
+.Ldebug_loc23:
+	.long	.Ltmp48
+	.long	.Ltmp51
+	.short	1                       @ Loc expr size
+	.byte	80                      @ DW_OP_reg0
+	.long	.Ltmp52
+	.long	.Ltmp56
+	.short	1                       @ Loc expr size
+	.byte	80                      @ DW_OP_reg0
+	.long	.Ltmp62
+	.long	.Ltmp63
 	.short	1                       @ Loc expr size
 	.byte	80                      @ DW_OP_reg0
 	.long	0
 	.long	0
-.Ldebug_loc37:
-	.long	.Ltmp75
-	.long	.Ltmp77
+.Ldebug_loc24:
+	.long	.Ltmp48
+	.long	.Ltmp51
+	.short	1                       @ Loc expr size
+	.byte	80                      @ DW_OP_reg0
+	.long	.Ltmp52
+	.long	.Ltmp56
+	.short	1                       @ Loc expr size
+	.byte	80                      @ DW_OP_reg0
+	.long	.Ltmp62
+	.long	.Ltmp63
 	.short	1                       @ Loc expr size
 	.byte	80                      @ DW_OP_reg0
 	.long	0
 	.long	0
-.Ldebug_loc38:
-	.long	.Ltmp79
-	.long	.Ltmp81
+.Ldebug_loc25:
+	.long	.Ltmp48
+	.long	.Ltmp51
+	.short	1                       @ Loc expr size
+	.byte	80                      @ DW_OP_reg0
+	.long	.Ltmp52
+	.long	.Ltmp56
+	.short	1                       @ Loc expr size
+	.byte	80                      @ DW_OP_reg0
+	.long	.Ltmp62
+	.long	.Ltmp63
+	.short	1                       @ Loc expr size
+	.byte	80                      @ DW_OP_reg0
+	.long	0
+	.long	0
+.Ldebug_loc26:
+	.long	.Ltmp54
+	.long	.Ltmp56
+	.short	1                       @ Loc expr size
+	.byte	89                      @ DW_OP_reg9
+	.long	.Ltmp60
+	.long	.Ltmp61
+	.short	1                       @ Loc expr size
+	.byte	86                      @ DW_OP_reg6
+	.long	0
+	.long	0
+.Ldebug_loc27:
+	.long	.Ltmp54
+	.long	.Ltmp56
 	.short	1                       @ Loc expr size
 	.byte	89                      @ DW_OP_reg9
 	.long	0
 	.long	0
-.Ldebug_loc39:
-	.long	.Ltmp83
+.Ldebug_loc28:
+	.long	.Ltmp54
+	.long	.Ltmp56
+	.short	1                       @ Loc expr size
+	.byte	89                      @ DW_OP_reg9
+	.long	0
+	.long	0
+.Ldebug_loc29:
+	.long	.Ltmp54
+	.long	.Ltmp56
+	.short	1                       @ Loc expr size
+	.byte	89                      @ DW_OP_reg9
+	.long	0
+	.long	0
+.Ldebug_loc30:
+	.long	.Ltmp57
+	.long	.Ltmp59
+	.short	1                       @ Loc expr size
+	.byte	80                      @ DW_OP_reg0
+	.long	0
+	.long	0
+.Ldebug_loc31:
+	.long	.Ltmp57
+	.long	.Ltmp59
+	.short	1                       @ Loc expr size
+	.byte	80                      @ DW_OP_reg0
+	.long	0
+	.long	0
+.Ldebug_loc32:
+	.long	.Ltmp57
+	.long	.Ltmp59
+	.short	1                       @ Loc expr size
+	.byte	80                      @ DW_OP_reg0
+	.long	0
+	.long	0
+.Ldebug_loc33:
+	.long	.Ltmp63
+	.long	.Ltmp69
+	.short	3                       @ Loc expr size
+	.byte	16                      @ DW_OP_constu
+	.byte	0                       @ 0
+	.byte	159                     @ DW_OP_stack_value
+	.long	.Ltmp69
+	.long	.Ltmp71
+	.short	1                       @ Loc expr size
+	.byte	86                      @ DW_OP_reg6
+	.long	0
+	.long	0
+.Ldebug_loc34:
+	.long	.Lfunc_begin2
 	.long	.Ltmp85
 	.short	1                       @ Loc expr size
 	.byte	80                      @ DW_OP_reg0
+	.long	.Ltmp85
+	.long	.Ltmp88
+	.short	1                       @ Loc expr size
+	.byte	84                      @ DW_OP_reg4
+	.long	.Ltmp89
+	.long	.Ltmp97
+	.short	1                       @ Loc expr size
+	.byte	84                      @ DW_OP_reg4
+	.long	.Ltmp104
+	.long	.Ltmp107
+	.short	1                       @ Loc expr size
+	.byte	84                      @ DW_OP_reg4
+	.long	.Ltmp118
+	.long	.Ltmp121
+	.short	1                       @ Loc expr size
+	.byte	84                      @ DW_OP_reg4
+	.long	.Ltmp137
+	.long	.Ltmp140
+	.short	1                       @ Loc expr size
+	.byte	84                      @ DW_OP_reg4
+	.long	0
+	.long	0
+.Ldebug_loc35:
+	.long	.Lfunc_begin2
+	.long	.Ltmp87
+	.short	1                       @ Loc expr size
+	.byte	81                      @ DW_OP_reg1
+	.long	0
+	.long	0
+.Ldebug_loc36:
+	.long	.Ltmp94
+	.long	.Ltmp102
+	.short	3                       @ Loc expr size
+	.byte	16                      @ DW_OP_constu
+	.byte	1                       @ 1
+	.byte	159                     @ DW_OP_stack_value
+	.long	.Ltmp102
+	.long	.Ltmp104
+	.short	1                       @ Loc expr size
+	.byte	85                      @ DW_OP_reg5
+	.long	0
+	.long	0
+.Ldebug_loc37:
+	.long	.Ltmp108
+	.long	.Ltmp117
+	.short	1                       @ Loc expr size
+	.byte	86                      @ DW_OP_reg6
+	.long	.Ltmp117
+	.long	.Ltmp118
+	.short	1                       @ Loc expr size
+	.byte	81                      @ DW_OP_reg1
+	.long	0
+	.long	0
+.Ldebug_loc38:
+	.long	.Ltmp109
+	.long	.Ltmp110
+	.short	5                       @ Loc expr size
+	.byte	144                     @ super-register DW_OP_regx
+	.byte	128                     @ 256
+	.byte	2                       @ DW_OP_piece
+	.byte	147                     @ 4
+	.byte	4                       @ 
+	.long	0
+	.long	0
+.Ldebug_loc39:
+	.long	.Ltmp126
+	.long	.Ltmp127
+	.short	5                       @ Loc expr size
+	.byte	144                     @ super-register DW_OP_regx
+	.byte	128                     @ 256
+	.byte	2                       @ DW_OP_piece
+	.byte	147                     @ 4
+	.byte	4                       @ 
 	.long	0
 	.long	0
 .Ldebug_loc40:
-	.long	.Ltmp83
-	.long	.Ltmp85
+	.long	.Ltmp135
+	.long	.Ltmp137
 	.short	1                       @ Loc expr size
-	.byte	80                      @ DW_OP_reg0
+	.byte	86                      @ DW_OP_reg6
 	.long	0
 	.long	0
 .Ldebug_loc41:
-	.long	.Ltmp83
-	.long	.Ltmp85
+	.long	.Lfunc_begin3
+	.long	.Ltmp152
 	.short	1                       @ Loc expr size
 	.byte	80                      @ DW_OP_reg0
 	.long	0
 	.long	0
 .Ldebug_loc42:
-	.long	.Lfunc_begin2
-	.long	.Ltmp98
+	.long	.Lfunc_begin4
+	.long	.Ltmp166
 	.short	1                       @ Loc expr size
 	.byte	80                      @ DW_OP_reg0
-	.long	.Ltmp98
-	.long	.Ltmp101
+	.long	.Ltmp166
+	.long	.Ltmp168
 	.short	1                       @ Loc expr size
 	.byte	84                      @ DW_OP_reg4
-	.long	.Ltmp102
-	.long	.Ltmp110
+	.long	.Ltmp169
+	.long	.Ltmp176
 	.short	1                       @ Loc expr size
 	.byte	84                      @ DW_OP_reg4
-	.long	.Ltmp117
-	.long	.Ltmp120
+	.long	.Ltmp188
+	.long	.Ltmp194
 	.short	1                       @ Loc expr size
 	.byte	84                      @ DW_OP_reg4
-	.long	.Ltmp131
-	.long	.Ltmp134
+	.long	.Ltmp206
+	.long	.Ltmp207
 	.short	1                       @ Loc expr size
 	.byte	84                      @ DW_OP_reg4
-	.long	.Ltmp150
-	.long	.Ltmp153
+	.long	.Ltmp210
+	.long	.Ltmp214
 	.short	1                       @ Loc expr size
 	.byte	84                      @ DW_OP_reg4
 	.long	0
 	.long	0
 .Ldebug_loc43:
-	.long	.Lfunc_begin2
-	.long	.Ltmp100
+	.long	.Ltmp169
+	.long	.Ltmp176
 	.short	1                       @ Loc expr size
-	.byte	81                      @ DW_OP_reg1
+	.byte	84                      @ DW_OP_reg4
 	.long	0
 	.long	0
 .Ldebug_loc44:
-	.long	.Ltmp107
-	.long	.Ltmp115
-	.short	3                       @ Loc expr size
-	.byte	16                      @ DW_OP_constu
-	.byte	1                       @ 1
-	.byte	159                     @ DW_OP_stack_value
-	.long	.Ltmp115
-	.long	.Ltmp117
-	.short	1                       @ Loc expr size
-	.byte	85                      @ DW_OP_reg5
-	.long	0
-	.long	0
-.Ldebug_loc45:
-	.long	.Ltmp121
-	.long	.Ltmp130
+	.long	.Ltmp177
+	.long	.Ltmp187
 	.short	1                       @ Loc expr size
 	.byte	86                      @ DW_OP_reg6
-	.long	.Ltmp130
-	.long	.Ltmp131
+	.long	.Ltmp187
+	.long	.Ltmp188
 	.short	1                       @ Loc expr size
 	.byte	81                      @ DW_OP_reg1
 	.long	0
 	.long	0
-.Ldebug_loc46:
-	.long	.Ltmp122
-	.long	.Ltmp123
+.Ldebug_loc45:
+	.long	.Ltmp178
+	.long	.Ltmp179
 	.short	5                       @ Loc expr size
 	.byte	144                     @ super-register DW_OP_regx
 	.byte	128                     @ 256
 	.byte	2                       @ DW_OP_piece
 	.byte	147                     @ 4
 	.byte	4                       @ 
+	.long	0
+	.long	0
+.Ldebug_loc46:
+	.long	.Ltmp188
+	.long	.Ltmp194
+	.short	1                       @ Loc expr size
+	.byte	84                      @ DW_OP_reg4
 	.long	0
 	.long	0
 .Ldebug_loc47:
-	.long	.Ltmp139
-	.long	.Ltmp140
+	.long	.Ltmp206
+	.long	.Ltmp207
+	.short	1                       @ Loc expr size
+	.byte	84                      @ DW_OP_reg4
+	.long	0
+	.long	0
+.Ldebug_loc48:
+	.long	.Lfunc_begin5
+	.long	.Ltmp227
+	.short	1                       @ Loc expr size
+	.byte	80                      @ DW_OP_reg0
+	.long	.Ltmp227
+	.long	.Ltmp231
+	.short	1                       @ Loc expr size
+	.byte	84                      @ DW_OP_reg4
+	.long	0
+	.long	0
+.Ldebug_loc49:
+	.long	.Lfunc_begin5
+	.long	.Ltmp226
 	.short	5                       @ Loc expr size
 	.byte	144                     @ super-register DW_OP_regx
 	.byte	128                     @ 256
@@ -4940,68 +4911,64 @@ GCC_except_table10:
 	.byte	4                       @ 
 	.long	0
 	.long	0
-.Ldebug_loc48:
-	.long	.Ltmp148
-	.long	.Ltmp150
-	.short	1                       @ Loc expr size
-	.byte	86                      @ DW_OP_reg6
-	.long	0
-	.long	0
-.Ldebug_loc49:
-	.long	.Lfunc_begin3
-	.long	.Ltmp165
-	.short	1                       @ Loc expr size
-	.byte	80                      @ DW_OP_reg0
-	.long	0
-	.long	0
 .Ldebug_loc50:
-	.long	.Lfunc_begin4
-	.long	.Ltmp179
-	.short	1                       @ Loc expr size
-	.byte	80                      @ DW_OP_reg0
-	.long	.Ltmp179
-	.long	.Ltmp181
-	.short	1                       @ Loc expr size
-	.byte	84                      @ DW_OP_reg4
-	.long	.Ltmp182
-	.long	.Ltmp189
-	.short	1                       @ Loc expr size
-	.byte	84                      @ DW_OP_reg4
-	.long	.Ltmp201
-	.long	.Ltmp207
-	.short	1                       @ Loc expr size
-	.byte	84                      @ DW_OP_reg4
-	.long	.Ltmp219
-	.long	.Ltmp220
-	.short	1                       @ Loc expr size
-	.byte	84                      @ DW_OP_reg4
-	.long	.Ltmp223
-	.long	.Ltmp227
-	.short	1                       @ Loc expr size
-	.byte	84                      @ DW_OP_reg4
+	.long	.Ltmp231
+	.long	.Ltmp234
+	.short	5                       @ Loc expr size
+	.byte	144                     @ super-register DW_OP_regx
+	.byte	136                     @ 264
+	.byte	2                       @ DW_OP_piece
+	.byte	147                     @ 4
+	.byte	4                       @ 
+	.long	.Ltmp235
+	.long	.Ltmp242
+	.short	5                       @ Loc expr size
+	.byte	144                     @ super-register DW_OP_regx
+	.byte	136                     @ 264
+	.byte	2                       @ DW_OP_piece
+	.byte	147                     @ 4
+	.byte	4                       @ 
 	.long	0
 	.long	0
 .Ldebug_loc51:
-	.long	.Ltmp182
-	.long	.Ltmp189
+	.long	.Lfunc_begin7
+	.long	.Ltmp255
+	.short	1                       @ Loc expr size
+	.byte	80                      @ DW_OP_reg0
+	.long	.Ltmp255
+	.long	.Ltmp263
 	.short	1                       @ Loc expr size
 	.byte	84                      @ DW_OP_reg4
 	.long	0
 	.long	0
 .Ldebug_loc52:
-	.long	.Ltmp190
-	.long	.Ltmp200
-	.short	1                       @ Loc expr size
-	.byte	86                      @ DW_OP_reg6
-	.long	.Ltmp200
-	.long	.Ltmp201
-	.short	1                       @ Loc expr size
-	.byte	81                      @ DW_OP_reg1
+	.long	.Ltmp255
+	.long	.Ltmp258
+	.short	3                       @ Loc expr size
+	.byte	16                      @ DW_OP_constu
+	.byte	0                       @ 0
+	.byte	159                     @ DW_OP_stack_value
+	.long	.Ltmp258
+	.long	.Ltmp259
+	.short	5                       @ Loc expr size
+	.byte	144                     @ super-register DW_OP_regx
+	.byte	136                     @ 264
+	.byte	2                       @ DW_OP_piece
+	.byte	147                     @ 4
+	.byte	4                       @ 
+	.long	.Ltmp268
+	.long	.Ltmp268
+	.short	5                       @ Loc expr size
+	.byte	144                     @ super-register DW_OP_regx
+	.byte	136                     @ 264
+	.byte	2                       @ DW_OP_piece
+	.byte	147                     @ 4
+	.byte	4                       @ 
 	.long	0
 	.long	0
 .Ldebug_loc53:
-	.long	.Ltmp191
-	.long	.Ltmp192
+	.long	.Ltmp267
+	.long	.Ltmp268
 	.short	5                       @ Loc expr size
 	.byte	144                     @ super-register DW_OP_regx
 	.byte	128                     @ 256
@@ -5011,536 +4978,434 @@ GCC_except_table10:
 	.long	0
 	.long	0
 .Ldebug_loc54:
-	.long	.Ltmp201
-	.long	.Ltmp207
+	.long	.Ltmp271
+	.long	.Ltmp273
 	.short	1                       @ Loc expr size
-	.byte	84                      @ DW_OP_reg4
+	.byte	86                      @ DW_OP_reg6
 	.long	0
 	.long	0
 .Ldebug_loc55:
-	.long	.Ltmp219
-	.long	.Ltmp220
+	.long	.Lfunc_begin9
+	.long	.Ltmp299
+	.short	1                       @ Loc expr size
+	.byte	80                      @ DW_OP_reg0
+	.long	.Ltmp299
+	.long	.Ltmp319
+	.short	1                       @ Loc expr size
+	.byte	84                      @ DW_OP_reg4
+	.long	.Ltmp338
+	.long	.Ltmp340
+	.short	1                       @ Loc expr size
+	.byte	84                      @ DW_OP_reg4
+	.long	.Ltmp348
+	.long	.Ltmp357
 	.short	1                       @ Loc expr size
 	.byte	84                      @ DW_OP_reg4
 	.long	0
 	.long	0
 .Ldebug_loc56:
-	.long	.Lfunc_begin5
-	.long	.Ltmp240
+	.long	.Lfunc_begin9
+	.long	.Ltmp298
 	.short	1                       @ Loc expr size
-	.byte	80                      @ DW_OP_reg0
-	.long	.Ltmp240
-	.long	.Ltmp246
+	.byte	81                      @ DW_OP_reg1
+	.long	.Ltmp298
+	.long	.Ltmp319
 	.short	1                       @ Loc expr size
-	.byte	84                      @ DW_OP_reg4
+	.byte	85                      @ DW_OP_reg5
+	.long	.Ltmp338
+	.long	.Ltmp340
+	.short	1                       @ Loc expr size
+	.byte	85                      @ DW_OP_reg5
+	.long	.Ltmp348
+	.long	.Lfunc_end9
+	.short	1                       @ Loc expr size
+	.byte	85                      @ DW_OP_reg5
 	.long	0
 	.long	0
 .Ldebug_loc57:
-	.long	.Lfunc_begin5
-	.long	.Ltmp239
-	.short	5                       @ Loc expr size
-	.byte	144                     @ super-register DW_OP_regx
-	.byte	128                     @ 256
-	.byte	2                       @ DW_OP_piece
-	.byte	147                     @ 4
-	.byte	4                       @ 
+	.long	.Ltmp302
+	.long	.Ltmp319
+	.short	1                       @ Loc expr size
+	.byte	84                      @ DW_OP_reg4
+	.long	.Ltmp348
+	.long	.Ltmp357
+	.short	1                       @ Loc expr size
+	.byte	84                      @ DW_OP_reg4
 	.long	0
 	.long	0
 .Ldebug_loc58:
-	.long	.Ltmp246
-	.long	.Ltmp249
-	.short	5                       @ Loc expr size
-	.byte	144                     @ super-register DW_OP_regx
-	.byte	136                     @ 264
-	.byte	2                       @ DW_OP_piece
-	.byte	147                     @ 4
-	.byte	4                       @ 
-	.long	.Ltmp250
-	.long	.Ltmp257
-	.short	5                       @ Loc expr size
-	.byte	144                     @ super-register DW_OP_regx
-	.byte	136                     @ 264
-	.byte	2                       @ DW_OP_piece
-	.byte	147                     @ 4
-	.byte	4                       @ 
+	.long	.Ltmp306
+	.long	.Ltmp319
+	.short	1                       @ Loc expr size
+	.byte	85                      @ DW_OP_reg5
+	.long	.Ltmp348
+	.long	.Lfunc_end9
+	.short	1                       @ Loc expr size
+	.byte	85                      @ DW_OP_reg5
 	.long	0
 	.long	0
 .Ldebug_loc59:
-	.long	.Lfunc_begin7
-	.long	.Ltmp269
+	.long	.Ltmp309
+	.long	.Ltmp319
 	.short	1                       @ Loc expr size
-	.byte	80                      @ DW_OP_reg0
-	.long	.Ltmp269
-	.long	.Ltmp277
+	.byte	90                      @ DW_OP_reg10
+	.long	.Ltmp350
+	.long	.Lfunc_end9
 	.short	1                       @ Loc expr size
-	.byte	84                      @ DW_OP_reg4
+	.byte	90                      @ DW_OP_reg10
 	.long	0
 	.long	0
 .Ldebug_loc60:
-	.long	.Ltmp269
-	.long	.Ltmp272
-	.short	3                       @ Loc expr size
-	.byte	16                      @ DW_OP_constu
-	.byte	0                       @ 0
-	.byte	159                     @ DW_OP_stack_value
-	.long	.Ltmp272
-	.long	.Ltmp273
-	.short	5                       @ Loc expr size
-	.byte	144                     @ super-register DW_OP_regx
-	.byte	136                     @ 264
-	.byte	2                       @ DW_OP_piece
-	.byte	147                     @ 4
-	.byte	4                       @ 
-	.long	.Ltmp283
-	.long	.Ltmp285
-	.short	5                       @ Loc expr size
-	.byte	144                     @ super-register DW_OP_regx
-	.byte	136                     @ 264
-	.byte	2                       @ DW_OP_piece
-	.byte	147                     @ 4
-	.byte	4                       @ 
+	.long	.Ltmp309
+	.long	.Ltmp319
+	.short	1                       @ Loc expr size
+	.byte	90                      @ DW_OP_reg10
+	.long	.Ltmp350
+	.long	.Lfunc_end9
+	.short	1                       @ Loc expr size
+	.byte	90                      @ DW_OP_reg10
 	.long	0
 	.long	0
 .Ldebug_loc61:
-	.long	.Ltmp278
-	.long	.Ltmp285
-	.short	5                       @ Loc expr size
-	.byte	144                     @ super-register DW_OP_regx
-	.byte	128                     @ 256
-	.byte	2                       @ DW_OP_piece
-	.byte	147                     @ 4
-	.byte	4                       @ 
+	.long	.Ltmp309
+	.long	.Ltmp319
+	.short	1                       @ Loc expr size
+	.byte	90                      @ DW_OP_reg10
+	.long	.Ltmp350
+	.long	.Lfunc_end9
+	.short	1                       @ Loc expr size
+	.byte	90                      @ DW_OP_reg10
 	.long	0
 	.long	0
 .Ldebug_loc62:
-	.long	.Ltmp282
-	.long	.Ltmp285
+	.long	.Ltmp309
+	.long	.Ltmp319
 	.short	1                       @ Loc expr size
-	.byte	86                      @ DW_OP_reg6
+	.byte	90                      @ DW_OP_reg10
+	.long	.Ltmp350
+	.long	.Lfunc_end9
+	.short	1                       @ Loc expr size
+	.byte	90                      @ DW_OP_reg10
 	.long	0
 	.long	0
 .Ldebug_loc63:
-	.long	.Lfunc_begin9
-	.long	.Ltmp311
+	.long	.Ltmp309
+	.long	.Ltmp319
 	.short	1                       @ Loc expr size
-	.byte	80                      @ DW_OP_reg0
-	.long	.Ltmp311
-	.long	.Ltmp331
-	.short	1                       @ Loc expr size
-	.byte	84                      @ DW_OP_reg4
+	.byte	90                      @ DW_OP_reg10
 	.long	.Ltmp350
-	.long	.Ltmp352
+	.long	.Lfunc_end9
 	.short	1                       @ Loc expr size
-	.byte	84                      @ DW_OP_reg4
-	.long	.Ltmp360
-	.long	.Ltmp369
-	.short	1                       @ Loc expr size
-	.byte	84                      @ DW_OP_reg4
+	.byte	90                      @ DW_OP_reg10
 	.long	0
 	.long	0
 .Ldebug_loc64:
-	.long	.Lfunc_begin9
-	.long	.Ltmp310
+	.long	.Ltmp309
+	.long	.Ltmp319
 	.short	1                       @ Loc expr size
-	.byte	81                      @ DW_OP_reg1
-	.long	.Ltmp310
-	.long	.Ltmp331
-	.short	1                       @ Loc expr size
-	.byte	85                      @ DW_OP_reg5
+	.byte	90                      @ DW_OP_reg10
 	.long	.Ltmp350
-	.long	.Ltmp352
-	.short	1                       @ Loc expr size
-	.byte	85                      @ DW_OP_reg5
-	.long	.Ltmp360
 	.long	.Lfunc_end9
 	.short	1                       @ Loc expr size
-	.byte	85                      @ DW_OP_reg5
+	.byte	90                      @ DW_OP_reg10
 	.long	0
 	.long	0
 .Ldebug_loc65:
-	.long	.Ltmp314
-	.long	.Ltmp331
+	.long	.Ltmp309
+	.long	.Ltmp319
 	.short	1                       @ Loc expr size
-	.byte	84                      @ DW_OP_reg4
-	.long	.Ltmp360
-	.long	.Ltmp369
+	.byte	90                      @ DW_OP_reg10
+	.long	.Ltmp350
+	.long	.Lfunc_end9
 	.short	1                       @ Loc expr size
-	.byte	84                      @ DW_OP_reg4
+	.byte	90                      @ DW_OP_reg10
 	.long	0
 	.long	0
 .Ldebug_loc66:
-	.long	.Ltmp318
-	.long	.Ltmp331
+	.long	.Ltmp310
+	.long	.Ltmp319
 	.short	1                       @ Loc expr size
-	.byte	85                      @ DW_OP_reg5
-	.long	.Ltmp360
+	.byte	87                      @ DW_OP_reg7
+	.long	.Ltmp350
 	.long	.Lfunc_end9
 	.short	1                       @ Loc expr size
-	.byte	85                      @ DW_OP_reg5
+	.byte	87                      @ DW_OP_reg7
 	.long	0
 	.long	0
 .Ldebug_loc67:
-	.long	.Ltmp321
-	.long	.Ltmp331
+	.long	.Ltmp315
+	.long	.Ltmp319
 	.short	1                       @ Loc expr size
-	.byte	90                      @ DW_OP_reg10
-	.long	.Ltmp362
+	.byte	89                      @ DW_OP_reg9
+	.long	.Ltmp351
 	.long	.Lfunc_end9
 	.short	1                       @ Loc expr size
-	.byte	90                      @ DW_OP_reg10
+	.byte	89                      @ DW_OP_reg9
 	.long	0
 	.long	0
 .Ldebug_loc68:
-	.long	.Ltmp321
-	.long	.Ltmp331
+	.long	.Ltmp315
+	.long	.Ltmp316
 	.short	1                       @ Loc expr size
-	.byte	90                      @ DW_OP_reg10
-	.long	.Ltmp362
-	.long	.Lfunc_end9
-	.short	1                       @ Loc expr size
-	.byte	90                      @ DW_OP_reg10
+	.byte	81                      @ DW_OP_reg1
 	.long	0
 	.long	0
 .Ldebug_loc69:
-	.long	.Ltmp321
-	.long	.Ltmp331
+	.long	.Ltmp315
+	.long	.Ltmp316
 	.short	1                       @ Loc expr size
-	.byte	90                      @ DW_OP_reg10
-	.long	.Ltmp362
-	.long	.Lfunc_end9
-	.short	1                       @ Loc expr size
-	.byte	90                      @ DW_OP_reg10
+	.byte	80                      @ DW_OP_reg0
 	.long	0
 	.long	0
 .Ldebug_loc70:
-	.long	.Ltmp321
-	.long	.Ltmp331
+	.long	.Ltmp319
+	.long	.Ltmp323
 	.short	1                       @ Loc expr size
-	.byte	90                      @ DW_OP_reg10
-	.long	.Ltmp362
-	.long	.Lfunc_end9
-	.short	1                       @ Loc expr size
-	.byte	90                      @ DW_OP_reg10
+	.byte	81                      @ DW_OP_reg1
 	.long	0
 	.long	0
 .Ldebug_loc71:
 	.long	.Ltmp321
-	.long	.Ltmp331
+	.long	.Ltmp327
 	.short	1                       @ Loc expr size
-	.byte	90                      @ DW_OP_reg10
-	.long	.Ltmp362
-	.long	.Lfunc_end9
-	.short	1                       @ Loc expr size
-	.byte	90                      @ DW_OP_reg10
+	.byte	82                      @ DW_OP_reg2
 	.long	0
 	.long	0
 .Ldebug_loc72:
-	.long	.Ltmp321
+	.long	.Ltmp324
+	.long	.Ltmp325
+	.short	1                       @ Loc expr size
+	.byte	87                      @ DW_OP_reg7
 	.long	.Ltmp331
+	.long	.Ltmp333
 	.short	1                       @ Loc expr size
-	.byte	90                      @ DW_OP_reg10
-	.long	.Ltmp362
-	.long	.Lfunc_end9
-	.short	1                       @ Loc expr size
-	.byte	90                      @ DW_OP_reg10
+	.byte	87                      @ DW_OP_reg7
 	.long	0
 	.long	0
 .Ldebug_loc73:
-	.long	.Ltmp321
-	.long	.Ltmp331
+	.long	.Ltmp324
+	.long	.Ltmp325
 	.short	1                       @ Loc expr size
-	.byte	90                      @ DW_OP_reg10
-	.long	.Ltmp362
-	.long	.Lfunc_end9
-	.short	1                       @ Loc expr size
-	.byte	90                      @ DW_OP_reg10
+	.byte	87                      @ DW_OP_reg7
 	.long	0
 	.long	0
 .Ldebug_loc74:
-	.long	.Ltmp322
-	.long	.Ltmp331
-	.short	1                       @ Loc expr size
-	.byte	87                      @ DW_OP_reg7
-	.long	.Ltmp362
-	.long	.Lfunc_end9
+	.long	.Ltmp324
+	.long	.Ltmp325
 	.short	1                       @ Loc expr size
 	.byte	87                      @ DW_OP_reg7
 	.long	0
 	.long	0
 .Ldebug_loc75:
-	.long	.Ltmp327
-	.long	.Ltmp331
+	.long	.Ltmp324
+	.long	.Ltmp326
 	.short	1                       @ Loc expr size
-	.byte	89                      @ DW_OP_reg9
-	.long	.Ltmp363
-	.long	.Lfunc_end9
-	.short	1                       @ Loc expr size
-	.byte	89                      @ DW_OP_reg9
+	.byte	86                      @ DW_OP_reg6
 	.long	0
 	.long	0
 .Ldebug_loc76:
-	.long	.Ltmp327
-	.long	.Ltmp328
+	.long	.Ltmp324
+	.long	.Ltmp326
 	.short	1                       @ Loc expr size
-	.byte	81                      @ DW_OP_reg1
+	.byte	86                      @ DW_OP_reg6
 	.long	0
 	.long	0
 .Ldebug_loc77:
-	.long	.Ltmp327
+	.long	.Ltmp324
+	.long	.Ltmp326
+	.short	1                       @ Loc expr size
+	.byte	86                      @ DW_OP_reg6
+	.long	0
+	.long	0
+.Ldebug_loc78:
 	.long	.Ltmp328
+	.long	.Ltmp330
 	.short	1                       @ Loc expr size
 	.byte	80                      @ DW_OP_reg0
 	.long	0
 	.long	0
-.Ldebug_loc78:
-	.long	.Ltmp331
-	.long	.Ltmp335
-	.short	1                       @ Loc expr size
-	.byte	81                      @ DW_OP_reg1
-	.long	0
-	.long	0
 .Ldebug_loc79:
-	.long	.Ltmp333
-	.long	.Ltmp339
+	.long	.Ltmp328
+	.long	.Ltmp330
 	.short	1                       @ Loc expr size
-	.byte	82                      @ DW_OP_reg2
+	.byte	80                      @ DW_OP_reg0
 	.long	0
 	.long	0
 .Ldebug_loc80:
-	.long	.Ltmp336
-	.long	.Ltmp337
+	.long	.Ltmp328
+	.long	.Ltmp330
 	.short	1                       @ Loc expr size
-	.byte	87                      @ DW_OP_reg7
-	.long	.Ltmp343
-	.long	.Ltmp345
-	.short	1                       @ Loc expr size
-	.byte	87                      @ DW_OP_reg7
+	.byte	80                      @ DW_OP_reg0
 	.long	0
 	.long	0
 .Ldebug_loc81:
-	.long	.Ltmp336
-	.long	.Ltmp337
+	.long	.Ltmp334
+	.long	.Ltmp338
 	.short	1                       @ Loc expr size
 	.byte	87                      @ DW_OP_reg7
 	.long	0
 	.long	0
 .Ldebug_loc82:
-	.long	.Ltmp336
-	.long	.Ltmp337
+	.long	.Ltmp334
+	.long	.Ltmp338
 	.short	1                       @ Loc expr size
-	.byte	87                      @ DW_OP_reg7
+	.byte	85                      @ DW_OP_reg5
 	.long	0
 	.long	0
 .Ldebug_loc83:
-	.long	.Ltmp336
-	.long	.Ltmp338
+	.long	.Ltmp340
+	.long	.Ltmp344
 	.short	1                       @ Loc expr size
-	.byte	86                      @ DW_OP_reg6
+	.byte	82                      @ DW_OP_reg2
 	.long	0
 	.long	0
 .Ldebug_loc84:
-	.long	.Ltmp336
-	.long	.Ltmp338
+	.long	.Ltmp342
+	.long	.Ltmp347
 	.short	1                       @ Loc expr size
-	.byte	86                      @ DW_OP_reg6
+	.byte	83                      @ DW_OP_reg3
 	.long	0
 	.long	0
 .Ldebug_loc85:
-	.long	.Ltmp336
-	.long	.Ltmp338
+	.long	.Ltmp349
+	.long	.Ltmp350
 	.short	1                       @ Loc expr size
-	.byte	86                      @ DW_OP_reg6
+	.byte	80                      @ DW_OP_reg0
 	.long	0
 	.long	0
 .Ldebug_loc86:
-	.long	.Ltmp340
-	.long	.Ltmp342
+	.long	.Lfunc_begin10
+	.long	.Ltmp389
 	.short	1                       @ Loc expr size
 	.byte	80                      @ DW_OP_reg0
 	.long	0
 	.long	0
 .Ldebug_loc87:
-	.long	.Ltmp340
-	.long	.Ltmp342
-	.short	1                       @ Loc expr size
-	.byte	80                      @ DW_OP_reg0
-	.long	0
-	.long	0
-.Ldebug_loc88:
-	.long	.Ltmp340
-	.long	.Ltmp342
-	.short	1                       @ Loc expr size
-	.byte	80                      @ DW_OP_reg0
-	.long	0
-	.long	0
-.Ldebug_loc89:
-	.long	.Ltmp346
-	.long	.Ltmp350
-	.short	1                       @ Loc expr size
-	.byte	87                      @ DW_OP_reg7
-	.long	0
-	.long	0
-.Ldebug_loc90:
-	.long	.Ltmp346
-	.long	.Ltmp350
-	.short	1                       @ Loc expr size
-	.byte	85                      @ DW_OP_reg5
-	.long	0
-	.long	0
-.Ldebug_loc91:
-	.long	.Ltmp352
-	.long	.Ltmp356
-	.short	1                       @ Loc expr size
-	.byte	82                      @ DW_OP_reg2
-	.long	0
-	.long	0
-.Ldebug_loc92:
-	.long	.Ltmp354
-	.long	.Ltmp359
-	.short	1                       @ Loc expr size
-	.byte	83                      @ DW_OP_reg3
-	.long	0
-	.long	0
-.Ldebug_loc93:
-	.long	.Ltmp361
-	.long	.Ltmp362
-	.short	1                       @ Loc expr size
-	.byte	80                      @ DW_OP_reg0
-	.long	0
-	.long	0
-.Ldebug_loc94:
 	.long	.Lfunc_begin10
-	.long	.Ltmp401
-	.short	1                       @ Loc expr size
-	.byte	80                      @ DW_OP_reg0
-	.long	0
-	.long	0
-.Ldebug_loc95:
-	.long	.Lfunc_begin10
-	.long	.Ltmp400
+	.long	.Ltmp388
 	.short	1                       @ Loc expr size
 	.byte	81                      @ DW_OP_reg1
 	.long	0
 	.long	0
-.Ldebug_loc96:
+.Ldebug_loc88:
 	.long	.Lfunc_begin10
-	.long	.Ltmp397
+	.long	.Ltmp385
 	.short	1                       @ Loc expr size
 	.byte	82                      @ DW_OP_reg2
-	.long	.Ltmp397
-	.long	.Ltmp401
+	.long	.Ltmp385
+	.long	.Ltmp389
 	.short	1                       @ Loc expr size
 	.byte	84                      @ DW_OP_reg4
 	.long	0
 	.long	0
-.Ldebug_loc97:
-	.long	.Ltmp396
-	.long	.Ltmp397
+.Ldebug_loc89:
+	.long	.Ltmp384
+	.long	.Ltmp385
 	.short	1                       @ Loc expr size
 	.byte	82                      @ DW_OP_reg2
+	.long	.Ltmp385
+	.long	.Ltmp389
+	.short	1                       @ Loc expr size
+	.byte	84                      @ DW_OP_reg4
+	.long	0
+	.long	0
+.Ldebug_loc90:
 	.long	.Ltmp397
+	.long	.Ltmp406
+	.short	1                       @ Loc expr size
+	.byte	89                      @ DW_OP_reg9
+	.long	.Ltmp416
+	.long	.Ltmp422
+	.short	1                       @ Loc expr size
+	.byte	89                      @ DW_OP_reg9
+	.long	0
+	.long	0
+.Ldebug_loc91:
+	.long	.Ltmp397
+	.long	.Ltmp406
+	.short	1                       @ Loc expr size
+	.byte	89                      @ DW_OP_reg9
+	.long	.Ltmp416
+	.long	.Ltmp422
+	.short	1                       @ Loc expr size
+	.byte	89                      @ DW_OP_reg9
+	.long	0
+	.long	0
+.Ldebug_loc92:
+	.long	.Ltmp397
+	.long	.Ltmp406
+	.short	1                       @ Loc expr size
+	.byte	89                      @ DW_OP_reg9
+	.long	.Ltmp416
+	.long	.Ltmp422
+	.short	1                       @ Loc expr size
+	.byte	89                      @ DW_OP_reg9
+	.long	0
+	.long	0
+.Ldebug_loc93:
+	.long	.Ltmp397
+	.long	.Ltmp406
+	.short	1                       @ Loc expr size
+	.byte	89                      @ DW_OP_reg9
+	.long	.Ltmp416
+	.long	.Ltmp422
+	.short	1                       @ Loc expr size
+	.byte	89                      @ DW_OP_reg9
+	.long	0
+	.long	0
+.Ldebug_loc94:
+	.long	.Ltmp397
+	.long	.Ltmp406
+	.short	1                       @ Loc expr size
+	.byte	89                      @ DW_OP_reg9
+	.long	.Ltmp416
+	.long	.Ltmp422
+	.short	1                       @ Loc expr size
+	.byte	89                      @ DW_OP_reg9
+	.long	0
+	.long	0
+.Ldebug_loc95:
 	.long	.Ltmp401
+	.long	.Ltmp415
+	.short	1                       @ Loc expr size
+	.byte	86                      @ DW_OP_reg6
+	.long	0
+	.long	0
+.Ldebug_loc96:
+	.long	.Ltmp406
+	.long	.Ltmp415
+	.short	1                       @ Loc expr size
+	.byte	89                      @ DW_OP_reg9
+	.long	0
+	.long	0
+.Ldebug_loc97:
+	.long	.Ltmp415
+	.long	.Ltmp415
+	.short	1                       @ Loc expr size
+	.byte	84                      @ DW_OP_reg4
+	.long	.Ltmp426
+	.long	.Ltmp427
 	.short	1                       @ Loc expr size
 	.byte	84                      @ DW_OP_reg4
 	.long	0
 	.long	0
 .Ldebug_loc98:
-	.long	.Ltmp409
-	.long	.Ltmp418
+	.long	.Ltmp423
+	.long	.Ltmp425
 	.short	1                       @ Loc expr size
-	.byte	89                      @ DW_OP_reg9
-	.long	.Ltmp428
-	.long	.Ltmp434
-	.short	1                       @ Loc expr size
-	.byte	89                      @ DW_OP_reg9
+	.byte	80                      @ DW_OP_reg0
 	.long	0
 	.long	0
 .Ldebug_loc99:
-	.long	.Ltmp409
-	.long	.Ltmp418
+	.long	.Ltmp423
+	.long	.Ltmp425
 	.short	1                       @ Loc expr size
-	.byte	89                      @ DW_OP_reg9
-	.long	.Ltmp428
-	.long	.Ltmp434
-	.short	1                       @ Loc expr size
-	.byte	89                      @ DW_OP_reg9
+	.byte	80                      @ DW_OP_reg0
 	.long	0
 	.long	0
 .Ldebug_loc100:
-	.long	.Ltmp409
-	.long	.Ltmp418
-	.short	1                       @ Loc expr size
-	.byte	89                      @ DW_OP_reg9
-	.long	.Ltmp428
-	.long	.Ltmp434
-	.short	1                       @ Loc expr size
-	.byte	89                      @ DW_OP_reg9
-	.long	0
-	.long	0
-.Ldebug_loc101:
-	.long	.Ltmp409
-	.long	.Ltmp418
-	.short	1                       @ Loc expr size
-	.byte	89                      @ DW_OP_reg9
-	.long	.Ltmp428
-	.long	.Ltmp434
-	.short	1                       @ Loc expr size
-	.byte	89                      @ DW_OP_reg9
-	.long	0
-	.long	0
-.Ldebug_loc102:
-	.long	.Ltmp409
-	.long	.Ltmp418
-	.short	1                       @ Loc expr size
-	.byte	89                      @ DW_OP_reg9
-	.long	.Ltmp428
-	.long	.Ltmp434
-	.short	1                       @ Loc expr size
-	.byte	89                      @ DW_OP_reg9
-	.long	0
-	.long	0
-.Ldebug_loc103:
-	.long	.Ltmp413
-	.long	.Ltmp427
-	.short	1                       @ Loc expr size
-	.byte	86                      @ DW_OP_reg6
-	.long	0
-	.long	0
-.Ldebug_loc104:
-	.long	.Ltmp418
-	.long	.Ltmp427
-	.short	1                       @ Loc expr size
-	.byte	89                      @ DW_OP_reg9
-	.long	0
-	.long	0
-.Ldebug_loc105:
-	.long	.Ltmp427
-	.long	.Ltmp427
-	.short	1                       @ Loc expr size
-	.byte	84                      @ DW_OP_reg4
-	.long	.Ltmp438
-	.long	.Ltmp439
-	.short	1                       @ Loc expr size
-	.byte	84                      @ DW_OP_reg4
-	.long	0
-	.long	0
-.Ldebug_loc106:
-	.long	.Ltmp435
-	.long	.Ltmp437
-	.short	1                       @ Loc expr size
-	.byte	80                      @ DW_OP_reg0
-	.long	0
-	.long	0
-.Ldebug_loc107:
-	.long	.Ltmp435
-	.long	.Ltmp437
-	.short	1                       @ Loc expr size
-	.byte	80                      @ DW_OP_reg0
-	.long	0
-	.long	0
-.Ldebug_loc108:
-	.long	.Ltmp435
-	.long	.Ltmp437
+	.long	.Ltmp423
+	.long	.Ltmp425
 	.short	1                       @ Loc expr size
 	.byte	80                      @ DW_OP_reg0
 	.long	0
@@ -6922,22 +6787,6 @@ GCC_except_table10:
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
 	.byte	109                     @ Abbreviation Code
-	.byte	11                      @ DW_TAG_lexical_block
-	.byte	1                       @ DW_CHILDREN_yes
-	.byte	17                      @ DW_AT_low_pc
-	.byte	1                       @ DW_FORM_addr
-	.byte	18                      @ DW_AT_high_pc
-	.byte	6                       @ DW_FORM_data4
-	.byte	0                       @ EOM(1)
-	.byte	0                       @ EOM(2)
-	.byte	110                     @ Abbreviation Code
-	.byte	5                       @ DW_TAG_formal_parameter
-	.byte	0                       @ DW_CHILDREN_no
-	.byte	49                      @ DW_AT_abstract_origin
-	.byte	19                      @ DW_FORM_ref4
-	.byte	0                       @ EOM(1)
-	.byte	0                       @ EOM(2)
-	.byte	111                     @ Abbreviation Code
 	.byte	46                      @ DW_TAG_subprogram
 	.byte	1                       @ DW_CHILDREN_yes
 	.byte	17                      @ DW_AT_low_pc
@@ -6952,7 +6801,7 @@ GCC_except_table10:
 	.byte	19                      @ DW_FORM_ref4
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
-	.byte	112                     @ Abbreviation Code
+	.byte	110                     @ Abbreviation Code
 	.byte	5                       @ DW_TAG_formal_parameter
 	.byte	0                       @ DW_CHILDREN_no
 	.byte	28                      @ DW_AT_const_value
@@ -6961,7 +6810,16 @@ GCC_except_table10:
 	.byte	19                      @ DW_FORM_ref4
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
-	.byte	113                     @ Abbreviation Code
+	.byte	111                     @ Abbreviation Code
+	.byte	11                      @ DW_TAG_lexical_block
+	.byte	1                       @ DW_CHILDREN_yes
+	.byte	17                      @ DW_AT_low_pc
+	.byte	1                       @ DW_FORM_addr
+	.byte	18                      @ DW_AT_high_pc
+	.byte	6                       @ DW_FORM_data4
+	.byte	0                       @ EOM(1)
+	.byte	0                       @ EOM(2)
+	.byte	112                     @ Abbreviation Code
 	.byte	52                      @ DW_TAG_variable
 	.byte	0                       @ DW_CHILDREN_no
 	.byte	2                       @ DW_AT_location
@@ -6970,7 +6828,7 @@ GCC_except_table10:
 	.byte	19                      @ DW_FORM_ref4
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
-	.byte	114                     @ Abbreviation Code
+	.byte	113                     @ Abbreviation Code
 	.byte	29                      @ DW_TAG_inlined_subroutine
 	.byte	0                       @ DW_CHILDREN_no
 	.byte	49                      @ DW_AT_abstract_origin
@@ -6985,14 +6843,14 @@ GCC_except_table10:
 	.byte	11                      @ DW_FORM_data1
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
-	.byte	115                     @ Abbreviation Code
+	.byte	114                     @ Abbreviation Code
 	.byte	52                      @ DW_TAG_variable
 	.byte	0                       @ DW_CHILDREN_no
 	.byte	49                      @ DW_AT_abstract_origin
 	.byte	19                      @ DW_FORM_ref4
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
-	.byte	116                     @ Abbreviation Code
+	.byte	115                     @ Abbreviation Code
 	.byte	46                      @ DW_TAG_subprogram
 	.byte	1                       @ DW_CHILDREN_yes
 	.byte	58                      @ DW_AT_decl_file
@@ -7007,12 +6865,12 @@ GCC_except_table10:
 	.byte	19                      @ DW_FORM_ref4
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
-	.byte	117                     @ Abbreviation Code
+	.byte	116                     @ Abbreviation Code
 	.byte	11                      @ DW_TAG_lexical_block
 	.byte	1                       @ DW_CHILDREN_yes
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
-	.byte	118                     @ Abbreviation Code
+	.byte	117                     @ Abbreviation Code
 	.byte	5                       @ DW_TAG_formal_parameter
 	.byte	0                       @ DW_CHILDREN_no
 	.byte	28                      @ DW_AT_const_value
@@ -7021,7 +6879,7 @@ GCC_except_table10:
 	.byte	19                      @ DW_FORM_ref4
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
-	.byte	119                     @ Abbreviation Code
+	.byte	118                     @ Abbreviation Code
 	.byte	52                      @ DW_TAG_variable
 	.byte	0                       @ DW_CHILDREN_no
 	.byte	28                      @ DW_AT_const_value
@@ -7036,7 +6894,7 @@ GCC_except_table10:
 	.byte	19                      @ DW_FORM_ref4
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
-	.byte	120                     @ Abbreviation Code
+	.byte	119                     @ Abbreviation Code
 	.byte	5                       @ DW_TAG_formal_parameter
 	.byte	0                       @ DW_CHILDREN_no
 	.byte	2                       @ DW_AT_location
@@ -7047,6 +6905,23 @@ GCC_except_table10:
 	.byte	19                      @ DW_FORM_ref4
 	.byte	52                      @ DW_AT_artificial
 	.byte	25                      @ DW_FORM_flag_present
+	.byte	0                       @ EOM(1)
+	.byte	0                       @ EOM(2)
+	.byte	120                     @ Abbreviation Code
+	.byte	29                      @ DW_TAG_inlined_subroutine
+	.byte	0                       @ DW_CHILDREN_no
+	.byte	49                      @ DW_AT_abstract_origin
+	.byte	19                      @ DW_FORM_ref4
+	.byte	17                      @ DW_AT_low_pc
+	.byte	1                       @ DW_FORM_addr
+	.byte	18                      @ DW_AT_high_pc
+	.byte	6                       @ DW_FORM_data4
+	.byte	88                      @ DW_AT_call_file
+	.byte	11                      @ DW_FORM_data1
+	.byte	89                      @ DW_AT_call_line
+	.byte	11                      @ DW_FORM_data1
+	.ascii	"\266B"                 @ DW_AT_GNU_discriminator
+	.byte	11                      @ DW_FORM_data1
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
 	.byte	121                     @ Abbreviation Code
@@ -7199,18 +7074,18 @@ GCC_except_table10:
 	.section	.debug_info,"",%progbits
 .Lsection_info:
 .Lcu_begin0:
-	.long	25636                   @ Length of Unit
+	.long	25278                   @ Length of Unit
 	.short	4                       @ DWARF version number
 	.long	.Lsection_abbrev        @ Offset Into Abbrev. Section
 	.byte	4                       @ Address Size (in bytes)
-	.byte	1                       @ Abbrev [1] 0xb:0x641d DW_TAG_compile_unit
+	.byte	1                       @ Abbrev [1] 0xb:0x62b7 DW_TAG_compile_unit
 	.long	.Linfo_string0          @ DW_AT_producer
 	.short	4                       @ DW_AT_language
 	.long	.Linfo_string1          @ DW_AT_name
 	.long	.Lline_table_start0     @ DW_AT_stmt_list
 	.long	.Linfo_string2          @ DW_AT_comp_dir
 	.long	0                       @ DW_AT_low_pc
-	.long	.Ldebug_ranges49        @ DW_AT_ranges
+	.long	.Ldebug_ranges48        @ DW_AT_ranges
 	.byte	2                       @ Abbrev [2] 0x26:0x170 DW_TAG_class_type
 	.long	.Linfo_string359        @ DW_AT_name
 	.byte	32                      @ DW_AT_byte_size
@@ -12362,8 +12237,8 @@ GCC_except_table10:
 	.long	11842                   @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
 	.byte	43                      @ Abbrev [43] 0x234b:0x4f DW_TAG_subprogram
-	.long	.Linfo_string844        @ DW_AT_linkage_name
-	.long	.Linfo_string845        @ DW_AT_name
+	.long	.Linfo_string840        @ DW_AT_linkage_name
+	.long	.Linfo_string841        @ DW_AT_name
 	.byte	37                      @ DW_AT_decl_file
 	.byte	107                     @ DW_AT_decl_line
 	.long	11842                   @ DW_AT_type
@@ -12371,7 +12246,7 @@ GCC_except_table10:
 	.byte	1                       @ DW_AT_inline
 	.byte	21                      @ Abbrev [21] 0x235b:0x9 DW_TAG_template_type_parameter
 	.long	12532                   @ DW_AT_type
-	.long	.Linfo_string843        @ DW_AT_name
+	.long	.Linfo_string839        @ DW_AT_name
 	.byte	21                      @ Abbrev [21] 0x2364:0x9 DW_TAG_template_type_parameter
 	.long	11842                   @ DW_AT_type
 	.long	.Linfo_string813        @ DW_AT_name
@@ -12386,19 +12261,19 @@ GCC_except_table10:
 	.byte	107                     @ DW_AT_decl_line
 	.long	12532                   @ DW_AT_type
 	.byte	41                      @ Abbrev [41] 0x2383:0xb DW_TAG_formal_parameter
-	.long	.Linfo_string846        @ DW_AT_name
+	.long	.Linfo_string842        @ DW_AT_name
 	.byte	37                      @ DW_AT_decl_file
 	.byte	108                     @ DW_AT_decl_line
 	.long	11842                   @ DW_AT_type
 	.byte	44                      @ Abbrev [44] 0x238e:0xb DW_TAG_variable
-	.long	.Linfo_string847        @ DW_AT_name
+	.long	.Linfo_string843        @ DW_AT_name
 	.byte	37                      @ DW_AT_decl_file
 	.byte	120                     @ DW_AT_decl_line
 	.long	12472                   @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
 	.byte	45                      @ Abbrev [45] 0x239a:0x59 DW_TAG_subprogram
-	.long	.Linfo_string848        @ DW_AT_linkage_name
-	.long	.Linfo_string849        @ DW_AT_name
+	.long	.Linfo_string844        @ DW_AT_linkage_name
+	.long	.Linfo_string845        @ DW_AT_name
 	.byte	37                      @ DW_AT_decl_file
 	.short	279                     @ DW_AT_decl_line
 	.long	11842                   @ DW_AT_type
@@ -12406,7 +12281,7 @@ GCC_except_table10:
 	.byte	1                       @ DW_AT_inline
 	.byte	21                      @ Abbrev [21] 0x23ab:0x9 DW_TAG_template_type_parameter
 	.long	12532                   @ DW_AT_type
-	.long	.Linfo_string843        @ DW_AT_name
+	.long	.Linfo_string839        @ DW_AT_name
 	.byte	21                      @ Abbrev [21] 0x23b4:0x9 DW_TAG_template_type_parameter
 	.long	11842                   @ DW_AT_type
 	.long	.Linfo_string813        @ DW_AT_name
@@ -12424,7 +12299,7 @@ GCC_except_table10:
 	.short	279                     @ DW_AT_decl_line
 	.long	12532                   @ DW_AT_type
 	.byte	46                      @ Abbrev [46] 0x23de:0xc DW_TAG_formal_parameter
-	.long	.Linfo_string846        @ DW_AT_name
+	.long	.Linfo_string842        @ DW_AT_name
 	.byte	37                      @ DW_AT_decl_file
 	.short	280                     @ DW_AT_decl_line
 	.long	11842                   @ DW_AT_type
@@ -12434,8 +12309,8 @@ GCC_except_table10:
 	.long	12572                   @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
 	.byte	45                      @ Abbrev [45] 0x23f3:0x5d DW_TAG_subprogram
-	.long	.Linfo_string851        @ DW_AT_linkage_name
-	.long	.Linfo_string852        @ DW_AT_name
+	.long	.Linfo_string847        @ DW_AT_linkage_name
+	.long	.Linfo_string848        @ DW_AT_name
 	.byte	37                      @ DW_AT_decl_file
 	.short	297                     @ DW_AT_decl_line
 	.long	11842                   @ DW_AT_type
@@ -12443,13 +12318,13 @@ GCC_except_table10:
 	.byte	1                       @ DW_AT_inline
 	.byte	21                      @ Abbrev [21] 0x2404:0x9 DW_TAG_template_type_parameter
 	.long	11842                   @ DW_AT_type
-	.long	.Linfo_string843        @ DW_AT_name
+	.long	.Linfo_string839        @ DW_AT_name
 	.byte	21                      @ Abbrev [21] 0x240d:0x9 DW_TAG_template_type_parameter
 	.long	11842                   @ DW_AT_type
 	.long	.Linfo_string813        @ DW_AT_name
 	.byte	21                      @ Abbrev [21] 0x2416:0x9 DW_TAG_template_type_parameter
 	.long	5897                    @ DW_AT_type
-	.long	.Linfo_string850        @ DW_AT_name
+	.long	.Linfo_string846        @ DW_AT_name
 	.byte	46                      @ Abbrev [46] 0x241f:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string816        @ DW_AT_name
 	.byte	37                      @ DW_AT_decl_file
@@ -12461,19 +12336,19 @@ GCC_except_table10:
 	.short	298                     @ DW_AT_decl_line
 	.long	11842                   @ DW_AT_type
 	.byte	46                      @ Abbrev [46] 0x2437:0xc DW_TAG_formal_parameter
-	.long	.Linfo_string846        @ DW_AT_name
+	.long	.Linfo_string842        @ DW_AT_name
 	.byte	37                      @ DW_AT_decl_file
 	.short	299                     @ DW_AT_decl_line
 	.long	11842                   @ DW_AT_type
 	.byte	46                      @ Abbrev [46] 0x2443:0xc DW_TAG_formal_parameter
-	.long	.Linfo_string853        @ DW_AT_name
+	.long	.Linfo_string849        @ DW_AT_name
 	.byte	37                      @ DW_AT_decl_file
 	.short	300                     @ DW_AT_decl_line
 	.long	12572                   @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
 	.byte	45                      @ Abbrev [45] 0x2450:0x48 DW_TAG_subprogram
-	.long	.Linfo_string855        @ DW_AT_linkage_name
-	.long	.Linfo_string856        @ DW_AT_name
+	.long	.Linfo_string851        @ DW_AT_linkage_name
+	.long	.Linfo_string852        @ DW_AT_name
 	.byte	37                      @ DW_AT_decl_file
 	.short	566                     @ DW_AT_decl_line
 	.long	11842                   @ DW_AT_type
@@ -12484,7 +12359,7 @@ GCC_except_table10:
 	.long	.Linfo_string813        @ DW_AT_name
 	.byte	21                      @ Abbrev [21] 0x246a:0x9 DW_TAG_template_type_parameter
 	.long	12203                   @ DW_AT_type
-	.long	.Linfo_string854        @ DW_AT_name
+	.long	.Linfo_string850        @ DW_AT_name
 	.byte	46                      @ Abbrev [46] 0x2473:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string816        @ DW_AT_name
 	.byte	37                      @ DW_AT_decl_file
@@ -12496,14 +12371,14 @@ GCC_except_table10:
 	.short	566                     @ DW_AT_decl_line
 	.long	12203                   @ DW_AT_type
 	.byte	48                      @ Abbrev [48] 0x248b:0xc DW_TAG_variable
-	.long	.Linfo_string847        @ DW_AT_name
+	.long	.Linfo_string843        @ DW_AT_name
 	.byte	37                      @ DW_AT_decl_file
 	.short	571                     @ DW_AT_decl_line
 	.long	12472                   @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
 	.byte	45                      @ Abbrev [45] 0x2498:0x4d DW_TAG_subprogram
-	.long	.Linfo_string857        @ DW_AT_linkage_name
-	.long	.Linfo_string858        @ DW_AT_name
+	.long	.Linfo_string853        @ DW_AT_linkage_name
+	.long	.Linfo_string854        @ DW_AT_name
 	.byte	37                      @ DW_AT_decl_file
 	.short	635                     @ DW_AT_decl_line
 	.long	11842                   @ DW_AT_type
@@ -12514,7 +12389,7 @@ GCC_except_table10:
 	.long	.Linfo_string813        @ DW_AT_name
 	.byte	21                      @ Abbrev [21] 0x24b2:0x9 DW_TAG_template_type_parameter
 	.long	12203                   @ DW_AT_type
-	.long	.Linfo_string854        @ DW_AT_name
+	.long	.Linfo_string850        @ DW_AT_name
 	.byte	21                      @ Abbrev [21] 0x24bb:0x9 DW_TAG_template_type_parameter
 	.long	11847                   @ DW_AT_type
 	.long	.Linfo_string30         @ DW_AT_name
@@ -12573,7 +12448,7 @@ GCC_except_table10:
 	.long	.Linfo_string813        @ DW_AT_name
 	.byte	21                      @ Abbrev [21] 0x2537:0x9 DW_TAG_template_type_parameter
 	.long	12203                   @ DW_AT_type
-	.long	.Linfo_string854        @ DW_AT_name
+	.long	.Linfo_string850        @ DW_AT_name
 	.byte	10                      @ Abbrev [10] 0x2540:0x5 DW_TAG_formal_parameter
 	.long	11842                   @ DW_AT_type
 	.byte	10                      @ Abbrev [10] 0x2545:0x5 DW_TAG_formal_parameter
@@ -12716,7 +12591,7 @@ GCC_except_table10:
 	.short	375                     @ DW_AT_decl_line
 	.long	12177                   @ DW_AT_type
 	.byte	46                      @ Abbrev [46] 0x2666:0xc DW_TAG_formal_parameter
-	.long	.Linfo_string846        @ DW_AT_name
+	.long	.Linfo_string842        @ DW_AT_name
 	.byte	39                      @ DW_AT_decl_file
 	.short	375                     @ DW_AT_decl_line
 	.long	12142                   @ DW_AT_type
@@ -12755,7 +12630,7 @@ GCC_except_table10:
 	.short	420                     @ DW_AT_decl_line
 	.long	11001                   @ DW_AT_type
 	.byte	46                      @ Abbrev [46] 0x26c4:0xc DW_TAG_formal_parameter
-	.long	.Linfo_string846        @ DW_AT_name
+	.long	.Linfo_string842        @ DW_AT_name
 	.byte	39                      @ DW_AT_decl_file
 	.short	420                     @ DW_AT_decl_line
 	.long	12142                   @ DW_AT_type
@@ -12785,7 +12660,7 @@ GCC_except_table10:
 	.short	446                     @ DW_AT_decl_line
 	.long	11001                   @ DW_AT_type
 	.byte	46                      @ Abbrev [46] 0x270c:0xc DW_TAG_formal_parameter
-	.long	.Linfo_string846        @ DW_AT_name
+	.long	.Linfo_string842        @ DW_AT_name
 	.byte	39                      @ DW_AT_decl_file
 	.short	446                     @ DW_AT_decl_line
 	.long	12142                   @ DW_AT_type
@@ -12809,7 +12684,7 @@ GCC_except_table10:
                                         @ DW_AT_external
 	.byte	21                      @ Abbrev [21] 0x273a:0x9 DW_TAG_template_type_parameter
 	.long	11001                   @ DW_AT_type
-	.long	.Linfo_string843        @ DW_AT_name
+	.long	.Linfo_string839        @ DW_AT_name
 	.byte	21                      @ Abbrev [21] 0x2743:0x9 DW_TAG_template_type_parameter
 	.long	12142                   @ DW_AT_type
 	.long	.Linfo_string813        @ DW_AT_name
@@ -12831,7 +12706,7 @@ GCC_except_table10:
 	.byte	1                       @ DW_AT_inline
 	.byte	21                      @ Abbrev [21] 0x276d:0x9 DW_TAG_template_type_parameter
 	.long	11001                   @ DW_AT_type
-	.long	.Linfo_string843        @ DW_AT_name
+	.long	.Linfo_string839        @ DW_AT_name
 	.byte	21                      @ Abbrev [21] 0x2776:0x9 DW_TAG_template_type_parameter
 	.long	12142                   @ DW_AT_type
 	.long	.Linfo_string813        @ DW_AT_name
@@ -12846,12 +12721,12 @@ GCC_except_table10:
 	.byte	107                     @ DW_AT_decl_line
 	.long	11001                   @ DW_AT_type
 	.byte	41                      @ Abbrev [41] 0x2795:0xb DW_TAG_formal_parameter
-	.long	.Linfo_string846        @ DW_AT_name
+	.long	.Linfo_string842        @ DW_AT_name
 	.byte	37                      @ DW_AT_decl_file
 	.byte	108                     @ DW_AT_decl_line
 	.long	12142                   @ DW_AT_type
 	.byte	44                      @ Abbrev [44] 0x27a0:0xb DW_TAG_variable
-	.long	.Linfo_string847        @ DW_AT_name
+	.long	.Linfo_string843        @ DW_AT_name
 	.byte	37                      @ DW_AT_decl_file
 	.byte	120                     @ DW_AT_decl_line
 	.long	12472                   @ DW_AT_type
@@ -12866,7 +12741,7 @@ GCC_except_table10:
 	.byte	1                       @ DW_AT_inline
 	.byte	21                      @ Abbrev [21] 0x27bd:0x9 DW_TAG_template_type_parameter
 	.long	11001                   @ DW_AT_type
-	.long	.Linfo_string843        @ DW_AT_name
+	.long	.Linfo_string839        @ DW_AT_name
 	.byte	21                      @ Abbrev [21] 0x27c6:0x9 DW_TAG_template_type_parameter
 	.long	12142                   @ DW_AT_type
 	.long	.Linfo_string813        @ DW_AT_name
@@ -12884,7 +12759,7 @@ GCC_except_table10:
 	.short	279                     @ DW_AT_decl_line
 	.long	11001                   @ DW_AT_type
 	.byte	46                      @ Abbrev [46] 0x27f0:0xc DW_TAG_formal_parameter
-	.long	.Linfo_string846        @ DW_AT_name
+	.long	.Linfo_string842        @ DW_AT_name
 	.byte	37                      @ DW_AT_decl_file
 	.short	280                     @ DW_AT_decl_line
 	.long	12142                   @ DW_AT_type
@@ -12912,7 +12787,7 @@ GCC_except_table10:
                                         @ DW_AT_external
 	.byte	21                      @ Abbrev [21] 0x2826:0x9 DW_TAG_template_type_parameter
 	.long	12532                   @ DW_AT_type
-	.long	.Linfo_string843        @ DW_AT_name
+	.long	.Linfo_string839        @ DW_AT_name
 	.byte	21                      @ Abbrev [21] 0x282f:0x9 DW_TAG_template_type_parameter
 	.long	11842                   @ DW_AT_type
 	.long	.Linfo_string813        @ DW_AT_name
@@ -18432,11 +18307,11 @@ GCC_except_table10:
 	.byte	94                      @ Abbrev [94] 0x5177:0xd DW_TAG_formal_parameter
 	.long	.Ldebug_loc0            @ DW_AT_location
 	.long	.Linfo_string808        @ DW_AT_name
-	.long	22838                   @ DW_AT_type
+	.long	22359                   @ DW_AT_type
                                         @ DW_AT_artificial
 	.byte	95                      @ Abbrev [95] 0x5184:0xf DW_TAG_formal_parameter
 	.long	.Ldebug_loc1            @ DW_AT_location
-	.long	.Linfo_string838        @ DW_AT_name
+	.long	.Linfo_string834        @ DW_AT_name
 	.byte	34                      @ DW_AT_decl_file
 	.byte	4                       @ DW_AT_decl_line
 	.long	83                      @ DW_AT_type
@@ -18661,215 +18536,159 @@ GCC_except_table10:
 	.short	1434                    @ DW_AT_decl_line
 	.long	2156                    @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
-	.byte	89                      @ Abbrev [89] 0x53a7:0x18 DW_TAG_subprogram
-	.long	.Linfo_string834        @ DW_AT_linkage_name
-	.long	4943                    @ DW_AT_specification
-	.byte	1                       @ DW_AT_inline
-	.long	21429                   @ DW_AT_object_pointer
-	.byte	90                      @ Abbrev [90] 0x53b5:0x9 DW_TAG_formal_parameter
-	.long	.Linfo_string808        @ DW_AT_name
-	.long	21439                   @ DW_AT_type
-                                        @ DW_AT_artificial
-	.byte	0                       @ End Of Children Mark
-	.byte	55                      @ Abbrev [55] 0x53bf:0x5 DW_TAG_pointer_type
-	.long	4893                    @ DW_AT_type
-	.byte	89                      @ Abbrev [89] 0x53c4:0x18 DW_TAG_subprogram
-	.long	.Linfo_string835        @ DW_AT_linkage_name
-	.long	5111                    @ DW_AT_specification
-	.byte	1                       @ DW_AT_inline
-	.long	21458                   @ DW_AT_object_pointer
-	.byte	90                      @ Abbrev [90] 0x53d2:0x9 DW_TAG_formal_parameter
-	.long	.Linfo_string808        @ DW_AT_name
-	.long	20492                   @ DW_AT_type
-                                        @ DW_AT_artificial
-	.byte	0                       @ End Of Children Mark
-	.byte	89                      @ Abbrev [89] 0x53dc:0x18 DW_TAG_subprogram
-	.long	.Linfo_string836        @ DW_AT_linkage_name
-	.long	3005                    @ DW_AT_specification
-	.byte	1                       @ DW_AT_inline
-	.long	21482                   @ DW_AT_object_pointer
-	.byte	90                      @ Abbrev [90] 0x53ea:0x9 DW_TAG_formal_parameter
-	.long	.Linfo_string808        @ DW_AT_name
-	.long	20521                   @ DW_AT_type
-                                        @ DW_AT_artificial
-	.byte	0                       @ End Of Children Mark
-	.byte	89                      @ Abbrev [89] 0x53f4:0x18 DW_TAG_subprogram
-	.long	.Linfo_string837        @ DW_AT_linkage_name
-	.long	11927                   @ DW_AT_specification
-	.byte	1                       @ DW_AT_inline
-	.long	21506                   @ DW_AT_object_pointer
-	.byte	90                      @ Abbrev [90] 0x5402:0x9 DW_TAG_formal_parameter
-	.long	.Linfo_string808        @ DW_AT_name
-	.long	11842                   @ DW_AT_type
-                                        @ DW_AT_artificial
-	.byte	0                       @ End Of Children Mark
-	.byte	92                      @ Abbrev [92] 0x540c:0x20 DW_TAG_subprogram
-	.long	1321                    @ DW_AT_specification
-	.byte	1                       @ DW_AT_inline
-	.long	21526                   @ DW_AT_object_pointer
-	.byte	90                      @ Abbrev [90] 0x5416:0x9 DW_TAG_formal_parameter
-	.long	.Linfo_string808        @ DW_AT_name
-	.long	20401                   @ DW_AT_type
-                                        @ DW_AT_artificial
-	.byte	46                      @ Abbrev [46] 0x541f:0xc DW_TAG_formal_parameter
-	.long	.Linfo_string829        @ DW_AT_name
-	.byte	8                       @ DW_AT_decl_file
-	.short	780                     @ DW_AT_decl_line
-	.long	12352                   @ DW_AT_type
-	.byte	0                       @ End Of Children Mark
-	.byte	103                     @ Abbrev [103] 0x542c:0x341 DW_TAG_subprogram
+	.byte	103                     @ Abbrev [103] 0x53a7:0x1c7 DW_TAG_subprogram
 	.long	.Lfunc_begin1           @ DW_AT_low_pc
 	.long	.Lfunc_end1-.Lfunc_begin1 @ DW_AT_high_pc
 	.byte	1                       @ DW_AT_frame_base
 	.byte	91
-	.long	21569                   @ DW_AT_object_pointer
+	.long	21436                   @ DW_AT_object_pointer
 	.byte	34                      @ DW_AT_decl_file
 	.byte	8                       @ DW_AT_decl_line
 	.long	218                     @ DW_AT_specification
-	.byte	94                      @ Abbrev [94] 0x5441:0xd DW_TAG_formal_parameter
+	.byte	94                      @ Abbrev [94] 0x53bc:0xd DW_TAG_formal_parameter
 	.long	.Ldebug_loc15           @ DW_AT_location
 	.long	.Linfo_string808        @ DW_AT_name
-	.long	22838                   @ DW_AT_type
+	.long	22359                   @ DW_AT_type
                                         @ DW_AT_artificial
-	.byte	95                      @ Abbrev [95] 0x544e:0xf DW_TAG_formal_parameter
+	.byte	95                      @ Abbrev [95] 0x53c9:0xf DW_TAG_formal_parameter
 	.long	.Ldebug_loc16           @ DW_AT_location
-	.long	.Linfo_string838        @ DW_AT_name
+	.long	.Linfo_string834        @ DW_AT_name
 	.byte	34                      @ DW_AT_decl_file
 	.byte	8                       @ DW_AT_decl_line
 	.long	83                      @ DW_AT_type
-	.byte	95                      @ Abbrev [95] 0x545d:0xf DW_TAG_formal_parameter
+	.byte	95                      @ Abbrev [95] 0x53d8:0xf DW_TAG_formal_parameter
 	.long	.Ldebug_loc17           @ DW_AT_location
 	.long	.Linfo_string909        @ DW_AT_name
 	.byte	34                      @ DW_AT_decl_file
 	.byte	8                       @ DW_AT_decl_line
 	.long	406                     @ DW_AT_type
-	.byte	95                      @ Abbrev [95] 0x546c:0xf DW_TAG_formal_parameter
+	.byte	95                      @ Abbrev [95] 0x53e7:0xf DW_TAG_formal_parameter
 	.long	.Ldebug_loc18           @ DW_AT_location
 	.long	.Linfo_string910        @ DW_AT_name
 	.byte	34                      @ DW_AT_decl_file
 	.byte	8                       @ DW_AT_decl_line
 	.long	12203                   @ DW_AT_type
-	.byte	95                      @ Abbrev [95] 0x547b:0xf DW_TAG_formal_parameter
+	.byte	95                      @ Abbrev [95] 0x53f6:0xf DW_TAG_formal_parameter
 	.long	.Ldebug_loc19           @ DW_AT_location
 	.long	.Linfo_string911        @ DW_AT_name
 	.byte	34                      @ DW_AT_decl_file
 	.byte	8                       @ DW_AT_decl_line
 	.long	12203                   @ DW_AT_type
-	.byte	95                      @ Abbrev [95] 0x548a:0xf DW_TAG_formal_parameter
-	.long	.Ldebug_loc34           @ DW_AT_location
+	.byte	95                      @ Abbrev [95] 0x5405:0xf DW_TAG_formal_parameter
+	.long	.Ldebug_loc20           @ DW_AT_location
 	.long	.Linfo_string912        @ DW_AT_name
 	.byte	34                      @ DW_AT_decl_file
 	.byte	8                       @ DW_AT_decl_line
 	.long	12270                   @ DW_AT_type
-	.byte	104                     @ Abbrev [104] 0x5499:0x12e DW_TAG_inlined_subroutine
+	.byte	104                     @ Abbrev [104] 0x5414:0x12e DW_TAG_inlined_subroutine
 	.long	21351                   @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges0         @ DW_AT_ranges
 	.byte	34                      @ DW_AT_call_file
 	.byte	12                      @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x54a4:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc22           @ DW_AT_location
+	.byte	100                     @ Abbrev [100] 0x541f:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc23           @ DW_AT_location
 	.long	21361                   @ DW_AT_abstract_origin
-	.byte	100                     @ Abbrev [100] 0x54ad:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc20           @ DW_AT_location
+	.byte	100                     @ Abbrev [100] 0x5428:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc21           @ DW_AT_location
 	.long	21370                   @ DW_AT_abstract_origin
-	.byte	105                     @ Abbrev [105] 0x54b6:0x16 DW_TAG_inlined_subroutine
+	.byte	105                     @ Abbrev [105] 0x5431:0x16 DW_TAG_inlined_subroutine
 	.long	21326                   @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges1         @ DW_AT_ranges
 	.byte	8                       @ DW_AT_call_file
 	.short	676                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x54c2:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc21           @ DW_AT_location
+	.byte	100                     @ Abbrev [100] 0x543d:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc22           @ DW_AT_location
 	.long	21336                   @ DW_AT_abstract_origin
 	.byte	0                       @ End Of Children Mark
-	.byte	97                      @ Abbrev [97] 0x54cc:0xfa DW_TAG_inlined_subroutine
+	.byte	97                      @ Abbrev [97] 0x5447:0xfa DW_TAG_inlined_subroutine
 	.long	21383                   @ DW_AT_abstract_origin
-	.long	.Ltmp57                 @ DW_AT_low_pc
-	.long	.Ltmp65-.Ltmp57         @ DW_AT_high_pc
+	.long	.Ltmp54                 @ DW_AT_low_pc
+	.long	.Ltmp62-.Ltmp54         @ DW_AT_high_pc
 	.byte	8                       @ DW_AT_call_file
 	.short	679                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x54dc:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc23           @ DW_AT_location
+	.byte	100                     @ Abbrev [100] 0x5457:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc24           @ DW_AT_location
 	.long	21393                   @ DW_AT_abstract_origin
-	.byte	100                     @ Abbrev [100] 0x54e5:0x9 DW_TAG_formal_parameter
+	.byte	100                     @ Abbrev [100] 0x5460:0x9 DW_TAG_formal_parameter
 	.long	.Ldebug_loc29           @ DW_AT_location
 	.long	21402                   @ DW_AT_abstract_origin
-	.byte	97                      @ Abbrev [97] 0x54ee:0xd7 DW_TAG_inlined_subroutine
+	.byte	97                      @ Abbrev [97] 0x5469:0xd7 DW_TAG_inlined_subroutine
 	.long	8942                    @ DW_AT_abstract_origin
-	.long	.Ltmp57                 @ DW_AT_low_pc
-	.long	.Ltmp64-.Ltmp57         @ DW_AT_high_pc
+	.long	.Ltmp54                 @ DW_AT_low_pc
+	.long	.Ltmp61-.Ltmp54         @ DW_AT_high_pc
 	.byte	8                       @ DW_AT_call_file
 	.short	1436                    @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x54fe:0x9 DW_TAG_formal_parameter
+	.byte	100                     @ Abbrev [100] 0x5479:0x9 DW_TAG_formal_parameter
 	.long	.Ldebug_loc28           @ DW_AT_location
 	.long	8972                    @ DW_AT_abstract_origin
-	.byte	96                      @ Abbrev [96] 0x5507:0xbd DW_TAG_inlined_subroutine
+	.byte	96                      @ Abbrev [96] 0x5482:0xbd DW_TAG_inlined_subroutine
 	.long	8898                    @ DW_AT_abstract_origin
-	.long	.Ltmp57                 @ DW_AT_low_pc
-	.long	.Ltmp64-.Ltmp57         @ DW_AT_high_pc
+	.long	.Ltmp54                 @ DW_AT_low_pc
+	.long	.Ltmp61-.Ltmp54         @ DW_AT_high_pc
 	.byte	35                      @ DW_AT_call_file
 	.byte	151                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x5516:0x9 DW_TAG_formal_parameter
+	.byte	100                     @ Abbrev [100] 0x5491:0x9 DW_TAG_formal_parameter
 	.long	.Ldebug_loc27           @ DW_AT_location
 	.long	8919                    @ DW_AT_abstract_origin
-	.byte	104                     @ Abbrev [104] 0x551f:0xa4 DW_TAG_inlined_subroutine
+	.byte	104                     @ Abbrev [104] 0x549a:0xa4 DW_TAG_inlined_subroutine
 	.long	20430                   @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges2         @ DW_AT_ranges
 	.byte	35                      @ DW_AT_call_file
 	.byte	126                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x552a:0x9 DW_TAG_formal_parameter
+	.byte	100                     @ Abbrev [100] 0x54a5:0x9 DW_TAG_formal_parameter
 	.long	.Ldebug_loc26           @ DW_AT_location
 	.long	20445                   @ DW_AT_abstract_origin
-	.byte	99                      @ Abbrev [99] 0x5533:0x8f DW_TAG_inlined_subroutine
+	.byte	99                      @ Abbrev [99] 0x54ae:0x8f DW_TAG_inlined_subroutine
 	.long	9002                    @ DW_AT_abstract_origin
-	.long	.Ltmp59                 @ DW_AT_low_pc
-	.long	.Ltmp62-.Ltmp59         @ DW_AT_high_pc
+	.long	.Ltmp56                 @ DW_AT_low_pc
+	.long	.Ltmp59-.Ltmp56         @ DW_AT_high_pc
 	.byte	35                      @ DW_AT_call_file
 	.byte	103                     @ DW_AT_call_line
 	.byte	1                       @ DW_AT_GNU_discriminator
-	.byte	96                      @ Abbrev [96] 0x5543:0x7e DW_TAG_inlined_subroutine
+	.byte	96                      @ Abbrev [96] 0x54be:0x7e DW_TAG_inlined_subroutine
 	.long	20526                   @ DW_AT_abstract_origin
-	.long	.Ltmp59                 @ DW_AT_low_pc
-	.long	.Ltmp62-.Ltmp59         @ DW_AT_high_pc
+	.long	.Ltmp56                 @ DW_AT_low_pc
+	.long	.Ltmp59-.Ltmp56         @ DW_AT_high_pc
 	.byte	35                      @ DW_AT_call_file
 	.byte	93                      @ DW_AT_call_line
-	.byte	96                      @ Abbrev [96] 0x5552:0x6e DW_TAG_inlined_subroutine
+	.byte	96                      @ Abbrev [96] 0x54cd:0x6e DW_TAG_inlined_subroutine
 	.long	20497                   @ DW_AT_abstract_origin
-	.long	.Ltmp59                 @ DW_AT_low_pc
-	.long	.Ltmp62-.Ltmp59         @ DW_AT_high_pc
+	.long	.Ltmp56                 @ DW_AT_low_pc
+	.long	.Ltmp59-.Ltmp56         @ DW_AT_high_pc
 	.byte	12                      @ DW_AT_call_file
 	.byte	38                      @ DW_AT_call_line
-	.byte	101                     @ Abbrev [101] 0x5561:0x5e DW_TAG_inlined_subroutine
+	.byte	101                     @ Abbrev [101] 0x54dc:0x5e DW_TAG_inlined_subroutine
 	.long	20468                   @ DW_AT_abstract_origin
-	.long	.Ltmp59                 @ DW_AT_low_pc
-	.long	.Ltmp62-.Ltmp59         @ DW_AT_high_pc
+	.long	.Ltmp56                 @ DW_AT_low_pc
+	.long	.Ltmp59-.Ltmp56         @ DW_AT_high_pc
 	.byte	8                       @ DW_AT_call_file
 	.short	427                     @ DW_AT_call_line
 	.byte	1                       @ DW_AT_GNU_discriminator
-	.byte	96                      @ Abbrev [96] 0x5572:0x4c DW_TAG_inlined_subroutine
+	.byte	96                      @ Abbrev [96] 0x54ed:0x4c DW_TAG_inlined_subroutine
 	.long	20550                   @ DW_AT_abstract_origin
-	.long	.Ltmp60                 @ DW_AT_low_pc
-	.long	.Ltmp62-.Ltmp60         @ DW_AT_high_pc
+	.long	.Ltmp57                 @ DW_AT_low_pc
+	.long	.Ltmp59-.Ltmp57         @ DW_AT_high_pc
 	.byte	8                       @ DW_AT_call_file
 	.byte	160                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x5581:0x9 DW_TAG_formal_parameter
+	.byte	100                     @ Abbrev [100] 0x54fc:0x9 DW_TAG_formal_parameter
 	.long	.Ldebug_loc30           @ DW_AT_location
 	.long	20569                   @ DW_AT_abstract_origin
-	.byte	96                      @ Abbrev [96] 0x558a:0x33 DW_TAG_inlined_subroutine
+	.byte	96                      @ Abbrev [96] 0x5505:0x33 DW_TAG_inlined_subroutine
 	.long	20635                   @ DW_AT_abstract_origin
-	.long	.Ltmp61                 @ DW_AT_low_pc
-	.long	.Ltmp62-.Ltmp61         @ DW_AT_high_pc
+	.long	.Ltmp58                 @ DW_AT_low_pc
+	.long	.Ltmp59-.Ltmp58         @ DW_AT_high_pc
 	.byte	8                       @ DW_AT_call_file
 	.byte	178                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x5599:0x9 DW_TAG_formal_parameter
+	.byte	100                     @ Abbrev [100] 0x5514:0x9 DW_TAG_formal_parameter
 	.long	.Ldebug_loc31           @ DW_AT_location
 	.long	20653                   @ DW_AT_abstract_origin
-	.byte	97                      @ Abbrev [97] 0x55a2:0x1a DW_TAG_inlined_subroutine
+	.byte	97                      @ Abbrev [97] 0x551d:0x1a DW_TAG_inlined_subroutine
 	.long	20592                   @ DW_AT_abstract_origin
-	.long	.Ltmp61                 @ DW_AT_low_pc
-	.long	.Ltmp62-.Ltmp61         @ DW_AT_high_pc
+	.long	.Ltmp58                 @ DW_AT_low_pc
+	.long	.Ltmp59-.Ltmp58         @ DW_AT_high_pc
 	.byte	3                       @ DW_AT_call_file
 	.short	462                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x55b2:0x9 DW_TAG_formal_parameter
+	.byte	100                     @ Abbrev [100] 0x552d:0x9 DW_TAG_formal_parameter
 	.long	.Ldebug_loc32           @ DW_AT_location
 	.long	20611                   @ DW_AT_abstract_origin
 	.byte	0                       @ End Of Children Mark
@@ -18884,964 +18703,871 @@ GCC_except_table10:
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	106                     @ Abbrev [106] 0x55c7:0x1a5 DW_TAG_lexical_block
+	.byte	106                     @ Abbrev [106] 0x5542:0x2b DW_TAG_lexical_block
 	.long	.Ldebug_ranges4         @ DW_AT_ranges
-	.byte	107                     @ Abbrev [107] 0x55cc:0xf DW_TAG_variable
+	.byte	107                     @ Abbrev [107] 0x5547:0xf DW_TAG_variable
 	.long	.Ldebug_loc33           @ DW_AT_location
-	.long	.Linfo_string839        @ DW_AT_name
+	.long	.Linfo_string835        @ DW_AT_name
 	.byte	34                      @ DW_AT_decl_file
 	.byte	17                      @ DW_AT_decl_line
 	.long	12203                   @ DW_AT_type
-	.byte	108                     @ Abbrev [108] 0x55db:0x16 DW_TAG_inlined_subroutine
+	.byte	108                     @ Abbrev [108] 0x5556:0x16 DW_TAG_inlined_subroutine
 	.long	21326                   @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges3         @ DW_AT_ranges
 	.byte	34                      @ DW_AT_call_file
 	.byte	17                      @ DW_AT_call_line
 	.byte	1                       @ DW_AT_GNU_discriminator
-	.byte	100                     @ Abbrev [100] 0x55e7:0x9 DW_TAG_formal_parameter
+	.byte	100                     @ Abbrev [100] 0x5562:0x9 DW_TAG_formal_parameter
 	.long	.Ldebug_loc25           @ DW_AT_location
 	.long	21336                   @ DW_AT_abstract_origin
 	.byte	0                       @ End Of Children Mark
-	.byte	109                     @ Abbrev [109] 0x55f1:0x7d DW_TAG_lexical_block
-	.long	.Ltmp69                 @ DW_AT_low_pc
-	.long	.Ltmp74-.Ltmp69         @ DW_AT_high_pc
-	.byte	44                      @ Abbrev [44] 0x55fa:0xb DW_TAG_variable
-	.long	.Linfo_string913        @ DW_AT_name
-	.byte	34                      @ DW_AT_decl_file
-	.byte	19                      @ DW_AT_decl_line
-	.long	11847                   @ DW_AT_type
-	.byte	99                      @ Abbrev [99] 0x5605:0x46 DW_TAG_inlined_subroutine
-	.long	21492                   @ DW_AT_abstract_origin
-	.long	.Ltmp69                 @ DW_AT_low_pc
-	.long	.Ltmp70-.Ltmp69         @ DW_AT_high_pc
-	.byte	34                      @ DW_AT_call_file
-	.byte	19                      @ DW_AT_call_line
-	.byte	1                       @ DW_AT_GNU_discriminator
-	.byte	110                     @ Abbrev [110] 0x5615:0x5 DW_TAG_formal_parameter
-	.long	21506                   @ DW_AT_abstract_origin
-	.byte	96                      @ Abbrev [96] 0x561a:0x30 DW_TAG_inlined_subroutine
-	.long	21468                   @ DW_AT_abstract_origin
-	.long	.Ltmp69                 @ DW_AT_low_pc
-	.long	.Ltmp70-.Ltmp69         @ DW_AT_high_pc
-	.byte	12                      @ DW_AT_call_file
-	.byte	26                      @ DW_AT_call_line
-	.byte	97                      @ Abbrev [97] 0x5629:0x20 DW_TAG_inlined_subroutine
-	.long	21444                   @ DW_AT_abstract_origin
-	.long	.Ltmp69                 @ DW_AT_low_pc
-	.long	.Ltmp70-.Ltmp69         @ DW_AT_high_pc
-	.byte	8                       @ DW_AT_call_file
-	.short	259                     @ DW_AT_call_line
-	.byte	98                      @ Abbrev [98] 0x5639:0xf DW_TAG_inlined_subroutine
-	.long	21415                   @ DW_AT_abstract_origin
-	.long	.Ltmp69                 @ DW_AT_low_pc
-	.long	.Ltmp70-.Ltmp69         @ DW_AT_high_pc
-	.byte	8                       @ DW_AT_call_file
-	.byte	125                     @ DW_AT_call_line
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
+	.byte	92                      @ Abbrev [92] 0x556e:0x20 DW_TAG_subprogram
+	.long	1321                    @ DW_AT_specification
+	.byte	1                       @ DW_AT_inline
+	.long	21880                   @ DW_AT_object_pointer
+	.byte	90                      @ Abbrev [90] 0x5578:0x9 DW_TAG_formal_parameter
+	.long	.Linfo_string808        @ DW_AT_name
+	.long	20401                   @ DW_AT_type
+                                        @ DW_AT_artificial
+	.byte	46                      @ Abbrev [46] 0x5581:0xc DW_TAG_formal_parameter
+	.long	.Linfo_string829        @ DW_AT_name
+	.byte	8                       @ DW_AT_decl_file
+	.short	780                     @ DW_AT_decl_line
+	.long	12352                   @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
-	.byte	96                      @ Abbrev [96] 0x564b:0x22 DW_TAG_inlined_subroutine
-	.long	21516                   @ DW_AT_abstract_origin
-	.long	.Ltmp72                 @ DW_AT_low_pc
-	.long	.Ltmp73-.Ltmp72         @ DW_AT_high_pc
-	.byte	34                      @ DW_AT_call_file
-	.byte	21                      @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x565a:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc24           @ DW_AT_location
-	.long	21526                   @ DW_AT_abstract_origin
-	.byte	100                     @ Abbrev [100] 0x5663:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc38           @ DW_AT_location
-	.long	21535                   @ DW_AT_abstract_origin
-	.byte	0                       @ End Of Children Mark
-	.byte	0                       @ End Of Children Mark
-	.byte	96                      @ Abbrev [96] 0x566e:0x7e DW_TAG_inlined_subroutine
-	.long	20526                   @ DW_AT_abstract_origin
-	.long	.Ltmp74                 @ DW_AT_low_pc
-	.long	.Ltmp77-.Ltmp74         @ DW_AT_high_pc
-	.byte	34                      @ DW_AT_call_file
-	.byte	23                      @ DW_AT_call_line
-	.byte	96                      @ Abbrev [96] 0x567d:0x6e DW_TAG_inlined_subroutine
-	.long	20497                   @ DW_AT_abstract_origin
-	.long	.Ltmp74                 @ DW_AT_low_pc
-	.long	.Ltmp77-.Ltmp74         @ DW_AT_high_pc
-	.byte	12                      @ DW_AT_call_file
-	.byte	38                      @ DW_AT_call_line
-	.byte	101                     @ Abbrev [101] 0x568c:0x5e DW_TAG_inlined_subroutine
-	.long	20468                   @ DW_AT_abstract_origin
-	.long	.Ltmp74                 @ DW_AT_low_pc
-	.long	.Ltmp77-.Ltmp74         @ DW_AT_high_pc
-	.byte	8                       @ DW_AT_call_file
-	.short	427                     @ DW_AT_call_line
-	.byte	1                       @ DW_AT_GNU_discriminator
-	.byte	96                      @ Abbrev [96] 0x569d:0x4c DW_TAG_inlined_subroutine
-	.long	20550                   @ DW_AT_abstract_origin
-	.long	.Ltmp75                 @ DW_AT_low_pc
-	.long	.Ltmp77-.Ltmp75         @ DW_AT_high_pc
-	.byte	8                       @ DW_AT_call_file
-	.byte	160                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x56ac:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc35           @ DW_AT_location
-	.long	20569                   @ DW_AT_abstract_origin
-	.byte	96                      @ Abbrev [96] 0x56b5:0x33 DW_TAG_inlined_subroutine
-	.long	20635                   @ DW_AT_abstract_origin
-	.long	.Ltmp76                 @ DW_AT_low_pc
-	.long	.Ltmp77-.Ltmp76         @ DW_AT_high_pc
-	.byte	8                       @ DW_AT_call_file
-	.byte	178                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x56c4:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc36           @ DW_AT_location
-	.long	20653                   @ DW_AT_abstract_origin
-	.byte	97                      @ Abbrev [97] 0x56cd:0x1a DW_TAG_inlined_subroutine
-	.long	20592                   @ DW_AT_abstract_origin
-	.long	.Ltmp76                 @ DW_AT_low_pc
-	.long	.Ltmp77-.Ltmp76         @ DW_AT_high_pc
-	.byte	3                       @ DW_AT_call_file
-	.short	462                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x56dd:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc37           @ DW_AT_location
-	.long	20611                   @ DW_AT_abstract_origin
-	.byte	0                       @ End Of Children Mark
-	.byte	0                       @ End Of Children Mark
-	.byte	0                       @ End Of Children Mark
-	.byte	0                       @ End Of Children Mark
-	.byte	0                       @ End Of Children Mark
-	.byte	0                       @ End Of Children Mark
-	.byte	99                      @ Abbrev [99] 0x56ec:0x7f DW_TAG_inlined_subroutine
-	.long	20526                   @ DW_AT_abstract_origin
-	.long	.Ltmp82                 @ DW_AT_low_pc
-	.long	.Ltmp85-.Ltmp82         @ DW_AT_high_pc
-	.byte	34                      @ DW_AT_call_file
-	.byte	23                      @ DW_AT_call_line
-	.byte	1                       @ DW_AT_GNU_discriminator
-	.byte	96                      @ Abbrev [96] 0x56fc:0x6e DW_TAG_inlined_subroutine
-	.long	20497                   @ DW_AT_abstract_origin
-	.long	.Ltmp82                 @ DW_AT_low_pc
-	.long	.Ltmp85-.Ltmp82         @ DW_AT_high_pc
-	.byte	12                      @ DW_AT_call_file
-	.byte	38                      @ DW_AT_call_line
-	.byte	101                     @ Abbrev [101] 0x570b:0x5e DW_TAG_inlined_subroutine
-	.long	20468                   @ DW_AT_abstract_origin
-	.long	.Ltmp82                 @ DW_AT_low_pc
-	.long	.Ltmp85-.Ltmp82         @ DW_AT_high_pc
-	.byte	8                       @ DW_AT_call_file
-	.short	427                     @ DW_AT_call_line
-	.byte	1                       @ DW_AT_GNU_discriminator
-	.byte	96                      @ Abbrev [96] 0x571c:0x4c DW_TAG_inlined_subroutine
-	.long	20550                   @ DW_AT_abstract_origin
-	.long	.Ltmp83                 @ DW_AT_low_pc
-	.long	.Ltmp85-.Ltmp83         @ DW_AT_high_pc
-	.byte	8                       @ DW_AT_call_file
-	.byte	160                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x572b:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc39           @ DW_AT_location
-	.long	20569                   @ DW_AT_abstract_origin
-	.byte	96                      @ Abbrev [96] 0x5734:0x33 DW_TAG_inlined_subroutine
-	.long	20635                   @ DW_AT_abstract_origin
-	.long	.Ltmp84                 @ DW_AT_low_pc
-	.long	.Ltmp85-.Ltmp84         @ DW_AT_high_pc
-	.byte	8                       @ DW_AT_call_file
-	.byte	178                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x5743:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc40           @ DW_AT_location
-	.long	20653                   @ DW_AT_abstract_origin
-	.byte	97                      @ Abbrev [97] 0x574c:0x1a DW_TAG_inlined_subroutine
-	.long	20592                   @ DW_AT_abstract_origin
-	.long	.Ltmp84                 @ DW_AT_low_pc
-	.long	.Ltmp85-.Ltmp84         @ DW_AT_high_pc
-	.byte	3                       @ DW_AT_call_file
-	.short	462                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x575c:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc41           @ DW_AT_location
-	.long	20611                   @ DW_AT_abstract_origin
-	.byte	0                       @ End Of Children Mark
-	.byte	0                       @ End Of Children Mark
-	.byte	0                       @ End Of Children Mark
-	.byte	0                       @ End Of Children Mark
-	.byte	0                       @ End Of Children Mark
-	.byte	0                       @ End Of Children Mark
-	.byte	0                       @ End Of Children Mark
-	.byte	0                       @ End Of Children Mark
-	.byte	111                     @ Abbrev [111] 0x576d:0x137 DW_TAG_subprogram
+	.byte	109                     @ Abbrev [109] 0x558e:0x137 DW_TAG_subprogram
 	.long	.Lfunc_begin2           @ DW_AT_low_pc
 	.long	.Lfunc_end2-.Lfunc_begin2 @ DW_AT_high_pc
 	.byte	1                       @ DW_AT_frame_base
 	.byte	91
-	.long	22400                   @ DW_AT_object_pointer
-	.long	22727                   @ DW_AT_abstract_origin
-	.byte	100                     @ Abbrev [100] 0x5780:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc42           @ DW_AT_location
-	.long	22739                   @ DW_AT_abstract_origin
-	.byte	100                     @ Abbrev [100] 0x5789:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc43           @ DW_AT_location
-	.long	22748                   @ DW_AT_abstract_origin
-	.byte	96                      @ Abbrev [96] 0x5792:0x16 DW_TAG_inlined_subroutine
-	.long	21516                   @ DW_AT_abstract_origin
-	.long	.Ltmp102                @ DW_AT_low_pc
-	.long	.Ltmp103-.Ltmp102       @ DW_AT_high_pc
+	.long	21921                   @ DW_AT_object_pointer
+	.long	22248                   @ DW_AT_abstract_origin
+	.byte	100                     @ Abbrev [100] 0x55a1:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc34           @ DW_AT_location
+	.long	22260                   @ DW_AT_abstract_origin
+	.byte	100                     @ Abbrev [100] 0x55aa:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc35           @ DW_AT_location
+	.long	22269                   @ DW_AT_abstract_origin
+	.byte	96                      @ Abbrev [96] 0x55b3:0x16 DW_TAG_inlined_subroutine
+	.long	21870                   @ DW_AT_abstract_origin
+	.long	.Ltmp89                 @ DW_AT_low_pc
+	.long	.Ltmp90-.Ltmp89         @ DW_AT_high_pc
 	.byte	34                      @ DW_AT_call_file
-	.byte	125                     @ DW_AT_call_line
-	.byte	112                     @ Abbrev [112] 0x57a1:0x6 DW_TAG_formal_parameter
+	.byte	128                     @ DW_AT_call_line
+	.byte	110                     @ Abbrev [110] 0x55c2:0x6 DW_TAG_formal_parameter
 	.byte	0                       @ DW_AT_const_value
-	.long	21535                   @ DW_AT_abstract_origin
+	.long	21889                   @ DW_AT_abstract_origin
 	.byte	0                       @ End Of Children Mark
-	.byte	96                      @ Abbrev [96] 0x57a8:0x16 DW_TAG_inlined_subroutine
-	.long	21516                   @ DW_AT_abstract_origin
-	.long	.Ltmp104                @ DW_AT_low_pc
-	.long	.Ltmp105-.Ltmp104       @ DW_AT_high_pc
+	.byte	96                      @ Abbrev [96] 0x55c9:0x16 DW_TAG_inlined_subroutine
+	.long	21870                   @ DW_AT_abstract_origin
+	.long	.Ltmp91                 @ DW_AT_low_pc
+	.long	.Ltmp92-.Ltmp91         @ DW_AT_high_pc
 	.byte	34                      @ DW_AT_call_file
-	.byte	126                     @ DW_AT_call_line
-	.byte	112                     @ Abbrev [112] 0x57b7:0x6 DW_TAG_formal_parameter
+	.byte	129                     @ DW_AT_call_line
+	.byte	110                     @ Abbrev [110] 0x55d8:0x6 DW_TAG_formal_parameter
 	.byte	0                       @ DW_AT_const_value
-	.long	21535                   @ DW_AT_abstract_origin
+	.long	21889                   @ DW_AT_abstract_origin
 	.byte	0                       @ End Of Children Mark
-	.byte	109                     @ Abbrev [109] 0x57be:0x2e DW_TAG_lexical_block
-	.long	.Ltmp107                @ DW_AT_low_pc
-	.long	.Ltmp117-.Ltmp107       @ DW_AT_high_pc
-	.byte	113                     @ Abbrev [113] 0x57c7:0x9 DW_TAG_variable
-	.long	.Ldebug_loc44           @ DW_AT_location
-	.long	22799                   @ DW_AT_abstract_origin
-	.byte	114                     @ Abbrev [114] 0x57d0:0xc DW_TAG_inlined_subroutine
+	.byte	111                     @ Abbrev [111] 0x55df:0x2e DW_TAG_lexical_block
+	.long	.Ltmp94                 @ DW_AT_low_pc
+	.long	.Ltmp104-.Ltmp94        @ DW_AT_high_pc
+	.byte	112                     @ Abbrev [112] 0x55e8:0x9 DW_TAG_variable
+	.long	.Ldebug_loc36           @ DW_AT_location
+	.long	22320                   @ DW_AT_abstract_origin
+	.byte	113                     @ Abbrev [113] 0x55f1:0xc DW_TAG_inlined_subroutine
 	.long	21326                   @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges5         @ DW_AT_ranges
 	.byte	34                      @ DW_AT_call_file
-	.byte	128                     @ DW_AT_call_line
-	.byte	1                       @ DW_AT_GNU_discriminator
-	.byte	98                      @ Abbrev [98] 0x57dc:0xf DW_TAG_inlined_subroutine
-	.long	21516                   @ DW_AT_abstract_origin
-	.long	.Ltmp111                @ DW_AT_low_pc
-	.long	.Ltmp112-.Ltmp111       @ DW_AT_high_pc
-	.byte	34                      @ DW_AT_call_file
 	.byte	131                     @ DW_AT_call_line
+	.byte	1                       @ DW_AT_GNU_discriminator
+	.byte	98                      @ Abbrev [98] 0x55fd:0xf DW_TAG_inlined_subroutine
+	.long	21870                   @ DW_AT_abstract_origin
+	.long	.Ltmp98                 @ DW_AT_low_pc
+	.long	.Ltmp99-.Ltmp98         @ DW_AT_high_pc
+	.byte	34                      @ DW_AT_call_file
+	.byte	134                     @ DW_AT_call_line
 	.byte	0                       @ End Of Children Mark
-	.byte	109                     @ Abbrev [109] 0x57ec:0x41 DW_TAG_lexical_block
-	.long	.Ltmp117                @ DW_AT_low_pc
-	.long	.Ltmp131-.Ltmp117       @ DW_AT_high_pc
-	.byte	113                     @ Abbrev [113] 0x57f5:0x9 DW_TAG_variable
-	.long	.Ldebug_loc45           @ DW_AT_location
-	.long	22760                   @ DW_AT_abstract_origin
-	.byte	114                     @ Abbrev [114] 0x57fe:0xc DW_TAG_inlined_subroutine
+	.byte	111                     @ Abbrev [111] 0x560d:0x41 DW_TAG_lexical_block
+	.long	.Ltmp104                @ DW_AT_low_pc
+	.long	.Ltmp118-.Ltmp104       @ DW_AT_high_pc
+	.byte	112                     @ Abbrev [112] 0x5616:0x9 DW_TAG_variable
+	.long	.Ldebug_loc37           @ DW_AT_location
+	.long	22281                   @ DW_AT_abstract_origin
+	.byte	113                     @ Abbrev [113] 0x561f:0xc DW_TAG_inlined_subroutine
 	.long	21326                   @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges6         @ DW_AT_ranges
 	.byte	34                      @ DW_AT_call_file
-	.byte	111                     @ DW_AT_call_line
+	.byte	114                     @ DW_AT_call_line
 	.byte	1                       @ DW_AT_GNU_discriminator
-	.byte	109                     @ Abbrev [109] 0x580a:0x22 DW_TAG_lexical_block
-	.long	.Ltmp119                @ DW_AT_low_pc
-	.long	.Ltmp126-.Ltmp119       @ DW_AT_high_pc
-	.byte	113                     @ Abbrev [113] 0x5813:0x9 DW_TAG_variable
-	.long	.Ldebug_loc46           @ DW_AT_location
-	.long	22772                   @ DW_AT_abstract_origin
-	.byte	98                      @ Abbrev [98] 0x581c:0xf DW_TAG_inlined_subroutine
-	.long	21516                   @ DW_AT_abstract_origin
-	.long	.Ltmp124                @ DW_AT_low_pc
-	.long	.Ltmp125-.Ltmp124       @ DW_AT_high_pc
+	.byte	111                     @ Abbrev [111] 0x562b:0x22 DW_TAG_lexical_block
+	.long	.Ltmp106                @ DW_AT_low_pc
+	.long	.Ltmp113-.Ltmp106       @ DW_AT_high_pc
+	.byte	112                     @ Abbrev [112] 0x5634:0x9 DW_TAG_variable
+	.long	.Ldebug_loc38           @ DW_AT_location
+	.long	22293                   @ DW_AT_abstract_origin
+	.byte	98                      @ Abbrev [98] 0x563d:0xf DW_TAG_inlined_subroutine
+	.long	21870                   @ DW_AT_abstract_origin
+	.long	.Ltmp111                @ DW_AT_low_pc
+	.long	.Ltmp112-.Ltmp111       @ DW_AT_high_pc
 	.byte	34                      @ DW_AT_call_file
-	.byte	116                     @ DW_AT_call_line
+	.byte	119                     @ DW_AT_call_line
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	109                     @ Abbrev [109] 0x582d:0x4c DW_TAG_lexical_block
-	.long	.Ltmp131                @ DW_AT_low_pc
-	.long	.Ltmp150-.Ltmp131       @ DW_AT_high_pc
-	.byte	113                     @ Abbrev [113] 0x5836:0x9 DW_TAG_variable
-	.long	.Ldebug_loc48           @ DW_AT_location
-	.long	22812                   @ DW_AT_abstract_origin
-	.byte	114                     @ Abbrev [114] 0x583f:0xc DW_TAG_inlined_subroutine
+	.byte	111                     @ Abbrev [111] 0x564e:0x4c DW_TAG_lexical_block
+	.long	.Ltmp118                @ DW_AT_low_pc
+	.long	.Ltmp137-.Ltmp118       @ DW_AT_high_pc
+	.byte	112                     @ Abbrev [112] 0x5657:0x9 DW_TAG_variable
+	.long	.Ldebug_loc40           @ DW_AT_location
+	.long	22333                   @ DW_AT_abstract_origin
+	.byte	113                     @ Abbrev [113] 0x5660:0xc DW_TAG_inlined_subroutine
 	.long	21326                   @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges7         @ DW_AT_ranges
 	.byte	34                      @ DW_AT_call_file
-	.byte	141                     @ DW_AT_call_line
+	.byte	144                     @ DW_AT_call_line
 	.byte	1                       @ DW_AT_GNU_discriminator
-	.byte	106                     @ Abbrev [106] 0x584b:0x1e DW_TAG_lexical_block
+	.byte	106                     @ Abbrev [106] 0x566c:0x1e DW_TAG_lexical_block
 	.long	.Ldebug_ranges8         @ DW_AT_ranges
-	.byte	113                     @ Abbrev [113] 0x5850:0x9 DW_TAG_variable
-	.long	.Ldebug_loc47           @ DW_AT_location
-	.long	22824                   @ DW_AT_abstract_origin
-	.byte	98                      @ Abbrev [98] 0x5859:0xf DW_TAG_inlined_subroutine
-	.long	21516                   @ DW_AT_abstract_origin
-	.long	.Ltmp141                @ DW_AT_low_pc
-	.long	.Ltmp142-.Ltmp141       @ DW_AT_high_pc
+	.byte	112                     @ Abbrev [112] 0x5671:0x9 DW_TAG_variable
+	.long	.Ldebug_loc39           @ DW_AT_location
+	.long	22345                   @ DW_AT_abstract_origin
+	.byte	98                      @ Abbrev [98] 0x567a:0xf DW_TAG_inlined_subroutine
+	.long	21870                   @ DW_AT_abstract_origin
+	.long	.Ltmp128                @ DW_AT_low_pc
+	.long	.Ltmp129-.Ltmp128       @ DW_AT_high_pc
 	.byte	34                      @ DW_AT_call_file
-	.byte	148                     @ DW_AT_call_line
+	.byte	151                     @ DW_AT_call_line
 	.byte	0                       @ End Of Children Mark
-	.byte	98                      @ Abbrev [98] 0x5869:0xf DW_TAG_inlined_subroutine
-	.long	21516                   @ DW_AT_abstract_origin
-	.long	.Ltmp136                @ DW_AT_low_pc
-	.long	.Ltmp137-.Ltmp136       @ DW_AT_high_pc
+	.byte	98                      @ Abbrev [98] 0x568a:0xf DW_TAG_inlined_subroutine
+	.long	21870                   @ DW_AT_abstract_origin
+	.long	.Ltmp123                @ DW_AT_low_pc
+	.long	.Ltmp124-.Ltmp123       @ DW_AT_high_pc
 	.byte	34                      @ DW_AT_call_file
-	.byte	155                     @ DW_AT_call_line
+	.byte	158                     @ DW_AT_call_line
 	.byte	0                       @ End Of Children Mark
-	.byte	109                     @ Abbrev [109] 0x5879:0x2a DW_TAG_lexical_block
-	.long	.Ltmp150                @ DW_AT_low_pc
-	.long	.Ltmp163-.Ltmp150       @ DW_AT_high_pc
-	.byte	115                     @ Abbrev [115] 0x5882:0x5 DW_TAG_variable
-	.long	22786                   @ DW_AT_abstract_origin
-	.byte	114                     @ Abbrev [114] 0x5887:0xc DW_TAG_inlined_subroutine
+	.byte	111                     @ Abbrev [111] 0x569a:0x2a DW_TAG_lexical_block
+	.long	.Ltmp137                @ DW_AT_low_pc
+	.long	.Ltmp150-.Ltmp137       @ DW_AT_high_pc
+	.byte	114                     @ Abbrev [114] 0x56a3:0x5 DW_TAG_variable
+	.long	22307                   @ DW_AT_abstract_origin
+	.byte	113                     @ Abbrev [113] 0x56a8:0xc DW_TAG_inlined_subroutine
 	.long	21326                   @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges9         @ DW_AT_ranges
 	.byte	34                      @ DW_AT_call_file
-	.byte	88                      @ DW_AT_call_line
+	.byte	91                      @ DW_AT_call_line
 	.byte	1                       @ DW_AT_GNU_discriminator
-	.byte	98                      @ Abbrev [98] 0x5893:0xf DW_TAG_inlined_subroutine
-	.long	21516                   @ DW_AT_abstract_origin
-	.long	.Ltmp154                @ DW_AT_low_pc
-	.long	.Ltmp155-.Ltmp154       @ DW_AT_high_pc
+	.byte	98                      @ Abbrev [98] 0x56b4:0xf DW_TAG_inlined_subroutine
+	.long	21870                   @ DW_AT_abstract_origin
+	.long	.Ltmp141                @ DW_AT_low_pc
+	.long	.Ltmp142-.Ltmp141       @ DW_AT_high_pc
 	.byte	34                      @ DW_AT_call_file
-	.byte	95                      @ DW_AT_call_line
+	.byte	98                      @ DW_AT_call_line
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	103                     @ Abbrev [103] 0x58a4:0x23 DW_TAG_subprogram
+	.byte	103                     @ Abbrev [103] 0x56c5:0x23 DW_TAG_subprogram
 	.long	.Lfunc_begin3           @ DW_AT_low_pc
 	.long	.Lfunc_end3-.Lfunc_begin3 @ DW_AT_high_pc
 	.byte	1                       @ DW_AT_frame_base
 	.byte	93
-	.long	22713                   @ DW_AT_object_pointer
+	.long	22234                   @ DW_AT_object_pointer
 	.byte	34                      @ DW_AT_decl_file
 	.byte	34                      @ DW_AT_decl_line
 	.long	329                     @ DW_AT_specification
-	.byte	94                      @ Abbrev [94] 0x58b9:0xd DW_TAG_formal_parameter
-	.long	.Ldebug_loc49           @ DW_AT_location
+	.byte	94                      @ Abbrev [94] 0x56da:0xd DW_TAG_formal_parameter
+	.long	.Ldebug_loc41           @ DW_AT_location
 	.long	.Linfo_string808        @ DW_AT_name
-	.long	22838                   @ DW_AT_type
+	.long	22359                   @ DW_AT_type
                                         @ DW_AT_artificial
 	.byte	0                       @ End Of Children Mark
-	.byte	116                     @ Abbrev [116] 0x58c7:0x6f DW_TAG_subprogram
+	.byte	115                     @ Abbrev [115] 0x56e8:0x6f DW_TAG_subprogram
 	.byte	34                      @ DW_AT_decl_file
-	.byte	74                      @ DW_AT_decl_line
+	.byte	77                      @ DW_AT_decl_line
 	.long	306                     @ DW_AT_specification
 	.byte	1                       @ DW_AT_inline
-	.long	22739                   @ DW_AT_object_pointer
-	.byte	90                      @ Abbrev [90] 0x58d3:0x9 DW_TAG_formal_parameter
+	.long	22260                   @ DW_AT_object_pointer
+	.byte	90                      @ Abbrev [90] 0x56f4:0x9 DW_TAG_formal_parameter
 	.long	.Linfo_string808        @ DW_AT_name
-	.long	22838                   @ DW_AT_type
+	.long	22359                   @ DW_AT_type
                                         @ DW_AT_artificial
-	.byte	41                      @ Abbrev [41] 0x58dc:0xb DW_TAG_formal_parameter
-	.long	.Linfo_string838        @ DW_AT_name
+	.byte	41                      @ Abbrev [41] 0x56fd:0xb DW_TAG_formal_parameter
+	.long	.Linfo_string834        @ DW_AT_name
 	.byte	34                      @ DW_AT_decl_file
-	.byte	74                      @ DW_AT_decl_line
+	.byte	77                      @ DW_AT_decl_line
 	.long	83                      @ DW_AT_type
-	.byte	117                     @ Abbrev [117] 0x58e7:0x1a DW_TAG_lexical_block
-	.byte	44                      @ Abbrev [44] 0x58e8:0xb DW_TAG_variable
-	.long	.Linfo_string839        @ DW_AT_name
-	.byte	34                      @ DW_AT_decl_file
-	.byte	111                     @ DW_AT_decl_line
-	.long	12203                   @ DW_AT_type
-	.byte	117                     @ Abbrev [117] 0x58f3:0xd DW_TAG_lexical_block
-	.byte	44                      @ Abbrev [44] 0x58f4:0xb DW_TAG_variable
-	.long	.Linfo_string840        @ DW_AT_name
+	.byte	116                     @ Abbrev [116] 0x5708:0x1a DW_TAG_lexical_block
+	.byte	44                      @ Abbrev [44] 0x5709:0xb DW_TAG_variable
+	.long	.Linfo_string835        @ DW_AT_name
 	.byte	34                      @ DW_AT_decl_file
 	.byte	114                     @ DW_AT_decl_line
+	.long	12203                   @ DW_AT_type
+	.byte	116                     @ Abbrev [116] 0x5714:0xd DW_TAG_lexical_block
+	.byte	44                      @ Abbrev [44] 0x5715:0xb DW_TAG_variable
+	.long	.Linfo_string836        @ DW_AT_name
+	.byte	34                      @ DW_AT_decl_file
+	.byte	117                     @ DW_AT_decl_line
 	.long	406                     @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	117                     @ Abbrev [117] 0x5901:0xd DW_TAG_lexical_block
-	.byte	44                      @ Abbrev [44] 0x5902:0xb DW_TAG_variable
-	.long	.Linfo_string839        @ DW_AT_name
+	.byte	116                     @ Abbrev [116] 0x5722:0xd DW_TAG_lexical_block
+	.byte	44                      @ Abbrev [44] 0x5723:0xb DW_TAG_variable
+	.long	.Linfo_string835        @ DW_AT_name
 	.byte	34                      @ DW_AT_decl_file
-	.byte	88                      @ DW_AT_decl_line
+	.byte	91                      @ DW_AT_decl_line
 	.long	12203                   @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
-	.byte	117                     @ Abbrev [117] 0x590e:0xd DW_TAG_lexical_block
-	.byte	44                      @ Abbrev [44] 0x590f:0xb DW_TAG_variable
-	.long	.Linfo_string839        @ DW_AT_name
+	.byte	116                     @ Abbrev [116] 0x572f:0xd DW_TAG_lexical_block
+	.byte	44                      @ Abbrev [44] 0x5730:0xb DW_TAG_variable
+	.long	.Linfo_string835        @ DW_AT_name
 	.byte	34                      @ DW_AT_decl_file
-	.byte	128                     @ DW_AT_decl_line
+	.byte	131                     @ DW_AT_decl_line
 	.long	12203                   @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
-	.byte	117                     @ Abbrev [117] 0x591b:0x1a DW_TAG_lexical_block
-	.byte	44                      @ Abbrev [44] 0x591c:0xb DW_TAG_variable
-	.long	.Linfo_string839        @ DW_AT_name
+	.byte	116                     @ Abbrev [116] 0x573c:0x1a DW_TAG_lexical_block
+	.byte	44                      @ Abbrev [44] 0x573d:0xb DW_TAG_variable
+	.long	.Linfo_string835        @ DW_AT_name
 	.byte	34                      @ DW_AT_decl_file
-	.byte	141                     @ DW_AT_decl_line
+	.byte	144                     @ DW_AT_decl_line
 	.long	12203                   @ DW_AT_type
-	.byte	117                     @ Abbrev [117] 0x5927:0xd DW_TAG_lexical_block
-	.byte	44                      @ Abbrev [44] 0x5928:0xb DW_TAG_variable
-	.long	.Linfo_string840        @ DW_AT_name
+	.byte	116                     @ Abbrev [116] 0x5748:0xd DW_TAG_lexical_block
+	.byte	44                      @ Abbrev [44] 0x5749:0xb DW_TAG_variable
+	.long	.Linfo_string836        @ DW_AT_name
 	.byte	34                      @ DW_AT_decl_file
-	.byte	146                     @ DW_AT_decl_line
+	.byte	149                     @ DW_AT_decl_line
 	.long	406                     @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	55                      @ Abbrev [55] 0x5936:0x5 DW_TAG_pointer_type
+	.byte	55                      @ Abbrev [55] 0x5757:0x5 DW_TAG_pointer_type
 	.long	38                      @ DW_AT_type
-	.byte	103                     @ Abbrev [103] 0x593b:0xcc DW_TAG_subprogram
+	.byte	103                     @ Abbrev [103] 0x575c:0xcc DW_TAG_subprogram
 	.long	.Lfunc_begin4           @ DW_AT_low_pc
 	.long	.Lfunc_end4-.Lfunc_begin4 @ DW_AT_high_pc
 	.byte	1                       @ DW_AT_frame_base
 	.byte	91
-	.long	22864                   @ DW_AT_object_pointer
+	.long	22385                   @ DW_AT_object_pointer
 	.byte	34                      @ DW_AT_decl_file
 	.byte	39                      @ DW_AT_decl_line
 	.long	351                     @ DW_AT_specification
-	.byte	94                      @ Abbrev [94] 0x5950:0xd DW_TAG_formal_parameter
-	.long	.Ldebug_loc50           @ DW_AT_location
+	.byte	94                      @ Abbrev [94] 0x5771:0xd DW_TAG_formal_parameter
+	.long	.Ldebug_loc42           @ DW_AT_location
 	.long	.Linfo_string808        @ DW_AT_name
-	.long	22838                   @ DW_AT_type
+	.long	22359                   @ DW_AT_type
                                         @ DW_AT_artificial
-	.byte	104                     @ Abbrev [104] 0x595d:0x54 DW_TAG_inlined_subroutine
-	.long	22727                   @ DW_AT_abstract_origin
+	.byte	104                     @ Abbrev [104] 0x577e:0x54 DW_TAG_inlined_subroutine
+	.long	22248                   @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges10        @ DW_AT_ranges
 	.byte	34                      @ DW_AT_call_file
-	.byte	45                      @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x5968:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc51           @ DW_AT_location
-	.long	22739                   @ DW_AT_abstract_origin
-	.byte	118                     @ Abbrev [118] 0x5971:0x6 DW_TAG_formal_parameter
+	.byte	48                      @ DW_AT_call_line
+	.byte	100                     @ Abbrev [100] 0x5789:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc43           @ DW_AT_location
+	.long	22260                   @ DW_AT_abstract_origin
+	.byte	117                     @ Abbrev [117] 0x5792:0x6 DW_TAG_formal_parameter
 	.byte	2                       @ DW_AT_const_value
-	.long	22748                   @ DW_AT_abstract_origin
-	.byte	106                     @ Abbrev [106] 0x5977:0x39 DW_TAG_lexical_block
+	.long	22269                   @ DW_AT_abstract_origin
+	.byte	106                     @ Abbrev [106] 0x5798:0x39 DW_TAG_lexical_block
 	.long	.Ldebug_ranges13        @ DW_AT_ranges
-	.byte	113                     @ Abbrev [113] 0x597c:0x9 DW_TAG_variable
-	.long	.Ldebug_loc52           @ DW_AT_location
-	.long	22760                   @ DW_AT_abstract_origin
-	.byte	114                     @ Abbrev [114] 0x5985:0xc DW_TAG_inlined_subroutine
+	.byte	112                     @ Abbrev [112] 0x579d:0x9 DW_TAG_variable
+	.long	.Ldebug_loc44           @ DW_AT_location
+	.long	22281                   @ DW_AT_abstract_origin
+	.byte	113                     @ Abbrev [113] 0x57a6:0xc DW_TAG_inlined_subroutine
 	.long	21326                   @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges11        @ DW_AT_ranges
 	.byte	34                      @ DW_AT_call_file
-	.byte	111                     @ DW_AT_call_line
+	.byte	114                     @ DW_AT_call_line
 	.byte	1                       @ DW_AT_GNU_discriminator
-	.byte	106                     @ Abbrev [106] 0x5991:0x1e DW_TAG_lexical_block
+	.byte	106                     @ Abbrev [106] 0x57b2:0x1e DW_TAG_lexical_block
 	.long	.Ldebug_ranges12        @ DW_AT_ranges
-	.byte	113                     @ Abbrev [113] 0x5996:0x9 DW_TAG_variable
-	.long	.Ldebug_loc53           @ DW_AT_location
-	.long	22772                   @ DW_AT_abstract_origin
-	.byte	98                      @ Abbrev [98] 0x599f:0xf DW_TAG_inlined_subroutine
-	.long	21516                   @ DW_AT_abstract_origin
-	.long	.Ltmp193                @ DW_AT_low_pc
-	.long	.Ltmp194-.Ltmp193       @ DW_AT_high_pc
+	.byte	112                     @ Abbrev [112] 0x57b7:0x9 DW_TAG_variable
+	.long	.Ldebug_loc45           @ DW_AT_location
+	.long	22293                   @ DW_AT_abstract_origin
+	.byte	98                      @ Abbrev [98] 0x57c0:0xf DW_TAG_inlined_subroutine
+	.long	21870                   @ DW_AT_abstract_origin
+	.long	.Ltmp180                @ DW_AT_low_pc
+	.long	.Ltmp181-.Ltmp180       @ DW_AT_high_pc
 	.byte	34                      @ DW_AT_call_file
-	.byte	116                     @ DW_AT_call_line
+	.byte	119                     @ DW_AT_call_line
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	104                     @ Abbrev [104] 0x59b1:0x36 DW_TAG_inlined_subroutine
-	.long	22727                   @ DW_AT_abstract_origin
+	.byte	104                     @ Abbrev [104] 0x57d2:0x36 DW_TAG_inlined_subroutine
+	.long	22248                   @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges14        @ DW_AT_ranges
 	.byte	34                      @ DW_AT_call_file
-	.byte	51                      @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x59bc:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc54           @ DW_AT_location
-	.long	22739                   @ DW_AT_abstract_origin
-	.byte	118                     @ Abbrev [118] 0x59c5:0x6 DW_TAG_formal_parameter
+	.byte	54                      @ DW_AT_call_line
+	.byte	100                     @ Abbrev [100] 0x57dd:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc46           @ DW_AT_location
+	.long	22260                   @ DW_AT_abstract_origin
+	.byte	117                     @ Abbrev [117] 0x57e6:0x6 DW_TAG_formal_parameter
 	.byte	1                       @ DW_AT_const_value
-	.long	22748                   @ DW_AT_abstract_origin
-	.byte	114                     @ Abbrev [114] 0x59cb:0xc DW_TAG_inlined_subroutine
+	.long	22269                   @ DW_AT_abstract_origin
+	.byte	113                     @ Abbrev [113] 0x57ec:0xc DW_TAG_inlined_subroutine
 	.long	21326                   @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges15        @ DW_AT_ranges
 	.byte	34                      @ DW_AT_call_file
-	.byte	88                      @ DW_AT_call_line
+	.byte	91                      @ DW_AT_call_line
 	.byte	1                       @ DW_AT_GNU_discriminator
-	.byte	98                      @ Abbrev [98] 0x59d7:0xf DW_TAG_inlined_subroutine
-	.long	21516                   @ DW_AT_abstract_origin
-	.long	.Ltmp208                @ DW_AT_low_pc
-	.long	.Ltmp209-.Ltmp208       @ DW_AT_high_pc
+	.byte	98                      @ Abbrev [98] 0x57f8:0xf DW_TAG_inlined_subroutine
+	.long	21870                   @ DW_AT_abstract_origin
+	.long	.Ltmp195                @ DW_AT_low_pc
+	.long	.Ltmp196-.Ltmp195       @ DW_AT_high_pc
 	.byte	34                      @ DW_AT_call_file
-	.byte	95                      @ DW_AT_call_line
+	.byte	98                      @ DW_AT_call_line
 	.byte	0                       @ End Of Children Mark
-	.byte	96                      @ Abbrev [96] 0x59e7:0x1f DW_TAG_inlined_subroutine
-	.long	22727                   @ DW_AT_abstract_origin
-	.long	.Ltmp219                @ DW_AT_low_pc
-	.long	.Ltmp221-.Ltmp219       @ DW_AT_high_pc
+	.byte	96                      @ Abbrev [96] 0x5808:0x1f DW_TAG_inlined_subroutine
+	.long	22248                   @ DW_AT_abstract_origin
+	.long	.Ltmp206                @ DW_AT_low_pc
+	.long	.Ltmp208-.Ltmp206       @ DW_AT_high_pc
 	.byte	34                      @ DW_AT_call_file
-	.byte	63                      @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x59f6:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc55           @ DW_AT_location
-	.long	22739                   @ DW_AT_abstract_origin
-	.byte	118                     @ Abbrev [118] 0x59ff:0x6 DW_TAG_formal_parameter
+	.byte	66                      @ DW_AT_call_line
+	.byte	100                     @ Abbrev [100] 0x5817:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc47           @ DW_AT_location
+	.long	22260                   @ DW_AT_abstract_origin
+	.byte	117                     @ Abbrev [117] 0x5820:0x6 DW_TAG_formal_parameter
 	.byte	4                       @ DW_AT_const_value
-	.long	22748                   @ DW_AT_abstract_origin
+	.long	22269                   @ DW_AT_abstract_origin
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	103                     @ Abbrev [103] 0x5a07:0x78 DW_TAG_subprogram
+	.byte	103                     @ Abbrev [103] 0x5828:0x78 DW_TAG_subprogram
 	.long	.Lfunc_begin5           @ DW_AT_low_pc
 	.long	.Lfunc_end5-.Lfunc_begin5 @ DW_AT_high_pc
 	.byte	1                       @ DW_AT_frame_base
 	.byte	91
-	.long	23068                   @ DW_AT_object_pointer
+	.long	22589                   @ DW_AT_object_pointer
 	.byte	34                      @ DW_AT_decl_file
-	.byte	171                     @ DW_AT_decl_line
+	.byte	174                     @ DW_AT_decl_line
 	.long	261                     @ DW_AT_specification
-	.byte	94                      @ Abbrev [94] 0x5a1c:0xd DW_TAG_formal_parameter
-	.long	.Ldebug_loc56           @ DW_AT_location
+	.byte	94                      @ Abbrev [94] 0x583d:0xd DW_TAG_formal_parameter
+	.long	.Ldebug_loc48           @ DW_AT_location
 	.long	.Linfo_string808        @ DW_AT_name
-	.long	22838                   @ DW_AT_type
+	.long	22359                   @ DW_AT_type
                                         @ DW_AT_artificial
-	.byte	95                      @ Abbrev [95] 0x5a29:0xf DW_TAG_formal_parameter
-	.long	.Ldebug_loc57           @ DW_AT_location
-	.long	.Linfo_string914        @ DW_AT_name
+	.byte	95                      @ Abbrev [95] 0x584a:0xf DW_TAG_formal_parameter
+	.long	.Ldebug_loc49           @ DW_AT_location
+	.long	.Linfo_string913        @ DW_AT_name
 	.byte	34                      @ DW_AT_decl_file
-	.byte	171                     @ DW_AT_decl_line
+	.byte	174                     @ DW_AT_decl_line
 	.long	406                     @ DW_AT_type
-	.byte	109                     @ Abbrev [109] 0x5a38:0x46 DW_TAG_lexical_block
-	.long	.Ltmp241                @ DW_AT_low_pc
-	.long	.Ltmp257-.Ltmp241       @ DW_AT_high_pc
-	.byte	119                     @ Abbrev [119] 0x5a41:0xc DW_TAG_variable
+	.byte	111                     @ Abbrev [111] 0x5859:0x46 DW_TAG_lexical_block
+	.long	.Ltmp228                @ DW_AT_low_pc
+	.long	.Ltmp242-.Ltmp228       @ DW_AT_high_pc
+	.byte	118                     @ Abbrev [118] 0x5862:0xc DW_TAG_variable
 	.byte	0                       @ DW_AT_const_value
-	.long	.Linfo_string839        @ DW_AT_name
+	.long	.Linfo_string835        @ DW_AT_name
 	.byte	34                      @ DW_AT_decl_file
-	.byte	175                     @ DW_AT_decl_line
+	.byte	178                     @ DW_AT_decl_line
 	.long	12203                   @ DW_AT_type
-	.byte	114                     @ Abbrev [114] 0x5a4d:0xc DW_TAG_inlined_subroutine
+	.byte	113                     @ Abbrev [113] 0x586e:0xc DW_TAG_inlined_subroutine
 	.long	21326                   @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges16        @ DW_AT_ranges
 	.byte	34                      @ DW_AT_call_file
-	.byte	175                     @ DW_AT_call_line
+	.byte	178                     @ DW_AT_call_line
 	.byte	1                       @ DW_AT_GNU_discriminator
-	.byte	106                     @ Abbrev [106] 0x5a59:0x24 DW_TAG_lexical_block
+	.byte	106                     @ Abbrev [106] 0x587a:0x24 DW_TAG_lexical_block
 	.long	.Ldebug_ranges17        @ DW_AT_ranges
-	.byte	107                     @ Abbrev [107] 0x5a5e:0xf DW_TAG_variable
-	.long	.Ldebug_loc58           @ DW_AT_location
-	.long	.Linfo_string915        @ DW_AT_name
+	.byte	107                     @ Abbrev [107] 0x587f:0xf DW_TAG_variable
+	.long	.Ldebug_loc50           @ DW_AT_location
+	.long	.Linfo_string914        @ DW_AT_name
 	.byte	34                      @ DW_AT_decl_file
-	.byte	177                     @ DW_AT_decl_line
+	.byte	180                     @ DW_AT_decl_line
 	.long	406                     @ DW_AT_type
-	.byte	98                      @ Abbrev [98] 0x5a6d:0xf DW_TAG_inlined_subroutine
-	.long	21516                   @ DW_AT_abstract_origin
-	.long	.Ltmp253                @ DW_AT_low_pc
-	.long	.Ltmp254-.Ltmp253       @ DW_AT_high_pc
+	.byte	98                      @ Abbrev [98] 0x588e:0xf DW_TAG_inlined_subroutine
+	.long	21870                   @ DW_AT_abstract_origin
+	.long	.Ltmp238                @ DW_AT_low_pc
+	.long	.Ltmp239-.Ltmp238       @ DW_AT_high_pc
 	.byte	34                      @ DW_AT_call_file
-	.byte	182                     @ DW_AT_call_line
+	.byte	185                     @ DW_AT_call_line
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	103                     @ Abbrev [103] 0x5a7f:0x21 DW_TAG_subprogram
+	.byte	103                     @ Abbrev [103] 0x58a0:0x21 DW_TAG_subprogram
 	.long	.Lfunc_begin6           @ DW_AT_low_pc
 	.long	.Lfunc_end6-.Lfunc_begin6 @ DW_AT_high_pc
 	.byte	1                       @ DW_AT_frame_base
 	.byte	93
-	.long	23188                   @ DW_AT_object_pointer
+	.long	22709                   @ DW_AT_object_pointer
 	.byte	34                      @ DW_AT_decl_file
-	.byte	189                     @ DW_AT_decl_line
+	.byte	192                     @ DW_AT_decl_line
 	.long	284                     @ DW_AT_specification
-	.byte	120                     @ Abbrev [120] 0x5a94:0xb DW_TAG_formal_parameter
+	.byte	119                     @ Abbrev [119] 0x58b5:0xb DW_TAG_formal_parameter
 	.byte	1                       @ DW_AT_location
 	.byte	80
 	.long	.Linfo_string808        @ DW_AT_name
-	.long	22838                   @ DW_AT_type
+	.long	22359                   @ DW_AT_type
                                         @ DW_AT_artificial
 	.byte	0                       @ End Of Children Mark
-	.byte	103                     @ Abbrev [103] 0x5aa0:0x6c DW_TAG_subprogram
+	.byte	103                     @ Abbrev [103] 0x58c1:0x80 DW_TAG_subprogram
 	.long	.Lfunc_begin7           @ DW_AT_low_pc
 	.long	.Lfunc_end7-.Lfunc_begin7 @ DW_AT_high_pc
 	.byte	1                       @ DW_AT_frame_base
 	.byte	91
-	.long	23221                   @ DW_AT_object_pointer
-	.byte	34                      @ DW_AT_decl_file
-	.byte	195                     @ DW_AT_decl_line
-	.long	369                     @ DW_AT_specification
-	.byte	94                      @ Abbrev [94] 0x5ab5:0xd DW_TAG_formal_parameter
-	.long	.Ldebug_loc59           @ DW_AT_location
-	.long	.Linfo_string808        @ DW_AT_name
-	.long	22838                   @ DW_AT_type
-                                        @ DW_AT_artificial
-	.byte	107                     @ Abbrev [107] 0x5ac2:0xf DW_TAG_variable
-	.long	.Ldebug_loc60           @ DW_AT_location
-	.long	.Linfo_string916        @ DW_AT_name
+	.long	22742                   @ DW_AT_object_pointer
 	.byte	34                      @ DW_AT_decl_file
 	.byte	198                     @ DW_AT_decl_line
-	.long	406                     @ DW_AT_type
-	.byte	109                     @ Abbrev [109] 0x5ad1:0x3a DW_TAG_lexical_block
-	.long	.Ltmp274                @ DW_AT_low_pc
-	.long	.Ltmp285-.Ltmp274       @ DW_AT_high_pc
-	.byte	107                     @ Abbrev [107] 0x5ada:0xf DW_TAG_variable
-	.long	.Ldebug_loc62           @ DW_AT_location
-	.long	.Linfo_string839        @ DW_AT_name
+	.long	369                     @ DW_AT_specification
+	.byte	94                      @ Abbrev [94] 0x58d6:0xd DW_TAG_formal_parameter
+	.long	.Ldebug_loc51           @ DW_AT_location
+	.long	.Linfo_string808        @ DW_AT_name
+	.long	22359                   @ DW_AT_type
+                                        @ DW_AT_artificial
+	.byte	107                     @ Abbrev [107] 0x58e3:0xf DW_TAG_variable
+	.long	.Ldebug_loc52           @ DW_AT_location
+	.long	.Linfo_string915        @ DW_AT_name
 	.byte	34                      @ DW_AT_decl_file
-	.byte	209                     @ DW_AT_decl_line
+	.byte	201                     @ DW_AT_decl_line
+	.long	406                     @ DW_AT_type
+	.byte	111                     @ Abbrev [111] 0x58f2:0x4e DW_TAG_lexical_block
+	.long	.Ltmp260                @ DW_AT_low_pc
+	.long	.Ltmp273-.Ltmp260       @ DW_AT_high_pc
+	.byte	107                     @ Abbrev [107] 0x58fb:0xf DW_TAG_variable
+	.long	.Ldebug_loc54           @ DW_AT_location
+	.long	.Linfo_string835        @ DW_AT_name
+	.byte	34                      @ DW_AT_decl_file
+	.byte	213                     @ DW_AT_decl_line
 	.long	12203                   @ DW_AT_type
-	.byte	114                     @ Abbrev [114] 0x5ae9:0xc DW_TAG_inlined_subroutine
+	.byte	113                     @ Abbrev [113] 0x590a:0xc DW_TAG_inlined_subroutine
 	.long	21326                   @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges18        @ DW_AT_ranges
 	.byte	34                      @ DW_AT_call_file
-	.byte	209                     @ DW_AT_call_line
+	.byte	213                     @ DW_AT_call_line
 	.byte	1                       @ DW_AT_GNU_discriminator
-	.byte	106                     @ Abbrev [106] 0x5af5:0x15 DW_TAG_lexical_block
-	.long	.Ldebug_ranges19        @ DW_AT_ranges
-	.byte	107                     @ Abbrev [107] 0x5afa:0xf DW_TAG_variable
-	.long	.Ldebug_loc61           @ DW_AT_location
-	.long	.Linfo_string917        @ DW_AT_name
+	.byte	111                     @ Abbrev [111] 0x5916:0x29 DW_TAG_lexical_block
+	.long	.Ltmp265                @ DW_AT_low_pc
+	.long	.Ltmp268-.Ltmp265       @ DW_AT_high_pc
+	.byte	107                     @ Abbrev [107] 0x591f:0xf DW_TAG_variable
+	.long	.Ldebug_loc53           @ DW_AT_location
+	.long	.Linfo_string916        @ DW_AT_name
 	.byte	34                      @ DW_AT_decl_file
-	.byte	211                     @ DW_AT_decl_line
+	.byte	218                     @ DW_AT_decl_line
 	.long	406                     @ DW_AT_type
+	.byte	120                     @ Abbrev [120] 0x592e:0x10 DW_TAG_inlined_subroutine
+	.long	21870                   @ DW_AT_abstract_origin
+	.long	.Ltmp265                @ DW_AT_low_pc
+	.long	.Ltmp266-.Ltmp265       @ DW_AT_high_pc
+	.byte	34                      @ DW_AT_call_file
+	.byte	218                     @ DW_AT_call_line
+	.byte	1                       @ DW_AT_GNU_discriminator
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	92                      @ Abbrev [92] 0x5b0c:0x38 DW_TAG_subprogram
+	.byte	92                      @ Abbrev [92] 0x5941:0x38 DW_TAG_subprogram
 	.long	2088                    @ DW_AT_specification
 	.byte	1                       @ DW_AT_inline
-	.long	23318                   @ DW_AT_object_pointer
-	.byte	90                      @ Abbrev [90] 0x5b16:0x9 DW_TAG_formal_parameter
+	.long	22859                   @ DW_AT_object_pointer
+	.byte	90                      @ Abbrev [90] 0x594b:0x9 DW_TAG_formal_parameter
 	.long	.Linfo_string808        @ DW_AT_name
 	.long	21346                   @ DW_AT_type
                                         @ DW_AT_artificial
-	.byte	46                      @ Abbrev [46] 0x5b1f:0xc DW_TAG_formal_parameter
+	.byte	46                      @ Abbrev [46] 0x5954:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string829        @ DW_AT_name
 	.byte	8                       @ DW_AT_decl_file
 	.short	1420                    @ DW_AT_decl_line
 	.long	12352                   @ DW_AT_type
-	.byte	46                      @ Abbrev [46] 0x5b2b:0xc DW_TAG_formal_parameter
-	.long	.Linfo_string841        @ DW_AT_name
+	.byte	46                      @ Abbrev [46] 0x5960:0xc DW_TAG_formal_parameter
+	.long	.Linfo_string837        @ DW_AT_name
 	.byte	8                       @ DW_AT_decl_file
 	.short	1420                    @ DW_AT_decl_line
 	.long	12455                   @ DW_AT_type
-	.byte	48                      @ Abbrev [48] 0x5b37:0xc DW_TAG_variable
-	.long	.Linfo_string842        @ DW_AT_name
+	.byte	48                      @ Abbrev [48] 0x596c:0xc DW_TAG_variable
+	.long	.Linfo_string838        @ DW_AT_name
 	.byte	8                       @ DW_AT_decl_file
 	.short	1425                    @ DW_AT_decl_line
-	.long	23364                   @ DW_AT_type
+	.long	22905                   @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
-	.byte	58                      @ Abbrev [58] 0x5b44:0x5 DW_TAG_const_type
+	.byte	58                      @ Abbrev [58] 0x5979:0x5 DW_TAG_const_type
 	.long	12352                   @ DW_AT_type
-	.byte	92                      @ Abbrev [92] 0x5b49:0x1f DW_TAG_subprogram
+	.byte	92                      @ Abbrev [92] 0x597e:0x1f DW_TAG_subprogram
 	.long	2685                    @ DW_AT_specification
 	.byte	1                       @ DW_AT_inline
-	.long	23379                   @ DW_AT_object_pointer
-	.byte	90                      @ Abbrev [90] 0x5b53:0x9 DW_TAG_formal_parameter
+	.long	22920                   @ DW_AT_object_pointer
+	.byte	90                      @ Abbrev [90] 0x5988:0x9 DW_TAG_formal_parameter
 	.long	.Linfo_string808        @ DW_AT_name
 	.long	20372                   @ DW_AT_type
                                         @ DW_AT_artificial
-	.byte	41                      @ Abbrev [41] 0x5b5c:0xb DW_TAG_formal_parameter
+	.byte	41                      @ Abbrev [41] 0x5991:0xb DW_TAG_formal_parameter
 	.long	.Linfo_string829        @ DW_AT_name
 	.byte	8                       @ DW_AT_decl_file
 	.byte	167                     @ DW_AT_decl_line
 	.long	5643                    @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
-	.byte	92                      @ Abbrev [92] 0x5b68:0x26 DW_TAG_subprogram
+	.byte	92                      @ Abbrev [92] 0x599d:0x26 DW_TAG_subprogram
 	.long	11578                   @ DW_AT_specification
 	.byte	1                       @ DW_AT_inline
-	.long	23410                   @ DW_AT_object_pointer
-	.byte	90                      @ Abbrev [90] 0x5b72:0x9 DW_TAG_formal_parameter
+	.long	22951                   @ DW_AT_object_pointer
+	.byte	90                      @ Abbrev [90] 0x59a7:0x9 DW_TAG_formal_parameter
 	.long	.Linfo_string808        @ DW_AT_name
 	.long	20782                   @ DW_AT_type
                                         @ DW_AT_artificial
-	.byte	41                      @ Abbrev [41] 0x5b7b:0xb DW_TAG_formal_parameter
+	.byte	41                      @ Abbrev [41] 0x59b0:0xb DW_TAG_formal_parameter
 	.long	.Linfo_string829        @ DW_AT_name
 	.byte	4                       @ DW_AT_decl_file
 	.byte	99                      @ DW_AT_decl_line
 	.long	12192                   @ DW_AT_type
-	.byte	42                      @ Abbrev [42] 0x5b86:0x7 DW_TAG_formal_parameter
+	.byte	42                      @ Abbrev [42] 0x59bb:0x7 DW_TAG_formal_parameter
 	.byte	4                       @ DW_AT_decl_file
 	.byte	99                      @ DW_AT_decl_line
 	.long	12210                   @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
-	.byte	91                      @ Abbrev [91] 0x5b8e:0x1f DW_TAG_subprogram
+	.byte	91                      @ Abbrev [91] 0x59c3:0x1f DW_TAG_subprogram
 	.long	2789                    @ DW_AT_specification
 	.byte	1                       @ DW_AT_inline
-	.byte	46                      @ Abbrev [46] 0x5b94:0xc DW_TAG_formal_parameter
+	.byte	46                      @ Abbrev [46] 0x59c9:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string830        @ DW_AT_name
 	.byte	3                       @ DW_AT_decl_file
 	.short	435                     @ DW_AT_decl_line
 	.long	12502                   @ DW_AT_type
-	.byte	46                      @ Abbrev [46] 0x5ba0:0xc DW_TAG_formal_parameter
+	.byte	46                      @ Abbrev [46] 0x59d5:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string829        @ DW_AT_name
 	.byte	3                       @ DW_AT_decl_file
 	.short	435                     @ DW_AT_decl_line
 	.long	12231                   @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
-	.byte	91                      @ Abbrev [91] 0x5bad:0x3d DW_TAG_subprogram
+	.byte	89                      @ Abbrev [89] 0x59e2:0x18 DW_TAG_subprogram
+	.long	.Linfo_string855        @ DW_AT_linkage_name
+	.long	4943                    @ DW_AT_specification
+	.byte	1                       @ DW_AT_inline
+	.long	23024                   @ DW_AT_object_pointer
+	.byte	90                      @ Abbrev [90] 0x59f0:0x9 DW_TAG_formal_parameter
+	.long	.Linfo_string808        @ DW_AT_name
+	.long	23034                   @ DW_AT_type
+                                        @ DW_AT_artificial
+	.byte	0                       @ End Of Children Mark
+	.byte	55                      @ Abbrev [55] 0x59fa:0x5 DW_TAG_pointer_type
+	.long	4893                    @ DW_AT_type
+	.byte	89                      @ Abbrev [89] 0x59ff:0x18 DW_TAG_subprogram
+	.long	.Linfo_string856        @ DW_AT_linkage_name
+	.long	5111                    @ DW_AT_specification
+	.byte	1                       @ DW_AT_inline
+	.long	23053                   @ DW_AT_object_pointer
+	.byte	90                      @ Abbrev [90] 0x5a0d:0x9 DW_TAG_formal_parameter
+	.long	.Linfo_string808        @ DW_AT_name
+	.long	20492                   @ DW_AT_type
+                                        @ DW_AT_artificial
+	.byte	0                       @ End Of Children Mark
+	.byte	89                      @ Abbrev [89] 0x5a17:0x18 DW_TAG_subprogram
+	.long	.Linfo_string857        @ DW_AT_linkage_name
+	.long	3005                    @ DW_AT_specification
+	.byte	1                       @ DW_AT_inline
+	.long	23077                   @ DW_AT_object_pointer
+	.byte	90                      @ Abbrev [90] 0x5a25:0x9 DW_TAG_formal_parameter
+	.long	.Linfo_string808        @ DW_AT_name
+	.long	20521                   @ DW_AT_type
+                                        @ DW_AT_artificial
+	.byte	0                       @ End Of Children Mark
+	.byte	89                      @ Abbrev [89] 0x5a2f:0x18 DW_TAG_subprogram
+	.long	.Linfo_string858        @ DW_AT_linkage_name
+	.long	11927                   @ DW_AT_specification
+	.byte	1                       @ DW_AT_inline
+	.long	23101                   @ DW_AT_object_pointer
+	.byte	90                      @ Abbrev [90] 0x5a3d:0x9 DW_TAG_formal_parameter
+	.long	.Linfo_string808        @ DW_AT_name
+	.long	11842                   @ DW_AT_type
+                                        @ DW_AT_artificial
+	.byte	0                       @ End Of Children Mark
+	.byte	91                      @ Abbrev [91] 0x5a47:0x3d DW_TAG_subprogram
 	.long	9502                    @ DW_AT_specification
 	.byte	1                       @ DW_AT_inline
-	.byte	21                      @ Abbrev [21] 0x5bb3:0x9 DW_TAG_template_type_parameter
+	.byte	21                      @ Abbrev [21] 0x5a4d:0x9 DW_TAG_template_type_parameter
 	.long	11842                   @ DW_AT_type
 	.long	.Linfo_string813        @ DW_AT_name
-	.byte	21                      @ Abbrev [21] 0x5bbc:0x9 DW_TAG_template_type_parameter
+	.byte	21                      @ Abbrev [21] 0x5a56:0x9 DW_TAG_template_type_parameter
 	.long	12203                   @ DW_AT_type
-	.long	.Linfo_string854        @ DW_AT_name
-	.byte	46                      @ Abbrev [46] 0x5bc5:0xc DW_TAG_formal_parameter
+	.long	.Linfo_string850        @ DW_AT_name
+	.byte	46                      @ Abbrev [46] 0x5a5f:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string816        @ DW_AT_name
 	.byte	37                      @ DW_AT_decl_file
 	.short	513                     @ DW_AT_decl_line
 	.long	11842                   @ DW_AT_type
-	.byte	46                      @ Abbrev [46] 0x5bd1:0xc DW_TAG_formal_parameter
+	.byte	46                      @ Abbrev [46] 0x5a6b:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string829        @ DW_AT_name
 	.byte	37                      @ DW_AT_decl_file
 	.short	513                     @ DW_AT_decl_line
 	.long	12203                   @ DW_AT_type
-	.byte	48                      @ Abbrev [48] 0x5bdd:0xc DW_TAG_variable
+	.byte	48                      @ Abbrev [48] 0x5a77:0xc DW_TAG_variable
 	.long	.Linfo_string867        @ DW_AT_name
 	.byte	37                      @ DW_AT_decl_file
 	.short	515                     @ DW_AT_decl_line
 	.long	11842                   @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
-	.byte	121                     @ Abbrev [121] 0x5bea:0x3df DW_TAG_subprogram
+	.byte	121                     @ Abbrev [121] 0x5a84:0x3df DW_TAG_subprogram
 	.long	.Lfunc_begin9           @ DW_AT_low_pc
 	.long	.Lfunc_end9-.Lfunc_begin9 @ DW_AT_high_pc
 	.byte	1                       @ DW_AT_frame_base
 	.byte	91
-	.long	23552                   @ DW_AT_object_pointer
+	.long	23194                   @ DW_AT_object_pointer
 	.byte	36                      @ DW_AT_decl_file
 	.short	541                     @ DW_AT_decl_line
 	.long	2041                    @ DW_AT_specification
-	.byte	94                      @ Abbrev [94] 0x5c00:0xd DW_TAG_formal_parameter
-	.long	.Ldebug_loc63           @ DW_AT_location
+	.byte	94                      @ Abbrev [94] 0x5a9a:0xd DW_TAG_formal_parameter
+	.long	.Ldebug_loc55           @ DW_AT_location
 	.long	.Linfo_string808        @ DW_AT_name
 	.long	20401                   @ DW_AT_type
                                         @ DW_AT_artificial
-	.byte	122                     @ Abbrev [122] 0x5c0d:0x10 DW_TAG_formal_parameter
-	.long	.Ldebug_loc64           @ DW_AT_location
+	.byte	122                     @ Abbrev [122] 0x5aa7:0x10 DW_TAG_formal_parameter
+	.long	.Ldebug_loc56           @ DW_AT_location
 	.long	.Linfo_string829        @ DW_AT_name
 	.byte	36                      @ DW_AT_decl_file
 	.short	1398                    @ DW_AT_decl_line
 	.long	12352                   @ DW_AT_type
-	.byte	106                     @ Abbrev [106] 0x5c1d:0x318 DW_TAG_lexical_block
-	.long	.Ldebug_ranges33        @ DW_AT_ranges
-	.byte	123                     @ Abbrev [123] 0x5c22:0x10 DW_TAG_variable
-	.long	.Ldebug_loc68           @ DW_AT_location
-	.long	.Linfo_string842        @ DW_AT_name
+	.byte	106                     @ Abbrev [106] 0x5ab7:0x318 DW_TAG_lexical_block
+	.long	.Ldebug_ranges32        @ DW_AT_ranges
+	.byte	123                     @ Abbrev [123] 0x5abc:0x10 DW_TAG_variable
+	.long	.Ldebug_loc60           @ DW_AT_location
+	.long	.Linfo_string838        @ DW_AT_name
 	.byte	36                      @ DW_AT_decl_file
 	.short	554                     @ DW_AT_decl_line
-	.long	23364                   @ DW_AT_type
-	.byte	123                     @ Abbrev [123] 0x5c32:0x10 DW_TAG_variable
-	.long	.Ldebug_loc90           @ DW_AT_location
-	.long	.Linfo_string918        @ DW_AT_name
+	.long	22905                   @ DW_AT_type
+	.byte	123                     @ Abbrev [123] 0x5acc:0x10 DW_TAG_variable
+	.long	.Ldebug_loc82           @ DW_AT_location
+	.long	.Linfo_string917        @ DW_AT_name
 	.byte	36                      @ DW_AT_decl_file
 	.short	558                     @ DW_AT_decl_line
 	.long	2156                    @ DW_AT_type
-	.byte	48                      @ Abbrev [48] 0x5c42:0xc DW_TAG_variable
-	.long	.Linfo_string919        @ DW_AT_name
+	.byte	48                      @ Abbrev [48] 0x5adc:0xc DW_TAG_variable
+	.long	.Linfo_string918        @ DW_AT_name
 	.byte	36                      @ DW_AT_decl_file
 	.short	556                     @ DW_AT_decl_line
-	.long	23364                   @ DW_AT_type
-	.byte	48                      @ Abbrev [48] 0x5c4e:0xc DW_TAG_variable
-	.long	.Linfo_string920        @ DW_AT_name
+	.long	22905                   @ DW_AT_type
+	.byte	48                      @ Abbrev [48] 0x5ae8:0xc DW_TAG_variable
+	.long	.Linfo_string919        @ DW_AT_name
 	.byte	36                      @ DW_AT_decl_file
 	.short	557                     @ DW_AT_decl_line
 	.long	2156                    @ DW_AT_type
-	.byte	105                     @ Abbrev [105] 0x5c5a:0x3f DW_TAG_inlined_subroutine
-	.long	23308                   @ DW_AT_abstract_origin
-	.long	.Ldebug_ranges20        @ DW_AT_ranges
+	.byte	105                     @ Abbrev [105] 0x5af4:0x3f DW_TAG_inlined_subroutine
+	.long	22849                   @ DW_AT_abstract_origin
+	.long	.Ldebug_ranges19        @ DW_AT_ranges
 	.byte	36                      @ DW_AT_call_file
 	.short	555                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x5c66:0x9 DW_TAG_formal_parameter
+	.byte	100                     @ Abbrev [100] 0x5b00:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc58           @ DW_AT_location
+	.long	22868                   @ DW_AT_abstract_origin
+	.byte	100                     @ Abbrev [100] 0x5b09:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc85           @ DW_AT_location
+	.long	22880                   @ DW_AT_abstract_origin
+	.byte	112                     @ Abbrev [112] 0x5b12:0x9 DW_TAG_variable
 	.long	.Ldebug_loc66           @ DW_AT_location
-	.long	23327                   @ DW_AT_abstract_origin
-	.byte	100                     @ Abbrev [100] 0x5c6f:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc93           @ DW_AT_location
-	.long	23339                   @ DW_AT_abstract_origin
-	.byte	113                     @ Abbrev [113] 0x5c78:0x9 DW_TAG_variable
-	.long	.Ldebug_loc74           @ DW_AT_location
-	.long	23351                   @ DW_AT_abstract_origin
-	.byte	124                     @ Abbrev [124] 0x5c81:0x17 DW_TAG_inlined_subroutine
+	.long	22892                   @ DW_AT_abstract_origin
+	.byte	124                     @ Abbrev [124] 0x5b1b:0x17 DW_TAG_inlined_subroutine
 	.long	21326                   @ DW_AT_abstract_origin
-	.long	.Ldebug_ranges21        @ DW_AT_ranges
+	.long	.Ldebug_ranges20        @ DW_AT_ranges
 	.byte	8                       @ DW_AT_call_file
 	.short	1422                    @ DW_AT_call_line
 	.byte	1                       @ DW_AT_GNU_discriminator
-	.byte	100                     @ Abbrev [100] 0x5c8e:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc65           @ DW_AT_location
+	.byte	100                     @ Abbrev [100] 0x5b28:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc57           @ DW_AT_location
 	.long	21336                   @ DW_AT_abstract_origin
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	124                     @ Abbrev [124] 0x5c99:0x43 DW_TAG_inlined_subroutine
-	.long	23369                   @ DW_AT_abstract_origin
-	.long	.Ldebug_ranges22        @ DW_AT_ranges
+	.byte	124                     @ Abbrev [124] 0x5b33:0x43 DW_TAG_inlined_subroutine
+	.long	22910                   @ DW_AT_abstract_origin
+	.long	.Ldebug_ranges21        @ DW_AT_ranges
 	.byte	36                      @ DW_AT_call_file
 	.short	557                     @ DW_AT_call_line
 	.byte	1                       @ DW_AT_GNU_discriminator
-	.byte	100                     @ Abbrev [100] 0x5ca6:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc67           @ DW_AT_location
-	.long	23388                   @ DW_AT_abstract_origin
-	.byte	108                     @ Abbrev [108] 0x5caf:0x2c DW_TAG_inlined_subroutine
-	.long	23438                   @ DW_AT_abstract_origin
-	.long	.Ldebug_ranges23        @ DW_AT_ranges
+	.byte	100                     @ Abbrev [100] 0x5b40:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc59           @ DW_AT_location
+	.long	22929                   @ DW_AT_abstract_origin
+	.byte	108                     @ Abbrev [108] 0x5b49:0x2c DW_TAG_inlined_subroutine
+	.long	22979                   @ DW_AT_abstract_origin
+	.long	.Ldebug_ranges22        @ DW_AT_ranges
 	.byte	8                       @ DW_AT_call_file
 	.byte	170                     @ DW_AT_call_line
 	.byte	1                       @ DW_AT_GNU_discriminator
-	.byte	100                     @ Abbrev [100] 0x5cbb:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc69           @ DW_AT_location
-	.long	23456                   @ DW_AT_abstract_origin
-	.byte	105                     @ Abbrev [105] 0x5cc4:0x16 DW_TAG_inlined_subroutine
-	.long	23400                   @ DW_AT_abstract_origin
-	.long	.Ldebug_ranges24        @ DW_AT_ranges
+	.byte	100                     @ Abbrev [100] 0x5b55:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc61           @ DW_AT_location
+	.long	22997                   @ DW_AT_abstract_origin
+	.byte	105                     @ Abbrev [105] 0x5b5e:0x16 DW_TAG_inlined_subroutine
+	.long	22941                   @ DW_AT_abstract_origin
+	.long	.Ldebug_ranges23        @ DW_AT_ranges
 	.byte	3                       @ DW_AT_call_file
 	.short	436                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x5cd0:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc70           @ DW_AT_location
-	.long	23419                   @ DW_AT_abstract_origin
+	.byte	100                     @ Abbrev [100] 0x5b6a:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc62           @ DW_AT_location
+	.long	22960                   @ DW_AT_abstract_origin
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	97                      @ Abbrev [97] 0x5cdc:0x54 DW_TAG_inlined_subroutine
+	.byte	97                      @ Abbrev [97] 0x5b76:0x54 DW_TAG_inlined_subroutine
 	.long	9203                    @ DW_AT_abstract_origin
-	.long	.Ltmp326                @ DW_AT_low_pc
-	.long	.Ltmp329-.Ltmp326       @ DW_AT_high_pc
+	.long	.Ltmp314                @ DW_AT_low_pc
+	.long	.Ltmp317-.Ltmp314       @ DW_AT_high_pc
 	.byte	36                      @ DW_AT_call_file
 	.short	562                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x5cec:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc77           @ DW_AT_location
+	.byte	100                     @ Abbrev [100] 0x5b86:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc69           @ DW_AT_location
 	.long	9247                    @ DW_AT_abstract_origin
-	.byte	100                     @ Abbrev [100] 0x5cf5:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc76           @ DW_AT_location
+	.byte	100                     @ Abbrev [100] 0x5b8f:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc68           @ DW_AT_location
 	.long	9259                    @ DW_AT_abstract_origin
-	.byte	97                      @ Abbrev [97] 0x5cfe:0x31 DW_TAG_inlined_subroutine
+	.byte	97                      @ Abbrev [97] 0x5b98:0x31 DW_TAG_inlined_subroutine
 	.long	9114                    @ DW_AT_abstract_origin
-	.long	.Ltmp326                @ DW_AT_low_pc
-	.long	.Ltmp329-.Ltmp326       @ DW_AT_high_pc
+	.long	.Ltmp314                @ DW_AT_low_pc
+	.long	.Ltmp317-.Ltmp314       @ DW_AT_high_pc
 	.byte	37                      @ DW_AT_call_file
 	.short	302                     @ DW_AT_call_line
-	.byte	97                      @ Abbrev [97] 0x5d0e:0x20 DW_TAG_inlined_subroutine
+	.byte	97                      @ Abbrev [97] 0x5ba8:0x20 DW_TAG_inlined_subroutine
 	.long	9035                    @ DW_AT_abstract_origin
-	.long	.Ltmp326                @ DW_AT_low_pc
-	.long	.Ltmp329-.Ltmp326       @ DW_AT_high_pc
+	.long	.Ltmp314                @ DW_AT_low_pc
+	.long	.Ltmp317-.Ltmp314       @ DW_AT_high_pc
 	.byte	37                      @ DW_AT_call_file
 	.short	281                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x5d1e:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc75           @ DW_AT_location
+	.byte	100                     @ Abbrev [100] 0x5bb8:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc67           @ DW_AT_location
 	.long	9091                    @ DW_AT_abstract_origin
-	.byte	125                     @ Abbrev [125] 0x5d27:0x6 DW_TAG_variable
+	.byte	125                     @ Abbrev [125] 0x5bc1:0x6 DW_TAG_variable
 	.byte	1                       @ DW_AT_const_value
 	.long	9102                    @ DW_AT_abstract_origin
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	105                     @ Abbrev [105] 0x5d30:0x87 DW_TAG_inlined_subroutine
+	.byte	105                     @ Abbrev [105] 0x5bca:0x87 DW_TAG_inlined_subroutine
 	.long	9368                    @ DW_AT_abstract_origin
-	.long	.Ldebug_ranges25        @ DW_AT_ranges
+	.long	.Ldebug_ranges24        @ DW_AT_ranges
 	.byte	36                      @ DW_AT_call_file
 	.short	566                     @ DW_AT_call_line
-	.byte	105                     @ Abbrev [105] 0x5d3c:0x7a DW_TAG_inlined_subroutine
+	.byte	105                     @ Abbrev [105] 0x5bd6:0x7a DW_TAG_inlined_subroutine
 	.long	9296                    @ DW_AT_abstract_origin
-	.long	.Ldebug_ranges26        @ DW_AT_ranges
+	.long	.Ldebug_ranges25        @ DW_AT_ranges
 	.byte	37                      @ DW_AT_call_file
 	.short	637                     @ DW_AT_call_line
-	.byte	105                     @ Abbrev [105] 0x5d48:0x6d DW_TAG_inlined_subroutine
-	.long	23469                   @ DW_AT_abstract_origin
-	.long	.Ldebug_ranges27        @ DW_AT_ranges
+	.byte	105                     @ Abbrev [105] 0x5be2:0x6d DW_TAG_inlined_subroutine
+	.long	23111                   @ DW_AT_abstract_origin
+	.long	.Ldebug_ranges26        @ DW_AT_ranges
 	.byte	37                      @ DW_AT_call_file
 	.short	573                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x5d54:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc79           @ DW_AT_location
-	.long	23505                   @ DW_AT_abstract_origin
-	.byte	105                     @ Abbrev [105] 0x5d5d:0x3d DW_TAG_inlined_subroutine
+	.byte	100                     @ Abbrev [100] 0x5bee:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc71           @ DW_AT_location
+	.long	23147                   @ DW_AT_abstract_origin
+	.byte	105                     @ Abbrev [105] 0x5bf7:0x3d DW_TAG_inlined_subroutine
 	.long	9445                    @ DW_AT_abstract_origin
-	.long	.Ldebug_ranges28        @ DW_AT_ranges
+	.long	.Ldebug_ranges27        @ DW_AT_ranges
 	.byte	37                      @ DW_AT_call_file
 	.short	519                     @ DW_AT_call_line
-	.byte	104                     @ Abbrev [104] 0x5d69:0x30 DW_TAG_inlined_subroutine
-	.long	21492                   @ DW_AT_abstract_origin
-	.long	.Ldebug_ranges29        @ DW_AT_ranges
+	.byte	104                     @ Abbrev [104] 0x5c03:0x30 DW_TAG_inlined_subroutine
+	.long	23087                   @ DW_AT_abstract_origin
+	.long	.Ldebug_ranges28        @ DW_AT_ranges
 	.byte	35                      @ DW_AT_call_file
 	.byte	75                      @ DW_AT_call_line
-	.byte	104                     @ Abbrev [104] 0x5d74:0x24 DW_TAG_inlined_subroutine
-	.long	21468                   @ DW_AT_abstract_origin
-	.long	.Ldebug_ranges30        @ DW_AT_ranges
+	.byte	104                     @ Abbrev [104] 0x5c0e:0x24 DW_TAG_inlined_subroutine
+	.long	23063                   @ DW_AT_abstract_origin
+	.long	.Ldebug_ranges29        @ DW_AT_ranges
 	.byte	12                      @ DW_AT_call_file
 	.byte	26                      @ DW_AT_call_line
-	.byte	105                     @ Abbrev [105] 0x5d7f:0x18 DW_TAG_inlined_subroutine
-	.long	21444                   @ DW_AT_abstract_origin
-	.long	.Ldebug_ranges31        @ DW_AT_ranges
+	.byte	105                     @ Abbrev [105] 0x5c19:0x18 DW_TAG_inlined_subroutine
+	.long	23039                   @ DW_AT_abstract_origin
+	.long	.Ldebug_ranges30        @ DW_AT_ranges
 	.byte	8                       @ DW_AT_call_file
 	.short	259                     @ DW_AT_call_line
-	.byte	126                     @ Abbrev [126] 0x5d8b:0xb DW_TAG_inlined_subroutine
-	.long	21415                   @ DW_AT_abstract_origin
-	.long	.Ldebug_ranges32        @ DW_AT_ranges
+	.byte	126                     @ Abbrev [126] 0x5c25:0xb DW_TAG_inlined_subroutine
+	.long	23010                   @ DW_AT_abstract_origin
+	.long	.Ldebug_ranges31        @ DW_AT_ranges
 	.byte	8                       @ DW_AT_call_file
 	.byte	125                     @ DW_AT_call_line
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	97                      @ Abbrev [97] 0x5d9a:0x1a DW_TAG_inlined_subroutine
+	.byte	97                      @ Abbrev [97] 0x5c34:0x1a DW_TAG_inlined_subroutine
 	.long	9548                    @ DW_AT_abstract_origin
-	.long	.Ltmp345                @ DW_AT_low_pc
-	.long	.Ltmp346-.Ltmp345       @ DW_AT_high_pc
+	.long	.Ltmp333                @ DW_AT_low_pc
+	.long	.Ltmp334-.Ltmp333       @ DW_AT_high_pc
 	.byte	37                      @ DW_AT_call_file
 	.short	519                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x5daa:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc78           @ DW_AT_location
+	.byte	100                     @ Abbrev [100] 0x5c44:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc70           @ DW_AT_location
 	.long	9573                    @ DW_AT_abstract_origin
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	97                      @ Abbrev [97] 0x5db7:0xf6 DW_TAG_inlined_subroutine
+	.byte	97                      @ Abbrev [97] 0x5c51:0xf6 DW_TAG_inlined_subroutine
 	.long	8942                    @ DW_AT_abstract_origin
-	.long	.Ltmp338                @ DW_AT_low_pc
-	.long	.Ltmp344-.Ltmp338       @ DW_AT_high_pc
+	.long	.Ltmp326                @ DW_AT_low_pc
+	.long	.Ltmp332-.Ltmp326       @ DW_AT_high_pc
 	.byte	36                      @ DW_AT_call_file
 	.short	576                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x5dc7:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc82           @ DW_AT_location
+	.byte	100                     @ Abbrev [100] 0x5c61:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc74           @ DW_AT_location
 	.long	8972                    @ DW_AT_abstract_origin
-	.byte	100                     @ Abbrev [100] 0x5dd0:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc83           @ DW_AT_location
+	.byte	100                     @ Abbrev [100] 0x5c6a:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc75           @ DW_AT_location
 	.long	8983                    @ DW_AT_abstract_origin
-	.byte	96                      @ Abbrev [96] 0x5dd9:0xd3 DW_TAG_inlined_subroutine
+	.byte	96                      @ Abbrev [96] 0x5c73:0xd3 DW_TAG_inlined_subroutine
 	.long	8898                    @ DW_AT_abstract_origin
-	.long	.Ltmp338                @ DW_AT_low_pc
-	.long	.Ltmp344-.Ltmp338       @ DW_AT_high_pc
+	.long	.Ltmp326                @ DW_AT_low_pc
+	.long	.Ltmp332-.Ltmp326       @ DW_AT_high_pc
 	.byte	35                      @ DW_AT_call_file
 	.byte	151                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x5de8:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc81           @ DW_AT_location
+	.byte	100                     @ Abbrev [100] 0x5c82:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc73           @ DW_AT_location
 	.long	8919                    @ DW_AT_abstract_origin
-	.byte	100                     @ Abbrev [100] 0x5df1:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc84           @ DW_AT_location
+	.byte	100                     @ Abbrev [100] 0x5c8b:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc76           @ DW_AT_location
 	.long	8930                    @ DW_AT_abstract_origin
-	.byte	96                      @ Abbrev [96] 0x5dfa:0xb1 DW_TAG_inlined_subroutine
+	.byte	96                      @ Abbrev [96] 0x5c94:0xb1 DW_TAG_inlined_subroutine
 	.long	20430                   @ DW_AT_abstract_origin
-	.long	.Ltmp338                @ DW_AT_low_pc
-	.long	.Ltmp344-.Ltmp338       @ DW_AT_high_pc
+	.long	.Ltmp326                @ DW_AT_low_pc
+	.long	.Ltmp332-.Ltmp326       @ DW_AT_high_pc
 	.byte	35                      @ DW_AT_call_file
 	.byte	126                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x5e09:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc80           @ DW_AT_location
+	.byte	100                     @ Abbrev [100] 0x5ca3:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc72           @ DW_AT_location
 	.long	20445                   @ DW_AT_abstract_origin
-	.byte	100                     @ Abbrev [100] 0x5e12:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc85           @ DW_AT_location
+	.byte	100                     @ Abbrev [100] 0x5cac:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc77           @ DW_AT_location
 	.long	20456                   @ DW_AT_abstract_origin
-	.byte	99                      @ Abbrev [99] 0x5e1b:0x8f DW_TAG_inlined_subroutine
+	.byte	99                      @ Abbrev [99] 0x5cb5:0x8f DW_TAG_inlined_subroutine
 	.long	9002                    @ DW_AT_abstract_origin
-	.long	.Ltmp339                @ DW_AT_low_pc
-	.long	.Ltmp342-.Ltmp339       @ DW_AT_high_pc
+	.long	.Ltmp327                @ DW_AT_low_pc
+	.long	.Ltmp330-.Ltmp327       @ DW_AT_high_pc
 	.byte	35                      @ DW_AT_call_file
 	.byte	103                     @ DW_AT_call_line
 	.byte	1                       @ DW_AT_GNU_discriminator
-	.byte	96                      @ Abbrev [96] 0x5e2b:0x7e DW_TAG_inlined_subroutine
+	.byte	96                      @ Abbrev [96] 0x5cc5:0x7e DW_TAG_inlined_subroutine
 	.long	20526                   @ DW_AT_abstract_origin
-	.long	.Ltmp339                @ DW_AT_low_pc
-	.long	.Ltmp342-.Ltmp339       @ DW_AT_high_pc
+	.long	.Ltmp327                @ DW_AT_low_pc
+	.long	.Ltmp330-.Ltmp327       @ DW_AT_high_pc
 	.byte	35                      @ DW_AT_call_file
 	.byte	93                      @ DW_AT_call_line
-	.byte	96                      @ Abbrev [96] 0x5e3a:0x6e DW_TAG_inlined_subroutine
+	.byte	96                      @ Abbrev [96] 0x5cd4:0x6e DW_TAG_inlined_subroutine
 	.long	20497                   @ DW_AT_abstract_origin
-	.long	.Ltmp339                @ DW_AT_low_pc
-	.long	.Ltmp342-.Ltmp339       @ DW_AT_high_pc
+	.long	.Ltmp327                @ DW_AT_low_pc
+	.long	.Ltmp330-.Ltmp327       @ DW_AT_high_pc
 	.byte	12                      @ DW_AT_call_file
 	.byte	38                      @ DW_AT_call_line
-	.byte	101                     @ Abbrev [101] 0x5e49:0x5e DW_TAG_inlined_subroutine
+	.byte	101                     @ Abbrev [101] 0x5ce3:0x5e DW_TAG_inlined_subroutine
 	.long	20468                   @ DW_AT_abstract_origin
-	.long	.Ltmp339                @ DW_AT_low_pc
-	.long	.Ltmp342-.Ltmp339       @ DW_AT_high_pc
+	.long	.Ltmp327                @ DW_AT_low_pc
+	.long	.Ltmp330-.Ltmp327       @ DW_AT_high_pc
 	.byte	8                       @ DW_AT_call_file
 	.short	427                     @ DW_AT_call_line
 	.byte	1                       @ DW_AT_GNU_discriminator
-	.byte	96                      @ Abbrev [96] 0x5e5a:0x4c DW_TAG_inlined_subroutine
+	.byte	96                      @ Abbrev [96] 0x5cf4:0x4c DW_TAG_inlined_subroutine
 	.long	20550                   @ DW_AT_abstract_origin
-	.long	.Ltmp340                @ DW_AT_low_pc
-	.long	.Ltmp342-.Ltmp340       @ DW_AT_high_pc
+	.long	.Ltmp328                @ DW_AT_low_pc
+	.long	.Ltmp330-.Ltmp328       @ DW_AT_high_pc
 	.byte	8                       @ DW_AT_call_file
 	.byte	160                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x5e69:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc86           @ DW_AT_location
+	.byte	100                     @ Abbrev [100] 0x5d03:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc78           @ DW_AT_location
 	.long	20569                   @ DW_AT_abstract_origin
-	.byte	96                      @ Abbrev [96] 0x5e72:0x33 DW_TAG_inlined_subroutine
+	.byte	96                      @ Abbrev [96] 0x5d0c:0x33 DW_TAG_inlined_subroutine
 	.long	20635                   @ DW_AT_abstract_origin
-	.long	.Ltmp341                @ DW_AT_low_pc
-	.long	.Ltmp342-.Ltmp341       @ DW_AT_high_pc
+	.long	.Ltmp329                @ DW_AT_low_pc
+	.long	.Ltmp330-.Ltmp329       @ DW_AT_high_pc
 	.byte	8                       @ DW_AT_call_file
 	.byte	178                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x5e81:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc87           @ DW_AT_location
+	.byte	100                     @ Abbrev [100] 0x5d1b:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc79           @ DW_AT_location
 	.long	20653                   @ DW_AT_abstract_origin
-	.byte	97                      @ Abbrev [97] 0x5e8a:0x1a DW_TAG_inlined_subroutine
+	.byte	97                      @ Abbrev [97] 0x5d24:0x1a DW_TAG_inlined_subroutine
 	.long	20592                   @ DW_AT_abstract_origin
-	.long	.Ltmp341                @ DW_AT_low_pc
-	.long	.Ltmp342-.Ltmp341       @ DW_AT_high_pc
+	.long	.Ltmp329                @ DW_AT_low_pc
+	.long	.Ltmp330-.Ltmp329       @ DW_AT_high_pc
 	.byte	3                       @ DW_AT_call_file
 	.short	462                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x5e9a:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc88           @ DW_AT_location
+	.byte	100                     @ Abbrev [100] 0x5d34:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc80           @ DW_AT_location
 	.long	20611                   @ DW_AT_abstract_origin
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
@@ -19853,509 +19579,509 @@ GCC_except_table10:
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	97                      @ Abbrev [97] 0x5ead:0x3a DW_TAG_inlined_subroutine
+	.byte	97                      @ Abbrev [97] 0x5d47:0x3a DW_TAG_inlined_subroutine
 	.long	20702                   @ DW_AT_abstract_origin
-	.long	.Ltmp346                @ DW_AT_low_pc
-	.long	.Ltmp348-.Ltmp346       @ DW_AT_high_pc
+	.long	.Ltmp334                @ DW_AT_low_pc
+	.long	.Ltmp336-.Ltmp334       @ DW_AT_high_pc
 	.byte	36                      @ DW_AT_call_file
 	.short	578                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x5ebd:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc89           @ DW_AT_location
+	.byte	100                     @ Abbrev [100] 0x5d57:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc81           @ DW_AT_location
 	.long	20721                   @ DW_AT_abstract_origin
-	.byte	96                      @ Abbrev [96] 0x5ec6:0x20 DW_TAG_inlined_subroutine
+	.byte	96                      @ Abbrev [96] 0x5d60:0x20 DW_TAG_inlined_subroutine
 	.long	20787                   @ DW_AT_abstract_origin
-	.long	.Ltmp347                @ DW_AT_low_pc
-	.long	.Ltmp348-.Ltmp347       @ DW_AT_high_pc
+	.long	.Ltmp335                @ DW_AT_low_pc
+	.long	.Ltmp336-.Ltmp335       @ DW_AT_high_pc
 	.byte	8                       @ DW_AT_call_file
 	.byte	178                     @ DW_AT_call_line
-	.byte	102                     @ Abbrev [102] 0x5ed5:0x10 DW_TAG_inlined_subroutine
+	.byte	102                     @ Abbrev [102] 0x5d6f:0x10 DW_TAG_inlined_subroutine
 	.long	20744                   @ DW_AT_abstract_origin
-	.long	.Ltmp347                @ DW_AT_low_pc
-	.long	.Ltmp348-.Ltmp347       @ DW_AT_high_pc
+	.long	.Ltmp335                @ DW_AT_low_pc
+	.long	.Ltmp336-.Ltmp335       @ DW_AT_high_pc
 	.byte	3                       @ DW_AT_call_file
 	.short	462                     @ DW_AT_call_line
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	97                      @ Abbrev [97] 0x5ee7:0x4d DW_TAG_inlined_subroutine
+	.byte	97                      @ Abbrev [97] 0x5d81:0x4d DW_TAG_inlined_subroutine
 	.long	20702                   @ DW_AT_abstract_origin
-	.long	.Ltmp365                @ DW_AT_low_pc
-	.long	.Ltmp367-.Ltmp365       @ DW_AT_high_pc
+	.long	.Ltmp353                @ DW_AT_low_pc
+	.long	.Ltmp355-.Ltmp353       @ DW_AT_high_pc
 	.byte	36                      @ DW_AT_call_file
 	.short	573                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x5ef7:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc71           @ DW_AT_location
+	.byte	100                     @ Abbrev [100] 0x5d91:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc63           @ DW_AT_location
 	.long	20732                   @ DW_AT_abstract_origin
-	.byte	96                      @ Abbrev [96] 0x5f00:0x33 DW_TAG_inlined_subroutine
+	.byte	96                      @ Abbrev [96] 0x5d9a:0x33 DW_TAG_inlined_subroutine
 	.long	20787                   @ DW_AT_abstract_origin
-	.long	.Ltmp366                @ DW_AT_low_pc
-	.long	.Ltmp367-.Ltmp366       @ DW_AT_high_pc
+	.long	.Ltmp354                @ DW_AT_low_pc
+	.long	.Ltmp355-.Ltmp354       @ DW_AT_high_pc
 	.byte	8                       @ DW_AT_call_file
 	.byte	178                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x5f0f:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc72           @ DW_AT_location
+	.byte	100                     @ Abbrev [100] 0x5da9:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc64           @ DW_AT_location
 	.long	20817                   @ DW_AT_abstract_origin
-	.byte	97                      @ Abbrev [97] 0x5f18:0x1a DW_TAG_inlined_subroutine
+	.byte	97                      @ Abbrev [97] 0x5db2:0x1a DW_TAG_inlined_subroutine
 	.long	20744                   @ DW_AT_abstract_origin
-	.long	.Ltmp366                @ DW_AT_low_pc
-	.long	.Ltmp367-.Ltmp366       @ DW_AT_high_pc
+	.long	.Ltmp354                @ DW_AT_low_pc
+	.long	.Ltmp355-.Ltmp354       @ DW_AT_high_pc
 	.byte	3                       @ DW_AT_call_file
 	.short	462                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x5f28:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc73           @ DW_AT_location
+	.byte	100                     @ Abbrev [100] 0x5dc2:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc65           @ DW_AT_location
 	.long	20774                   @ DW_AT_abstract_origin
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	97                      @ Abbrev [97] 0x5f35:0x93 DW_TAG_inlined_subroutine
+	.byte	97                      @ Abbrev [97] 0x5dcf:0x93 DW_TAG_inlined_subroutine
 	.long	9368                    @ DW_AT_abstract_origin
-	.long	.Ltmp351                @ DW_AT_low_pc
-	.long	.Ltmp358-.Ltmp351       @ DW_AT_high_pc
+	.long	.Ltmp339                @ DW_AT_low_pc
+	.long	.Ltmp346-.Ltmp339       @ DW_AT_high_pc
 	.byte	36                      @ DW_AT_call_file
 	.short	549                     @ DW_AT_call_line
-	.byte	97                      @ Abbrev [97] 0x5f45:0x82 DW_TAG_inlined_subroutine
+	.byte	97                      @ Abbrev [97] 0x5ddf:0x82 DW_TAG_inlined_subroutine
 	.long	9296                    @ DW_AT_abstract_origin
-	.long	.Ltmp351                @ DW_AT_low_pc
-	.long	.Ltmp358-.Ltmp351       @ DW_AT_high_pc
+	.long	.Ltmp339                @ DW_AT_low_pc
+	.long	.Ltmp346-.Ltmp339       @ DW_AT_high_pc
 	.byte	37                      @ DW_AT_call_file
 	.short	637                     @ DW_AT_call_line
-	.byte	97                      @ Abbrev [97] 0x5f55:0x71 DW_TAG_inlined_subroutine
-	.long	23469                   @ DW_AT_abstract_origin
-	.long	.Ltmp352                @ DW_AT_low_pc
-	.long	.Ltmp358-.Ltmp352       @ DW_AT_high_pc
+	.byte	97                      @ Abbrev [97] 0x5def:0x71 DW_TAG_inlined_subroutine
+	.long	23111                   @ DW_AT_abstract_origin
+	.long	.Ltmp340                @ DW_AT_low_pc
+	.long	.Ltmp346-.Ltmp340       @ DW_AT_high_pc
 	.byte	37                      @ DW_AT_call_file
 	.short	573                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x5f65:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc92           @ DW_AT_location
-	.long	23505                   @ DW_AT_abstract_origin
-	.byte	105                     @ Abbrev [105] 0x5f6e:0x3d DW_TAG_inlined_subroutine
+	.byte	100                     @ Abbrev [100] 0x5dff:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc84           @ DW_AT_location
+	.long	23147                   @ DW_AT_abstract_origin
+	.byte	105                     @ Abbrev [105] 0x5e08:0x3d DW_TAG_inlined_subroutine
 	.long	9445                    @ DW_AT_abstract_origin
-	.long	.Ldebug_ranges34        @ DW_AT_ranges
+	.long	.Ldebug_ranges33        @ DW_AT_ranges
 	.byte	37                      @ DW_AT_call_file
 	.short	519                     @ DW_AT_call_line
-	.byte	104                     @ Abbrev [104] 0x5f7a:0x30 DW_TAG_inlined_subroutine
-	.long	21492                   @ DW_AT_abstract_origin
-	.long	.Ldebug_ranges35        @ DW_AT_ranges
+	.byte	104                     @ Abbrev [104] 0x5e14:0x30 DW_TAG_inlined_subroutine
+	.long	23087                   @ DW_AT_abstract_origin
+	.long	.Ldebug_ranges34        @ DW_AT_ranges
 	.byte	35                      @ DW_AT_call_file
 	.byte	75                      @ DW_AT_call_line
-	.byte	104                     @ Abbrev [104] 0x5f85:0x24 DW_TAG_inlined_subroutine
-	.long	21468                   @ DW_AT_abstract_origin
-	.long	.Ldebug_ranges36        @ DW_AT_ranges
+	.byte	104                     @ Abbrev [104] 0x5e1f:0x24 DW_TAG_inlined_subroutine
+	.long	23063                   @ DW_AT_abstract_origin
+	.long	.Ldebug_ranges35        @ DW_AT_ranges
 	.byte	12                      @ DW_AT_call_file
 	.byte	26                      @ DW_AT_call_line
-	.byte	105                     @ Abbrev [105] 0x5f90:0x18 DW_TAG_inlined_subroutine
-	.long	21444                   @ DW_AT_abstract_origin
-	.long	.Ldebug_ranges37        @ DW_AT_ranges
+	.byte	105                     @ Abbrev [105] 0x5e2a:0x18 DW_TAG_inlined_subroutine
+	.long	23039                   @ DW_AT_abstract_origin
+	.long	.Ldebug_ranges36        @ DW_AT_ranges
 	.byte	8                       @ DW_AT_call_file
 	.short	259                     @ DW_AT_call_line
-	.byte	126                     @ Abbrev [126] 0x5f9c:0xb DW_TAG_inlined_subroutine
-	.long	21415                   @ DW_AT_abstract_origin
-	.long	.Ldebug_ranges38        @ DW_AT_ranges
+	.byte	126                     @ Abbrev [126] 0x5e36:0xb DW_TAG_inlined_subroutine
+	.long	23010                   @ DW_AT_abstract_origin
+	.long	.Ldebug_ranges37        @ DW_AT_ranges
 	.byte	8                       @ DW_AT_call_file
 	.byte	125                     @ DW_AT_call_line
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	97                      @ Abbrev [97] 0x5fab:0x1a DW_TAG_inlined_subroutine
+	.byte	97                      @ Abbrev [97] 0x5e45:0x1a DW_TAG_inlined_subroutine
 	.long	9548                    @ DW_AT_abstract_origin
-	.long	.Ltmp357                @ DW_AT_low_pc
-	.long	.Ltmp358-.Ltmp357       @ DW_AT_high_pc
+	.long	.Ltmp345                @ DW_AT_low_pc
+	.long	.Ltmp346-.Ltmp345       @ DW_AT_high_pc
 	.byte	37                      @ DW_AT_call_file
 	.short	519                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x5fbb:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc91           @ DW_AT_location
+	.byte	100                     @ Abbrev [100] 0x5e55:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc83           @ DW_AT_location
 	.long	9573                    @ DW_AT_abstract_origin
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	92                      @ Abbrev [92] 0x5fc9:0x14 DW_TAG_subprogram
+	.byte	92                      @ Abbrev [92] 0x5e63:0x14 DW_TAG_subprogram
 	.long	3703                    @ DW_AT_specification
 	.byte	1                       @ DW_AT_inline
-	.long	24531                   @ DW_AT_object_pointer
-	.byte	90                      @ Abbrev [90] 0x5fd3:0x9 DW_TAG_formal_parameter
+	.long	24173                   @ DW_AT_object_pointer
+	.byte	90                      @ Abbrev [90] 0x5e6d:0x9 DW_TAG_formal_parameter
 	.long	.Linfo_string808        @ DW_AT_name
-	.long	24541                   @ DW_AT_type
+	.long	24183                   @ DW_AT_type
                                         @ DW_AT_artificial
 	.byte	0                       @ End Of Children Mark
-	.byte	55                      @ Abbrev [55] 0x5fdd:0x5 DW_TAG_pointer_type
+	.byte	55                      @ Abbrev [55] 0x5e77:0x5 DW_TAG_pointer_type
 	.long	12378                   @ DW_AT_type
-	.byte	89                      @ Abbrev [89] 0x5fe2:0x24 DW_TAG_subprogram
+	.byte	89                      @ Abbrev [89] 0x5e7c:0x24 DW_TAG_subprogram
 	.long	.Linfo_string871        @ DW_AT_linkage_name
 	.long	3116                    @ DW_AT_specification
 	.byte	1                       @ DW_AT_inline
-	.long	24560                   @ DW_AT_object_pointer
-	.byte	90                      @ Abbrev [90] 0x5ff0:0x9 DW_TAG_formal_parameter
+	.long	24202                   @ DW_AT_object_pointer
+	.byte	90                      @ Abbrev [90] 0x5e8a:0x9 DW_TAG_formal_parameter
 	.long	.Linfo_string808        @ DW_AT_name
 	.long	20521                   @ DW_AT_type
                                         @ DW_AT_artificial
-	.byte	46                      @ Abbrev [46] 0x5ff9:0xc DW_TAG_formal_parameter
+	.byte	46                      @ Abbrev [46] 0x5e93:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string872        @ DW_AT_name
 	.byte	8                       @ DW_AT_decl_file
 	.short	320                     @ DW_AT_decl_line
 	.long	12373                   @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
-	.byte	127                     @ Abbrev [127] 0x6006:0x1f DW_TAG_subprogram
+	.byte	127                     @ Abbrev [127] 0x5ea0:0x1f DW_TAG_subprogram
 	.byte	12                      @ DW_AT_decl_file
 	.byte	21                      @ DW_AT_decl_line
 	.long	.Linfo_string873        @ DW_AT_linkage_name
 	.long	12124                   @ DW_AT_specification
 	.byte	1                       @ DW_AT_inline
-	.long	24598                   @ DW_AT_object_pointer
-	.byte	90                      @ Abbrev [90] 0x6016:0x9 DW_TAG_formal_parameter
+	.long	24240                   @ DW_AT_object_pointer
+	.byte	90                      @ Abbrev [90] 0x5eb0:0x9 DW_TAG_formal_parameter
 	.long	.Linfo_string808        @ DW_AT_name
 	.long	11842                   @ DW_AT_type
                                         @ DW_AT_artificial
-	.byte	10                      @ Abbrev [10] 0x601f:0x5 DW_TAG_formal_parameter
+	.byte	10                      @ Abbrev [10] 0x5eb9:0x5 DW_TAG_formal_parameter
 	.long	12542                   @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
-	.byte	89                      @ Abbrev [89] 0x6025:0x23 DW_TAG_subprogram
+	.byte	89                      @ Abbrev [89] 0x5ebf:0x23 DW_TAG_subprogram
 	.long	.Linfo_string877        @ DW_AT_linkage_name
 	.long	4956                    @ DW_AT_specification
 	.byte	1                       @ DW_AT_inline
-	.long	24627                   @ DW_AT_object_pointer
-	.byte	90                      @ Abbrev [90] 0x6033:0x9 DW_TAG_formal_parameter
+	.long	24269                   @ DW_AT_object_pointer
+	.byte	90                      @ Abbrev [90] 0x5ecd:0x9 DW_TAG_formal_parameter
 	.long	.Linfo_string808        @ DW_AT_name
-	.long	21439                   @ DW_AT_type
+	.long	23034                   @ DW_AT_type
                                         @ DW_AT_artificial
-	.byte	41                      @ Abbrev [41] 0x603c:0xb DW_TAG_formal_parameter
+	.byte	41                      @ Abbrev [41] 0x5ed6:0xb DW_TAG_formal_parameter
 	.long	.Linfo_string830        @ DW_AT_name
 	.byte	8                       @ DW_AT_decl_file
 	.byte	90                      @ DW_AT_decl_line
 	.long	12282                   @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
-	.byte	89                      @ Abbrev [89] 0x6048:0x2e DW_TAG_subprogram
+	.byte	89                      @ Abbrev [89] 0x5ee2:0x2e DW_TAG_subprogram
 	.long	.Linfo_string878        @ DW_AT_linkage_name
 	.long	5160                    @ DW_AT_specification
 	.byte	1                       @ DW_AT_inline
-	.long	24662                   @ DW_AT_object_pointer
-	.byte	90                      @ Abbrev [90] 0x6056:0x9 DW_TAG_formal_parameter
+	.long	24304                   @ DW_AT_object_pointer
+	.byte	90                      @ Abbrev [90] 0x5ef0:0x9 DW_TAG_formal_parameter
 	.long	.Linfo_string808        @ DW_AT_name
 	.long	20492                   @ DW_AT_type
                                         @ DW_AT_artificial
-	.byte	41                      @ Abbrev [41] 0x605f:0xb DW_TAG_formal_parameter
+	.byte	41                      @ Abbrev [41] 0x5ef9:0xb DW_TAG_formal_parameter
 	.long	.Linfo_string829        @ DW_AT_name
 	.byte	8                       @ DW_AT_decl_file
 	.byte	134                     @ DW_AT_decl_line
 	.long	5643                    @ DW_AT_type
-	.byte	41                      @ Abbrev [41] 0x606a:0xb DW_TAG_formal_parameter
+	.byte	41                      @ Abbrev [41] 0x5f04:0xb DW_TAG_formal_parameter
 	.long	.Linfo_string830        @ DW_AT_name
 	.byte	8                       @ DW_AT_decl_file
 	.byte	134                     @ DW_AT_decl_line
 	.long	12322                   @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
-	.byte	92                      @ Abbrev [92] 0x6076:0x1f DW_TAG_subprogram
+	.byte	92                      @ Abbrev [92] 0x5f10:0x1f DW_TAG_subprogram
 	.long	5255                    @ DW_AT_specification
 	.byte	1                       @ DW_AT_inline
-	.long	24704                   @ DW_AT_object_pointer
-	.byte	90                      @ Abbrev [90] 0x6080:0x9 DW_TAG_formal_parameter
+	.long	24346                   @ DW_AT_object_pointer
+	.byte	90                      @ Abbrev [90] 0x5f1a:0x9 DW_TAG_formal_parameter
 	.long	.Linfo_string808        @ DW_AT_name
 	.long	20492                   @ DW_AT_type
                                         @ DW_AT_artificial
-	.byte	41                      @ Abbrev [41] 0x6089:0xb DW_TAG_formal_parameter
+	.byte	41                      @ Abbrev [41] 0x5f23:0xb DW_TAG_formal_parameter
 	.long	.Linfo_string829        @ DW_AT_name
 	.byte	8                       @ DW_AT_decl_file
 	.byte	167                     @ DW_AT_decl_line
 	.long	5643                    @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
-	.byte	92                      @ Abbrev [92] 0x6095:0x1f DW_TAG_subprogram
+	.byte	92                      @ Abbrev [92] 0x5f2f:0x1f DW_TAG_subprogram
 	.long	5308                    @ DW_AT_specification
 	.byte	1                       @ DW_AT_inline
-	.long	24735                   @ DW_AT_object_pointer
-	.byte	90                      @ Abbrev [90] 0x609f:0x9 DW_TAG_formal_parameter
+	.long	24377                   @ DW_AT_object_pointer
+	.byte	90                      @ Abbrev [90] 0x5f39:0x9 DW_TAG_formal_parameter
 	.long	.Linfo_string808        @ DW_AT_name
 	.long	20492                   @ DW_AT_type
                                         @ DW_AT_artificial
-	.byte	41                      @ Abbrev [41] 0x60a8:0xb DW_TAG_formal_parameter
+	.byte	41                      @ Abbrev [41] 0x5f42:0xb DW_TAG_formal_parameter
 	.long	.Linfo_string829        @ DW_AT_name
 	.byte	8                       @ DW_AT_decl_file
 	.byte	183                     @ DW_AT_decl_line
 	.long	5643                    @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
-	.byte	92                      @ Abbrev [92] 0x60b4:0x26 DW_TAG_subprogram
+	.byte	92                      @ Abbrev [92] 0x5f4e:0x26 DW_TAG_subprogram
 	.long	10904                   @ DW_AT_specification
 	.byte	1                       @ DW_AT_inline
-	.long	24766                   @ DW_AT_object_pointer
-	.byte	90                      @ Abbrev [90] 0x60be:0x9 DW_TAG_formal_parameter
+	.long	24408                   @ DW_AT_object_pointer
+	.byte	90                      @ Abbrev [90] 0x5f58:0x9 DW_TAG_formal_parameter
 	.long	.Linfo_string808        @ DW_AT_name
 	.long	20630                   @ DW_AT_type
                                         @ DW_AT_artificial
-	.byte	41                      @ Abbrev [41] 0x60c7:0xb DW_TAG_formal_parameter
+	.byte	41                      @ Abbrev [41] 0x5f61:0xb DW_TAG_formal_parameter
 	.long	.Linfo_string829        @ DW_AT_name
 	.byte	4                       @ DW_AT_decl_file
 	.byte	99                      @ DW_AT_decl_line
 	.long	12192                   @ DW_AT_type
-	.byte	42                      @ Abbrev [42] 0x60d2:0x7 DW_TAG_formal_parameter
+	.byte	42                      @ Abbrev [42] 0x5f6c:0x7 DW_TAG_formal_parameter
 	.byte	4                       @ DW_AT_decl_file
 	.byte	99                      @ DW_AT_decl_line
 	.long	12210                   @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
-	.byte	91                      @ Abbrev [91] 0x60da:0x1f DW_TAG_subprogram
+	.byte	91                      @ Abbrev [91] 0x5f74:0x1f DW_TAG_subprogram
 	.long	5359                    @ DW_AT_specification
 	.byte	1                       @ DW_AT_inline
-	.byte	46                      @ Abbrev [46] 0x60e0:0xc DW_TAG_formal_parameter
+	.byte	46                      @ Abbrev [46] 0x5f7a:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string830        @ DW_AT_name
 	.byte	3                       @ DW_AT_decl_file
 	.short	435                     @ DW_AT_decl_line
 	.long	12147                   @ DW_AT_type
-	.byte	46                      @ Abbrev [46] 0x60ec:0xc DW_TAG_formal_parameter
+	.byte	46                      @ Abbrev [46] 0x5f86:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string829        @ DW_AT_name
 	.byte	3                       @ DW_AT_decl_file
 	.short	435                     @ DW_AT_decl_line
 	.long	12231                   @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
-	.byte	92                      @ Abbrev [92] 0x60f9:0x14 DW_TAG_subprogram
+	.byte	92                      @ Abbrev [92] 0x5f93:0x14 DW_TAG_subprogram
 	.long	3417                    @ DW_AT_specification
 	.byte	1                       @ DW_AT_inline
-	.long	24835                   @ DW_AT_object_pointer
-	.byte	90                      @ Abbrev [90] 0x6103:0x9 DW_TAG_formal_parameter
+	.long	24477                   @ DW_AT_object_pointer
+	.byte	90                      @ Abbrev [90] 0x5f9d:0x9 DW_TAG_formal_parameter
 	.long	.Linfo_string808        @ DW_AT_name
-	.long	24541                   @ DW_AT_type
+	.long	24183                   @ DW_AT_type
                                         @ DW_AT_artificial
 	.byte	0                       @ End Of Children Mark
-	.byte	92                      @ Abbrev [92] 0x610d:0x14 DW_TAG_subprogram
+	.byte	92                      @ Abbrev [92] 0x5fa7:0x14 DW_TAG_subprogram
 	.long	3474                    @ DW_AT_specification
 	.byte	1                       @ DW_AT_inline
-	.long	24855                   @ DW_AT_object_pointer
-	.byte	90                      @ Abbrev [90] 0x6117:0x9 DW_TAG_formal_parameter
+	.long	24497                   @ DW_AT_object_pointer
+	.byte	90                      @ Abbrev [90] 0x5fb1:0x9 DW_TAG_formal_parameter
 	.long	.Linfo_string808        @ DW_AT_name
-	.long	24541                   @ DW_AT_type
+	.long	24183                   @ DW_AT_type
                                         @ DW_AT_artificial
 	.byte	0                       @ End Of Children Mark
-	.byte	91                      @ Abbrev [91] 0x6121:0x40 DW_TAG_subprogram
+	.byte	91                      @ Abbrev [91] 0x5fbb:0x40 DW_TAG_subprogram
 	.long	9666                    @ DW_AT_specification
 	.byte	1                       @ DW_AT_inline
-	.byte	21                      @ Abbrev [21] 0x6127:0x9 DW_TAG_template_type_parameter
+	.byte	21                      @ Abbrev [21] 0x5fc1:0x9 DW_TAG_template_type_parameter
 	.long	406                     @ DW_AT_type
 	.long	.Linfo_string30         @ DW_AT_name
-	.byte	46                      @ Abbrev [46] 0x6130:0xc DW_TAG_formal_parameter
+	.byte	46                      @ Abbrev [46] 0x5fca:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string816        @ DW_AT_name
 	.byte	39                      @ DW_AT_decl_file
 	.short	357                     @ DW_AT_decl_line
 	.long	12177                   @ DW_AT_type
-	.byte	46                      @ Abbrev [46] 0x613c:0xc DW_TAG_formal_parameter
+	.byte	46                      @ Abbrev [46] 0x5fd6:0xc DW_TAG_formal_parameter
 	.long	.Linfo_string817        @ DW_AT_name
 	.byte	39                      @ DW_AT_decl_file
 	.short	357                     @ DW_AT_decl_line
 	.long	12177                   @ DW_AT_type
-	.byte	46                      @ Abbrev [46] 0x6148:0xc DW_TAG_formal_parameter
-	.long	.Linfo_string846        @ DW_AT_name
+	.byte	46                      @ Abbrev [46] 0x5fe2:0xc DW_TAG_formal_parameter
+	.long	.Linfo_string842        @ DW_AT_name
 	.byte	39                      @ DW_AT_decl_file
 	.short	357                     @ DW_AT_decl_line
 	.long	12142                   @ DW_AT_type
-	.byte	48                      @ Abbrev [48] 0x6154:0xc DW_TAG_variable
+	.byte	48                      @ Abbrev [48] 0x5fee:0xc DW_TAG_variable
 	.long	.Linfo_string886        @ DW_AT_name
 	.byte	39                      @ DW_AT_decl_file
 	.short	366                     @ DW_AT_decl_line
-	.long	24929                   @ DW_AT_type
+	.long	24571                   @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
-	.byte	58                      @ Abbrev [58] 0x6161:0x5 DW_TAG_const_type
+	.byte	58                      @ Abbrev [58] 0x5ffb:0x5 DW_TAG_const_type
 	.long	5710                    @ DW_AT_type
-	.byte	91                      @ Abbrev [91] 0x6166:0x3a DW_TAG_subprogram
+	.byte	91                      @ Abbrev [91] 0x6000:0x3a DW_TAG_subprogram
 	.long	10027                   @ DW_AT_specification
 	.byte	1                       @ DW_AT_inline
-	.byte	21                      @ Abbrev [21] 0x616c:0x9 DW_TAG_template_type_parameter
+	.byte	21                      @ Abbrev [21] 0x6006:0x9 DW_TAG_template_type_parameter
 	.long	11001                   @ DW_AT_type
-	.long	.Linfo_string843        @ DW_AT_name
-	.byte	21                      @ Abbrev [21] 0x6175:0x9 DW_TAG_template_type_parameter
+	.long	.Linfo_string839        @ DW_AT_name
+	.byte	21                      @ Abbrev [21] 0x600f:0x9 DW_TAG_template_type_parameter
 	.long	12142                   @ DW_AT_type
 	.long	.Linfo_string813        @ DW_AT_name
-	.byte	41                      @ Abbrev [41] 0x617e:0xb DW_TAG_formal_parameter
+	.byte	41                      @ Abbrev [41] 0x6018:0xb DW_TAG_formal_parameter
 	.long	.Linfo_string816        @ DW_AT_name
 	.byte	37                      @ DW_AT_decl_file
 	.byte	91                      @ DW_AT_decl_line
 	.long	11001                   @ DW_AT_type
-	.byte	41                      @ Abbrev [41] 0x6189:0xb DW_TAG_formal_parameter
+	.byte	41                      @ Abbrev [41] 0x6023:0xb DW_TAG_formal_parameter
 	.long	.Linfo_string817        @ DW_AT_name
 	.byte	37                      @ DW_AT_decl_file
 	.byte	91                      @ DW_AT_decl_line
 	.long	11001                   @ DW_AT_type
-	.byte	41                      @ Abbrev [41] 0x6194:0xb DW_TAG_formal_parameter
-	.long	.Linfo_string846        @ DW_AT_name
+	.byte	41                      @ Abbrev [41] 0x602e:0xb DW_TAG_formal_parameter
+	.long	.Linfo_string842        @ DW_AT_name
 	.byte	37                      @ DW_AT_decl_file
 	.byte	92                      @ DW_AT_decl_line
 	.long	12142                   @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
-	.ascii	"\200\001"              @ Abbrev [128] 0x61a0:0x287 DW_TAG_subprogram
+	.ascii	"\200\001"              @ Abbrev [128] 0x603a:0x287 DW_TAG_subprogram
 	.long	.Lfunc_begin10          @ DW_AT_low_pc
 	.long	.Lfunc_end10-.Lfunc_begin10 @ DW_AT_high_pc
 	.byte	1                       @ DW_AT_frame_base
 	.byte	91
 	.long	10263                   @ DW_AT_specification
-	.byte	95                      @ Abbrev [95] 0x61b0:0xf DW_TAG_formal_parameter
-	.long	.Ldebug_loc94           @ DW_AT_location
+	.byte	95                      @ Abbrev [95] 0x604a:0xf DW_TAG_formal_parameter
+	.long	.Ldebug_loc86           @ DW_AT_location
 	.long	.Linfo_string816        @ DW_AT_name
 	.byte	37                      @ DW_AT_decl_file
 	.byte	68                      @ DW_AT_decl_line
 	.long	12532                   @ DW_AT_type
-	.byte	95                      @ Abbrev [95] 0x61bf:0xf DW_TAG_formal_parameter
-	.long	.Ldebug_loc95           @ DW_AT_location
+	.byte	95                      @ Abbrev [95] 0x6059:0xf DW_TAG_formal_parameter
+	.long	.Ldebug_loc87           @ DW_AT_location
 	.long	.Linfo_string817        @ DW_AT_name
 	.byte	37                      @ DW_AT_decl_file
 	.byte	68                      @ DW_AT_decl_line
 	.long	12532                   @ DW_AT_type
-	.byte	95                      @ Abbrev [95] 0x61ce:0xf DW_TAG_formal_parameter
-	.long	.Ldebug_loc96           @ DW_AT_location
-	.long	.Linfo_string846        @ DW_AT_name
+	.byte	95                      @ Abbrev [95] 0x6068:0xf DW_TAG_formal_parameter
+	.long	.Ldebug_loc88           @ DW_AT_location
+	.long	.Linfo_string842        @ DW_AT_name
 	.byte	37                      @ DW_AT_decl_file
 	.byte	69                      @ DW_AT_decl_line
 	.long	11842                   @ DW_AT_type
-	.byte	107                     @ Abbrev [107] 0x61dd:0xf DW_TAG_variable
-	.long	.Ldebug_loc97           @ DW_AT_location
+	.byte	107                     @ Abbrev [107] 0x6077:0xf DW_TAG_variable
+	.long	.Ldebug_loc89           @ DW_AT_location
 	.long	.Linfo_string867        @ DW_AT_name
 	.byte	37                      @ DW_AT_decl_file
 	.byte	71                      @ DW_AT_decl_line
 	.long	11842                   @ DW_AT_type
-	.byte	98                      @ Abbrev [98] 0x61ec:0xf DW_TAG_inlined_subroutine
+	.byte	98                      @ Abbrev [98] 0x6086:0xf DW_TAG_inlined_subroutine
 	.long	9548                    @ DW_AT_abstract_origin
-	.long	.Ltmp399                @ DW_AT_low_pc
-	.long	.Ltmp401-.Ltmp399       @ DW_AT_high_pc
+	.long	.Ltmp387                @ DW_AT_low_pc
+	.long	.Ltmp389-.Ltmp387       @ DW_AT_high_pc
 	.byte	37                      @ DW_AT_call_file
 	.byte	75                      @ DW_AT_call_line
-	.byte	104                     @ Abbrev [104] 0x61fb:0x161 DW_TAG_inlined_subroutine
+	.byte	104                     @ Abbrev [104] 0x6095:0x161 DW_TAG_inlined_subroutine
 	.long	9585                    @ DW_AT_abstract_origin
-	.long	.Ldebug_ranges39        @ DW_AT_ranges
+	.long	.Ldebug_ranges38        @ DW_AT_ranges
 	.byte	37                      @ DW_AT_call_file
 	.byte	75                      @ DW_AT_call_line
-	.byte	108                     @ Abbrev [108] 0x6206:0x155 DW_TAG_inlined_subroutine
-	.long	24582                   @ DW_AT_abstract_origin
-	.long	.Ldebug_ranges40        @ DW_AT_ranges
+	.byte	108                     @ Abbrev [108] 0x60a0:0x155 DW_TAG_inlined_subroutine
+	.long	24224                   @ DW_AT_abstract_origin
+	.long	.Ldebug_ranges39        @ DW_AT_ranges
 	.byte	35                      @ DW_AT_call_file
 	.byte	75                      @ DW_AT_call_line
 	.byte	1                       @ DW_AT_GNU_discriminator
-	.byte	104                     @ Abbrev [104] 0x6212:0x148 DW_TAG_inlined_subroutine
-	.long	24546                   @ DW_AT_abstract_origin
-	.long	.Ldebug_ranges41        @ DW_AT_ranges
+	.byte	104                     @ Abbrev [104] 0x60ac:0x148 DW_TAG_inlined_subroutine
+	.long	24188                   @ DW_AT_abstract_origin
+	.long	.Ldebug_ranges40        @ DW_AT_ranges
 	.byte	12                      @ DW_AT_call_file
 	.byte	21                      @ DW_AT_call_line
-	.ascii	"\201\001"              @ Abbrev [129] 0x621d:0xd DW_TAG_inlined_subroutine
-	.long	24521                   @ DW_AT_abstract_origin
+	.ascii	"\201\001"              @ Abbrev [129] 0x60b7:0xd DW_TAG_inlined_subroutine
+	.long	24163                   @ DW_AT_abstract_origin
+	.long	.Ldebug_ranges41        @ DW_AT_ranges
+	.byte	8                       @ DW_AT_call_file
+	.short	321                     @ DW_AT_call_line
+	.byte	105                     @ Abbrev [105] 0x60c4:0x77 DW_TAG_inlined_subroutine
+	.long	24290                   @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges42        @ DW_AT_ranges
 	.byte	8                       @ DW_AT_call_file
 	.short	321                     @ DW_AT_call_line
-	.byte	105                     @ Abbrev [105] 0x622a:0x77 DW_TAG_inlined_subroutine
-	.long	24648                   @ DW_AT_abstract_origin
+	.byte	100                     @ Abbrev [100] 0x60d0:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc90           @ DW_AT_location
+	.long	24313                   @ DW_AT_abstract_origin
+	.byte	126                     @ Abbrev [126] 0x60d9:0xb DW_TAG_inlined_subroutine
+	.long	24255                   @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges43        @ DW_AT_ranges
 	.byte	8                       @ DW_AT_call_file
-	.short	321                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x6236:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc98           @ DW_AT_location
-	.long	24671                   @ DW_AT_abstract_origin
-	.byte	126                     @ Abbrev [126] 0x623f:0xb DW_TAG_inlined_subroutine
-	.long	24613                   @ DW_AT_abstract_origin
+	.byte	135                     @ DW_AT_call_line
+	.byte	104                     @ Abbrev [104] 0x60e4:0x56 DW_TAG_inlined_subroutine
+	.long	24367                   @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges44        @ DW_AT_ranges
 	.byte	8                       @ DW_AT_call_file
-	.byte	135                     @ DW_AT_call_line
-	.byte	104                     @ Abbrev [104] 0x624a:0x56 DW_TAG_inlined_subroutine
-	.long	24725                   @ DW_AT_abstract_origin
+	.byte	136                     @ DW_AT_call_line
+	.byte	100                     @ Abbrev [100] 0x60ef:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc91           @ DW_AT_location
+	.long	24386                   @ DW_AT_abstract_origin
+	.byte	104                     @ Abbrev [104] 0x60f8:0x41 DW_TAG_inlined_subroutine
+	.long	24336                   @ DW_AT_abstract_origin
 	.long	.Ldebug_ranges45        @ DW_AT_ranges
 	.byte	8                       @ DW_AT_call_file
-	.byte	136                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x6255:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc99           @ DW_AT_location
-	.long	24744                   @ DW_AT_abstract_origin
-	.byte	104                     @ Abbrev [104] 0x625e:0x41 DW_TAG_inlined_subroutine
-	.long	24694                   @ DW_AT_abstract_origin
-	.long	.Ldebug_ranges46        @ DW_AT_ranges
-	.byte	8                       @ DW_AT_call_file
 	.byte	185                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x6269:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc100          @ DW_AT_location
-	.long	24713                   @ DW_AT_abstract_origin
-	.byte	108                     @ Abbrev [108] 0x6272:0x2c DW_TAG_inlined_subroutine
-	.long	24794                   @ DW_AT_abstract_origin
-	.long	.Ldebug_ranges47        @ DW_AT_ranges
+	.byte	100                     @ Abbrev [100] 0x6103:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc92           @ DW_AT_location
+	.long	24355                   @ DW_AT_abstract_origin
+	.byte	108                     @ Abbrev [108] 0x610c:0x2c DW_TAG_inlined_subroutine
+	.long	24436                   @ DW_AT_abstract_origin
+	.long	.Ldebug_ranges46        @ DW_AT_ranges
 	.byte	8                       @ DW_AT_call_file
 	.byte	170                     @ DW_AT_call_line
 	.byte	1                       @ DW_AT_GNU_discriminator
-	.byte	100                     @ Abbrev [100] 0x627e:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc101          @ DW_AT_location
-	.long	24812                   @ DW_AT_abstract_origin
-	.byte	105                     @ Abbrev [105] 0x6287:0x16 DW_TAG_inlined_subroutine
-	.long	24756                   @ DW_AT_abstract_origin
-	.long	.Ldebug_ranges48        @ DW_AT_ranges
+	.byte	100                     @ Abbrev [100] 0x6118:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc93           @ DW_AT_location
+	.long	24454                   @ DW_AT_abstract_origin
+	.byte	105                     @ Abbrev [105] 0x6121:0x16 DW_TAG_inlined_subroutine
+	.long	24398                   @ DW_AT_abstract_origin
+	.long	.Ldebug_ranges47        @ DW_AT_ranges
 	.byte	3                       @ DW_AT_call_file
 	.short	436                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x6293:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc102          @ DW_AT_location
-	.long	24775                   @ DW_AT_abstract_origin
+	.byte	100                     @ Abbrev [100] 0x612d:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc94           @ DW_AT_location
+	.long	24417                   @ DW_AT_abstract_origin
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	102                     @ Abbrev [102] 0x62a1:0x10 DW_TAG_inlined_subroutine
-	.long	24825                   @ DW_AT_abstract_origin
-	.long	.Ltmp415                @ DW_AT_low_pc
-	.long	.Ltmp416-.Ltmp415       @ DW_AT_high_pc
+	.byte	102                     @ Abbrev [102] 0x613b:0x10 DW_TAG_inlined_subroutine
+	.long	24467                   @ DW_AT_abstract_origin
+	.long	.Ltmp403                @ DW_AT_low_pc
+	.long	.Ltmp404-.Ltmp403       @ DW_AT_high_pc
 	.byte	8                       @ DW_AT_call_file
 	.short	324                     @ DW_AT_call_line
-	.ascii	"\202\001"              @ Abbrev [130] 0x62b1:0x12 DW_TAG_inlined_subroutine
-	.long	24845                   @ DW_AT_abstract_origin
-	.long	.Ltmp416                @ DW_AT_low_pc
-	.long	.Ltmp417-.Ltmp416       @ DW_AT_high_pc
+	.ascii	"\202\001"              @ Abbrev [130] 0x614b:0x12 DW_TAG_inlined_subroutine
+	.long	24487                   @ DW_AT_abstract_origin
+	.long	.Ltmp404                @ DW_AT_low_pc
+	.long	.Ltmp405-.Ltmp404       @ DW_AT_high_pc
 	.byte	8                       @ DW_AT_call_file
 	.short	324                     @ DW_AT_call_line
 	.byte	1                       @ DW_AT_GNU_discriminator
-	.byte	97                      @ Abbrev [97] 0x62c3:0x96 DW_TAG_inlined_subroutine
+	.byte	97                      @ Abbrev [97] 0x615d:0x96 DW_TAG_inlined_subroutine
 	.long	10156                   @ DW_AT_abstract_origin
-	.long	.Ltmp417                @ DW_AT_low_pc
-	.long	.Ltmp421-.Ltmp417       @ DW_AT_high_pc
+	.long	.Ltmp405                @ DW_AT_low_pc
+	.long	.Ltmp409-.Ltmp405       @ DW_AT_high_pc
 	.byte	8                       @ DW_AT_call_file
 	.short	324                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x62d3:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc103          @ DW_AT_location
+	.byte	100                     @ Abbrev [100] 0x616d:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc95           @ DW_AT_location
 	.long	10224                   @ DW_AT_abstract_origin
-	.byte	101                     @ Abbrev [101] 0x62dc:0x7c DW_TAG_inlined_subroutine
+	.byte	101                     @ Abbrev [101] 0x6176:0x7c DW_TAG_inlined_subroutine
 	.long	10077                   @ DW_AT_abstract_origin
-	.long	.Ltmp417                @ DW_AT_low_pc
-	.long	.Ltmp421-.Ltmp417       @ DW_AT_high_pc
+	.long	.Ltmp405                @ DW_AT_low_pc
+	.long	.Ltmp409-.Ltmp405       @ DW_AT_high_pc
 	.byte	37                      @ DW_AT_call_file
 	.short	281                     @ DW_AT_call_line
 	.byte	2                       @ DW_AT_GNU_discriminator
-	.byte	125                     @ Abbrev [125] 0x62ed:0x6 DW_TAG_variable
+	.byte	125                     @ Abbrev [125] 0x6187:0x6 DW_TAG_variable
 	.byte	1                       @ DW_AT_const_value
 	.long	10144                   @ DW_AT_abstract_origin
-	.byte	96                      @ Abbrev [96] 0x62f3:0x64 DW_TAG_inlined_subroutine
-	.long	24934                   @ DW_AT_abstract_origin
-	.long	.Ltmp417                @ DW_AT_low_pc
-	.long	.Ltmp421-.Ltmp417       @ DW_AT_high_pc
+	.byte	96                      @ Abbrev [96] 0x618d:0x64 DW_TAG_inlined_subroutine
+	.long	24576                   @ DW_AT_abstract_origin
+	.long	.Ltmp405                @ DW_AT_low_pc
+	.long	.Ltmp409-.Ltmp405       @ DW_AT_high_pc
 	.byte	37                      @ DW_AT_call_file
 	.byte	123                     @ DW_AT_call_line
-	.byte	99                      @ Abbrev [99] 0x6302:0x54 DW_TAG_inlined_subroutine
+	.byte	99                      @ Abbrev [99] 0x619c:0x54 DW_TAG_inlined_subroutine
 	.long	9937                    @ DW_AT_abstract_origin
-	.long	.Ltmp417                @ DW_AT_low_pc
-	.long	.Ltmp421-.Ltmp417       @ DW_AT_high_pc
+	.long	.Ltmp405                @ DW_AT_low_pc
+	.long	.Ltmp409-.Ltmp405       @ DW_AT_high_pc
 	.byte	37                      @ DW_AT_call_file
 	.byte	93                      @ DW_AT_call_line
 	.byte	2                       @ DW_AT_GNU_discriminator
-	.byte	97                      @ Abbrev [97] 0x6312:0x43 DW_TAG_inlined_subroutine
+	.byte	97                      @ Abbrev [97] 0x61ac:0x43 DW_TAG_inlined_subroutine
 	.long	9855                    @ DW_AT_abstract_origin
-	.long	.Ltmp417                @ DW_AT_low_pc
-	.long	.Ltmp421-.Ltmp417       @ DW_AT_high_pc
+	.long	.Ltmp405                @ DW_AT_low_pc
+	.long	.Ltmp409-.Ltmp405       @ DW_AT_high_pc
 	.byte	39                      @ DW_AT_call_file
 	.short	454                     @ DW_AT_call_line
-	.byte	101                     @ Abbrev [101] 0x6322:0x32 DW_TAG_inlined_subroutine
+	.byte	101                     @ Abbrev [101] 0x61bc:0x32 DW_TAG_inlined_subroutine
 	.long	9761                    @ DW_AT_abstract_origin
-	.long	.Ltmp417                @ DW_AT_low_pc
-	.long	.Ltmp421-.Ltmp417       @ DW_AT_high_pc
+	.long	.Ltmp405                @ DW_AT_low_pc
+	.long	.Ltmp409-.Ltmp405       @ DW_AT_high_pc
 	.byte	39                      @ DW_AT_call_file
 	.short	422                     @ DW_AT_call_line
 	.byte	2                       @ DW_AT_GNU_discriminator
-	.byte	125                     @ Abbrev [125] 0x6333:0x6 DW_TAG_variable
+	.byte	125                     @ Abbrev [125] 0x61cd:0x6 DW_TAG_variable
 	.byte	1                       @ DW_AT_const_value
 	.long	9842                    @ DW_AT_abstract_origin
-	.byte	97                      @ Abbrev [97] 0x6339:0x1a DW_TAG_inlined_subroutine
-	.long	24865                   @ DW_AT_abstract_origin
-	.long	.Ltmp417                @ DW_AT_low_pc
-	.long	.Ltmp421-.Ltmp417       @ DW_AT_high_pc
+	.byte	97                      @ Abbrev [97] 0x61d3:0x1a DW_TAG_inlined_subroutine
+	.long	24507                   @ DW_AT_abstract_origin
+	.long	.Ltmp405                @ DW_AT_low_pc
+	.long	.Ltmp409-.Ltmp405       @ DW_AT_high_pc
 	.byte	39                      @ DW_AT_call_file
 	.short	385                     @ DW_AT_call_line
-	.byte	113                     @ Abbrev [113] 0x6349:0x9 DW_TAG_variable
-	.long	.Ldebug_loc104          @ DW_AT_location
-	.long	24916                   @ DW_AT_abstract_origin
+	.byte	112                     @ Abbrev [112] 0x61e3:0x9 DW_TAG_variable
+	.long	.Ldebug_loc96           @ DW_AT_location
+	.long	24558                   @ DW_AT_abstract_origin
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
@@ -20366,73 +20092,73 @@ GCC_except_table10:
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	96                      @ Abbrev [96] 0x635c:0xb8 DW_TAG_inlined_subroutine
+	.byte	96                      @ Abbrev [96] 0x61f6:0xb8 DW_TAG_inlined_subroutine
 	.long	8898                    @ DW_AT_abstract_origin
-	.long	.Ltmp432                @ DW_AT_low_pc
-	.long	.Ltmp439-.Ltmp432       @ DW_AT_high_pc
+	.long	.Ltmp420                @ DW_AT_low_pc
+	.long	.Ltmp427-.Ltmp420       @ DW_AT_high_pc
 	.byte	37                      @ DW_AT_call_file
 	.byte	80                      @ DW_AT_call_line
-	.byte	96                      @ Abbrev [96] 0x636b:0xa8 DW_TAG_inlined_subroutine
+	.byte	96                      @ Abbrev [96] 0x6205:0xa8 DW_TAG_inlined_subroutine
 	.long	20430                   @ DW_AT_abstract_origin
-	.long	.Ltmp432                @ DW_AT_low_pc
-	.long	.Ltmp439-.Ltmp432       @ DW_AT_high_pc
+	.long	.Ltmp420                @ DW_AT_low_pc
+	.long	.Ltmp427-.Ltmp420       @ DW_AT_high_pc
 	.byte	35                      @ DW_AT_call_file
 	.byte	126                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x637a:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc105          @ DW_AT_location
+	.byte	100                     @ Abbrev [100] 0x6214:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc97           @ DW_AT_location
 	.long	20445                   @ DW_AT_abstract_origin
-	.byte	99                      @ Abbrev [99] 0x6383:0x8f DW_TAG_inlined_subroutine
+	.byte	99                      @ Abbrev [99] 0x621d:0x8f DW_TAG_inlined_subroutine
 	.long	9002                    @ DW_AT_abstract_origin
-	.long	.Ltmp434                @ DW_AT_low_pc
-	.long	.Ltmp437-.Ltmp434       @ DW_AT_high_pc
+	.long	.Ltmp422                @ DW_AT_low_pc
+	.long	.Ltmp425-.Ltmp422       @ DW_AT_high_pc
 	.byte	35                      @ DW_AT_call_file
 	.byte	103                     @ DW_AT_call_line
 	.byte	1                       @ DW_AT_GNU_discriminator
-	.byte	96                      @ Abbrev [96] 0x6393:0x7e DW_TAG_inlined_subroutine
+	.byte	96                      @ Abbrev [96] 0x622d:0x7e DW_TAG_inlined_subroutine
 	.long	20526                   @ DW_AT_abstract_origin
-	.long	.Ltmp434                @ DW_AT_low_pc
-	.long	.Ltmp437-.Ltmp434       @ DW_AT_high_pc
+	.long	.Ltmp422                @ DW_AT_low_pc
+	.long	.Ltmp425-.Ltmp422       @ DW_AT_high_pc
 	.byte	35                      @ DW_AT_call_file
 	.byte	93                      @ DW_AT_call_line
-	.byte	96                      @ Abbrev [96] 0x63a2:0x6e DW_TAG_inlined_subroutine
+	.byte	96                      @ Abbrev [96] 0x623c:0x6e DW_TAG_inlined_subroutine
 	.long	20497                   @ DW_AT_abstract_origin
-	.long	.Ltmp434                @ DW_AT_low_pc
-	.long	.Ltmp437-.Ltmp434       @ DW_AT_high_pc
+	.long	.Ltmp422                @ DW_AT_low_pc
+	.long	.Ltmp425-.Ltmp422       @ DW_AT_high_pc
 	.byte	12                      @ DW_AT_call_file
 	.byte	38                      @ DW_AT_call_line
-	.byte	101                     @ Abbrev [101] 0x63b1:0x5e DW_TAG_inlined_subroutine
+	.byte	101                     @ Abbrev [101] 0x624b:0x5e DW_TAG_inlined_subroutine
 	.long	20468                   @ DW_AT_abstract_origin
-	.long	.Ltmp434                @ DW_AT_low_pc
-	.long	.Ltmp437-.Ltmp434       @ DW_AT_high_pc
+	.long	.Ltmp422                @ DW_AT_low_pc
+	.long	.Ltmp425-.Ltmp422       @ DW_AT_high_pc
 	.byte	8                       @ DW_AT_call_file
 	.short	427                     @ DW_AT_call_line
 	.byte	1                       @ DW_AT_GNU_discriminator
-	.byte	96                      @ Abbrev [96] 0x63c2:0x4c DW_TAG_inlined_subroutine
+	.byte	96                      @ Abbrev [96] 0x625c:0x4c DW_TAG_inlined_subroutine
 	.long	20550                   @ DW_AT_abstract_origin
-	.long	.Ltmp435                @ DW_AT_low_pc
-	.long	.Ltmp437-.Ltmp435       @ DW_AT_high_pc
+	.long	.Ltmp423                @ DW_AT_low_pc
+	.long	.Ltmp425-.Ltmp423       @ DW_AT_high_pc
 	.byte	8                       @ DW_AT_call_file
 	.byte	160                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x63d1:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc106          @ DW_AT_location
+	.byte	100                     @ Abbrev [100] 0x626b:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc98           @ DW_AT_location
 	.long	20569                   @ DW_AT_abstract_origin
-	.byte	96                      @ Abbrev [96] 0x63da:0x33 DW_TAG_inlined_subroutine
+	.byte	96                      @ Abbrev [96] 0x6274:0x33 DW_TAG_inlined_subroutine
 	.long	20635                   @ DW_AT_abstract_origin
-	.long	.Ltmp436                @ DW_AT_low_pc
-	.long	.Ltmp437-.Ltmp436       @ DW_AT_high_pc
+	.long	.Ltmp424                @ DW_AT_low_pc
+	.long	.Ltmp425-.Ltmp424       @ DW_AT_high_pc
 	.byte	8                       @ DW_AT_call_file
 	.byte	178                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x63e9:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc107          @ DW_AT_location
+	.byte	100                     @ Abbrev [100] 0x6283:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc99           @ DW_AT_location
 	.long	20653                   @ DW_AT_abstract_origin
-	.byte	97                      @ Abbrev [97] 0x63f2:0x1a DW_TAG_inlined_subroutine
+	.byte	97                      @ Abbrev [97] 0x628c:0x1a DW_TAG_inlined_subroutine
 	.long	20592                   @ DW_AT_abstract_origin
-	.long	.Ltmp436                @ DW_AT_low_pc
-	.long	.Ltmp437-.Ltmp436       @ DW_AT_high_pc
+	.long	.Ltmp424                @ DW_AT_low_pc
+	.long	.Ltmp425-.Ltmp424       @ DW_AT_high_pc
 	.byte	3                       @ DW_AT_call_file
 	.short	462                     @ DW_AT_call_line
-	.byte	100                     @ Abbrev [100] 0x6402:0x9 DW_TAG_formal_parameter
-	.long	.Ldebug_loc108          @ DW_AT_location
+	.byte	100                     @ Abbrev [100] 0x629c:0x9 DW_TAG_formal_parameter
+	.long	.Ldebug_loc100          @ DW_AT_location
 	.long	20611                   @ DW_AT_abstract_origin
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
@@ -20443,10 +20169,10 @@ GCC_except_table10:
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	21                      @ Abbrev [21] 0x6414:0x9 DW_TAG_template_type_parameter
+	.byte	21                      @ Abbrev [21] 0x62ae:0x9 DW_TAG_template_type_parameter
 	.long	12532                   @ DW_AT_type
-	.long	.Linfo_string843        @ DW_AT_name
-	.byte	21                      @ Abbrev [21] 0x641d:0x9 DW_TAG_template_type_parameter
+	.long	.Linfo_string839        @ DW_AT_name
+	.byte	21                      @ Abbrev [21] 0x62b7:0x9 DW_TAG_template_type_parameter
 	.long	11842                   @ DW_AT_type
 	.long	.Linfo_string813        @ DW_AT_name
 	.byte	0                       @ End Of Children Mark
@@ -20454,409 +20180,398 @@ GCC_except_table10:
 	.section	.debug_ranges,"",%progbits
 .Ldebug_range:
 .Ldebug_ranges0:
-	.long	.Ltmp47
-	.long	.Ltmp49
-	.long	.Ltmp50
-	.long	.Ltmp54
-	.long	.Ltmp56
-	.long	.Ltmp65
+	.long	.Ltmp44
+	.long	.Ltmp51
+	.long	.Ltmp53
+	.long	.Ltmp62
 	.long	0
 	.long	0
 .Ldebug_ranges1:
+	.long	.Ltmp44
+	.long	.Ltmp45
+	.long	.Ltmp46
 	.long	.Ltmp47
-	.long	.Ltmp49
-	.long	.Ltmp50
-	.long	.Ltmp51
 	.long	0
 	.long	0
 .Ldebug_ranges2:
-	.long	.Ltmp57
-	.long	.Ltmp58
-	.long	.Ltmp59
-	.long	.Ltmp64
+	.long	.Ltmp54
+	.long	.Ltmp55
+	.long	.Ltmp56
+	.long	.Ltmp61
 	.long	0
 	.long	0
 .Ldebug_ranges3:
-	.long	.Ltmp54
-	.long	.Ltmp55
+	.long	.Ltmp51
+	.long	.Ltmp52
+	.long	.Ltmp62
+	.long	.Ltmp63
+	.long	.Ltmp64
 	.long	.Ltmp65
-	.long	.Ltmp66
 	.long	.Ltmp67
 	.long	.Ltmp68
-	.long	.Ltmp77
-	.long	.Ltmp78
-	.long	.Ltmp79
-	.long	.Ltmp80
+	.long	.Ltmp69
+	.long	.Ltmp70
 	.long	0
 	.long	0
 .Ldebug_ranges4:
-	.long	.Ltmp54
-	.long	.Ltmp55
-	.long	.Ltmp65
-	.long	.Ltmp66
-	.long	.Ltmp67
-	.long	.Ltmp81
-	.long	.Ltmp82
-	.long	.Ltmp85
+	.long	.Ltmp51
+	.long	.Ltmp52
+	.long	.Ltmp62
+	.long	.Ltmp63
+	.long	.Ltmp64
+	.long	.Ltmp71
 	.long	0
 	.long	0
 .Ldebug_ranges5:
-	.long	.Ltmp107
-	.long	.Ltmp108
+	.long	.Ltmp94
+	.long	.Ltmp95
+	.long	.Ltmp100
+	.long	.Ltmp101
+	.long	.Ltmp102
+	.long	.Ltmp103
+	.long	0
+	.long	0
+.Ldebug_ranges6:
+	.long	.Ltmp104
+	.long	.Ltmp105
 	.long	.Ltmp113
 	.long	.Ltmp114
 	.long	.Ltmp115
 	.long	.Ltmp116
 	.long	0
 	.long	0
-.Ldebug_ranges6:
-	.long	.Ltmp117
-	.long	.Ltmp118
-	.long	.Ltmp126
-	.long	.Ltmp127
-	.long	.Ltmp128
-	.long	.Ltmp129
-	.long	0
-	.long	0
 .Ldebug_ranges7:
+	.long	.Ltmp118
+	.long	.Ltmp119
 	.long	.Ltmp131
 	.long	.Ltmp132
-	.long	.Ltmp144
-	.long	.Ltmp145
+	.long	.Ltmp133
+	.long	.Ltmp134
+	.long	.Ltmp135
+	.long	.Ltmp136
+	.long	0
+	.long	0
+.Ldebug_ranges8:
+	.long	.Ltmp120
+	.long	.Ltmp121
+	.long	.Ltmp125
+	.long	.Ltmp130
+	.long	0
+	.long	0
+.Ldebug_ranges9:
+	.long	.Ltmp137
+	.long	.Ltmp138
 	.long	.Ltmp146
 	.long	.Ltmp147
 	.long	.Ltmp148
 	.long	.Ltmp149
 	.long	0
 	.long	0
-.Ldebug_ranges8:
-	.long	.Ltmp133
-	.long	.Ltmp134
-	.long	.Ltmp138
-	.long	.Ltmp143
-	.long	0
-	.long	0
-.Ldebug_ranges9:
-	.long	.Ltmp150
-	.long	.Ltmp151
-	.long	.Ltmp159
-	.long	.Ltmp160
-	.long	.Ltmp161
-	.long	.Ltmp162
-	.long	0
-	.long	0
 .Ldebug_ranges10:
-	.long	.Ltmp183
-	.long	.Ltmp187
-	.long	.Ltmp188
-	.long	.Ltmp199
-	.long	.Ltmp218
-	.long	.Ltmp219
-	.long	.Ltmp221
-	.long	.Ltmp222
+	.long	.Ltmp170
+	.long	.Ltmp174
+	.long	.Ltmp175
+	.long	.Ltmp186
+	.long	.Ltmp205
+	.long	.Ltmp206
+	.long	.Ltmp208
+	.long	.Ltmp209
 	.long	0
 	.long	0
 .Ldebug_ranges11:
+	.long	.Ltmp171
+	.long	.Ltmp172
+	.long	.Ltmp182
+	.long	.Ltmp183
 	.long	.Ltmp184
 	.long	.Ltmp185
-	.long	.Ltmp195
-	.long	.Ltmp196
-	.long	.Ltmp197
-	.long	.Ltmp198
 	.long	0
 	.long	0
 .Ldebug_ranges12:
-	.long	.Ltmp186
-	.long	.Ltmp187
-	.long	.Ltmp188
-	.long	.Ltmp195
+	.long	.Ltmp173
+	.long	.Ltmp174
+	.long	.Ltmp175
+	.long	.Ltmp182
 	.long	0
 	.long	0
 .Ldebug_ranges13:
-	.long	.Ltmp184
-	.long	.Ltmp187
-	.long	.Ltmp188
-	.long	.Ltmp199
+	.long	.Ltmp171
+	.long	.Ltmp174
+	.long	.Ltmp175
+	.long	.Ltmp186
 	.long	0
 	.long	0
 .Ldebug_ranges14:
+	.long	.Ltmp189
+	.long	.Ltmp193
+	.long	.Ltmp194
 	.long	.Ltmp202
-	.long	.Ltmp206
-	.long	.Ltmp207
-	.long	.Ltmp215
-	.long	.Ltmp216
-	.long	.Ltmp218
+	.long	.Ltmp203
+	.long	.Ltmp205
 	.long	0
 	.long	0
 .Ldebug_ranges15:
+	.long	.Ltmp190
+	.long	.Ltmp191
+	.long	.Ltmp200
+	.long	.Ltmp201
 	.long	.Ltmp203
 	.long	.Ltmp204
-	.long	.Ltmp213
-	.long	.Ltmp214
-	.long	.Ltmp216
-	.long	.Ltmp217
 	.long	0
 	.long	0
 .Ldebug_ranges16:
+	.long	.Ltmp228
+	.long	.Ltmp229
+	.long	.Ltmp240
 	.long	.Ltmp241
-	.long	.Ltmp242
-	.long	.Ltmp255
-	.long	.Ltmp256
 	.long	0
 	.long	0
 .Ldebug_ranges17:
-	.long	.Ltmp243
-	.long	.Ltmp246
-	.long	.Ltmp247
-	.long	.Ltmp248
-	.long	.Ltmp249
-	.long	.Ltmp255
+	.long	.Ltmp230
+	.long	.Ltmp231
+	.long	.Ltmp232
+	.long	.Ltmp233
+	.long	.Ltmp234
+	.long	.Ltmp240
 	.long	0
 	.long	0
 .Ldebug_ranges18:
-	.long	.Ltmp274
-	.long	.Ltmp275
-	.long	.Ltmp278
-	.long	.Ltmp279
-	.long	.Ltmp282
-	.long	.Ltmp283
+	.long	.Ltmp260
+	.long	.Ltmp261
+	.long	.Ltmp268
+	.long	.Ltmp269
+	.long	.Ltmp271
+	.long	.Ltmp272
 	.long	0
 	.long	0
 .Ldebug_ranges19:
-	.long	.Ltmp277
-	.long	.Ltmp278
-	.long	.Ltmp280
-	.long	.Ltmp281
+	.long	.Ltmp302
+	.long	.Ltmp309
+	.long	.Ltmp348
+	.long	.Ltmp350
 	.long	0
 	.long	0
 .Ldebug_ranges20:
-	.long	.Ltmp314
-	.long	.Ltmp321
-	.long	.Ltmp360
-	.long	.Ltmp362
+	.long	.Ltmp302
+	.long	.Ltmp303
+	.long	.Ltmp304
+	.long	.Ltmp305
+	.long	.Ltmp307
+	.long	.Ltmp308
 	.long	0
 	.long	0
 .Ldebug_ranges21:
-	.long	.Ltmp314
-	.long	.Ltmp315
-	.long	.Ltmp316
-	.long	.Ltmp317
-	.long	.Ltmp319
-	.long	.Ltmp320
+	.long	.Ltmp309
+	.long	.Ltmp313
+	.long	.Ltmp350
+	.long	.Ltmp351
 	.long	0
 	.long	0
 .Ldebug_ranges22:
-	.long	.Ltmp321
-	.long	.Ltmp325
-	.long	.Ltmp362
-	.long	.Ltmp363
+	.long	.Ltmp311
+	.long	.Ltmp313
+	.long	.Ltmp350
+	.long	.Ltmp351
 	.long	0
 	.long	0
 .Ldebug_ranges23:
-	.long	.Ltmp323
-	.long	.Ltmp325
-	.long	.Ltmp362
-	.long	.Ltmp363
+	.long	.Ltmp311
+	.long	.Ltmp313
+	.long	.Ltmp350
+	.long	.Ltmp351
 	.long	0
 	.long	0
 .Ldebug_ranges24:
-	.long	.Ltmp323
-	.long	.Ltmp325
-	.long	.Ltmp362
-	.long	.Ltmp363
+	.long	.Ltmp318
+	.long	.Ltmp324
+	.long	.Ltmp333
+	.long	.Ltmp334
 	.long	0
 	.long	0
 .Ldebug_ranges25:
-	.long	.Ltmp330
-	.long	.Ltmp336
-	.long	.Ltmp345
-	.long	.Ltmp346
+	.long	.Ltmp318
+	.long	.Ltmp324
+	.long	.Ltmp333
+	.long	.Ltmp334
 	.long	0
 	.long	0
 .Ldebug_ranges26:
-	.long	.Ltmp330
-	.long	.Ltmp336
-	.long	.Ltmp345
-	.long	.Ltmp346
+	.long	.Ltmp319
+	.long	.Ltmp324
+	.long	.Ltmp333
+	.long	.Ltmp334
 	.long	0
 	.long	0
 .Ldebug_ranges27:
-	.long	.Ltmp331
-	.long	.Ltmp336
-	.long	.Ltmp345
-	.long	.Ltmp346
+	.long	.Ltmp319
+	.long	.Ltmp320
+	.long	.Ltmp321
+	.long	.Ltmp322
 	.long	0
 	.long	0
 .Ldebug_ranges28:
-	.long	.Ltmp331
-	.long	.Ltmp332
-	.long	.Ltmp333
-	.long	.Ltmp334
+	.long	.Ltmp319
+	.long	.Ltmp320
+	.long	.Ltmp321
+	.long	.Ltmp322
 	.long	0
 	.long	0
 .Ldebug_ranges29:
-	.long	.Ltmp331
-	.long	.Ltmp332
-	.long	.Ltmp333
-	.long	.Ltmp334
+	.long	.Ltmp319
+	.long	.Ltmp320
+	.long	.Ltmp321
+	.long	.Ltmp322
 	.long	0
 	.long	0
 .Ldebug_ranges30:
-	.long	.Ltmp331
-	.long	.Ltmp332
-	.long	.Ltmp333
-	.long	.Ltmp334
+	.long	.Ltmp319
+	.long	.Ltmp320
+	.long	.Ltmp321
+	.long	.Ltmp322
 	.long	0
 	.long	0
 .Ldebug_ranges31:
-	.long	.Ltmp331
-	.long	.Ltmp332
-	.long	.Ltmp333
-	.long	.Ltmp334
+	.long	.Ltmp319
+	.long	.Ltmp320
+	.long	.Ltmp321
+	.long	.Ltmp322
 	.long	0
 	.long	0
 .Ldebug_ranges32:
-	.long	.Ltmp331
-	.long	.Ltmp332
-	.long	.Ltmp333
-	.long	.Ltmp334
+	.long	.Ltmp302
+	.long	.Ltmp337
+	.long	.Ltmp348
+	.long	.Ltmp360
 	.long	0
 	.long	0
 .Ldebug_ranges33:
-	.long	.Ltmp314
-	.long	.Ltmp349
-	.long	.Ltmp360
-	.long	.Ltmp372
+	.long	.Ltmp340
+	.long	.Ltmp341
+	.long	.Ltmp342
+	.long	.Ltmp343
 	.long	0
 	.long	0
 .Ldebug_ranges34:
-	.long	.Ltmp352
-	.long	.Ltmp353
-	.long	.Ltmp354
-	.long	.Ltmp355
+	.long	.Ltmp340
+	.long	.Ltmp341
+	.long	.Ltmp342
+	.long	.Ltmp343
 	.long	0
 	.long	0
 .Ldebug_ranges35:
-	.long	.Ltmp352
-	.long	.Ltmp353
-	.long	.Ltmp354
-	.long	.Ltmp355
+	.long	.Ltmp340
+	.long	.Ltmp341
+	.long	.Ltmp342
+	.long	.Ltmp343
 	.long	0
 	.long	0
 .Ldebug_ranges36:
-	.long	.Ltmp352
-	.long	.Ltmp353
-	.long	.Ltmp354
-	.long	.Ltmp355
+	.long	.Ltmp340
+	.long	.Ltmp341
+	.long	.Ltmp342
+	.long	.Ltmp343
 	.long	0
 	.long	0
 .Ldebug_ranges37:
-	.long	.Ltmp352
-	.long	.Ltmp353
-	.long	.Ltmp354
-	.long	.Ltmp355
+	.long	.Ltmp340
+	.long	.Ltmp341
+	.long	.Ltmp342
+	.long	.Ltmp343
 	.long	0
 	.long	0
 .Ldebug_ranges38:
-	.long	.Ltmp352
-	.long	.Ltmp353
-	.long	.Ltmp354
-	.long	.Ltmp355
+	.long	.Ltmp389
+	.long	.Ltmp411
+	.long	.Ltmp412
+	.long	.Ltmp413
+	.long	.Ltmp416
+	.long	.Ltmp417
 	.long	0
 	.long	0
 .Ldebug_ranges39:
-	.long	.Ltmp401
-	.long	.Ltmp423
-	.long	.Ltmp424
-	.long	.Ltmp425
-	.long	.Ltmp428
-	.long	.Ltmp429
+	.long	.Ltmp389
+	.long	.Ltmp411
+	.long	.Ltmp412
+	.long	.Ltmp413
+	.long	.Ltmp416
+	.long	.Ltmp417
 	.long	0
 	.long	0
 .Ldebug_ranges40:
-	.long	.Ltmp401
-	.long	.Ltmp423
-	.long	.Ltmp424
-	.long	.Ltmp425
-	.long	.Ltmp428
-	.long	.Ltmp429
+	.long	.Ltmp389
+	.long	.Ltmp410
+	.long	.Ltmp416
+	.long	.Ltmp417
 	.long	0
 	.long	0
 .Ldebug_ranges41:
-	.long	.Ltmp401
-	.long	.Ltmp422
-	.long	.Ltmp428
-	.long	.Ltmp429
+	.long	.Ltmp389
+	.long	.Ltmp390
+	.long	.Ltmp392
+	.long	.Ltmp393
+	.long	.Ltmp394
+	.long	.Ltmp395
+	.long	.Ltmp396
+	.long	.Ltmp397
 	.long	0
 	.long	0
 .Ldebug_ranges42:
-	.long	.Ltmp401
-	.long	.Ltmp402
-	.long	.Ltmp404
-	.long	.Ltmp405
-	.long	.Ltmp406
-	.long	.Ltmp407
-	.long	.Ltmp408
-	.long	.Ltmp409
+	.long	.Ltmp390
+	.long	.Ltmp392
+	.long	.Ltmp393
+	.long	.Ltmp394
+	.long	.Ltmp395
+	.long	.Ltmp396
+	.long	.Ltmp397
+	.long	.Ltmp403
+	.long	.Ltmp416
+	.long	.Ltmp417
 	.long	0
 	.long	0
 .Ldebug_ranges43:
-	.long	.Ltmp402
-	.long	.Ltmp404
-	.long	.Ltmp405
-	.long	.Ltmp406
-	.long	.Ltmp407
-	.long	.Ltmp408
-	.long	.Ltmp409
-	.long	.Ltmp415
-	.long	.Ltmp428
-	.long	.Ltmp429
+	.long	.Ltmp390
+	.long	.Ltmp391
+	.long	.Ltmp393
+	.long	.Ltmp394
+	.long	.Ltmp395
+	.long	.Ltmp396
+	.long	.Ltmp397
+	.long	.Ltmp398
 	.long	0
 	.long	0
 .Ldebug_ranges44:
-	.long	.Ltmp402
+	.long	.Ltmp391
+	.long	.Ltmp392
+	.long	.Ltmp398
 	.long	.Ltmp403
-	.long	.Ltmp405
-	.long	.Ltmp406
-	.long	.Ltmp407
-	.long	.Ltmp408
-	.long	.Ltmp409
-	.long	.Ltmp410
+	.long	.Ltmp416
+	.long	.Ltmp417
 	.long	0
 	.long	0
 .Ldebug_ranges45:
-	.long	.Ltmp403
-	.long	.Ltmp404
-	.long	.Ltmp410
-	.long	.Ltmp415
-	.long	.Ltmp428
-	.long	.Ltmp429
+	.long	.Ltmp391
+	.long	.Ltmp392
+	.long	.Ltmp398
+	.long	.Ltmp401
+	.long	.Ltmp416
+	.long	.Ltmp417
 	.long	0
 	.long	0
 .Ldebug_ranges46:
-	.long	.Ltmp403
-	.long	.Ltmp404
-	.long	.Ltmp410
-	.long	.Ltmp413
-	.long	.Ltmp428
-	.long	.Ltmp429
+	.long	.Ltmp399
+	.long	.Ltmp401
+	.long	.Ltmp416
+	.long	.Ltmp417
 	.long	0
 	.long	0
 .Ldebug_ranges47:
-	.long	.Ltmp411
-	.long	.Ltmp413
-	.long	.Ltmp428
-	.long	.Ltmp429
+	.long	.Ltmp399
+	.long	.Ltmp401
+	.long	.Ltmp416
+	.long	.Ltmp417
 	.long	0
 	.long	0
 .Ldebug_ranges48:
-	.long	.Ltmp411
-	.long	.Ltmp413
-	.long	.Ltmp428
-	.long	.Ltmp429
-	.long	0
-	.long	0
-.Ldebug_ranges49:
 	.long	.Lfunc_begin0
 	.long	.Lfunc_end7
 	.long	.Lfunc_begin9
@@ -20874,22 +20589,22 @@ GCC_except_table10:
 .LpubNames_begin0:
 	.short	2                       @ DWARF Version
 	.long	.Lcu_begin0             @ Offset of Compilation Unit Info
-	.long	25640                   @ Compilation Unit Length
+	.long	25282                   @ Compilation Unit Length
 	.long	20348                   @ DIE offset
 	.asciz	"std::_Vector_base<Wavetable, std::allocator<Wavetable> >::_Vector_base" @ External Name
 	.long	9368                    @ DIE offset
 	.asciz	"std::__uninitialized_default_n_a<Wavetable *, unsigned int, Wavetable>" @ External Name
-	.long	23530                   @ DIE offset
+	.long	23172                   @ DIE offset
 	.asciz	"std::vector<Wavetable, std::allocator<Wavetable> >::_M_default_append" @ External Name
 	.long	6025                    @ DIE offset
 	.asciz	"std::__debug"          @ External Name
-	.long	23400                   @ DIE offset
+	.long	22941                   @ DIE offset
 	.asciz	"__gnu_cxx::new_allocator<Wavetable>::allocate" @ External Name
 	.long	8898                    @ DIE offset
 	.asciz	"std::_Destroy<Wavetable *>" @ External Name
 	.long	20787                   @ DIE offset
 	.asciz	"std::allocator_traits<std::allocator<Wavetable> >::deallocate" @ External Name
-	.long	24845                   @ DIE offset
+	.long	24487                   @ DIE offset
 	.asciz	"std::vector<float, std::allocator<float> >::end" @ External Name
 	.long	13995                   @ DIE offset
 	.asciz	"std"                   @ External Name
@@ -20901,23 +20616,23 @@ GCC_except_table10:
 	.asciz	"std::_Destroy<Wavetable *, Wavetable>" @ External Name
 	.long	20744                   @ DIE offset
 	.asciz	"__gnu_cxx::new_allocator<Wavetable>::deallocate" @ External Name
-	.long	21548                   @ DIE offset
+	.long	21415                   @ DIE offset
 	.asciz	"Oscillator::setup"     @ External Name
 	.long	21351                   @ DIE offset
 	.asciz	"std::vector<Wavetable, std::allocator<Wavetable> >::resize" @ External Name
 	.long	9761                    @ DIE offset
 	.asciz	"std::__copy_move_a<false, const float *, float *>" @ External Name
-	.long	24825                   @ DIE offset
+	.long	24467                   @ DIE offset
 	.asciz	"std::vector<float, std::allocator<float> >::begin" @ External Name
 	.long	9445                    @ DIE offset
 	.asciz	"std::_Construct<Wavetable>" @ External Name
-	.long	24694                   @ DIE offset
+	.long	24336                   @ DIE offset
 	.asciz	"std::_Vector_base<float, std::allocator<float> >::_M_allocate" @ External Name
-	.long	24725                   @ DIE offset
+	.long	24367                   @ DIE offset
 	.asciz	"std::_Vector_base<float, std::allocator<float> >::_M_create_storage" @ External Name
 	.long	20678                   @ DIE offset
 	.asciz	"std::_Vector_base<Wavetable, std::allocator<Wavetable> >::~_Vector_base" @ External Name
-	.long	21516                   @ DIE offset
+	.long	21870                   @ DIE offset
 	.asciz	"std::vector<Wavetable, std::allocator<Wavetable> >::operator[]" @ External Name
 	.long	6032                    @ DIE offset
 	.asciz	"std::__exception_ptr"  @ External Name
@@ -20925,66 +20640,66 @@ GCC_except_table10:
 	.asciz	"std::allocator_traits<std::allocator<float> >::deallocate" @ External Name
 	.long	20497                   @ DIE offset
 	.asciz	"std::vector<float, std::allocator<float> >::~vector" @ External Name
-	.long	24756                   @ DIE offset
+	.long	24398                   @ DIE offset
 	.asciz	"__gnu_cxx::new_allocator<float>::allocate" @ External Name
 	.long	10077                   @ DIE offset
 	.asciz	"std::uninitialized_copy<__gnu_cxx::__normal_iterator<const float *, std::vector<float, std::allocator<float> > >, float *>" @ External Name
 	.long	9035                    @ DIE offset
 	.asciz	"std::uninitialized_copy<const Wavetable *, Wavetable *>" @ External Name
-	.long	23469                   @ DIE offset
+	.long	23111                   @ DIE offset
 	.asciz	"std::__uninitialized_default_n_1<false>::__uninit_default_n<Wavetable *, unsigned int>" @ External Name
 	.long	20702                   @ DIE offset
 	.asciz	"std::_Vector_base<Wavetable, std::allocator<Wavetable> >::_M_deallocate" @ External Name
 	.long	9114                    @ DIE offset
 	.asciz	"std::__uninitialized_copy_a<const Wavetable *, Wavetable *, Wavetable>" @ External Name
-	.long	24992                   @ DIE offset
+	.long	24634                   @ DIE offset
 	.asciz	"std::__uninitialized_copy<false>::__uninit_copy<const Wavetable *, Wavetable *>" @ External Name
-	.long	23167                   @ DIE offset
+	.long	22688                   @ DIE offset
 	.asciz	"Oscillator::getFundamentalFrequency" @ External Name
-	.long	22843                   @ DIE offset
+	.long	22364                   @ DIE offset
 	.asciz	"Oscillator::incrementWaveshape" @ External Name
 	.long	10314                   @ DIE offset
 	.asciz	"__gnu_cxx"             @ External Name
 	.long	9002                    @ DIE offset
 	.asciz	"std::_Destroy<Wavetable>" @ External Name
-	.long	23047                   @ DIE offset
+	.long	22568                   @ DIE offset
 	.asciz	"Oscillator::setFundamentalFrequency" @ External Name
 	.long	21383                   @ DIE offset
 	.asciz	"std::vector<Wavetable, std::allocator<Wavetable> >::_M_erase_at_end" @ External Name
 	.long	10156                   @ DIE offset
 	.asciz	"std::__uninitialized_copy_a<__gnu_cxx::__normal_iterator<const float *, std::vector<float, std::allocator<float> > >, float *, float>" @ External Name
-	.long	24613                   @ DIE offset
+	.long	24255                   @ DIE offset
 	.asciz	"std::_Vector_base<float, std::allocator<float> >::_Vector_impl::_Vector_impl" @ External Name
-	.long	24865                   @ DIE offset
+	.long	24507                   @ DIE offset
 	.asciz	"std::__copy_move<false, true, std::random_access_iterator_tag>::__copy_m<float>" @ External Name
-	.long	24582                   @ DIE offset
+	.long	24224                   @ DIE offset
 	.asciz	"Wavetable::Wavetable"  @ External Name
 	.long	9937                    @ DIE offset
 	.asciz	"std::copy<__gnu_cxx::__normal_iterator<const float *, std::vector<float, std::allocator<float> > >, float *>" @ External Name
 	.long	20319                   @ DIE offset
 	.asciz	"std::_Vector_base<Wavetable, std::allocator<Wavetable> >::_Vector_impl::_Vector_impl" @ External Name
-	.long	23200                   @ DIE offset
+	.long	22721                   @ DIE offset
 	.asciz	"Oscillator::process"   @ External Name
-	.long	22692                   @ DIE offset
+	.long	22213                   @ DIE offset
 	.asciz	"Oscillator::getWaveshape" @ External Name
 	.long	20430                   @ DIE offset
 	.asciz	"std::_Destroy_aux<false>::__destroy<Wavetable *>" @ External Name
 	.long	20468                   @ DIE offset
 	.asciz	"std::_Vector_base<float, std::allocator<float> >::~_Vector_base" @ External Name
-	.long	24794                   @ DIE offset
+	.long	24436                   @ DIE offset
 	.asciz	"std::allocator_traits<std::allocator<float> >::allocate" @ External Name
-	.long	24934                   @ DIE offset
+	.long	24576                   @ DIE offset
 	.asciz	"std::__uninitialized_copy<true>::__uninit_copy<__gnu_cxx::__normal_iterator<const float *, std::vector<float, std::allocator<float> > >, float *>" @ External Name
-	.long	22727                   @ DIE offset
+	.long	22248                   @ DIE offset
 	.asciz	"Oscillator::setWaveshape" @ External Name
-	.long	23308                   @ DIE offset
+	.long	22849                   @ DIE offset
 	.asciz	"std::vector<Wavetable, std::allocator<Wavetable> >::_M_check_len" @ External Name
 	.long	20550                   @ DIE offset
 	.asciz	"std::_Vector_base<float, std::allocator<float> >::_M_deallocate" @ External Name
-	.long	24546                   @ DIE offset
-	.asciz	"std::vector<float, std::allocator<float> >::vector" @ External Name
-	.long	23369                   @ DIE offset
+	.long	22910                   @ DIE offset
 	.asciz	"std::_Vector_base<Wavetable, std::allocator<Wavetable> >::_M_allocate" @ External Name
+	.long	24188                   @ DIE offset
+	.asciz	"std::vector<float, std::allocator<float> >::vector" @ External Name
 	.long	20526                   @ DIE offset
 	.asciz	"Wavetable::~Wavetable" @ External Name
 	.long	20592                   @ DIE offset
@@ -21001,15 +20716,15 @@ GCC_except_table10:
 	.asciz	"std::__uninitialized_move_if_noexcept_a<Wavetable *, Wavetable *, std::allocator<Wavetable> >" @ External Name
 	.long	20830                   @ DIE offset
 	.asciz	"Oscillator::Oscillator" @ External Name
-	.long	24521                   @ DIE offset
+	.long	24163                   @ DIE offset
 	.asciz	"std::vector<float, std::allocator<float> >::size" @ External Name
 	.long	21326                   @ DIE offset
 	.asciz	"std::vector<Wavetable, std::allocator<Wavetable> >::size" @ External Name
-	.long	24648                   @ DIE offset
+	.long	24290                   @ DIE offset
 	.asciz	"std::_Vector_base<float, std::allocator<float> >::_Vector_base" @ External Name
 	.long	9296                    @ DIE offset
 	.asciz	"std::__uninitialized_default_n<Wavetable *, unsigned int>" @ External Name
-	.long	23438                   @ DIE offset
+	.long	22979                   @ DIE offset
 	.asciz	"std::allocator_traits<std::allocator<Wavetable> >::allocate" @ External Name
 	.long	0                       @ End Mark
 .LpubNames_end0:
@@ -21018,7 +20733,7 @@ GCC_except_table10:
 .LpubTypes_begin0:
 	.short	2                       @ DWARF Version
 	.long	.Lcu_begin0             @ Offset of Compilation Unit Info
-	.long	25640                   @ Compilation Unit Length
+	.long	25282                   @ Compilation Unit Length
 	.long	15213                   @ DIE offset
 	.asciz	"intmax_t"              @ External Name
 	.long	2780                    @ DIE offset

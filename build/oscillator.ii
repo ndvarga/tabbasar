@@ -22115,8 +22115,7 @@ private:
  float amplitude_;
  bool useInterpolation_;
 };
-# 3 "/root/Bela/projects/tabbasar/oscillator.h" 2
-
+# 4 "/root/Bela/projects/tabbasar/oscillator.h" 2
 
 # 1 "/usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/cmath" 1 3
 # 40 "/usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/cmath" 3
@@ -25030,8 +25029,7 @@ namespace std __attribute__ ((__visibility__ ("default")))
 }
 # 1889 "/usr/bin/../lib/gcc/arm-linux-gnueabihf/6.3.0/../../../../include/c++/6.3.0/cmath" 3
 }
-# 5 "/root/Bela/projects/tabbasar/oscillator.h" 2
-
+# 6 "/root/Bela/projects/tabbasar/oscillator.h" 2
 
 
 class Oscillator
@@ -25075,8 +25073,7 @@ private:
  float sampleRate_;
  float f_fundamental_;
 };
-# 1 "/root/Bela/projects/tabbasar/oscillator.cpp" 2
-
+# 2 "/root/Bela/projects/tabbasar/oscillator.cpp" 2
 
 
 Oscillator::Oscillator(Waveshape waveshape, float sampleRate, unsigned int wavetableSize, unsigned int nHarmonics, bool useInterpolation) {
@@ -25094,8 +25091,8 @@ void Oscillator::setup(Waveshape waveshape, float sampleRate, unsigned int wavet
 
  for (unsigned int i = 0; i < wavetables_.size(); i++)
  {
-  Wavetable harmonic;
-  harmonic.setup(sampleRate, wavetableSize, useInterpolation);
+
+
   wavetables_[i].setup(sampleRate, wavetableSize, useInterpolation);
 
  }
@@ -25116,6 +25113,9 @@ Oscillator::Waveshape Oscillator::getWaveshape()
 
 void Oscillator::incrementWaveshape()
 {
+
+
+
  switch(table_type_)
  {
   case(sine):
@@ -25255,10 +25255,10 @@ void Oscillator::setFundamentalFrequency(float f) {
   float f_harmonic = f_fundamental_ * (i+1);
   wavetables_[i].setFrequency(f_harmonic);
 
-  if (f_harmonic > sampleRate_ / 2.5f)
+  if (f_harmonic > (sampleRate_ / 2.0f))
   {
    wavetables_[i].setAmplitude(0);
-   rt_printf("muted harmonic %d", i+1);
+
   }
  }
 }
@@ -25281,14 +25281,20 @@ float Oscillator::process() {
   out = (float)std::rand() / (float)2147483647 * 2.0f - 1.0f;
      return out;
  }
+
  else
  {
 
   for (unsigned int i = 0; i < wavetables_.size(); i++)
   {
+
+   if (wavetables_[i].getFrequency() < (sampleRate_ / 2.0f))
+   {
       float table_sample = wavetables_[i].process();
       out += table_sample;
-     }
+   }
+  }
+
  }
 
  return out;
