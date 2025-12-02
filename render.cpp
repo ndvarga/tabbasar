@@ -111,24 +111,24 @@ void render(BelaContext *context, void *userData)
     	// because the analog sample rate is half of the audio one
     	if( !(n % 2) )
     	{
-			float input0 = analogRead(context, n/2, 0);	// read analog in 0
-			float input1 = analogRead(context, n/2, 1);	// read analog in 1
-			float input2 = analogRead(context, n/2, 2);	// read analog in 2
-			float input3 = analogRead(context, n/2, 3); // read analog in 3
-			
-			float frequency = map(input0, 0, 3.3 / 4.096, 55, 440);		// Frequency is first knob (analog in 0)
-			float level = map(input1, 0, 3.3 / 4.096, -60, -20);		// Level is second knob (analog in 1)	
-			// this third parameter is ready to be used
-			float detune  = map(input2, 0, 3.3 / 4.096, 0, 0.05);	    // Detune is third knob (analog in 2)	
-			float lowpass_frequency = map(input3, 0, 3.3/4.096, 1, 5000);
-			
-			lowpass.setFc(lowpass_frequency);
-			
-			gAmplitude = powf(10.0, level / 20);	// Convert level to linear amplitude
-	
-			// Compute frequencies from central freq and detune		
-			gFrequencies[0] = frequency * (1.0 + detune);
-			gFrequencies[1] = frequency * (1.0 - detune);
+				float input0 = analogRead(context, n/2, 0);	// read analog in 0
+				float input1 = analogRead(context, n/2, 1);	// read analog in 1
+				float input2 = analogRead(context, n/2, 2);	// read analog in 2
+				float input3 = analogRead(context, n/2, 3); // read analog in 3
+				
+				float frequency = map(input0, 0, 3.3 / 4.096, 55, 440);		// Frequency is first knob (analog in 0)
+				float level = map(input1, 0, 3.3 / 4.096, -60, -20);		// Level is second knob (analog in 1)	
+				// this third parameter is ready to be used
+				float detune  = map(input2, 0, 3.3 / 4.096, 0, 0.05);	    // Detune is third knob (analog in 2)	
+				float lowpass_frequency = map(input3, 0, 3.3/4.096, 1, 5000);
+				
+				lowpass.setFc(lowpass_frequency);
+				
+				gAmplitude = powf(10.0, level / 20);	// Convert level to linear amplitude
+		
+				// Compute frequencies from central freq and detune		
+				gFrequencies[0] = frequency * (1.0 + detune);
+				gFrequencies[1] = frequency * (1.0 - detune);
     	}
 	
 		unsigned int input0 = digitalRead(context,n, 0);

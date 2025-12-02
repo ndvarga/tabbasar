@@ -212,6 +212,18 @@ float Oscillator::process() {
 	    	out += table_sample;
 	    }
 	}
+  // go through all wavetables
+	for (unsigned int i = 0; i < wavetables_.size(); i++)
+  {
+    // anti aliasing
+    if (wavetables_[i].getFrequency() < (float)(sampleRate_ / 2.0f))
+    {
+      float table_sample = wavetables_[i].process();
+      out += table_sample;
+    }
+  }
+	
+  out *= masterAmplitude;
 	
 	return out;
 }			
