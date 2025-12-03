@@ -40,8 +40,10 @@ Biquad lowpass;
 Scope gScope;
 
 // Wavetable oscillator
-Oscillator gOscillators[2];
-Oscillator gTestOsc;
+unsigned int kDualOscillators = 1;
+
+Oscillator gOscillators[kDualOscillators];
+// Oscillator gTestOsc;
 
 //add vector for all of our Waveshapes to use in our oscillator
 // std::vector<Wavetable::Waveshape> discreet_waveshapes = { Wavetable::Waveshape::sine, Wavetable::Waveshape::square, Wavetable::Waveshape::saw, Wavetable::Waveshape::triangle };
@@ -54,7 +56,7 @@ unsigned int gSequencerLocation = 0;
 
 // Oscillators parameters
 float gAmplitude;
-float gFrequencies[2];
+float gFrequencies[kDualOscillators];
 
 // button parameters
 // State machine states
@@ -91,8 +93,8 @@ bool setup(BelaContext *context, void *userData)
 	//setup(waveshape, sampleRate, wavetableSize, nHarmonics, useInterpolation)
 	gTestOsc.setup(oscillatorType, context->audioSampleRate, kWavetableSize, kNumHarmonics, true);
 
-	gOscillators[1].setup(oscillatorType, context->audioSampleRate, kWavetableSize, kNumHarmonics, true);
-	gOscillators[0].setup(oscillatorType, context->audioSampleRate, kWavetableSize, kNumHarmonics, true);
+	// gOscillators[1].setup(oscillatorType, context->audioSampleRate, kWavetableSize, kNumHarmonics, true);
+	gOscillators[kDualOscillators].setup(oscillatorType, context->audioSampleRate, kWavetableSize, kNumHarmonics, true);
 
 	// Set up the oscilloscope
 	gScope.setup(1, context->audioSampleRate);
@@ -148,14 +150,14 @@ void render(BelaContext *context, void *userData)
 		if (result ==  true) {
 			rt_printf("Button pressed\n");
 			gOscillators[0].incrementWaveshape();
-			gOscillators[1].incrementWaveshape();
+			// gOscillators[1].incrementWaveshape();
 		}
 		
 
 		float oscillator_out = 0;
 		float out = 0;
     	
-		for(unsigned int i = 0; i < 2; i++) 
+		for(unsigned int i = 0; i < kDualOscillators; i++) 
 		{
 			oscillator_out += gAmplitude * gOscillators[i].process();
 				
