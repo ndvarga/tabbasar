@@ -29,9 +29,49 @@ The Bela software is distributed under the GNU Lesser General Public License
 #include "oscillator.h"	// This is needed for the oscillator class
 #include "debouncer.h"
 #include "parameters.h"
+#include <algorithm>
+
+// Step sequencer pins
+const unsigned int kTempoInput = 0;			// Which analog input to read
+
+//global variables for digital button pins
+
+const int kButtonPin = 1;	
+const int kReverseButtonPin = 2;
+
+// Step sequencer contents
+
+// Initialize with size
+std::vector<std::vector<int>> matrix(4, std::vector<int>(4, 0));  // 3x4 matrix of zeros
+
+
+
+std::vector<std::vector<float>> gSequencerPatterns = {
+    {36, 40, 43},  // Pattern 0
+    {36, 39, 43},  // Pattern 1
+    // {36, 40, 43, 47},  // dominant
+   
+    //{880.0, 987.77, 1046.5, 1174.66}  // Pattern 2
+};
+
+unsigned int gSequencerLocation = 0;
+
+int gLastButtonStatus = HIGH;
+int gLastReverseButtonStatus = HIGH;
+
+
+// global variables here for counting time
+unsigned int gSampleCounter = 0;
+unsigned int gMetroInterval;
+
+int gCurrentPattern = 0;
+float freq = gSequencerPatterns[gCurrentPattern][gSequencerLocation];
+
+
+
 
 // Constants that define the program behaviour
-const unsigned int kWavetableSize = 256;
+const unsigned int kWavetableSize = 128;
 const unsigned int kNumHarmonics = 32;
 
 Biquad lowpass;
@@ -40,25 +80,26 @@ Biquad lowpass;
 Scope gScope;
 
 // Wavetable oscillator
-unsigned int kDualOscillators = 1;
+const unsigned int kDualOscillators = 1;
 
 Oscillator gOscillators[kDualOscillators];
 // Oscillator gTestOsc;
 
-//add vector for all of our Waveshapes to use in our oscillator
-// std::vector<Wavetable::Waveshape> discreet_waveshapes = { Wavetable::Waveshape::sine, Wavetable::Waveshape::square, Wavetable::Waveshape::saw, Wavetable::Waveshape::triangle };
-
+// A button deboucer for button 0
 Debouncer gButtonDebouncer;
 
-// Step sequencer contents
-std::vector<float> gSequencerBuffer = {36, 40, 43};
-unsigned int gSequencerLocation = 0;
+
 
 // Oscillators parameters
 float gAmplitude;
 float gFrequencies[kDualOscillators];
 
+
+
 // button parameters
+
+
+
 // State machine states
 
 
@@ -90,18 +131,20 @@ bool setup(BelaContext *context, void *userData)
 	// arguments are oscillatorType, sample rate, wavetable size, 
 	// for(unsigned int i = 0; i < 2; i++)
 	
-	//setup(waveshape, sampleRate, wavetableSize, nHarmonics, useInterpolation)
-	gTestOsc.setup(oscillatorType, context->audioSampleRate, kWavetableSize, kNumHarmonics, true);
-
+	
+	//oscillator setup args are (waveshape, sampleRate, wavetableSize, nHarmonics, useInterpolation)
+	gOscillators[0].setup(oscillatorType, context->audioSampleRate, kWavetableSize, kNumHarmonics, true);
+	
+	// temporary for no error
+	gOscillators[0].setFundamentalFrequency(440);
 	// gOscillators[1].setup(oscillatorType, context->audioSampleRate, kWavetableSize, kNumHarmonics, true);
-	gOscillators[kDualOscillators].setup(oscillatorType, context->audioSampleRate, kWavetableSize, kNumHarmonics, true);
 
 	// Set up the oscilloscope
 	gScope.setup(1, context->audioSampleRate);
     
     // set the debounce interval in samples
     gDebounceInterval = context->audioSampleRate * gDebounceTimeMs / 1000.0;
-	gTestOsc.setFundamentalFrequency(320.0);
+	// gTestOsc.setFundamentalFrequency(320.0);
 
 	//button debouncer setup, with debounce time and audio sample rate
 	gButtonDebouncer.setup(gDebounceTimeMs, context->audioSampleRate);
@@ -119,32 +162,72 @@ void render(BelaContext *context, void *userData)
     	// because the analog sample rate is half of the audio one
     	if( !(n % 2) )
     	{
-				float input0 = analogRead(context, n/2, 0);	// read analog in 0
-				float input1 = analogRead(context, n/2, 1);	// read analog in 1
-				float input2 = analogRead(context, n/2, 2);	// read analog in 2
-				float input3 = analogRead(context, n/2, 3); // read analog in 3
-				
-				float frequency = map(input0, 0, 3.3 / 4.096, 55, 880);		// Frequency is first knob (analog in 0)
-				float level = map(input1, 0, 3.3 / 4.096, -60, -20);		// Level is second knob (analog in 1)	
-				// this third parameter is ready to be used
-				float detune  = map(input2, 0, 3.3 / 4.096, 0, 0.05);	    // Detune is third knob (analog in 2)	
-				float lowpass_frequency = map(input3, 0, 3.3/4.096, 1, 5000);
-				
-				lowpass.setFc(lowpass_frequency);
-				
-				gAmplitude = powf(10.0, level / 20);	// Convert level to linear amplitude
-		
-				gFrequencies[0] = frequency * (1.0 + detune);
-				gFrequencies[1] = frequency * (1.0 - detune);
-				// Compute frequencies from central freq and detune	
-				for (unsigned int i = 0; i < 2; i++)
-				{
+    		// code for arpegiiator
+			float input = analogRead(context, n/2, kTempoInput); // read analog in 0
+    		float bpm = map(input, 0, 3.3/4.096, 40, 1000); // turn into BPM
+    		gMetroInterval = 80.0 * context->audioSampleRate / bpm;
+    		
+    		//TODO: MAKE WHAT THESE DIALS DO DEPENDENT ON THE BUTTON STATE
+    		
+			// float input0 = analogRead(context, n/2, 0);	// read analog in 0
+			float input1 = analogRead(context, n/2, 1); // analog in 1 is level
+			// float input2 = analogRead(context, n/2, 2);	// read analog in 2
+			float input3 = analogRead(context, n/2, 3); // read analog in 3
+			
+			// float frequency = map(input0, 0, 3.3 / 4.096, 55, 880);		// Frequency is first knob (analog in 0)
+			float level = map(input1, 0, 3.3 / 4.096, -60, -20);		// Level is second knob (analog in 1)	
+			// // this third parameter is ready to be used
+			// float detune  = map(input2, 0, 3.3 / 4.096, 0, 0.05);	    // Detune is third knob (analog in 2)	
+			float lowpass_frequency = map(input3, 0, 3.3/4.096, 1, 5000); // use pin3 for lowpass_frequency
+			
+			lowpass.setFc(lowpass_frequency);
+			
+			gAmplitude = powf(10.0, level / 20);	// Convert level to linear amplitude
 	
-					gOscillators[i].setFundamentalFrequency(gFrequencies[i]);
-				}
     	}
 	
 		unsigned int input0 = digitalRead(context,n,0);
+    	
+    	int reverseButtonStatus = digitalRead(context, n, kReverseButtonPin);
+		if(reverseButtonStatus == LOW && gLastReverseButtonStatus == HIGH)
+		//reverses all gSequencerPatterns when button in digital 2 is pressed
+		for(int i = 0; i < gSequencerPatterns.size(); i++)
+		{
+    		std::reverse(gSequencerPatterns[i].begin(), gSequencerPatterns[i].end());
+		}
+		gLastReverseButtonStatus = reverseButtonStatus;
+    	
+    	
+    	// Use button to change which GPattern is used
+    	int buttonStatus = digitalRead(context, n, kButtonPin);
+		if(buttonStatus == LOW && gLastButtonStatus == HIGH)
+		{
+			gCurrentPattern++;
+    		if(gCurrentPattern >= gSequencerPatterns.size())
+        	gCurrentPattern = 0;
+		}
+		gLastButtonStatus = buttonStatus;
+    	
+    	
+    	
+    	// Get current frequency based on where we are in the sequencer
+    	float midiNote = gSequencerPatterns[gCurrentPattern][gSequencerLocation];
+    	float frequency = 440.0 * powf(2.0, (midiNote - 69.0) / 12.0);
+    	
+    	gOscillators[0].setFundamentalFrequency(frequency);
+    	// check if enough time has elapsed and increment the sequence location 
+    	gSampleCounter++;
+		
+		if(gSampleCounter >= gMetroInterval)
+		{
+			gSampleCounter = 0;
+			gSequencerLocation++;
+			
+			// wrap aroudn
+			if(gSequencerLocation >= gSequencerPatterns[gCurrentPattern].size())
+				gSequencerLocation = 0;
+		}
+		
 		
 		bool result = gButtonDebouncer.step(input0);
 		if (result ==  true) {
@@ -157,14 +240,15 @@ void render(BelaContext *context, void *userData)
 		float oscillator_out = 0;
 		float out = 0;
     	
-		for(unsigned int i = 0; i < kDualOscillators; i++) 
-		{
-			oscillator_out += gAmplitude * gOscillators[i].process();
+		// for(unsigned int i = 0; i < kDualOscillators; i++) 
+		// {
+		// 	oscillator_out += gAmplitude * gOscillators[i].process();
 				
-		}
+		// }
 		
-    	out = oscillator_out;
-    	// out = lowpass.process(oscillator_out);
+    	// out = oscillator_out;
+    	oscillator_out = gAmplitude * gOscillators[0].process();
+    	out = lowpass.process(oscillator_out);
     	
     	gSampleTimer++;
     	if (gSampleTimer > context->audioSampleRate / 5)

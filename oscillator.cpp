@@ -92,7 +92,7 @@ void Oscillator::setWaveshape(Waveshape waveshape)
 	    	{
 	    		wavetables_[i].setFrequency((float)f_fundamental_ * (i+1));
 
-		        // If i is even, mute the harmonic
+		        // If i is odd, mute the harmonic
 		        if ((i%2))
 		        {
 		          wavetables_[i].setAmplitude(0);
@@ -140,19 +140,25 @@ void Oscillator::setWaveshape(Waveshape waveshape)
 		case(triangle):
 		{
 			//generate triangle wave
-			// needs to rise and fall in half a period
 			for (unsigned int i = 0; i < wavetables_.size(); i++)
 			{
 	        // get odd harmonics
 		        if (i % 2)
 		        {
 		          float amplitude = 8 / (M_PI * M_PI) * powf(-1.0f, (i - 1) / 2.0f) / powf((float)i, 2.0f);
+		          rt_printf("set amplitude to %f ", amplitude);
 		          wavetables_[i].setAmplitude(amplitude);
-		          wavetables_[i].setFrequency(i * f_fundamental_);
+		          float frequency = i * f_fundamental_;
+		          wavetables_[i].setFrequency(frequency);
+  		          rt_printf("set frequency to %f\n", frequency);
+
 		        }
 		        else
 		        {
 		          // mute even harmonics
+  		          float frequency = i * f_fundamental_;
+		          rt_printf("set frequency to %f AMPLITUDE 0\n", frequency);
+
 		          wavetables_[i].setAmplitude(0);
 		          //set arbitrary frequency so there's no bugs
 		          wavetables_[i].setFrequency(1.0f);

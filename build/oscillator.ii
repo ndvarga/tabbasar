@@ -25037,10 +25037,10 @@ class Oscillator
   public:
     typedef enum
       {
-        sine,
-        square,
-        saw,
-        triangle,
+        sine = 0,
+        square = 1,
+        saw = 2,
+        triangle = 3,
         noise
       } Waveshape;
 
@@ -25215,18 +25215,24 @@ void Oscillator::setWaveshape(Waveshape waveshape)
   case(triangle):
   {
 
-
    for (unsigned int i = 0; i < wavetables_.size(); i++)
    {
 
           if (i % 2)
           {
             float amplitude = 8 / (3.14159265358979323846 * 3.14159265358979323846) * powf(-1.0f, (i - 1) / 2.0f) / powf((float)i, 2.0f);
+            rt_printf("set amplitude to %f ", amplitude);
             wavetables_[i].setAmplitude(amplitude);
-            wavetables_[i].setFrequency(i * f_fundamental_);
+            float frequency = i * f_fundamental_;
+            wavetables_[i].setFrequency(frequency);
+              rt_printf("set frequency to %f\n", frequency);
+
           }
           else
           {
+
+              float frequency = i * f_fundamental_;
+            rt_printf("set frequency to %f AMPLITUDE 0\n", frequency);
 
             wavetables_[i].setAmplitude(0);
 

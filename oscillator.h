@@ -10,10 +10,10 @@ class Oscillator
   public:
     typedef enum
       {
-        sine,
-        square,
-        saw,
-        triangle,
+        sine = 0,
+        square = 1,
+        saw = 2,
+        triangle = 3,
         noise
       } Waveshape;
     
