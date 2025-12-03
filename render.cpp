@@ -21,20 +21,22 @@ The Bela software is distributed under the GNU Lesser General Public License
 
 
 #include <Bela.h>
+#include <libraries/Gui/Gui.h>
+#include <libraries/GuiController/GuiController.h>
 #include <libraries/Scope/Scope.h>
 #include <cmath>
 #include <vector>
 #include <libraries/Biquad/Biquad.h>
 #include "Filter.h"
 #include "oscillator.h"	// This is needed for the oscillator class
-#include "debouncer.h"
 #include "parameters.h"
 #include "ADSR.h"
+#include "Debouncer.h"
 #include "Ramp.h"
 #include <algorithm>
 
 // global bpm input
-const unsigned int kTempoInput = 0;			// Which analog input to read
+const int kTempoInput = 0;			// Which analog input to read
 
 //global variables for digital button pins
 const int kOscModeButtonPin = 0;
@@ -102,11 +104,6 @@ GuiController gGuiController;
 // Oscillators parameters
 float gAmplitude;
 float gFrequencies[kDualOscillators];
-
-
-
-// button parameters
-
 
 
 // State machine states
@@ -184,7 +181,7 @@ bool setup(BelaContext *context, void *userData)
 void render(BelaContext *context, void *userData)
 {
 		// Retrieve values from the sliders
-		float frequency = gGuiController.getSliderValue(0);
+
 		float ampAttackTime = gGuiController.getSliderValue(1);
 		float ampDecayTime = gGuiController.getSliderValue(2);
 		float ampSustainLevel = gGuiController.getSliderValue(3);
@@ -198,7 +195,6 @@ void render(BelaContext *context, void *userData)
 		float filterReleaseTime = gGuiController.getSliderValue(11);
 
 		// Set oscillator and ADSR parameters
-		gOscillator.setFrequency(frequency);
 		gAmplitudeADSR.setAttackTime(ampAttackTime);
 		gAmplitudeADSR.setDecayTime(ampDecayTime);
 		gAmplitudeADSR.setSustainLevel(ampSustainLevel);
@@ -207,7 +203,7 @@ void render(BelaContext *context, void *userData)
 		gFilterADSR.setDecayTime(filterDecayTime);
 		gFilterADSR.setSustainLevel(filterSustainLevel);
 		gFilterADSR.setReleaseTime(filterReleaseTime);
-		lowpass.setQ(filterQ);
+		// lowpass.setQ(filterQ);
 
 
     for(unsigned int n = 0; n < context->audioFrames; n++) 
@@ -217,7 +213,7 @@ void render(BelaContext *context, void *userData)
     	// because the analog sample rate is half of the audio one
     	if( !(n % 2) )
     	{
-    		// code for arpegiiator
+    		// code for arpegiiator, using analog 0
 			float input = analogRead(context, n/2, kTempoInput); // read analog in 0
     		float bpm = map(input, 0, 3.3/4.096, 40, 1000); // turn into BPM
     		gMetroInterval = 80.0 * context->audioSampleRate / bpm;
@@ -230,10 +226,10 @@ void render(BelaContext *context, void *userData)
 			float input3 = analogRead(context, n/2, 3); // read analog in 3
 			
 			// float frequency = map(input0, 0, 3.3 / 4.096, 55, 880);		// Frequency is first knob (analog in 0)
-			float level = map(input1, 0, 3.3 / 4.096, -60, -20);		// Level is second knob (analog in 1)	
+			float level = map(input1, 0, 3.3 / 4.096, -60, -10);		// Level is second knob (analog in 1)	
 			// // this third parameter is ready to be used
 			// float detune  = map(input2, 0, 3.3 / 4.096, 0, 0.05);	    // Detune is third knob (analog in 2)	
-			float lowpass_frequency = map(input3, 0, 3.3/4.096, 1, 5000); // use pin3 for lowpass_frequency
+			float lowpass_frequency = map(input3, 0, 3.3/4.096, 1, 8000); // use pin3 for lowpass_frequency
 			
 			lowpass.setFc(lowpass_frequency);
 			
@@ -265,13 +261,15 @@ void render(BelaContext *context, void *userData)
 			}
 			gLastButtonStatus = buttonStatus;
 				
-			gDebouncer.process(buttonValue);
+			// Read ADSR button
+			unsigned int ADSRButtonValue = digitalRead(context, n, kADSRButtonPin);
+			gADSRDebouncer.process(ADSRButtonValue);
 
-			if(gDebouncer.fallingEdge()) {
-			gAmplitudeADSR.trigger();
-			gFilterADSR.trigger();
+			if(gADSRDebouncer.fallingEdge()) {
+				gAmplitudeADSR.trigger();
+				gFilterADSR.trigger();
 			}    	
-			if(gDebouncer.risingEdge()) {
+			if(gADSRDebouncer.risingEdge()) {
 				gAmplitudeADSR.release();
 				gFilterADSR.release();
 			}
@@ -282,7 +280,7 @@ void render(BelaContext *context, void *userData)
 				
 			// set the filter frequency based on its ADSR
 			float filterControl = gFilterADSR.process();
-			lowpass.setFc(filterBase + filterSensitivity * filterControl);
+			// lowpass.setFc(filterBase + filterSensitivity * filterControl);
 				
 				
 			// Get current frequency based on where we are in the sequencer
@@ -305,7 +303,7 @@ void render(BelaContext *context, void *userData)
 		
 		unsigned int modeSwitchButton = digitalRead(context,n,kOscModeButtonPin);
 		
-		gOscModeDebouncer.step(modeSwitchButton);
+		gOscModeDebouncer.process(modeSwitchButton);
 		if(gOscModeDebouncer.fallingEdge()) {
 			gOscillators[0].incrementWaveshape();
 			rt_printf("Waveshape changed\n");
@@ -322,7 +320,12 @@ void render(BelaContext *context, void *userData)
 		// }
 		
     	// out = oscillator_out;
+    	
+    	// amplitude from the ADSR
+    	// gAmplitude *= amplitude;
     	oscillator_out = gAmplitude * gOscillators[0].process();
+    	
+    	// use lowpass filter
     	out = lowpass.process(oscillator_out);
     	
     	gSampleTimer++;
