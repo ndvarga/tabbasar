@@ -1,30 +1,58 @@
-#pragma once
-#include <Bela.h>
+/*
+ ____  _____ _        _    
+| __ )| ____| |      / \   
+|  _ \|  _| | |     / _ \  
+| |_) | |___| |___ / ___ \ 
+|____/|_____|_____/_/   \_\
 
-enum DebounceState {
-	kStateOpen = 0,
-	kStateJustClosed,
-	kStateClosed,
-	kStateJustOpen 
-};
+http://bela.io
+
+C++ Real-Time Audio Programming with Bela - Lecture 14: ADSR
+*/
+
+// Debouncer.h: simple class to debounce a button
+
+#pragma once
 
 class Debouncer {
-	public:
-    
-		Debouncer() {}
+private:
+	// State machine states
+	enum {
+		kStateLow = 0,
+		kStateJustHigh,
+		kStateHigh,
+		kStateJustLow
+	};
 
-		void setup(float timeToDebounceMs, float sampleRate);
+public:
+	// Constructor
+	Debouncer();
+	
+	// Constructor specifying a sample rate
+	Debouncer(float sampleRate, float interval);
+	
+	// Set the sample rate, used for all calculations
+	void setup(float sampleRate, float interval);
+	
+	// Return the debounced state given the raw input
+	bool process(bool rawInput);
+	
+	// Return whether the button is currently high or low
+	bool currentValue();
+	
+	// Return whether the button just now went high
+	bool risingEdge();
+	
+	// Return whether the button just now went low
+	bool fallingEdge();
+	
+	// Destructor
+	~Debouncer();
 
-		// return true if it is time to take action (button pressed down)
-		bool step(unsigned int input);
-
-
-		~Debouncer() {}
-
-	private:
-		DebounceState curState_;
-		
-		unsigned int debounceCounter_;
-		unsigned int debounceInterval_;
-
+private:
+	// State variables, not accessible to the outside world
+	int   currentState_;
+	int   previousState_;
+	int   counter_;
+	int   debounceInterval_;
 };

@@ -29,21 +29,23 @@ The Bela software is distributed under the GNU Lesser General Public License
 #include "oscillator.h"	// This is needed for the oscillator class
 #include "debouncer.h"
 #include "parameters.h"
+#include "ADSR.h"
+#include "Ramp.h"
 #include <algorithm>
 
-// Step sequencer pins
+// global bpm input
 const unsigned int kTempoInput = 0;			// Which analog input to read
 
 //global variables for digital button pins
-
-const int kButtonPin = 1;	
+const int kOscModeButtonPin = 0;
+const int kPatternButtonPin = 1;	
 const int kReverseButtonPin = 2;
+const int kADSRButtonPin = 3;
 
 // Step sequencer contents
 
 // Initialize with size
 std::vector<std::vector<int>> matrix(4, std::vector<int>(4, 0));  // 3x4 matrix of zeros
-
 
 
 std::vector<std::vector<float>> gSequencerPatterns = {
@@ -68,8 +70,6 @@ int gCurrentPattern = 0;
 float freq = gSequencerPatterns[gCurrentPattern][gSequencerLocation];
 
 
-
-
 // Constants that define the program behaviour
 const unsigned int kWavetableSize = 128;
 const unsigned int kNumHarmonics = 32;
@@ -86,8 +86,17 @@ Oscillator gOscillators[kDualOscillators];
 // Oscillator gTestOsc;
 
 // A button deboucer for button 0
-Debouncer gButtonDebouncer;
+Debouncer gOscModeDebouncer;
 
+// Button debouncer object
+Debouncer gADSRDebouncer;
+
+// ADSR objects
+ADSR gAmplitudeADSR, gFilterADSR;
+
+// Browser-based GUI to adjust parameters
+Gui gGui;
+GuiController gGuiController;
 
 
 // Oscillators parameters
@@ -112,7 +121,31 @@ unsigned int gSampleTimer = 0;
 
 bool setup(BelaContext *context, void *userData)
 {
-	std::vector<float> wavetable;
+  // Initialise the ADSR objects
+	gAmplitudeADSR.setSampleRate(context->audioSampleRate);
+
+	// Initialise the ADSR and oscillator switch debouncers with 50ms interval
+	gADSRDebouncer.setup(context->audioSampleRate, .05);
+	//button debouncer setup, with debounce time and audio sample rate
+	gOscModeDebouncer.setup(context->audioSampleRate, .05);
+	// Set up the GUI
+	gGui.setup(context->projectName);
+	gGuiController.setup(&gGui, "ADSR Controller");	
+	
+	// Arguments: name, minimum, maximum, increment, default value
+	gGuiController.addSlider("Frequency", 220, 55, 440, 0);
+	gGuiController.addSlider("Amplitude Attack time", 0.01, 0.001, 0.1, 0);
+	gGuiController.addSlider("Amplitude Decay time", 0.05, 0.01, 0.3, 0);
+	gGuiController.addSlider("Amplitude Sustain level", 0.3, 0, 1, 0);
+	gGuiController.addSlider("Amplitude Release time", 0.2, 0.001, 2, 0);
+	gGuiController.addSlider("Filter base frequency", 200, 50, 1000, 0);
+	gGuiController.addSlider("Filter sensitivity", 3000, 0, 10000, 0);
+	gGuiController.addSlider("Filter Q", 4, 0.5, 10, 0);
+	gGuiController.addSlider("Filter attack time", 0.05, 0.001, 0.1, 0);
+	gGuiController.addSlider("Filter decay time", 0.1, 0.01, 0.3, 0);
+	gGuiController.addSlider("Filter sustain level", 0.6, 0, 1, 0);
+	gGuiController.addSlider("Filter Release time", 0.3, 0.0001, 2, 0);
+	
 	
 	// create a biquad lowpass filter
 	Biquad::Settings lowpass_settings {.fs = context->audioSampleRate, .type = Biquad::lowpass, .q=0.707};
@@ -142,18 +175,40 @@ bool setup(BelaContext *context, void *userData)
 	// Set up the oscilloscope
 	gScope.setup(1, context->audioSampleRate);
     
-    // set the debounce interval in samples
-    gDebounceInterval = context->audioSampleRate * gDebounceTimeMs / 1000.0;
+	// set the debounce interval in samples
 	// gTestOsc.setFundamentalFrequency(320.0);
-
-	//button debouncer setup, with debounce time and audio sample rate
-	gButtonDebouncer.setup(gDebounceTimeMs, context->audioSampleRate);
 
 	return true;
 }
 
 void render(BelaContext *context, void *userData)
 {
+		// Retrieve values from the sliders
+		float frequency = gGuiController.getSliderValue(0);
+		float ampAttackTime = gGuiController.getSliderValue(1);
+		float ampDecayTime = gGuiController.getSliderValue(2);
+		float ampSustainLevel = gGuiController.getSliderValue(3);
+		float ampReleaseTime = gGuiController.getSliderValue(4);
+		float filterBase = gGuiController.getSliderValue(5);
+		float filterSensitivity = gGuiController.getSliderValue(6);
+		float filterQ = gGuiController.getSliderValue(7);
+		float filterAttackTime = gGuiController.getSliderValue(8);
+		float filterDecayTime = gGuiController.getSliderValue(9);
+		float filterSustainLevel = gGuiController.getSliderValue(10);
+		float filterReleaseTime = gGuiController.getSliderValue(11);
+
+		// Set oscillator and ADSR parameters
+		gOscillator.setFrequency(frequency);
+		gAmplitudeADSR.setAttackTime(ampAttackTime);
+		gAmplitudeADSR.setDecayTime(ampDecayTime);
+		gAmplitudeADSR.setSustainLevel(ampSustainLevel);
+		gAmplitudeADSR.setReleaseTime(ampReleaseTime);
+		gFilterADSR.setAttackTime(filterAttackTime);
+		gFilterADSR.setDecayTime(filterDecayTime);
+		gFilterADSR.setSustainLevel(filterSustainLevel);
+		gFilterADSR.setReleaseTime(filterReleaseTime);
+		lowpass.setQ(filterQ);
+
 
     for(unsigned int n = 0; n < context->audioFrames; n++) 
     {
@@ -186,34 +241,54 @@ void render(BelaContext *context, void *userData)
 	
     	}
 	
-		unsigned int input0 = digitalRead(context,n,0);
-    	
-    	int reverseButtonStatus = digitalRead(context, n, kReverseButtonPin);
-		if(reverseButtonStatus == LOW && gLastReverseButtonStatus == HIGH)
-		//reverses all gSequencerPatterns when button in digital 2 is pressed
-		for(int i = 0; i < gSequencerPatterns.size(); i++)
-		{
-    		std::reverse(gSequencerPatterns[i].begin(), gSequencerPatterns[i].end());
-		}
-		gLastReverseButtonStatus = reverseButtonStatus;
-    	
-    	
-    	// Use button to change which GPattern is used
-    	int buttonStatus = digitalRead(context, n, kButtonPin);
-		if(buttonStatus == LOW && gLastButtonStatus == HIGH)
-		{
-			gCurrentPattern++;
-    		if(gCurrentPattern >= gSequencerPatterns.size())
-        	gCurrentPattern = 0;
-		}
-		gLastButtonStatus = buttonStatus;
-    	
-    	
-    	
-    	// Get current frequency based on where we are in the sequencer
-    	float midiNote = gSequencerPatterns[gCurrentPattern][gSequencerLocation];
-    	float frequency = 440.0 * powf(2.0, (midiNote - 69.0) / 12.0);
-    	
+			
+			
+			int reverseButtonStatus = digitalRead(context, n, kReverseButtonPin);
+
+			if(reverseButtonStatus == LOW && gLastReverseButtonStatus == HIGH)
+			//reverses all gSequencerPatterns when button in digital 2 is pressed
+			for(int i = 0; i < gSequencerPatterns.size(); i++)
+			{
+					std::reverse(gSequencerPatterns[i].begin(), gSequencerPatterns[i].end());
+			}
+			gLastReverseButtonStatus = reverseButtonStatus;
+				
+				
+			// Use button to change which GPattern is used
+			int buttonStatus = digitalRead(context, n, kPatternButtonPin);
+
+			if(buttonStatus == LOW && gLastButtonStatus == HIGH)
+			{
+				gCurrentPattern++;
+					if(gCurrentPattern >= gSequencerPatterns.size())
+						gCurrentPattern = 0;
+			}
+			gLastButtonStatus = buttonStatus;
+				
+			gDebouncer.process(buttonValue);
+
+			if(gDebouncer.fallingEdge()) {
+			gAmplitudeADSR.trigger();
+			gFilterADSR.trigger();
+			}    	
+			if(gDebouncer.risingEdge()) {
+				gAmplitudeADSR.release();
+				gFilterADSR.release();
+			}
+	
+				
+			// get the next value from the ADSR envelope
+			float amplitude = gAmplitudeADSR.process();
+				
+			// set the filter frequency based on its ADSR
+			float filterControl = gFilterADSR.process();
+			lowpass.setFc(filterBase + filterSensitivity * filterControl);
+				
+				
+			// Get current frequency based on where we are in the sequencer
+			float midiNote = gSequencerPatterns[gCurrentPattern][gSequencerLocation];
+			float frequency = 440.0 * powf(2.0, (midiNote - 69.0) / 12.0);
+				
     	gOscillators[0].setFundamentalFrequency(frequency);
     	// check if enough time has elapsed and increment the sequence location 
     	gSampleCounter++;
@@ -228,13 +303,13 @@ void render(BelaContext *context, void *userData)
 				gSequencerLocation = 0;
 		}
 		
+		unsigned int modeSwitchButton = digitalRead(context,n,kOscModeButtonPin);
 		
-		bool result = gButtonDebouncer.step(input0);
-		if (result ==  true) {
-			rt_printf("Button pressed\n");
+		gOscModeDebouncer.step(modeSwitchButton);
+		if(gOscModeDebouncer.fallingEdge()) {
 			gOscillators[0].incrementWaveshape();
-			// gOscillators[1].incrementWaveshape();
-		}
+			rt_printf("Waveshape changed\n");
+		}  
 		
 
 		float oscillator_out = 0;
