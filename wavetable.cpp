@@ -46,7 +46,7 @@ void Wavetable::_drawTable()
 
 	for (unsigned int i = 0; i < table_.size(); i++)
 	{
-		tmp_table[i] = sinf(2.0 * M_PI * (float)(i / table_.size()));
+		tmp_table[i] = sinf(2.0 * M_PI * ((float)i / table_.size()));
 	}
 	table_ = tmp_table;
 }

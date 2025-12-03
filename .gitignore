@@ -1,2 +1,5 @@
 *.ps1
 *.sh
+./tabbasar
+settings.json
+build/*

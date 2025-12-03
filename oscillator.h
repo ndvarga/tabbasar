@@ -19,9 +19,11 @@ class Oscillator
     
 
     Oscillator() {}
-    Oscillator(Waveshape, unsigned int, unsigned int, unsigned int, bool); 
     
-    void setup(Waveshape, unsigned int, unsigned int, unsigned int, bool); 		
+    //setup(waveshape, sampleRate, unsigned int wavetableSize, unsigned int nHarmonics, bool useInterpolation)
+    Oscillator(Waveshape, float, unsigned int, unsigned int, bool); 
+    
+    void setup(Waveshape, float, unsigned int, unsigned int, bool); 		
     
     void setFundamentalFrequency(float f);	// Set the oscillator frequency
     float getFundamentalFrequency();		// Get the oscillator frequency
@@ -40,7 +42,7 @@ class Oscillator
 private:
 	std::vector<Wavetable> wavetables_;	// Buffer holding the wavetable
 	Waveshape table_type_;              // the type of wavetable
-  unsigned int n_harmonics_;          // number of harmonics the oscillator has
-  unsigned int sampleRate_;           // Sample rate 
+	unsigned int n_harmonics_;          // number of harmonics the oscillator has
+	float sampleRate_;           // Sample rate 
 	float f_fundamental_;			          // Fundamental frequency of the oscillator
 };
