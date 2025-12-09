@@ -1,0 +1,13 @@
+CompileFlags:
+  Add:
+    - -Ibela-sdk/include
+    - -Ibela-sdk
+    - -Ibela-sdk/libraries
+    - -std=c++17
+    - -Wno-unknown-pragmas
+    - -Wno-microsoft-template
+
+Diagnostics:
+  UnusedIncludes: None
+  MissingIncludes: None
+

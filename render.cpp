@@ -19,21 +19,21 @@ The Bela software is distributed under the GNU Lesser General Public License
 */
 
 
-
 #include <Bela.h>
 #include <libraries/Gui/Gui.h>
 #include <libraries/GuiController/GuiController.h>
 #include <libraries/Scope/Scope.h>
 #include <cmath>
+
 #include <vector>
 #include <libraries/Biquad/Biquad.h>
-#include "Filter.h"
 #include "oscillator.h"	// This is needed for the oscillator class
 #include "parameters.h"
 #include "ADSR.h"
 #include "Debouncer.h"
 #include "Ramp.h"
 #include <algorithm>
+#include <std>
 
 // global bpm input
 const int kTempoInput = 0;			// Which analog input to read
