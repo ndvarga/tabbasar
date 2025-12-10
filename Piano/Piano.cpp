@@ -32,16 +32,19 @@ float Piano::process(float newValue) {
 
 unsigned int Piano::getSemitoneOffset(float mappedValue) {
   // Clamp the piano value to valid range
-  if (mappedValue < kPianoMin_) mappedValue = kPianoMin_;
-  if (mappedValue > kPianoMax_) mappedValue = kPianoMax_;
+  const float kMin = 0.0f;
+  const float kMax = 12.0f;
+  if (mappedValue < kMin) mappedValue = kMin;
+  if (mappedValue > kMax) mappedValue = kMax;
   
   // Calculate which semitone segment this value falls into
   // Each semitone covers kSemitoneStep of the piano range
-  float roundedValue = std::roundf(mappedValue);
+  float roundedValue = roundf(mappedValue);
   unsigned int semitone = static_cast<unsigned int>(roundedValue);
   
   // Clamp to valid range (0-12)
-  if (semitone >= kNumSemitones_) semitone = kNumSemitones_;
+  const unsigned int kNumSemitones = 12;
+  if (semitone >= kNumSemitones) semitone = kNumSemitones;
   
   return semitone;
 }
