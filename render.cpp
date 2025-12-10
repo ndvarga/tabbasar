@@ -33,7 +33,12 @@ The Bela software is distributed under the GNU Lesser General Public License
 #include "Debouncer.h"
 #include "Ramp.h"
 #include <algorithm>
-#include <std>
+#include <array>
+
+// piano button reading
+const int kPianoPin = 4;
+constexpr unsigned int kPianoVectorSize = 8;
+std::array<float, kPianoVectorSize> gPianoVector = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};  
 
 // global bpm input
 const int kTempoInput = 0;			// Which analog input to read
@@ -47,7 +52,7 @@ const int kADSRButtonPin = 3;
 // Step sequencer contents
 
 // Initialize with size
-std::vector<std::vector<int>> matrix(4, std::vector<int>(4, 0));  // 3x4 matrix of zeros
+// std::vector<std::vector<int>> matrix(4, std::vector<int>(4, 0));  // 3x4 matrix of zeros
 
 
 std::vector<std::vector<float>> gSequencerPatterns = {
