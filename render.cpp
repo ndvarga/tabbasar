@@ -28,6 +28,8 @@ The Bela software is distributed under the GNU Lesser General Public License
 #include <vector>
 #include <libraries/Biquad/Biquad.h>
 #include "oscillator.h"	// This is needed for the oscillator class
+#include "Piano/Piano.h"
+#include "AnalogDebouncer.h"
 #include "parameters.h"
 #include "ADSR.h"
 #include "Debouncer.h"
@@ -36,9 +38,9 @@ The Bela software is distributed under the GNU Lesser General Public License
 #include <array>
 
 // piano button reading
-const int kPianoPin = 4;
-constexpr unsigned int kPianoVectorSize = 8;
-std::array<float, kPianoVectorSize> gPianoVector = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};  
+Piano gPiano;
+AnalogDebouncer gPianoDebouncer;
+
 
 // global bpm input
 const int kTempoInput = 0;			// Which analog input to read
@@ -123,6 +125,10 @@ unsigned int gSampleTimer = 0;
 
 bool setup(BelaContext *context, void *userData)
 {
+	// init piano, 50 ms debounce time
+	gPiano.setup();
+	gPianoDebouncer.setup(context->analogSampleRate, .05, 0.5);
+
   // Initialise the ADSR objects
 	gAmplitudeADSR.setSampleRate(context->audioSampleRate);
 
@@ -219,30 +225,42 @@ void render(BelaContext *context, void *userData)
     	if( !(n % 2) )
     	{
     		// code for arpegiiator, using analog 0
-			float input = analogRead(context, n/2, kTempoInput); // read analog in 0
-    		float bpm = map(input, 0, 3.3/4.096, 40, 1000); // turn into BPM
-    		gMetroInterval = 80.0 * context->audioSampleRate / bpm;
-    		
-    		//TODO: MAKE WHAT THESE DIALS DO DEPENDENT ON THE BUTTON STATE
-    		
-			// float input0 = analogRead(context, n/2, 0);	// read analog in 0
-			float input1 = analogRead(context, n/2, 1); // analog in 1 is level
-			// float input2 = analogRead(context, n/2, 2);	// read analog in 2
-			float input3 = analogRead(context, n/2, 3); // read analog in 3
-			
-			// float frequency = map(input0, 0, 3.3 / 4.096, 55, 880);		// Frequency is first knob (analog in 0)
-			float level = map(input1, 0, 3.3 / 4.096, -60, -10);		// Level is second knob (analog in 1)	
-			// // this third parameter is ready to be used
-			// float detune  = map(input2, 0, 3.3 / 4.096, 0, 0.05);	    // Detune is third knob (analog in 2)	
-			float lowpass_frequency = map(input3, 0, 3.3/4.096, 1, 8000); // use pin3 for lowpass_frequency
-			
-			lowpass.setFc(lowpass_frequency);
-			
-			gAmplitude = powf(10.0, level / 20);	// Convert level to linear amplitude
-	
-    	}
-	
-			
+				float input = analogRead(context, n/2, kTempoInput); // read analog in 0
+				float bpm = map(input, 0, 3.3/4.096, 40, 1000); // turn into BPM
+				gMetroInterval = 80.0 * context->audioSampleRate / bpm;
+					
+				//TODO: MAKE WHAT THESE DIALS DO DEPENDENT ON THE BUTTON STATE
+					
+				// float input0 = analogRead(context, n/2, 0);	// read analog in 0
+				float input1 = analogRead(context, n/2, 1); // analog in 1 is level
+				// float input2 = analogRead(context, n/2, 2);	// read analog in 2
+				float input3 = analogRead(context, n/2, 3); // read analog in 3
+				
+				float inputPiano = analogRead(context, n/2, kPianoPin);
+
+				// float frequency = map(input0, 0, 3.3 / 4.096, 55, 880);		// Frequency is first knob (analog in 0)
+				float level = map(input1, 0, 3.3 / 4.096, -60, -10);		// Level is second knob (analog in 1)	
+				// // this third parameter is ready to be used
+				// float detune  = map(input2, 0, 3.3 / 4.096, 0, 0.05);	    // Detune is third knob (analog in 2)	
+				float lowpass_frequency = map(input3, 0, 3.3/4.096, 1, 8000); // use pin3 for lowpass_frequency
+				
+				lowpass.setFc(lowpass_frequency);
+				
+				gAmplitude = powf(10.0, level / 20);	// Convert level to linear amplitude
+		
+				// process the piano input, get the average value 
+				// (0-11) for semitone offset
+				float pianoValue = map(inputPiano, 0, 3.3/4.096, 0, 12);
+				float pianoAverage = gPiano.process(pianoValue);
+				float pianoDebounced = gPianoDebouncer.process(pianoAverage);
+
+
+				if(gPianoDebouncer.justPressed()) {
+					unsigned int semitoneOffset = gPiano.getSemitoneOffset(pianoDebounced);
+					rt_printf("Piano semitone offset: %d\n", semitoneOffset);
+				}
+				
+		}
 			
 			int reverseButtonStatus = digitalRead(context, n, kReverseButtonPin);
 
