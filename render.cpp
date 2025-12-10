@@ -127,7 +127,7 @@ bool setup(BelaContext *context, void *userData)
 {
 	// init piano, 50 ms debounce time
 	gPiano.setup();
-	gPianoDebouncer.setup(context->analogSampleRate, .05, 0.5);
+	gPianoDebouncer.setup(context->analogSampleRate, .01, 0.7);
 
   // Initialise the ADSR objects
 	gAmplitudeADSR.setSampleRate(context->audioSampleRate);
@@ -254,6 +254,7 @@ void render(BelaContext *context, void *userData)
 				float pianoAverage = gPiano.process(pianoValue);
 				float pianoDebounced = gPianoDebouncer.process(pianoAverage);
 
+				// rt_printf("Piano debounced = %f\n", pianoDebounced);
 
 				if(gPianoDebouncer.justPressed()) {
 					unsigned int semitoneOffset = gPiano.getSemitoneOffset(pianoDebounced);

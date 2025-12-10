@@ -23,8 +23,8 @@ class Piano {
     
     // Lookup table: maps piano value ranges to semitone offsets (0-12)
     // Divides 0-12 range into 12 equal segments
-    static constexpr float kPianoMax = 12.0f;
-    static constexpr float kPianoMin = 0.0f;
-    static constexpr unsigned int kNumSemitones = 12; // 0-11 inclusive
-    static constexpr float kSemitoneStep = (kPianoMax - kPianoMin) / kNumSemitones;
+    static constexpr float kPianoMax_ = 12.0f;
+    static constexpr float kPianoMin_ = 0.0f;
+    static constexpr unsigned int kNumSemitones_ = 12; // 0-11 inclusive
+    static constexpr float kSemitoneStep_ = (kPianoMax_ - kPianoMin_) / kNumSemitones_;
 };

@@ -14,7 +14,7 @@ Based on Debouncer class for digital inputs
 // AnalogDebouncer.cpp: implementation of analog debouncer
 
 #include "AnalogDebouncer.h"
-
+#include <Bela.h>
 
 // Constructor specifying a sample rate, thresholds, debounce interval, and change threshold
 AnalogDebouncer::AnalogDebouncer(float sampleRate, float interval, float changeThreshold)
@@ -30,7 +30,6 @@ void AnalogDebouncer::setup(float sampleRate, float interval, float changeThresh
 	counter_ = 0;
 	debouncedValue_ = 0.0f;
 	isLocked_ = false;
-	lockCounter_ = 0;
 	lastInputValue_ = 0.0f;
 	changeThreshold_ = changeThreshold;
 }
@@ -56,13 +55,14 @@ float AnalogDebouncer::process(float rawInput)
     
     // Use change threshold: require significant change AND cross high threshold
     if (absChange >= changeThreshold_) {
+      rt_printf("\nJust pressed\n");
       currentState_ = kStateJustPressed;
       counter_ = 0;
       isLocked_ = true;
-      lockCounter_ = 0;
+      counter_ = 0;
     }
     // Return -1.0f to indicate that the input is not ready
-    return -1.0f;
+    return 12.0f;
   }
 
   // If the input is just pressed, wait for debounce
@@ -73,6 +73,8 @@ float AnalogDebouncer::process(float rawInput)
     // Still high, increment counter
     counter_++;
     if(counter_ >= debounceInterval_) {
+      rt_printf("state is now pressed\n");
+      
       // Timeout: now we can start waiting for the input to go low
       currentState_ = kStatePressed;
     }
@@ -88,10 +90,10 @@ float AnalogDebouncer::process(float rawInput)
     float absChange = (inputChange < 0.0f) ? -inputChange : inputChange; // Absolute value of change
     
     if (absChange >= changeThreshold_) {
+      rt_printf("Just unpressed\n");
       currentState_ = kStateJustUnpressed;
       counter_ = 0;
       isLocked_ = true;
-      lockCounter_ = 0;	
       return -1.0f;
     }
     else {
@@ -103,12 +105,12 @@ float AnalogDebouncer::process(float rawInput)
 
   else if(currentState_ == kStateJustUnpressed) {
 
-    
     // once the lock counter is greater than the debounce interval, return the input value
-    lockCounter_++;
-    if (lockCounter_ >= debounceInterval_) {
+    counter_++;
+    if (counter_ >= debounceInterval_) {
+      currentState_ = kStateUnpressed;
       isLocked_ = false;
-      lockCounter_ = 0;
+      counter_ = 0;
       debouncedValue_ = rawInput;
       return debouncedValue_;
     }

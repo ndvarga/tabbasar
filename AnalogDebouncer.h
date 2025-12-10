@@ -60,13 +60,12 @@ private:
 	// State variables, not accessible to the outside world
 	int   currentState_;
 	int   previousState_;
-	int   counter_;
+	int   counter_ = 0;
 	int   debounceInterval_;
 	float debouncedValue_; // Current debounced output value
 	
 	// Lock mechanism variables
 	bool  isLocked_;       // Whether lock is currently engaged
-	int   lockCounter_;    // Counter for lock duration (uses debounceInterval_)
 	float lastInputValue_; // Previous input value for change detection
 	float changeThreshold_; // Minimum change required to engage lock (0 = disabled)
 };
