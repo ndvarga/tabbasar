@@ -28,6 +28,8 @@ The Bela software is distributed under the GNU Lesser General Public License
 #include <vector>
 #include <libraries/Biquad/Biquad.h>
 #include "oscillator.h"	// This is needed for the oscillator class
+#include "Piano/Piano.h"
+#include "AnalogDebouncer.h"
 #include "parameters.h"
 #include "ADSR.h"
 #include "Debouncer.h"
@@ -38,6 +40,10 @@ The Bela software is distributed under the GNU Lesser General Public License
 //const int kPianoPin = 4;
 constexpr unsigned int kPianoVectorSize = 8; // piano button reading
 std::array<float, kPianoVectorSize> gPianoVector = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};  
+// piano button reading
+Piano gPiano;
+AnalogDebouncer gPianoDebouncer;
+
 
 // ANALOG pin defs 
 const int kDial0Pin = 0;			// Dial 0 (changes control depending on control mode)
@@ -127,10 +133,11 @@ unsigned int gSampleTimer = 0;
 
 bool setup(BelaContext *context, void *userData)
 {
-    
-    
-    
-    // Initialise the ADSR objects
+	// init piano, 50 ms debounce time
+	gPiano.setup();
+	gPianoDebouncer.setup(context->analogSampleRate, .05, 0.5);
+
+  // Initialise the ADSR objects
 	gAmplitudeADSR.setSampleRate(context->audioSampleRate);
 
 	// setup all digital pins as inputs

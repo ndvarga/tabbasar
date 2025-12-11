@@ -4,3 +4,5 @@
 settings.json
 build/*
 build
+bela-sdk/*
+.vscode/*
