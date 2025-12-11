@@ -93,29 +93,29 @@ float AnalogDebouncer::process(float rawInput)
   }
 
   else if(currentState_ == kStatePressed) {
-    // If the input is pressed, accumulate and average values
-    float absChange = (inputChange < 0.0f) ? -inputChange : inputChange; // Absolute value of change
-    
-    if (absChange >= changeThreshold_) {
-      rt_printf("Just unpressed\n");
-      currentState_ = kStateJustUnpressed;
-      counter_ = 0;
-      isLocked_ = true;
-      // Use the accumulated average as the final debounced value
-      debouncedValue_ = (sampleCount_ > 0) ? (accumulator_ / sampleCount_) : 12.0f;
-      accumulator_ = 0.0f;
-      sampleCount_ = 0;
-      isReady_ = true;
-      return debouncedValue_;
-    }
-    else {
-      isLocked_ = false;
-      // Accumulate the current value
-      accumulator_ += rawInput;
-      sampleCount_++;
-      
-      return 12.0f;
-    }
+		// If the input is pressed, accumulate and average values
+		float absChange = (inputChange < 0.0f) ? -inputChange : inputChange; // Absolute value of change
+		
+		if (absChange >= changeThreshold_) {
+		rt_printf("Just unpressed\n");
+		currentState_ = kStateJustUnpressed;
+		counter_ = 0;
+		isLocked_ = true;
+		// Use the accumulated average as the final debounced value
+		debouncedValue_ = (sampleCount_ > 0) ? (accumulator_ / sampleCount_) : 12.0f;
+		accumulator_ = 0.0f;
+		sampleCount_ = 0;
+		isReady_ = true;
+		return debouncedValue_;
+		}
+		else {
+			isLocked_ = false;
+			// Accumulate the current value
+			accumulator_ += rawInput;
+			sampleCount_++;
+			
+			return 12.0f;
+		}
   }
 
   else if(currentState_ == kStateJustUnpressed) {

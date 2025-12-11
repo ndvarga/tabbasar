@@ -37,13 +37,12 @@ The Bela software is distributed under the GNU Lesser General Public License
 #include <algorithm>
 #include <array>
 
-//const int kPianoPin = 4;
-constexpr unsigned int kPianoVectorSize = 8; // piano button reading
-std::array<float, kPianoVectorSize> gPianoVector = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};  
+//const int kPianoPin = 6;
 // piano button reading
 Piano gPiano;
 AnalogDebouncer gPianoDebouncer;
-
+int gMidiBase = 12; // MIDI base note
+int gPianoSemitoneOffset = 0;
 
 // ANALOG pin defs 
 const int kDial0Pin = 0;			// Dial 0 (changes control depending on control mode)
@@ -56,19 +55,19 @@ const int kGlobalLowpassPin = 5;
 //global variables for DIGITAL button pins
 const int kLeftButtonPin = 0;
 const int kRightButtonPin = 1;
-
-// these always control the same thing no matter the mode
-const int kArpOnOffButtonPin = 2;
+const int kArpOnOffButtonPin = 2; // these always control the same thing no matter the mode
 const int kControlModeTogglePin = 3;
+const int kOctaveChangePin = 4; // octave change button
+
 
 // global control mode
 int gControlMode = ControlParameters::OSC_1_PARAMS;
 
 // global dial values
-float dial0 = 0.1;
-float dial1 = 0.1;
-float dial2 = 0.1;
-float dial3 = 0.1;
+float gDial0 = 0.1;
+float gDial1 = 0.1;
+float gDial2 = 0.1;
+float gDial3 = 0.1;
 
 // Step sequencer contents
 
@@ -76,8 +75,8 @@ float dial3 = 0.1;
 // std::vector<std::vector<int>> matrix(4, std::vector<int>(4, 0));  // 3x4 matrix of zeros
 
 std::vector<std::vector<float>> gSequencerPatterns = {
-    {36, 40, 43, 40},  // Pattern 0
-    {36, 39, 43, 39},  // Pattern 1ƒ
+    {0, 4, 7, 4},  // Pattern 0
+    {0, 3, 7, 3},  // Pattern 1
     // {36, 40, 43, 47},  // dominant
 };
 
@@ -111,6 +110,8 @@ Debouncer gD1Debouncer;
 Debouncer gArpOnOffDebouncer;
 Debouncer gControlModeDebouncer;
 
+Debouncer gOctaveChangeDebouncer;
+
 ADSR gAmplitudeADSR, gFilterADSR; // ADSR objects
 
 Gui gGui;
@@ -134,7 +135,7 @@ unsigned int gSampleTimer = 0;
 bool setup(BelaContext *context, void *userData)
 {
 	// init piano, 50 ms debounce time
-	gPiano.setup(12.0f);
+	gPiano.setup();
 	gPianoDebouncer.setup(context->analogSampleRate, .1, 0.7, 12.0f);
 
   // Initialise the ADSR objects
@@ -151,6 +152,7 @@ bool setup(BelaContext *context, void *userData)
 	gD1Debouncer.setup(context->audioSampleRate, .05);
 	gArpOnOffDebouncer.setup(context->audioSampleRate, .05);
 	gControlModeDebouncer.setup(context->audioSampleRate, .05);
+	gOctaveChangeDebouncer.setup(context->audioSampleRate, .05);
 	
 	// Set up the GUI
 	gGui.setup(context->projectName);
@@ -235,48 +237,18 @@ void render(BelaContext *context, void *userData)
 
     for(unsigned int n = 0; n < context->audioFrames; n++) 
     {
-
-    	// read analog ins and update control parameters only every other frame
-    	// because the analog sample rate is half of the audio one
-    	if( !(n % 2) )
-    	{
-    		//piano processing code here
-    		
-    		// code for arpegiiator, using analog 0
-    		// it should only change the value of something in a mode ONCE YOU CHANGE THE DIAL IN THAT MODE SPEICIFICALLY
-			dial0 = analogRead(context, n/2, kDial0Pin); // read analog in 0
-			dial1 = analogRead(context, n/2, kDial1Pin); // read analog in 1
-			dial2 = analogRead(context, n/2, kDial2Pin); // read analog in 2
-			dial3 = analogRead(context, n/2, kDial3Pin); // read analog in 3
-
-
-
- 
-			// global dials are done
-			float globalLowpassRaw = analogRead(context, n, kGlobalLowpassPin);
-			float masterLevel = analogRead(context, n, kMasterVolumePin);
-			float level = map(masterLevel, 0, 3.3 / 4.096, -60, -10);		// Level is second knob (analog in 1)	
-			// // this third parameter is ready to be used
-			// float detune  = map(input2, 0, 3.3 / 4.096, 0, 0.05);	    // Detune is third knob (analog in 2)	
-			float lowpass_frequency = map(globalLowpassRaw, 0, 3.3/4.096, 1, 8000); // use pin3 for lowpass_frequency
-			
-			lowpass.setFc(lowpass_frequency);
-			
-			gAmplitude = powf(10.0, level / 20);	// Convert level to linear amplitude
-	    
-    	}
-		
-		
+        // mode change code here
 		// read control mode button to see if we have to change modes
 		int rawControlMode = digitalRead(context, n, kControlModeTogglePin);
 		gControlModeDebouncer.process(rawControlMode);
+
+        int lastControlMode = gControlMode;
 
 		if (gControlModeDebouncer.fallingEdge())
 		{
 			if (gControlMode < ControlParameters::ARP)
 			{
-				gControlMode++;
-				
+				gControlMode++;		
 			}
 			else
 			{
@@ -300,10 +272,55 @@ void render(BelaContext *context, void *userData)
 			
 		}
 
+
+    	// read analog ins and update control parameters only every other frame
+    	// because the analog sample rate is half of the audio one
+    	if( !(n % 2) )
+    	{
+    		//piano processing code here
+    		float pianoValue = analogRead(context, n/2, kPianoPin);
+    		float pianoDebounced = gPianoDebouncer.process(pianoValue);
+    		if (pianoDebounced >= 0.0f && pianoDebounced < 11.5f) {
+    			rt_printf("Piano value: %f\n", pianoDebounced);
+				gPiano.process(pianoDebounced);
+				int pianoSemitoneOffset = gPiano.getSemitoneOffset();
+
+				if (pianoSemitoneOffset != -1) {
+					gPianoSemitoneOffset = pianoSemitoneOffset;
+					rt_printf("Piano semitone offset: %d\n", pianoSemitoneOffset);
+				}
+    		}
+
+    		// code for arpegiiator, using analog 0
+    		// it should only change the value of something in a mode ONCE YOU CHANGE THE DIAL IN THAT MODE SPEICIFICALLY
+			gDial0 = analogRead(context, n/2, kDial0Pin); // read analog in 0
+			gDial1 = analogRead(context, n/2, kDial1Pin); // read analog in 1
+			gDial2 = analogRead(context, n/2, kDial2Pin); // read analog in 2
+			gDial3 = analogRead(context, n/2, kDial3Pin); // read analog in 3
+
+
+
+ 
+			// global dials are done
+			float globalLowpassRaw = analogRead(context, n, kGlobalLowpassPin);
+			float masterLevel = analogRead(context, n, kMasterVolumePin);
+			float level = map(masterLevel, 0, 3.3 / 4.096, -60, -10);		// Level is second knob (analog in 1)	
+			// // this third parameter is ready to be used
+			// float detune  = map(input2, 0, 3.3 / 4.096, 0, 0.05);	    // Detune is third knob (analog in 2)	
+			float lowpass_frequency = map(globalLowpassRaw, 0, 3.3/4.096, 1, 8000); // use pin3 for lowpass_frequency
+			
+			lowpass.setFc(lowpass_frequency);
+			
+			gAmplitude = powf(10.0, level / 20);	// Convert level to linear amplitude
+	    
+    	}
+		
+		
 		int leftButtonValue = digitalRead(context, n, kLeftButtonPin);
 		int rightButtonValue = digitalRead(context, n, kRightButtonPin);
 		int arpModeButtonStatus = digitalRead(context, n, kArpOnOffButtonPin);
-		
+		int octaveChangeButtonValue = digitalRead(context, n, kOctaveChangePin);
+
 		// process global arp mode
 		gArpOnOffDebouncer.process(arpModeButtonStatus);
 
@@ -320,6 +337,20 @@ void render(BelaContext *context, void *userData)
 			rt_printf("switched arpMode to %d\n", gArpModeEnabled);
 		}    	
 
+		gOctaveChangeDebouncer.process(octaveChangeButtonValue);
+		if (gOctaveChangeDebouncer.fallingEdge())
+		{
+			if (gMidiBase > 36)
+			{
+				gMidiBase = 0;
+			}
+			else
+			{
+				gMidiBase += 12;
+			}
+			rt_printf("MIDI base note changed to %d semitones from C3\n", gMidiBase);
+		}
+
 		
 		gD0Debouncer.process(leftButtonValue);
 		gD1Debouncer.process(rightButtonValue);
@@ -331,12 +362,15 @@ void render(BelaContext *context, void *userData)
 				// temp center frequency control
 				
 				// if arpmode is off
+				// starting note is C3
+
 				if (!gArpModeEnabled)
 				{
-					float osc1_cf = map(dial0, 0, 3.3/4.096, 220, 1100);
-					float osc1_detune_semitones = map(dial1, 0, 3.3/4.096, 0, 1);
+					float osc1_detune_semitones = map(gDial1, 0, 3.3/4.096, 0, 1);
 					float osc1_detune_ratio = powf(2.0f, (osc1_detune_semitones/12.0f));
-					gOscillators[0].setFundamentalFrequency(osc1_cf*osc1_detune_ratio);
+					
+					float currentFrequency = gOscillators[0].getFundamentalFrequency();
+					gOscillators[0].setFundamentalFrequency(currentFrequency*osc1_detune_ratio);
 				}
 				
 				
@@ -344,6 +378,7 @@ void render(BelaContext *context, void *userData)
 				if (gD0Debouncer.fallingEdge())
 				{
 					//add octave change code here
+					rt_printf("Dial 0 falling edge\n");
 				}
 				
 				if (gD1Debouncer.fallingEdge())
@@ -361,22 +396,16 @@ void render(BelaContext *context, void *userData)
 			{
 
 				// can change ranges later
-				float osc_1_attack = map(dial0, 0, 3.3/4.096, 0.001, 0.5);
-				float osc_1_decay = map(dial1, 0, 3.3/4.096, 0.01, 0.3);
-				float osc_1_sustain = map(dial2, 0, 3.3/4.096, 0, 1);
-				float osc_1_release = map(dial3, 0, 3.3/4.096, 0.001, 0.5);
+				float osc_1_attack = map(gDial0, 0, 3.3/4.096, 0.001, 0.5);
+				float osc_1_decay = map(gDial1, 0, 3.3/4.096, 0.01, 0.3);
+				float osc_1_sustain = map(gDial2, 0, 3.3/4.096, 0, 1);
+				float osc_1_release = map(gDial3, 0, 3.3/4.096, 0.001, 0.5);
 				
 				gAmplitudeADSR.setAttackTime(osc_1_attack);
 				gAmplitudeADSR.setDecayTime(osc_1_decay);
 				gAmplitudeADSR.setSustainLevel(osc_1_sustain);
 				gAmplitudeADSR.setReleaseTime(osc_1_release);
 				
-				// temporary until piano
-				if (!gArpModeEnabled && gD0Debouncer.fallingEdge())
-				{
-					rt_printf("ADSR triggered\n");
-					gAmplitudeADSR.trigger();
-				}
 				
 				break;
 			}
@@ -395,7 +424,7 @@ void render(BelaContext *context, void *userData)
 			case ControlParameters::ARP:
 			{
 
-				float bpm = map(dial0, 0, 3.3/4.096, 40, 1000); // turn into BPM
+				float bpm = map(gDial0, 0, 3.3/4.096, 40, 1000); // turn into BPM
 	    		gMetroInterval = 80.0 * context->audioSampleRate / bpm;
 				
 				// direction change code
@@ -421,10 +450,6 @@ void render(BelaContext *context, void *userData)
 		}
 			
 			
-		
-
-		
-
 		// get the next value from the ADSR envelope
 		float amplitude = gAmplitudeADSR.process();
 			
@@ -432,20 +457,32 @@ void render(BelaContext *context, void *userData)
 		float filterControl = gFilterADSR.process();
 		// lowpass.setFc(filterBase + filterSensitivity * filterControl);
 			
-		// Get current frequency based on where we are in the sequencer
+		// Get current frequency based on where we are in the sequencer or if a piano is being played
 		if (gArpModeEnabled)
 		{
-			float midiNote = gSequencerPatterns[gCurrentPattern][gSequencerLocation];
-			float frequency = 440.0 * powf(2.0, (midiNote - 69.0) / 12.0);
-	    	gOscillators[0].setFundamentalFrequency(frequency);
-	    	
+			float sequencerOffset = gSequencerPatterns[gCurrentPattern][gSequencerLocation];
+
+			float frequency = 130.81 * powf(2.0, (sequencerOffset + gPianoSemitoneOffset + gMidiBase) / 12.0);
+	    	gOscillators[0].setFundamentalFrequency(frequency);	    	
 
 		}
+		else 
+		{
+			int pianoSemitoneOffset = gPiano.getSemitoneOffset();
+			// if we have a new, non null note on the piano, trigger the ADSR and filter ADSR
+			if ((pianoSemitoneOffset != -1) && (pianoSemitoneOffset != gPianoSemitoneOffset)) {
+				gPianoSemitoneOffset = pianoSemitoneOffset;
+				float frequency = 130.81 * powf(2.0, (pianoSemitoneOffset + gMidiBase) / 12.0);
+				gOscillators[0].setFundamentalFrequency(frequency);
 				
+				gAmplitudeADSR.trigger();
+				gFilterADSR.trigger();
+			}
+		}
+		
     	// check if enough time has elapsed and increment the sequence location 
     	gSampleCounter++;
 		
-
 
 		if(gArpModeEnabled && gSampleCounter >= gMetroInterval)
 			{
@@ -460,15 +497,10 @@ void render(BelaContext *context, void *userData)
 				if(gSequencerLocation >= gSequencerPatterns[gCurrentPattern].size())
 				{
 					gSequencerLocation = 0;
-				
-					
 				}
 		}
-		// gLastButtonStatus = kArpModeButtonStatus;
-		
 
-
-    	
+	
     	float oscillator_out = gAmplitude * amplitude * gOscillators[0].process();
 
 		// use lowpass filter
