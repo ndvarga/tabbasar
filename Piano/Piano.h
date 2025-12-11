@@ -4,7 +4,7 @@
 #include <Bela.h>
 #include <cmath>
 
-#define kPianoPin 6
+#define kPianoPin 7
 #define kPianoVectorSize 8
 
 class Piano {

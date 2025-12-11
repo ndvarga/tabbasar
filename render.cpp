@@ -88,7 +88,7 @@ int gLastReverseButtonStatus = HIGH;
 bool gArpModeEnabled = false;  
 
 unsigned int gSampleCounter = 0;
-unsigned int gMetroInterval;
+unsigned int gMetroInterval = 22050;
 
 int gCurrentPattern = 0;
 float freq = gSequencerPatterns[gCurrentPattern][gSequencerLocation];
@@ -278,7 +278,11 @@ void render(BelaContext *context, void *userData)
     	if( !(n % 2) )
     	{
     		//piano processing code here
-    		float pianoValue = analogRead(context, n/2, kPianoPin);
+    		float pianoValue = analogRead(context, n/2, 7);
+    		if (gSampleCounter ==0 || gSampleCounter == 1)
+    		{
+    			rt_printf("raw piano value is %f\n", pianoValue);
+    		}
     		float pianoDebounced = gPianoDebouncer.process(pianoValue);
     		if (pianoDebounced >= 0.0f && pianoDebounced < 11.5f) {
     			rt_printf("Piano value: %f\n", pianoDebounced);
