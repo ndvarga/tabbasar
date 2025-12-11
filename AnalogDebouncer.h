@@ -78,5 +78,6 @@ private:
 	float accumulator_;    // Sum of values during pressed state
 	int   sampleCount_;    // Number of samples accumulated
 	bool isReady_ = false;
+	bool isFirstSample_ = true; // Flag to skip state transition on first sample
 };
 
