@@ -33,6 +33,8 @@ void AnalogDebouncer::setup(float sampleRate, float interval, float changeThresh
 	lastInputValue_ = initValue;
   rt_printf("initValue = %f\n", initValue);
 	changeThreshold_ = changeThreshold;
+	accumulator_ = 0.0f;
+	sampleCount_ = 0;
 }
 
 // Return the debounced value given the raw analog input
@@ -80,16 +82,21 @@ float AnalogDebouncer::process(float rawInput)
       
       // Timeout: now we can start waiting for the input to go low
       currentState_ = kStatePressed;
+      // Reset accumulator when entering pressed state
+      accumulator_ = rawInput;
+      sampleCount_ = 1;
+      debouncedValue_ = 12.0f;
     }
-    
-    debouncedValue_ = rawInput;
+    else {
+      debouncedValue_ = rawInput;
+    }
 
     // Return 12.0f to indicate that the input is not ready
     return 12.0f;
   }
 
   else if(currentState_ == kStatePressed) {
-    // If the input is pressed, return the value
+    // If the input is pressed, accumulate and average values
     float absChange = (inputChange < 0.0f) ? -inputChange : inputChange; // Absolute value of change
     
     if (absChange >= changeThreshold_) {
@@ -97,11 +104,18 @@ float AnalogDebouncer::process(float rawInput)
       currentState_ = kStateJustUnpressed;
       counter_ = 0;
       isLocked_ = true;
-      debouncedValue_ = rawInput;
+      // Use the accumulated average as the final debounced value
+      debouncedValue_ = (sampleCount_ > 0) ? (accumulator_ / sampleCount_) : rawInput;
+      accumulator_ = 0.0f;
+      sampleCount_ = 0;
       return debouncedValue_;
     }
     else {
       isLocked_ = false;
+      // Accumulate the current value
+      accumulator_ += rawInput;
+      sampleCount_++;
+      // Return the running average
       return 12.0f;
     }
   }
