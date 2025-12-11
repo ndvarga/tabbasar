@@ -42,7 +42,7 @@ The Bela software is distributed under the GNU Lesser General Public License
 Piano gPiano;
 AnalogDebouncer gPianoDebouncer;
 int gMidiBase = 12; // MIDI base note
-int gPianoSemitoneOffset = 0;
+int gPianoSemitoneOffset = -1;
 
 // ANALOG pin defs 
 const int kDial0Pin = 0;			// Dial 0 (changes control depending on control mode)
@@ -94,7 +94,7 @@ int gCurrentPattern = 0;
 float freq = gSequencerPatterns[gCurrentPattern][gSequencerLocation];
 
 const unsigned int kWavetableSize = 1024;
-const unsigned int kNumHarmonics = 32;
+const unsigned int kNumHarmonics = 16;
 
 Biquad lowpass;
 Scope gScope;
@@ -140,6 +140,7 @@ bool setup(BelaContext *context, void *userData)
 
   // Initialise the ADSR objects
 	gAmplitudeADSR.setSampleRate(context->audioSampleRate);
+	gFilterADSR.setSampleRate(context->audioSampleRate);
 
 	// setup all digital pins as inputs
 	// pinMode(context, 0, kLeftButtonPin, INPUT);
@@ -288,11 +289,11 @@ void render(BelaContext *context, void *userData)
 				gPiano.process(pianoDebounced);
 				int pianoSemitoneOffset = gPiano.getSemitoneOffset();
 
-				if (pianoSemitoneOffset != -1) 
-				{
-					gPianoSemitoneOffset = pianoSemitoneOffset;
-					rt_printf("Piano semitone offset: %d\n", pianoSemitoneOffset);
-				}
+				// if (pianoSemitoneOffset != -1) 
+				// {
+				// 	gPianoSemitoneOffset = pianoSemitoneOffset;
+				// 	rt_printf("Piano semitone offset: %d\n", pianoSemitoneOffset);
+				// }
     		}
 
     		// code for arpegiiator, using analog 0
@@ -313,7 +314,8 @@ void render(BelaContext *context, void *userData)
 			// float detune  = map(input2, 0, 3.3 / 4.096, 0, 0.05);	    // Detune is third knob (analog in 2)	
 			float lowpass_frequency = map(globalLowpassRaw, 0, 3.3/4.096, 1, 8000); // use pin3 for lowpass_frequency
 			
-			lowpass.setFc(lowpass_frequency);
+			//TODO: change back
+			lowpass.setFc(10000);
 			
 			gAmplitude = powf(10.0, level / 20);	// Convert level to linear amplitude
 	    
@@ -428,7 +430,7 @@ void render(BelaContext *context, void *userData)
 			case ControlParameters::ARP:
 			{
 
-				float bpm = map(gDial0, 0, 3.3/4.096, 40, 1000); // turn into BPM
+				float bpm = map(gDial0, 0, 3.3/4.096, 40, 200); // turn into BPM
 	    		gMetroInterval = 80.0 * context->audioSampleRate / bpm;
 				
 				// direction change code
@@ -460,10 +462,18 @@ void render(BelaContext *context, void *userData)
 		if (gArpModeEnabled)
 		{
 			float sequencerOffset = gSequencerPatterns[gCurrentPattern][gSequencerLocation];
-
-			float frequency = 130.81 * powf(2.0, (sequencerOffset + gPianoSemitoneOffset + gMidiBase) / 12.0);
-	    	gOscillators[0].setFundamentalFrequency(frequency);	    	
-
+			
+			// float midiVal = sequencerOffset + gPianoSemitoneOffset + gMidiBase;
+			float midiVal = sequencerOffset + gMidiBase;
+			float frequency = 440.0f * powf(2.0, midiVal / 12.0f);
+			if (gSampleCounter == 200)
+			{
+				rt_printf("frequency = %f\n", frequency);
+			}
+			if (gOscillators[0].getFundamentalFrequency() != frequency)
+			{
+	    		gOscillators[0].setFundamentalFrequency(frequency);	    	
+			}
 		}
 		else 
 		{
@@ -476,12 +486,10 @@ void render(BelaContext *context, void *userData)
 			if ((pianoSemitoneOffset != -1)) {
 				gPianoSemitoneOffset = pianoSemitoneOffset;
 				float frequency = 130.81 * powf(2.0, (pianoSemitoneOffset + gMidiBase) / 12.0);
-				rt_printf("frequency = %f\n", frequency);
 				gOscillators[0].setFundamentalFrequency(frequency);
 				
 				gAmplitudeADSR.trigger();
 				gFilterADSR.trigger();
-				rt_printf("ADSRs triggered\n");
 			}
 		}
 		
@@ -513,18 +521,22 @@ void render(BelaContext *context, void *userData)
 		}
 
 	
-    	float oscillator_out = gAmplitude * amplitude * gOscillators[0].process();
+    	// float oscillator_out = gAmplitude *amplitude * gOscillators[0].process();
 
+
+		// TODO: uncomment
 		// use lowpass filter
-		float out = lowpass.process(oscillator_out);
-    	
+		// float out = lowpass.process(oscillator_out);
+    	float out = gAmplitude * gOscillators[0].process();
+
     	
     	// nik's dumbass code
     	gSampleTimer++;
     	if (gSampleTimer > context->audioSampleRate)
     	{
     		gSampleTimer = 0;
-    		// rt_printf("out = %f\n", out);
+    		rt_printf("out = %f\n", out);
+    		rt_printf("osc freq = %f\n", gOscillators[0].getFundamentalFrequency());
     	}
     	
     	
@@ -535,7 +547,7 @@ void render(BelaContext *context, void *userData)
     	}
     	
     	// Write the output to the oscilloscope
-    	gScope.log(out);    	
+    	// gScope.log(out);    	
     }
 }
 

@@ -66,7 +66,7 @@ float AnalogDebouncer::process(float rawInput)
     
     // Use change threshold
     if (rawInput < (kPianoUnpressedValue_ - changeThreshold_)) {
-      rt_printf("\nJust pressed\n");
+      //rt_printf("\nJust pressed\n");
       currentState_ = kStateJustPressed;
       counter_ = 0;
       isLocked_ = true;
@@ -84,7 +84,7 @@ float AnalogDebouncer::process(float rawInput)
     // Still high, increment counter
     counter_++;
     if(counter_ >= debounceInterval_) {
-      rt_printf("state is now pressed\n");
+      //rt_printf("state is now pressed\n");
       
       // Timeout: now we can start waiting for the input to go low
       currentState_ = kStatePressed;
@@ -103,7 +103,7 @@ float AnalogDebouncer::process(float rawInput)
 		// If the input is pressed, accumulate and average values
 		// Check if the value has returned to the unpressed range
 		if (rawInput >= (kPianoUnpressedValue_ - changeThreshold_)) {
-			rt_printf("Just unpressed\n");
+			// rt_printf("Just unpressed\n");
 			currentState_ = kStateJustUnpressed;
 			counter_ = 0;
 			isLocked_ = true;
@@ -129,7 +129,7 @@ float AnalogDebouncer::process(float rawInput)
     // once the lock counter is greater than the debounce interval, return the input value
     counter_++;
     if (counter_ >= debounceInterval_) {
-      rt_printf("in just unpressed\n");
+      //rt_printf("in just unpressed\n");
       currentState_ = kStateUnpressed;
       isLocked_ = false;
       
