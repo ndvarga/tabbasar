@@ -30,12 +30,12 @@ public:
 	AnalogDebouncer() {};
 	
 	// Constructor specifying a sample rate, thresholds, debounce interval, and change threshold
-	AnalogDebouncer(float sampleRate, float interval, float changeThreshold);
+	AnalogDebouncer(float sampleRate, float interval, float changeThreshold, float initValue);
 	
 	// Set the sample rate, thresholds, debounce interval, and change threshold
 	// interval: time in seconds for debouncing and lock duration
 	// changeThreshold: minimum change in value required to engage lock (0 = disabled, uses absolute thresholds)
-	void setup(float sampleRate, float interval, float changeThreshold);
+	void setup(float sampleRate, float interval, float changeThreshold, float initValue);
 	
 	// Return the debounced value given the raw analog input
 	float process(float rawInput);
@@ -52,6 +52,9 @@ public:
 	
 	// Return the last input value
 	float getLastInputValue();
+	
+	int getCurrentState();
+	void resetState(int state);
 	
 	// Destructor
 	~AnalogDebouncer();

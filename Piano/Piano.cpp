@@ -9,8 +9,8 @@ Piano::Piano() {
 
 
 void Piano::setup() {
-  pianoSamples_.fill(kPianoMax_); // initialize the array to 0.0f
-  pianoSum_ = kPianoMax_;         // initialize sum to 0.0f
+  pianoSamples_.fill(0.0f); // initialize the array to 0.0f
+  pianoSum_ = 0.0f;         // initialize sum to 0.0f
   pianoIndex_ = 0;          // reset index
 }
 

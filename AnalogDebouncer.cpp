@@ -17,33 +17,35 @@ Based on Debouncer class for digital inputs
 #include <Bela.h>
 
 // Constructor specifying a sample rate, thresholds, debounce interval, and change threshold
-AnalogDebouncer::AnalogDebouncer(float sampleRate, float interval, float changeThreshold)
+AnalogDebouncer::AnalogDebouncer(float sampleRate, float interval, float changeThreshold, float initValue)
 {
-	setup(sampleRate, interval, changeThreshold);
+	setup(sampleRate, interval, changeThreshold, initValue);
 }
 
 // Set the sample rate, interval, thresholds, and change threshold
-void AnalogDebouncer::setup(float sampleRate, float interval, float changeThreshold)
+void AnalogDebouncer::setup(float sampleRate, float interval, float changeThreshold, float initValue)
 {
 	debounceInterval_ = sampleRate * interval;
 	currentState_ = previousState_ = kStateUnpressed;
 	counter_ = 0;
 	debouncedValue_ = 0.0f;
 	isLocked_ = false;
-	lastInputValue_ = 0.0f;
+	lastInputValue_ = initValue;
 	changeThreshold_ = changeThreshold;
 }
 
 // Return the debounced value given the raw analog input
 float AnalogDebouncer::process(float rawInput)
 {
-	// Save the current state so that if it changes, the risingEdge() and
-	// fallingEdge() methods can detect it
-	previousState_ = currentState_;
+  // Save the current state so that if it changes, the risingEdge() and
+  // fallingEdge() methods can detect it
+  previousState_ = currentState_;
 	
-	// Calculate change from last input value
-	float inputChange = rawInput - lastInputValue_;
-	
+  // Calculate change from last input value
+  float inputChange = rawInput - lastInputValue_;
+  
+  // Update last input value
+  lastInputValue_ = rawInput;
 
 	
   // Run the state machine with the current input (only if not locked)
@@ -59,9 +61,9 @@ float AnalogDebouncer::process(float rawInput)
       currentState_ = kStateJustPressed;
       counter_ = 0;
       isLocked_ = true;
-      counter_ = 0;
+      debouncedValue_ = rawInput;
     }
-    // Return -1.0f to indicate that the input is not ready
+    // Return 12.0f to indicate that the input is not ready
     return 12.0f;
   }
 
@@ -98,7 +100,7 @@ float AnalogDebouncer::process(float rawInput)
     }
     else {
       isLocked_ = false;
-      lastInputValue_ = rawInput;
+      debouncedValue_ = rawInput;
       return debouncedValue_;
     }
   }
@@ -108,9 +110,9 @@ float AnalogDebouncer::process(float rawInput)
     // once the lock counter is greater than the debounce interval, return the input value
     counter_++;
     if (counter_ >= debounceInterval_) {
+      rt_printf("just unpressed\n");
       currentState_ = kStateUnpressed;
       isLocked_ = false;
-      counter_ = 0;
       debouncedValue_ = rawInput;
       return debouncedValue_;
     }
@@ -119,9 +121,7 @@ float AnalogDebouncer::process(float rawInput)
     return -1.0f;
   }
   
-  // Update last input value after processing
-  lastInputValue_ = rawInput;
-  
+
   return -2.0f;
 }
 
@@ -138,6 +138,7 @@ bool AnalogDebouncer::justPressed()
 		return true;
 	return false;
 }
+
 	
 // Return whether the input just now went unpressed
 bool AnalogDebouncer::justUnpressed()
@@ -159,6 +160,14 @@ float AnalogDebouncer::getLastInputValue()
 	return lastInputValue_;
 }
 
+int AnalogDebouncer::getCurrentState() {
+	return currentState_;
+}
+
+void AnalogDebouncer::resetState(int state) {
+	
+
+}
 
 // Destructor
 AnalogDebouncer::~AnalogDebouncer()

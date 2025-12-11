@@ -51928,10 +51928,10 @@ class Piano {
 
 
 
-    static constexpr float kPianoMax_ = 12.0f;
-    static constexpr float kPianoMin_ = 0.0f;
-    static constexpr unsigned int kNumSemitones_ = 12;
-    static constexpr float kSemitoneStep_ = (kPianoMax_ - kPianoMin_) / kNumSemitones_;
+    float kPianoMax_ = 12.0f;
+    float kPianoMin_ = 0.0f;
+    unsigned int kNumSemitones_ = 12;
+    float kSemitoneStep_ = (kPianoMax_ - kPianoMin_) / kNumSemitones_;
 };
 # 32 "/root/Bela/projects/tabbasar/render.cpp" 2
 # 1 "/root/Bela/projects/tabbasar/AnalogDebouncer.h" 1
@@ -51951,12 +51951,12 @@ public:
  AnalogDebouncer() {};
 
 
- AnalogDebouncer(float sampleRate, float interval, float changeThreshold);
+ AnalogDebouncer(float sampleRate, float interval, float changeThreshold, float initValue);
 
 
 
 
- void setup(float sampleRate, float interval, float changeThreshold);
+ void setup(float sampleRate, float interval, float changeThreshold, float initValue);
 
 
  float process(float rawInput);
@@ -51973,6 +51973,9 @@ public:
 
 
  float getLastInputValue();
+
+ int getCurrentState();
+ void resetState(int state);
 
 
  ~AnalogDebouncer();
@@ -58749,7 +58752,7 @@ bool setup(BelaContext *context, void *userData)
 {
 
  gPiano.setup();
- gPianoDebouncer.setup(context->analogSampleRate, .01, 0.7);
+ gPianoDebouncer.setup(context->analogSampleRate, .05, 0.7, 12.0f);
 
 
  gAmplitudeADSR.setSampleRate(context->audioSampleRate);
@@ -58878,9 +58881,9 @@ void render(BelaContext *context, void *userData)
 
 
 
-    if(gPianoDebouncer.justPressed()) {
+    if(pianoDebounced > -1.0f && pianoDebounced < 11.0f) {
      unsigned int semitoneOffset = gPiano.getSemitoneOffset(pianoDebounced);
-     rt_printf("Piano semitone offset: %d\n", semitoneOffset);
+     rt_printf("Piano semitone offset: %f\n", pianoDebounced);
     }
 
   }
