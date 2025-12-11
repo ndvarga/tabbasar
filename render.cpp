@@ -57,7 +57,7 @@ const int kLeftButtonPin = 0;
 const int kRightButtonPin = 1;
 const int kArpOnOffButtonPin = 2; // these always control the same thing no matter the mode
 const int kControlModeTogglePin = 3;
-const int kOctaveChangePin = 4; // octave change button
+const int kOctaveChangePin = 6; // octave change button
 
 
 // global control mode
@@ -142,10 +142,10 @@ bool setup(BelaContext *context, void *userData)
 	gAmplitudeADSR.setSampleRate(context->audioSampleRate);
 
 	// setup all digital pins as inputs
-	pinMode(context, 0, kLeftButtonPin, INPUT);
-	pinMode(context, 0, kRightButtonPin, INPUT);
-	pinMode(context, 0, kControlModeTogglePin, INPUT);
-	pinMode(context, 0,kArpOnOffButtonPin, INPUT);
+	// pinMode(context, 0, kLeftButtonPin, INPUT);
+	// pinMode(context, 0, kRightButtonPin, INPUT);
+	// pinMode(context, 0, kControlModeTogglePin, INPUT);
+	// pinMode(context, 0,kArpOnOffButtonPin, INPUT);
 	
 	// Initialise the button debouncers with 50ms interval
 	gD0Debouncer.setup(context->audioSampleRate, .05);
@@ -278,18 +278,18 @@ void render(BelaContext *context, void *userData)
     	if( !(n % 2) )
     	{
     		//piano processing code here
-    		float pianoValue = analogRead(context, n/2, 7);
-    		if (gSampleCounter ==0 || gSampleCounter == 1)
-    		{
-    			rt_printf("raw piano value is %f\n", pianoValue);
-    		}
+    		float pianoRead = analogRead(context, n/2, kPianoPin);
+    		float pianoValue = map(pianoRead, 0, 3.3/4.096, 0, 12);
+
     		float pianoDebounced = gPianoDebouncer.process(pianoValue);
-    		if (pianoDebounced >= 0.0f && pianoDebounced < 11.5f) {
+    		if (pianoDebounced >= 0.0f && pianoDebounced < 11.5f) 
+    		{
     			rt_printf("Piano value: %f\n", pianoDebounced);
 				gPiano.process(pianoDebounced);
 				int pianoSemitoneOffset = gPiano.getSemitoneOffset();
 
-				if (pianoSemitoneOffset != -1) {
+				if (pianoSemitoneOffset != -1) 
+				{
 					gPianoSemitoneOffset = pianoSemitoneOffset;
 					rt_printf("Piano semitone offset: %d\n", pianoSemitoneOffset);
 				}
@@ -306,8 +306,8 @@ void render(BelaContext *context, void *userData)
 
  
 			// global dials are done
-			float globalLowpassRaw = analogRead(context, n, kGlobalLowpassPin);
-			float masterLevel = analogRead(context, n, kMasterVolumePin);
+			float globalLowpassRaw = analogRead(context, n/2, kGlobalLowpassPin);
+			float masterLevel = analogRead(context, n/2, kMasterVolumePin);
 			float level = map(masterLevel, 0, 3.3 / 4.096, -60, -10);		// Level is second knob (analog in 1)	
 			// // this third parameter is ready to be used
 			// float detune  = map(input2, 0, 3.3 / 4.096, 0, 0.05);	    // Detune is third knob (analog in 2)	
@@ -454,12 +454,7 @@ void render(BelaContext *context, void *userData)
 		}
 			
 			
-		// get the next value from the ADSR envelope
-		float amplitude = gAmplitudeADSR.process();
-			
-		// set the filter frequency based on its ADSR
-		float filterControl = gFilterADSR.process();
-		// lowpass.setFc(filterBase + filterSensitivity * filterControl);
+
 			
 		// Get current frequency based on where we are in the sequencer or if a piano is being played
 		if (gArpModeEnabled)
@@ -473,16 +468,29 @@ void render(BelaContext *context, void *userData)
 		else 
 		{
 			int pianoSemitoneOffset = gPiano.getSemitoneOffset();
+			if (gSampleCounter == 1 || gSampleCounter == 0)
+			{
+				rt_printf("semitone offset FAR AWAY = %d\n", pianoSemitoneOffset);
+			}
 			// if we have a new, non null note on the piano, trigger the ADSR and filter ADSR
-			if ((pianoSemitoneOffset != -1) && (pianoSemitoneOffset != gPianoSemitoneOffset)) {
+			if ((pianoSemitoneOffset != -1)) {
 				gPianoSemitoneOffset = pianoSemitoneOffset;
 				float frequency = 130.81 * powf(2.0, (pianoSemitoneOffset + gMidiBase) / 12.0);
+				rt_printf("frequency = %f\n", frequency);
 				gOscillators[0].setFundamentalFrequency(frequency);
 				
 				gAmplitudeADSR.trigger();
 				gFilterADSR.trigger();
+				rt_printf("ADSRs triggered\n");
 			}
 		}
+		
+		// get the next value from the ADSR envelope
+		float amplitude = gAmplitudeADSR.process();
+			
+		// set the filter frequency based on its ADSR
+		// float filterControl = gFilterADSR.process();
+		// lowpass.setFc(filterBase + filterSensitivity * filterControl);
 		
     	// check if enough time has elapsed and increment the sequence location 
     	gSampleCounter++;
