@@ -225,95 +225,94 @@ void render(BelaContext *context, void *userData)
     	if( !(n % 2) )
     	{
     		// code for arpegiiator, using analog 0
-				float input = analogRead(context, n/2, kTempoInput); // read analog in 0
-				float bpm = map(input, 0, 3.3/4.096, 40, 1000); // turn into BPM
-				gMetroInterval = 80.0 * context->audioSampleRate / bpm;
-					
-				//TODO: MAKE WHAT THESE DIALS DO DEPENDENT ON THE BUTTON STATE
-					
-				// float input0 = analogRead(context, n/2, 0);	// read analog in 0
-				float input1 = analogRead(context, n/2, 1); // analog in 1 is level
-				// float input2 = analogRead(context, n/2, 2);	// read analog in 2
-				float input3 = analogRead(context, n/2, 3); // read analog in 3
+			float input = analogRead(context, n/2, kTempoInput); // read analog in 0
+			float bpm = map(input, 0, 3.3/4.096, 40, 1000); // turn into BPM
+			gMetroInterval = 80.0 * context->audioSampleRate / bpm;
 				
-				float inputPiano = analogRead(context, n/2, kPianoPin);
-
-				// float frequency = map(input0, 0, 3.3 / 4.096, 55, 880);		// Frequency is first knob (analog in 0)
-				float level = map(input1, 0, 3.3 / 4.096, -60, -10);		// Level is second knob (analog in 1)	
-				// // this third parameter is ready to be used
-				// float detune  = map(input2, 0, 3.3 / 4.096, 0, 0.05);	    // Detune is third knob (analog in 2)	
-				float lowpass_frequency = map(input3, 0, 3.3/4.096, 1, 8000); // use pin3 for lowpass_frequency
+			//TODO: MAKE WHAT THESE DIALS DO DEPENDENT ON THE BUTTON STATE
 				
-				lowpass.setFc(lowpass_frequency);
-				
-				gAmplitude = powf(10.0, level / 20);	// Convert level to linear amplitude
-		
-				// process the piano input, get the average value 
-				// (0-11) for semitone offset
-				float pianoValue = map(inputPiano, 0, 3.3/4.096, 0, 12);
-				float pianoAverage = gPiano.process(pianoValue);
-				if (gSampleTimer < 10)
-				{
-					rt_printf("pianoAverage = %f\n",pianoAverage);
-				}
-				float pianoDebounced = gPianoDebouncer.process(pianoValue);
+			// float input0 = analogRead(context, n/2, 0);	// read analog in 0
+			float input1 = analogRead(context, n/2, 1); // analog in 1 is level
+			// float input2 = analogRead(context, n/2, 2);	// read analog in 2
+			float input3 = analogRead(context, n/2, 3); // read analog in 3
+			
+			float inputPiano = analogRead(context, n/2, kPianoPin);
 
-				// rt_printf("Piano debounced = %f\n", pianoDebounced);
+			// float frequency = map(input0, 0, 3.3 / 4.096, 55, 880);		// Frequency is first knob (analog in 0)
+			float level = map(input1, 0, 3.3 / 4.096, -60, -10);		// Level is second knob (analog in 1)	
+			// // this third parameter is ready to be used
+			// float detune  = map(input2, 0, 3.3 / 4.096, 0, 0.05);	    // Detune is third knob (analog in 2)	
+			float lowpass_frequency = map(input3, 0, 3.3/4.096, 1, 8000); // use pin3 for lowpass_frequency
+			
+			lowpass.setFc(lowpass_frequency);
+			
+			gAmplitude = powf(10.0, level / 20);	// Convert level to linear amplitude
+	
+			// process the piano input, get the average value 
+			// (0-11) for semitone offset
+			float pianoValue = map(inputPiano, 0, 3.3/4.096, 0, 12);
+			if (gSampleTimer < 10)
+			{
+				rt_printf("pianoValue = %f\n",pianoValue);
+			}
+			float pianoDebounced = gPianoDebouncer.process(pianoValue);
 
-				if(gPianoDebouncer.justPressed()) {
-					unsigned int semitoneOffset = gPiano.getSemitoneOffset(pianoDebounced);
-					rt_printf("Piano semitone offset: %d\n", semitoneOffset);
-				}
+			// rt_printf("Piano debounced = %f\n", pianoDebounced);
+
+			if(pianoDebounced > -1.0f && pianoDebounced < 11.5f) {
+				unsigned int semitoneOffset = gPiano.getSemitoneOffset(pianoDebounced);
+				rt_printf("Piano semitone offset: %d\n", semitoneOffset);
+			}
 
 		}
 			
-			int reverseButtonStatus = digitalRead(context, n, kReverseButtonPin);
+		int reverseButtonStatus = digitalRead(context, n, kReverseButtonPin);
 
-			if(reverseButtonStatus == LOW && gLastReverseButtonStatus == HIGH)
-			//reverses all gSequencerPatterns when button in digital 2 is pressed
-			for(int i = 0; i < gSequencerPatterns.size(); i++)
-			{
-					std::reverse(gSequencerPatterns[i].begin(), gSequencerPatterns[i].end());
-			}
-			gLastReverseButtonStatus = reverseButtonStatus;
-				
-				
-			// Use button to change which GPattern is used
-			int buttonStatus = digitalRead(context, n, kPatternButtonPin);
+		if(reverseButtonStatus == LOW && gLastReverseButtonStatus == HIGH)
+		//reverses all gSequencerPatterns when button in digital 2 is pressed
+		for(int i = 0; i < gSequencerPatterns.size(); i++)
+		{
+				std::reverse(gSequencerPatterns[i].begin(), gSequencerPatterns[i].end());
+		}
+		gLastReverseButtonStatus = reverseButtonStatus;
+			
+			
+		// Use button to change which GPattern is used
+		int buttonStatus = digitalRead(context, n, kPatternButtonPin);
 
-			if(buttonStatus == LOW && gLastButtonStatus == HIGH)
-			{
-				gCurrentPattern++;
-					if(gCurrentPattern >= gSequencerPatterns.size())
-						gCurrentPattern = 0;
-			}
-			gLastButtonStatus = buttonStatus;
-				
-			// Read ADSR button
-			unsigned int ADSRButtonValue = digitalRead(context, n, kADSRButtonPin);
-			gADSRDebouncer.process(ADSRButtonValue);
+		if(buttonStatus == LOW && gLastButtonStatus == HIGH)
+		{
+			gCurrentPattern++;
+				if(gCurrentPattern >= gSequencerPatterns.size())
+					gCurrentPattern = 0;
+		}
+		gLastButtonStatus = buttonStatus;
+			
+		// Read ADSR button
+		unsigned int ADSRButtonValue = digitalRead(context, n, kADSRButtonPin);
+		gADSRDebouncer.process(ADSRButtonValue);
 
-			if(gADSRDebouncer.fallingEdge()) {
-				gAmplitudeADSR.trigger();
-				gFilterADSR.trigger();
-			}    	
-			if(gADSRDebouncer.risingEdge()) {
-				gAmplitudeADSR.release();
-				gFilterADSR.release();
-			}
-	
-				
-			// get the next value from the ADSR envelope
-			float amplitude = gAmplitudeADSR.process();
-				
-			// set the filter frequency based on its ADSR
-			float filterControl = gFilterADSR.process();
-			// lowpass.setFc(filterBase + filterSensitivity * filterControl);
-				
-				
-			// Get current frequency based on where we are in the sequencer
-			float midiNote = gSequencerPatterns[gCurrentPattern][gSequencerLocation];
-			float frequency = 440.0 * powf(2.0, (midiNote - 69.0) / 12.0);
+		if(gADSRDebouncer.fallingEdge()) {
+			gAmplitudeADSR.trigger();
+			gFilterADSR.trigger();
+		}    	
+		if(gADSRDebouncer.risingEdge()) {
+			gAmplitudeADSR.release();
+			gFilterADSR.release();
+		}
+
+			
+		// get the next value from the ADSR envelope
+		float amplitude = gAmplitudeADSR.process();
+			
+		// set the filter frequency based on its ADSR
+		float filterControl = gFilterADSR.process();
+		// lowpass.setFc(filterBase + filterSensitivity * filterControl);
+			
+			
+		// Get current frequency based on where we are in the sequencer
+		float midiNote = gSequencerPatterns[gCurrentPattern][gSequencerLocation];
+		float frequency = 440.0 * powf(2.0, (midiNote - 69.0) / 12.0);
 				
     	gOscillators[0].setFundamentalFrequency(frequency);
     	// check if enough time has elapsed and increment the sequence location 
