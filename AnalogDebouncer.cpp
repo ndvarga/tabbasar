@@ -53,7 +53,6 @@ float AnalogDebouncer::process(float rawInput)
   if(currentState_ == kStateUnpressed) {
     // Input is not pressed, but look for a change in value
     // Check if change threshold is enabled and if change is sufficient
-    float absChange = (inputChange < 0.0f) ? -inputChange : inputChange; // Absolute value of change
 
     
     // Use change threshold
@@ -112,11 +111,10 @@ float AnalogDebouncer::process(float rawInput)
     // once the lock counter is greater than the debounce interval, return the input value
     counter_++;
     if (counter_ >= debounceInterval_) {
-      rt_printf("just unpressed\n");
+      rt_printf("in just unpressed\n");
       currentState_ = kStateUnpressed;
       isLocked_ = false;
-      debouncedValue_ = rawInput;
-      return debouncedValue_;
+      
     }
     
     // else return 12.0f to indicate that the input is not ready

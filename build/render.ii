@@ -58851,95 +58851,94 @@ void render(BelaContext *context, void *userData)
      if( !(n % 2) )
      {
 
-    float input = analogRead(context, n/2, kTempoInput);
-    float bpm = map(input, 0, 3.3/4.096, 40, 1000);
-    gMetroInterval = 80.0 * context->audioSampleRate / bpm;
+   float input = analogRead(context, n/2, kTempoInput);
+   float bpm = map(input, 0, 3.3/4.096, 40, 1000);
+   gMetroInterval = 80.0 * context->audioSampleRate / bpm;
 
 
 
 
-    float input1 = analogRead(context, n/2, 1);
+   float input1 = analogRead(context, n/2, 1);
 
-    float input3 = analogRead(context, n/2, 3);
+   float input3 = analogRead(context, n/2, 3);
 
-    float inputPiano = analogRead(context, n/2, 4);
-
-
-    float level = map(input1, 0, 3.3 / 4.096, -60, -10);
+   float inputPiano = analogRead(context, n/2, 4);
 
 
-    float lowpass_frequency = map(input3, 0, 3.3/4.096, 1, 8000);
-
-    lowpass.setFc(lowpass_frequency);
-
-    gAmplitude = powf(10.0, level / 20);
+   float level = map(input1, 0, 3.3 / 4.096, -60, -10);
 
 
+   float lowpass_frequency = map(input3, 0, 3.3/4.096, 1, 8000);
 
-    float pianoValue = map(inputPiano, 0, 3.3/4.096, 0, 12);
-    float pianoAverage = gPiano.process(pianoValue);
-    if (gSampleTimer < 10)
-    {
-     rt_printf("pianoAverage = %f\n",pianoAverage);
-    }
-    float pianoDebounced = gPianoDebouncer.process(pianoValue);
+   lowpass.setFc(lowpass_frequency);
+
+   gAmplitude = powf(10.0, level / 20);
 
 
 
-    if(gPianoDebouncer.justPressed()) {
-     unsigned int semitoneOffset = gPiano.getSemitoneOffset(pianoDebounced);
-     rt_printf("Piano semitone offset: %d\n", semitoneOffset);
-    }
+   float pianoValue = map(inputPiano, 0, 3.3/4.096, 0, 12);
+
+
+
+
+   float pianoDebounced = gPianoDebouncer.process(pianoValue);
+
+
+
+   if(pianoDebounced > -1.0f && pianoDebounced < 11.5f) {
+    unsigned int semitoneOffset = gPiano.getSemitoneOffset(pianoDebounced);
+    rt_printf("Piano semitone offset: %d\n", semitoneOffset);
+   }
 
   }
 
-   int reverseButtonStatus = digitalRead(context, n, kReverseButtonPin);
+  int reverseButtonStatus = digitalRead(context, n, kReverseButtonPin);
 
-   if(reverseButtonStatus == LOW && gLastReverseButtonStatus == HIGH)
+  if(reverseButtonStatus == LOW && gLastReverseButtonStatus == HIGH)
 
-   for(int i = 0; i < gSequencerPatterns.size(); i++)
-   {
-     std::reverse(gSequencerPatterns[i].begin(), gSequencerPatterns[i].end());
-   }
-   gLastReverseButtonStatus = reverseButtonStatus;
-
-
-
-   int buttonStatus = digitalRead(context, n, kPatternButtonPin);
-
-   if(buttonStatus == LOW && gLastButtonStatus == HIGH)
-   {
-    gCurrentPattern++;
-     if(gCurrentPattern >= gSequencerPatterns.size())
-      gCurrentPattern = 0;
-   }
-   gLastButtonStatus = buttonStatus;
-
-
-   unsigned int ADSRButtonValue = digitalRead(context, n, kADSRButtonPin);
-   gADSRDebouncer.process(ADSRButtonValue);
-
-   if(gADSRDebouncer.fallingEdge()) {
-    gAmplitudeADSR.trigger();
-    gFilterADSR.trigger();
-   }
-   if(gADSRDebouncer.risingEdge()) {
-    gAmplitudeADSR.release();
-    gFilterADSR.release();
-   }
+  for(int i = 0; i < gSequencerPatterns.size(); i++)
+  {
+    std::reverse(gSequencerPatterns[i].begin(), gSequencerPatterns[i].end());
+  }
+  gLastReverseButtonStatus = reverseButtonStatus;
 
 
 
-   float amplitude = gAmplitudeADSR.process();
+  int buttonStatus = digitalRead(context, n, kPatternButtonPin);
+
+  if(buttonStatus == LOW && gLastButtonStatus == HIGH)
+  {
+   gCurrentPattern++;
+    if(gCurrentPattern >= gSequencerPatterns.size())
+     gCurrentPattern = 0;
+  }
+  gLastButtonStatus = buttonStatus;
 
 
-   float filterControl = gFilterADSR.process();
+  unsigned int ADSRButtonValue = digitalRead(context, n, kADSRButtonPin);
+  gADSRDebouncer.process(ADSRButtonValue);
+
+  if(gADSRDebouncer.fallingEdge()) {
+   gAmplitudeADSR.trigger();
+   gFilterADSR.trigger();
+  }
+  if(gADSRDebouncer.risingEdge()) {
+   gAmplitudeADSR.release();
+   gFilterADSR.release();
+  }
+
+
+
+  float amplitude = gAmplitudeADSR.process();
+
+
+  float filterControl = gFilterADSR.process();
 
 
 
 
-   float midiNote = gSequencerPatterns[gCurrentPattern][gSequencerLocation];
-   float frequency = 440.0 * powf(2.0, (midiNote - 69.0) / 12.0);
+  float midiNote = gSequencerPatterns[gCurrentPattern][gSequencerLocation];
+  float frequency = 440.0 * powf(2.0, (midiNote - 69.0) / 12.0);
 
      gOscillators[0].setFundamentalFrequency(frequency);
 
@@ -58966,7 +58965,7 @@ void render(BelaContext *context, void *userData)
 
   float oscillator_out = 0;
   float out = 0;
-# 354 "/root/Bela/projects/tabbasar/render.cpp"
+# 353 "/root/Bela/projects/tabbasar/render.cpp"
      oscillator_out = gAmplitude * gOscillators[0].process();
 
 

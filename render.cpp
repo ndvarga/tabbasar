@@ -251,10 +251,10 @@ void render(BelaContext *context, void *userData)
 			// process the piano input, get the average value 
 			// (0-11) for semitone offset
 			float pianoValue = map(inputPiano, 0, 3.3/4.096, 0, 12);
-			if (gSampleTimer < 10)
-			{
-				rt_printf("pianoValue = %f\n",pianoValue);
-			}
+			// if (gSampleTimer < 10)
+			// {
+			// 	rt_printf("pianoValue = %f\n",pianoValue);
+			// }
 			float pianoDebounced = gPianoDebouncer.process(pianoValue);
 
 			// rt_printf("Piano debounced = %f\n", pianoDebounced);
