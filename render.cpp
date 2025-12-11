@@ -126,7 +126,7 @@ unsigned int gSampleTimer = 0;
 bool setup(BelaContext *context, void *userData)
 {
 	// init piano, 50 ms debounce time
-	gPiano.setup();
+	gPiano.setup(12.0f);
 	gPianoDebouncer.setup(context->analogSampleRate, .05, 0.7, 12.0f);
 
   // Initialise the ADSR objects
@@ -252,7 +252,11 @@ void render(BelaContext *context, void *userData)
 				// (0-11) for semitone offset
 				float pianoValue = map(inputPiano, 0, 3.3/4.096, 0, 12);
 				float pianoAverage = gPiano.process(pianoValue);
-				float pianoDebounced = gPianoDebouncer.process(pianoAverage);
+				if (gSampleTimer < 10)
+				{
+					rt_printf("pianoAverage = %f\n",pianoAverage);
+				}
+				float pianoDebounced = gPianoDebouncer.process(pianoValue);
 
 				// rt_printf("Piano debounced = %f\n", pianoDebounced);
 
@@ -353,7 +357,7 @@ void render(BelaContext *context, void *userData)
     	out = lowpass.process(oscillator_out);
     	
     	gSampleTimer++;
-    	if (gSampleTimer > context->audioSampleRate / 5)
+    	if (gSampleTimer > context->audioSampleRate)
     	{
     		gSampleTimer = 0;
     		// rt_printf("out = %f\n", out);

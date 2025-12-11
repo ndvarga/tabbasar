@@ -11,7 +11,7 @@ class Piano {
   public:
     Piano();
     ~Piano() {}
-    void setup();
+    void setup(float initValue);
     float process(float newValue);
     unsigned int getSemitoneOffset(float pianoAverage);
 
@@ -26,5 +26,4 @@ class Piano {
     float kPianoMax_ = 12.0f;
     float kPianoMin_ = 0.0f;
     unsigned int kNumSemitones_ = 12; // 0-11 inclusive
-    float kSemitoneStep_ = (kPianoMax_ - kPianoMin_) / kNumSemitones_;
 };

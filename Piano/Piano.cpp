@@ -4,13 +4,13 @@
 
 
 Piano::Piano() {
-    setup();
+    setup(12.0f);
 }
 
 
-void Piano::setup() {
-  pianoSamples_.fill(0.0f); // initialize the array to 0.0f
-  pianoSum_ = 0.0f;         // initialize sum to 0.0f
+void Piano::setup(float initValue) {
+  pianoSamples_.fill(initValue); // initialize the array to 0.0f
+  pianoSum_ = initValue;         // initialize sum to 12.0f
   pianoIndex_ = 0;          // reset index
 }
 
@@ -26,7 +26,7 @@ float Piano::process(float newValue) {
   pianoIndex_ = (pianoIndex_ + 1) % kPianoVectorSize;
   
   // Calculate average
-  pianoAverage_ = pianoSum_ / kPianoVectorSize;
+  pianoAverage_ = pianoSum_ / (float)kPianoVectorSize;
   return pianoAverage_;
 }
 
@@ -40,7 +40,7 @@ unsigned int Piano::getSemitoneOffset(float mappedValue) {
   // Calculate which semitone segment this value falls into
   // Each semitone covers kSemitoneStep of the piano range
   float roundedValue = roundf(mappedValue);
-  unsigned int semitone = static_cast<unsigned int>(roundedValue);
+  unsigned int semitone = (unsigned int)(roundedValue);
   
   // Clamp to valid range (0-12)
   const unsigned int kNumSemitones = 12;

@@ -51916,7 +51916,7 @@ class Piano {
   public:
     Piano();
     ~Piano() {}
-    void setup();
+    void setup(float initValue);
     float process(float newValue);
     unsigned int getSemitoneOffset(float pianoAverage);
 
@@ -51931,7 +51931,6 @@ class Piano {
     float kPianoMax_ = 12.0f;
     float kPianoMin_ = 0.0f;
     unsigned int kNumSemitones_ = 12;
-    float kSemitoneStep_ = (kPianoMax_ - kPianoMin_) / kNumSemitones_;
 };
 # 32 "/root/Bela/projects/tabbasar/render.cpp" 2
 # 1 "/root/Bela/projects/tabbasar/AnalogDebouncer.h" 1
@@ -51975,6 +51974,7 @@ public:
  float getLastInputValue();
 
  int getCurrentState();
+
  void resetState(int state);
 
 
@@ -51992,6 +51992,7 @@ private:
  bool isLocked_;
  float lastInputValue_;
  float changeThreshold_;
+  float kPianoUnpressedValue_ = 12.0f;
 };
 # 33 "/root/Bela/projects/tabbasar/render.cpp" 2
 # 1 "/root/Bela/projects/tabbasar/parameters.h" 1
@@ -58751,7 +58752,7 @@ unsigned int gSampleTimer = 0;
 bool setup(BelaContext *context, void *userData)
 {
 
- gPiano.setup();
+ gPiano.setup(12.0f);
  gPianoDebouncer.setup(context->analogSampleRate, .05, 0.7, 12.0f);
 
 
@@ -58877,13 +58878,17 @@ void render(BelaContext *context, void *userData)
 
     float pianoValue = map(inputPiano, 0, 3.3/4.096, 0, 12);
     float pianoAverage = gPiano.process(pianoValue);
-    float pianoDebounced = gPianoDebouncer.process(pianoAverage);
+    if (gSampleTimer < 10)
+    {
+     rt_printf("pianoAverage = %f\n",pianoAverage);
+    }
+    float pianoDebounced = gPianoDebouncer.process(pianoValue);
 
 
 
-    if(pianoDebounced > -1.0f && pianoDebounced < 11.0f) {
+    if(gPianoDebouncer.justPressed()) {
      unsigned int semitoneOffset = gPiano.getSemitoneOffset(pianoDebounced);
-     rt_printf("Piano semitone offset: %f\n", pianoDebounced);
+     rt_printf("Piano semitone offset: %d\n", semitoneOffset);
     }
 
   }
@@ -58961,14 +58966,14 @@ void render(BelaContext *context, void *userData)
 
   float oscillator_out = 0;
   float out = 0;
-# 350 "/root/Bela/projects/tabbasar/render.cpp"
+# 354 "/root/Bela/projects/tabbasar/render.cpp"
      oscillator_out = gAmplitude * gOscillators[0].process();
 
 
      out = lowpass.process(oscillator_out);
 
      gSampleTimer++;
-     if (gSampleTimer > context->audioSampleRate / 5)
+     if (gSampleTimer > context->audioSampleRate)
      {
       gSampleTimer = 0;
 
