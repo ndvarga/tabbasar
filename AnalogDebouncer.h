@@ -54,6 +54,7 @@ public:
 	float getLastInputValue();
 	
 	int getCurrentState();
+
 	void resetState(int state);
 	
 	// Destructor
@@ -71,5 +72,6 @@ private:
 	bool  isLocked_;       // Whether lock is currently engaged
 	float lastInputValue_; // Previous input value for change detection
 	float changeThreshold_; // Minimum change required to engage lock (0 = disabled)
+  float kPianoUnpressedValue_ = 12.0f;
 };
 

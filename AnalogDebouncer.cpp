@@ -31,6 +31,7 @@ void AnalogDebouncer::setup(float sampleRate, float interval, float changeThresh
 	debouncedValue_ = 0.0f;
 	isLocked_ = false;
 	lastInputValue_ = initValue;
+  rt_printf("initValue = %f\n", initValue);
 	changeThreshold_ = changeThreshold;
 }
 
@@ -55,13 +56,14 @@ float AnalogDebouncer::process(float rawInput)
     float absChange = (inputChange < 0.0f) ? -inputChange : inputChange; // Absolute value of change
 
     
-    // Use change threshold: require significant change AND cross high threshold
-    if (absChange >= changeThreshold_) {
+    // Use change threshold
+    if (rawInput < (kPianoUnpressedValue_ - changeThreshold_)) {
       rt_printf("\nJust pressed\n");
       currentState_ = kStateJustPressed;
       counter_ = 0;
       isLocked_ = true;
       debouncedValue_ = rawInput;
+      return debouncedValue_;
     }
     // Return 12.0f to indicate that the input is not ready
     return 12.0f;
@@ -83,8 +85,8 @@ float AnalogDebouncer::process(float rawInput)
     
     debouncedValue_ = rawInput;
 
-    // Return -1.0f to indicate that the input is not ready
-    return -1.0f;
+    // Return 12.0f to indicate that the input is not ready
+    return 12.0f;
   }
 
   else if(currentState_ == kStatePressed) {
@@ -96,12 +98,12 @@ float AnalogDebouncer::process(float rawInput)
       currentState_ = kStateJustUnpressed;
       counter_ = 0;
       isLocked_ = true;
-      return -1.0f;
+      debouncedValue_ = rawInput;
+      return debouncedValue_;
     }
     else {
       isLocked_ = false;
-      debouncedValue_ = rawInput;
-      return debouncedValue_;
+      return 12.0f;
     }
   }
 
@@ -117,8 +119,8 @@ float AnalogDebouncer::process(float rawInput)
       return debouncedValue_;
     }
     
-    // else return -1.0f to indicate that the input is not ready
-    return -1.0f;
+    // else return 12.0f to indicate that the input is not ready
+    return 12.0f;
   }
   
 
@@ -165,7 +167,8 @@ int AnalogDebouncer::getCurrentState() {
 }
 
 void AnalogDebouncer::resetState(int state) {
-	
+  currentState_ = state;
+  previousState_ = state;
 
 }
 

@@ -253,14 +253,14 @@ void render(BelaContext *context, void *userData)
 				float pianoValue = map(inputPiano, 0, 3.3/4.096, 0, 12);
 				float pianoAverage = gPiano.process(pianoValue);
 				float pianoDebounced = gPianoDebouncer.process(pianoAverage);
-				// if (gSampleCounter > (context->audioSampleRate / 2.0f))
-				// 	rt_printf("Piano avg = %f\n", pianoAverage);
 
-				if(pianoDebounced > -1.0f && pianoDebounced < 11.0f) {
+				// rt_printf("Piano debounced = %f\n", pianoDebounced);
+
+				if(gPianoDebouncer.justPressed()) {
 					unsigned int semitoneOffset = gPiano.getSemitoneOffset(pianoDebounced);
-					rt_printf("Piano semitone offset: %f\n", pianoDebounced);
+					rt_printf("Piano semitone offset: %d\n", semitoneOffset);
 				}
-				
+
 		}
 			
 			int reverseButtonStatus = digitalRead(context, n, kReverseButtonPin);
