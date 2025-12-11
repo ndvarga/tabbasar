@@ -21,7 +21,8 @@ class Piano {
 
     // variables
     unsigned int pianoIndex_ = 0;
-    unsigned int semitoneOffset_ = -1;
+    // Use 12 as “no note” sentinel; avoids large wrapped value from -1 on unsigned
+    unsigned int semitoneOffset_ = 12;
 
 
     // Lookup table: maps piano value ranges to semitone offsets (0-12)

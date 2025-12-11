@@ -285,15 +285,7 @@ void render(BelaContext *context, void *userData)
     		float pianoDebounced = gPianoDebouncer.process(pianoValue);
     		if (pianoDebounced >= 0.0f && pianoDebounced < 11.5f) 
     		{
-    			rt_printf("Piano value: %f\n", pianoDebounced);
 				gPiano.process(pianoDebounced);
-				int pianoSemitoneOffset = gPiano.getSemitoneOffset();
-
-				// if (pianoSemitoneOffset != -1) 
-				// {
-				// 	gPianoSemitoneOffset = pianoSemitoneOffset;
-				// 	rt_printf("Piano semitone offset: %d\n", pianoSemitoneOffset);
-				// }
     		}
 
     		// code for arpegiiator, using analog 0
@@ -478,12 +470,8 @@ void render(BelaContext *context, void *userData)
 		else 
 		{
 			int pianoSemitoneOffset = gPiano.getSemitoneOffset();
-			if (gSampleCounter == 1 || gSampleCounter == 0)
-			{
-				rt_printf("semitone offset FAR AWAY = %d\n", pianoSemitoneOffset);
-			}
 			// if we have a new, non null note on the piano, trigger the ADSR and filter ADSR
-			if ((pianoSemitoneOffset != -1)) {
+			if (pianoSemitoneOffset >= 0 && pianoSemitoneOffset <= 12) {
 				gPianoSemitoneOffset = pianoSemitoneOffset;
 				float frequency = 130.81 * powf(2.0, (pianoSemitoneOffset + gMidiBase) / 12.0);
 				gOscillators[0].setFundamentalFrequency(frequency);
