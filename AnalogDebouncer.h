@@ -72,10 +72,11 @@ private:
 	bool  isLocked_;       // Whether lock is currently engaged
 	float lastInputValue_; // Previous input value for change detection
 	float changeThreshold_; // Minimum change required to engage lock (0 = disabled)
-  float kPianoUnpressedValue_ = 12.0f;
+	float kPianoUnpressedValue_ = 12.0f;
 	
 	// Accumulator for averaging during kStatePressed
 	float accumulator_;    // Sum of values during pressed state
 	int   sampleCount_;    // Number of samples accumulated
+	bool isReady_ = false;
 };
 

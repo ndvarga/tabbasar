@@ -64,7 +64,6 @@ float AnalogDebouncer::process(float rawInput)
       counter_ = 0;
       isLocked_ = true;
       debouncedValue_ = rawInput;
-      return debouncedValue_;
     }
     // Return 12.0f to indicate that the input is not ready
     return 12.0f;
@@ -83,13 +82,11 @@ float AnalogDebouncer::process(float rawInput)
       // Timeout: now we can start waiting for the input to go low
       currentState_ = kStatePressed;
       // Reset accumulator when entering pressed state
-      accumulator_ = rawInput;
-      sampleCount_ = 1;
+      accumulator_ = 0.0f;
+      sampleCount_ = 0;
       debouncedValue_ = 12.0f;
     }
-    else {
-      debouncedValue_ = rawInput;
-    }
+
 
     // Return 12.0f to indicate that the input is not ready
     return 12.0f;
@@ -105,9 +102,10 @@ float AnalogDebouncer::process(float rawInput)
       counter_ = 0;
       isLocked_ = true;
       // Use the accumulated average as the final debounced value
-      debouncedValue_ = (sampleCount_ > 0) ? (accumulator_ / sampleCount_) : rawInput;
+      debouncedValue_ = (sampleCount_ > 0) ? (accumulator_ / sampleCount_) : 12.0f;
       accumulator_ = 0.0f;
       sampleCount_ = 0;
+      isReady_ = true;
       return debouncedValue_;
     }
     else {
@@ -115,7 +113,7 @@ float AnalogDebouncer::process(float rawInput)
       // Accumulate the current value
       accumulator_ += rawInput;
       sampleCount_++;
-      // Return the running average
+      
       return 12.0f;
     }
   }
@@ -142,7 +140,10 @@ float AnalogDebouncer::process(float rawInput)
 // Return the current debounced value
 float AnalogDebouncer::currentValue()
 {
-	return debouncedValue_;
+	if (isReady_)
+		return debouncedValue_;
+	else
+		return 12.0f;
 }
 
 // Return whether the input just now went pressed

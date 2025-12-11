@@ -127,7 +127,7 @@ bool setup(BelaContext *context, void *userData)
 {
 	// init piano, 50 ms debounce time
 	gPiano.setup(12.0f);
-	gPianoDebouncer.setup(context->analogSampleRate, .05, 0.7, 12.0f);
+	gPianoDebouncer.setup(context->analogSampleRate, .1, 0.7, 12.0f);
 
   // Initialise the ADSR objects
 	gAmplitudeADSR.setSampleRate(context->audioSampleRate);
@@ -197,9 +197,9 @@ void render(BelaContext *context, void *userData)
 		float ampDecayTime = gGuiController.getSliderValue(2);
 		float ampSustainLevel = gGuiController.getSliderValue(3);
 		float ampReleaseTime = gGuiController.getSliderValue(4);
-		float filterBase = gGuiController.getSliderValue(5);
-		float filterSensitivity = gGuiController.getSliderValue(6);
-		float filterQ = gGuiController.getSliderValue(7);
+		// float filterBase = gGuiController.getSliderValue(5);
+		// float filterSensitivity = gGuiController.getSliderValue(6);
+		// float filterQ = gGuiController.getSliderValue(7);
 		float filterAttackTime = gGuiController.getSliderValue(8);
 		float filterDecayTime = gGuiController.getSliderValue(9);
 		float filterSustainLevel = gGuiController.getSliderValue(10);
@@ -259,7 +259,7 @@ void render(BelaContext *context, void *userData)
 
 			// rt_printf("Piano debounced = %f\n", pianoDebounced);
 
-			if(pianoDebounced > -1.0f && pianoDebounced < 11.5f) {
+			if(pianoDebounced > -1.0f && pianoDebounced < 12.0f) {
 				unsigned int semitoneOffset = gPiano.getSemitoneOffset(pianoDebounced);
 				rt_printf("Piano semitone offset: %d\n", semitoneOffset);
 			}
